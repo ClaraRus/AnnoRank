@@ -10,6 +10,7 @@ AnnoRank offers support for applying fairness interventions in the pipeline of a
 In addition, the tool is integrated with the Ranklib library, offering a vast range of ranking models that can be applied to the data and displayed in the UI. 
 AnnoRank is designed to be flexible, configurable, and easy to deploy to meet diverse requirements and a larger audience. 
 
+
 # External Resource
 In the folder external resources the following can be found:
 - AnnoRank.zip - a downloadable version of the tool
