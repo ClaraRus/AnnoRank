@@ -1,0 +1,57 @@
+{
+
+  "data_reader_class": {
+    "name": "xing",
+    "score": "qualification",
+    "group": "gender",
+    "query": "title",
+    "docID": "cid"
+  },
+
+
+  "train_ranker_config": {
+    "name": "Ranklib",
+    "model_path": "./dataset/xing/models/Ranklib",
+    "settings": [{
+        "features": ["edu_experience", "work_experience", "hits"],
+        "pos_th": 0,
+        "rel_max": 1,
+
+        "ranker": "RankNet",
+        "ranker_id": 1,
+        "metric": "NDCG",
+        "top_k": 10,
+
+        "lr": 0.000001,
+        "epochs": 20,
+
+        "train_data":["original", "preprocessing_1"],
+        "test_data": ["original", "preprocessing_1"],
+
+        "ranking_type": "ranker_1"
+    }]
+  },
+  "pre_processing_config": {
+        "name": "CIFRank",
+        "model_path": "./dataset/xing/models/CIFRank",
+        "settings": [{
+          "pos_th": 0,
+          "control": "f",
+          "features": ["edu_experience", "work_experience", "hits"],
+          "ranking_type": "preprocessing_1"
+        }]
+    },
+  "in_processing_config": null,
+  "post_processing_config": {
+    "name": "FA*IR",
+    "model_path": "",
+    "settings": [{
+      "k": 10,
+      "p": 0.9,
+      "alpha": 0.2,
+      "train_data": null,
+      "test_data": ["original", "preprocessing_1", "ranker_1:preprocessing_1:qualification_fair__qualification_fair", "ranker_1:qualification__qualification"],
+      "ranking_type": "postprocessing_1"
+  }]
+  }
+}

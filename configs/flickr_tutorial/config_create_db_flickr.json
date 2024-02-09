@@ -1,0 +1,16 @@
+{
+
+  "data_reader_class": {
+    "name": "flickr",
+    "score": "score",
+    "group": "",
+    "query": "image",
+    "docID": "ID"
+  },
+  
+  
+      "train_ranker_config": null,
+      "pre_processing_config": null,
+      "in_processing_config": null,
+      "post_processing_config": null
+  }

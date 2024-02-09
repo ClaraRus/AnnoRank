@@ -1,0 +1,30 @@
+{
+
+  "data_reader_class": {
+    "name": "xing",
+    "score": "qualification",
+    "group": "gender",
+    "query": "title",
+    "docID": "cid"
+  },
+
+  "ui_display_config": {
+    "annotate": true,
+    "display_fields": ["cid", "gender", "edu_experience_string", "work_experience_string"],
+    "task_description": "Select the ranking that is considered to have the best trade-off between usefulness and diversity with respect to the gender, given the occupation displayed below.",
+
+    "exit_survey": [
+      {
+        "question":"Gender Identity:",
+        "field": "gender",
+        "options": ["Male", "Female", "Other"],
+        "mandatory": true
+      },
+      {
+        "question": "Feedback on the task:",
+        "options": "text",
+        "field": "feedback",
+        "mandatory": false
+      }]
+  }
+}

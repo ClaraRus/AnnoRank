@@ -1,0 +1,21 @@
+{
+
+    "data_reader_class": {
+      "name": "flickr",
+      "score": "score",
+      "group": "",
+      "query": "image",
+      "docID": "ID"
+    },
+  
+    "ui_display_config": {
+      "annotate": false,
+      "avg_interaction": {
+        "experiment_id": 1,
+        "interaction": "n_views"
+      },
+
+      "display_fields": ["caption"],
+      "task_description": ""
+    }
+  }

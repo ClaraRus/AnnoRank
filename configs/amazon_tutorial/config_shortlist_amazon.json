@@ -1,0 +1,33 @@
+{
+
+  "data_reader_class": {
+        "name": "amazon",
+        "score": "average_review_rating",
+        "group": "manufacturer",
+        "query": "amazon_category_and_sub_category",
+        "docID": "product_name"
+      },
+
+  "ui_display_config": {
+    "highlight_match": true,
+    "view_button": true,
+    "shortlist_button": true,
+    "shortlist_select": [3,3],
+    "display_fields": ["product_name", "product_description", "price", "average_review_rating"],
+    "view_fields": ["product_information","number_of_reviews_display"],
+    "task_description": "Choose the top 3 items that most accurately align with both the shopping category and product description. Additionally, prioritize items based on a combination of price and rating. Clicking the 'View' button will provide more detailed information about the product.",
+    "exit_survey": [
+      {
+        "question":"Gender Identity:",
+        "field": "gender",
+        "options": ["Male", "Female", "Other"],
+        "mandatory": true
+      },
+      {
+        "question": "Feedback on the task:",
+        "options": "text",
+        "field": "feedback",
+        "mandatory": false
+      }]
+  }
+}

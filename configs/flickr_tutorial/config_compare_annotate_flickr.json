@@ -1,0 +1,30 @@
+{
+
+    "data_reader_class": {
+      "name": "flickr",
+      "score": "score",
+      "group": "",
+      "query": "image",
+      "docID": "ID"
+    },
+  
+    "ui_display_config": {
+      "annotate": true,
+      "display_fields": ["caption"],
+      "task_description": "Select the ranking that is considered to have the best relevancy between image and its caption",
+  
+      "exit_survey": [
+        {
+          "question":"Gender Identity:",
+          "field": "gender",
+          "options": ["Male", "Female", "Other"],
+          "mandatory": true
+        },
+        {
+          "question": "Feedback on the task:",
+          "options": "text",
+          "field": "feedback",
+          "mandatory": false
+        }]
+    }
+  }

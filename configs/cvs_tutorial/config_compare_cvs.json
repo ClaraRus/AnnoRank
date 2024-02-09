@@ -1,0 +1,25 @@
+{
+
+  "data_reader_class": {
+      "name": "cvs",
+      "score": "targetfitness_protected",
+      "group": "gender_protected",
+      "query": "query",
+      "docID": "name_display"
+},
+
+  "ui_display_config": {
+    "annotate": false,
+    "avg_interaction": {
+      "experiment_id": 4,
+      "interaction": "n_views"
+    },
+    "display_metrics": {
+      "top_k": 5,
+      "utility_metrics": ["map", "ndcg"],
+      "fairness_metrics": ["selection_parity", "exposer_parity", "igf"]
+    },
+    "display_fields": ["name_display","education_display","experience_display","skills_display"],
+    "task_description": ""
+  }
+}

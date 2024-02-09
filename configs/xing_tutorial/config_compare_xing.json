@@ -1,0 +1,25 @@
+{
+
+  "data_reader_class": {
+    "name": "xing",
+    "score": "qualification",
+    "group": "gender",
+    "query": "title",
+    "docID": "cid"
+  },
+
+  "ui_display_config": {
+    "annotate": false,
+    "avg_interaction": {
+      "experiment_id": 4,
+      "interaction": "n_views"
+    },
+    "display_metrics": {
+      "top_k": 5,
+      "utility_metrics": ["map", "ndcg"],
+      "fairness_metrics": ["selection_parity", "exposer_parity", "igf"]
+    },
+    "display_fields": ["cid", "gender", "work_experience_string", "edu_experience_string"],
+    "task_description": ""
+  }
+}

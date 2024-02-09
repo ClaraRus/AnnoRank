@@ -1,0 +1,15 @@
+{
+
+  "data_reader_class": {
+      "name": "cvs",
+      "score": "targetfitness_protected",
+      "group": "gender_protected",
+      "query": "query",
+      "docID": "name_display"
+},
+
+  "train_ranker_config": null,
+  "pre_processing_config": null,
+  "in_processing_config": null,
+  "post_processing_config":null
+}

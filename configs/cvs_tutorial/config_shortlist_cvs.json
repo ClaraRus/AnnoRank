@@ -1,0 +1,35 @@
+{
+
+  "data_reader_class": {
+      "name": "cvs",
+      "score": "targetfitness_protected",
+      "group": "gender_protected",
+      "query": "query",
+      "docID": "name_display"
+},
+
+  "ui_display_config": {
+     "highlight_match": true,
+    "display_fields": ["name_display","education_display","experience_display","skills_display"],
+    "task_description": "Select top 3 candidates given the occupational domain displayed below, considering that all candidates have worked or studied in similar domains.",
+    "exit_survey": [
+      {
+        "question":"Gender Identity:",
+        "field": "gender",
+        "options": ["Male", "Female", "Other"],
+        "mandatory": true
+      },
+      {
+        "question": "Feedback on the task:",
+        "options": "text",
+        "field": "feedback",
+        "mandatory": false
+      }],
+
+      "view_button": true,
+      "view_fields": ["education_view","experience_view"],
+
+      "shortlist_button": true,
+      "shortlist_select": [3,3]
+  }
+}

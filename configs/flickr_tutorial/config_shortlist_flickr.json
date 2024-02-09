@@ -1,0 +1,34 @@
+{
+
+  "data_reader_class": {
+    "name": "flickr",
+    "score": "score",
+    "group": "",
+    "query": "image",
+    "docID": "ID"
+  },
+
+  
+  "ui_display_config": {
+     "highlight_match": false,
+    "shortlist_button": true,
+    "view_button": false,
+    "shortlist_select": [3,3],
+    "display_fields": ["caption"],
+    "view_fields": [],
+    "task_description": "Select top 3 captions given the image",
+    "exit_survey": [
+      {
+        "question":"Gender Identity:",
+        "field": "gender",
+        "options": ["Male", "Female", "Other"],
+        "mandatory": true
+      },
+      {
+        "question": "Feedback on the task:",
+        "options": "text",
+        "field": "feedback",
+        "mandatory": false
+      }]
+  }
+}

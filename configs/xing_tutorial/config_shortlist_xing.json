@@ -1,0 +1,33 @@
+{
+
+  "data_reader_class": {
+    "name": "xing",
+    "score": "qualification",
+    "group": "gender",
+    "query": "title",
+    "docID": "cid"
+  },
+
+  "ui_display_config": {
+     "highlight_match": false,
+    "view_button": true,
+    "shortlist_button": true,
+    "shortlist_select": [3,3],
+    "display_fields": ["cid", "edu_experience_string", "work_experience_string"],
+    "view_fields": ["member_since_string","degree_string"],
+    "task_description": "Select top 3 candidates given the occupational domain displayed below, considering that all candidates have worked or studied in similar domains.",
+    "exit_survey": [
+      {
+        "question":"Gender Identity:",
+        "field": "gender",
+        "options": ["Male", "Female", "Other"],
+        "mandatory": true
+      },
+      {
+        "question": "Feedback on the task:",
+        "options": "text",
+        "field": "feedback",
+        "mandatory": false
+      }]
+  }
+}

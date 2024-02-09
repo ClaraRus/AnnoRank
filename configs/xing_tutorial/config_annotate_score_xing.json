@@ -1,0 +1,31 @@
+{
+
+  "data_reader_class": {
+    "name": "xing",
+    "score": "qualification",
+    "group": "gender",
+    "query": "title",
+    "docID": "cid"
+  },
+
+  "ui_display_config": {
+     "highlight_match": false,
+    "display_fields": ["cid", "gender","edu_experience_string", "degree_string","work_experience_string"],
+    "score_range": [1, 5],
+    "task_description": "Given the domain displayed below, select a score from 1 to 5 for the given candidate. 1 means that the candidate is not a good fit for the given job, while 5 means that he is a perfect fit. We are looking for a candidate for a senior job in the given domain, tha should have a bachelor's degree. ",
+
+    "exit_survey": [
+      {
+        "question":"Gender Identity:",
+        "field": "gender",
+        "options": ["Male", "Female", "Other"],
+        "mandatory": true
+      },
+      {
+        "question": "Feedback on the task:",
+        "options": "text",
+        "field": "feedback",
+        "mandatory": false
+      }]
+  }
+}

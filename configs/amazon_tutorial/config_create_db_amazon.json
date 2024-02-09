@@ -1,0 +1,16 @@
+{
+
+  "data_reader_class": {
+        "name": "amazon",
+        "score": "average_review_rating",
+        "group": "manufacturer",
+        "query": "amazon_category_and_sub_category",
+        "docID": "product_name"
+      },
+
+
+  "train_ranker_config": null,
+  "pre_processing_config": null,
+  "in_processing_config": null,
+  "post_processing_config": null
+}

@@ -1,0 +1,30 @@
+{
+
+  "data_reader_class": {
+        "name": "amazon",
+        "score": "average_review_rating",
+        "group": "manufacturer",
+        "query": "amazon_category_and_sub_category",
+        "docID": "product_name"
+      },
+
+  "ui_display_config": {
+    "annotate": true,
+    "display_fields": ["product_name", "product_description", "price", "average_review_rating"],
+    "task_description": "",
+
+    "exit_survey": [
+      {
+        "question":"Gender Identity:",
+        "field": "gender",
+        "options": ["Male", "Female", "Other"],
+        "mandatory": true
+      },
+      {
+        "question": "Feedback on the task:",
+        "options": "text",
+        "field": "feedback",
+        "mandatory": false
+      }]
+  }
+}

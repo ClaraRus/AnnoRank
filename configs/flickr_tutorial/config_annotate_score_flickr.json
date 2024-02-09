@@ -1,0 +1,31 @@
+{
+
+  "data_reader_class": {
+    "name": "flickr",
+    "score": "score",
+    "group": "",
+    "query": "image",
+    "docID": "ID"
+  },
+  
+    "ui_display_config": {
+       "highlight_match": false,
+      "display_fields": ["caption"],
+      "score_range": [0, 1],
+      "task_description": "Verify whether image and caption given are relevant! Annotate the given caption as either 1-relevant or 0-not relevant for the given image.",
+  
+      "exit_survey": [
+        {
+          "question":"Gender Identity:",
+          "field": "gender",
+          "options": ["Male", "Female", "Other"],
+          "mandatory": true
+        },
+        {
+          "question": "Feedback on the task:",
+          "options": "text",
+          "field": "feedback",
+          "mandatory": false
+        }]
+    }
+  }

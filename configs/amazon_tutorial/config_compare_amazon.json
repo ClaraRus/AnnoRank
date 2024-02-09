@@ -1,0 +1,21 @@
+{
+
+  "data_reader_class": {
+        "name": "amazon",
+        "score": "average_review_rating",
+        "group": "manufacturer",
+        "query": "amazon_category_and_sub_category",
+        "docID": "product_name"
+      },
+
+  "ui_display_config": {
+    "annotate": false,
+    "avg_interaction": {
+      "experiment_id": 4,
+      "interaction": "n_views"
+    },
+
+    "display_fields": ["product_name", "product_description", "price", "average_review_rating"],
+    "task_description": ""
+  }
+}
