@@ -1,0 +1,14 @@
+LICENSE
+README.md
+setup.cfg
+setup.py
+fairsearchdeltr/__init__.py
+fairsearchdeltr/deltr.py
+fairsearchdeltr/models.py
+fairsearchdeltr/ranker.py
+fairsearchdeltr/trainer.py
+fairsearchdeltr.egg-info/PKG-INFO
+fairsearchdeltr.egg-info/SOURCES.txt
+fairsearchdeltr.egg-info/dependency_links.txt
+fairsearchdeltr.egg-info/requires.txt
+fairsearchdeltr.egg-info/top_level.txt

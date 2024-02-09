@@ -1,0 +1,19 @@
+{
+    "k": 10,
+    "p": 0.9,
+    "alpha": 0.2,
+    "train_data": [
+        null,
+        null,
+        null,
+        null
+    ],
+    "test_data": [
+        "original",
+        "preprocessing_1",
+        "ranker_1:preprocessing_1:qualification_fair__qualification_fair",
+        "ranker_1:qualification__qualification"
+    ],
+    "ranking_type": "postprocessing_1",
+    "features": []
+}
