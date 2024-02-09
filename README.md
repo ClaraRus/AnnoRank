@@ -33,7 +33,7 @@ docker exec -it $(docker ps -q | sed -n '1p') bash -c 'mongoexport --host="local
 # Example: Amazon dataset
 
 Run the following script and type "amazon":
-> cd UI-Tool-main
+> cd AnnoRank
 > 
 > ./run_apps.sh 
 
@@ -50,7 +50,7 @@ To access the Score Annotate UI go to the following link: http://localhost:5003/
 # Example: Flickr dataset
 
 Run the following script and type "flickr":
-> cd UI-Tool-main
+> cd AnnoRank
 > 
 > ./run_apps.sh 
 
@@ -67,7 +67,7 @@ To access the Score Annotate UI go to the following link: http://localhost:5003/
 # Example: Recruitment use-case
 
 Run the following script and type "cvs":
-> cd UI-Tool-main
+> cd AnnoRank
 > 
 > ./run_apps.sh
 
