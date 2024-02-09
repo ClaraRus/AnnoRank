@@ -104,12 +104,11 @@ In order to use the Score Annotate UI with multi dimension annotation adapted fo
 
 6. Requirements:
 
-+ Install Docker by following the steps presented here: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04 Select the operating system of the device you want to run the app on and proceed with the steps indicated.  
+Depending on your development system, instructions on how to install the Docker and MongoDB can be found here:
+- Install Docker by following the steps presented here: https://docs.docker.com/engine/install/
+- Install Docker Desktop: https://www.docker.com/products/docker-desktop/ 
+- Install MongoDB Compass: https://www.mongodb.com/products/tools/compass to view the dataset created and its collections. The connection should be set as mongodb://<IP>:27017. <IP> should be set to IP address for of the machine where the docker 
 
-+ Install Docker Desktop: https://www.docker.com/products/docker-desktop/ 
-
-+ Install MongoDB Compass: https://www.mongodb.com/products/tools/compass to view the dataset created and its collections. The connection should be set as mongodb://<IP>:27017. <IP> should be set to IP address for of the machine where the docker container is running. 
- 
 
 7. Run the following script and type xing. 
 > cd UI-Tool-main
