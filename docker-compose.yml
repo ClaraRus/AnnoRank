@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  ui-tool-apps:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    command: /bin/bash /app/apps_docker.sh -d ${DATANAME}
+    volumes:
+      - .:/app
+    ports:
+      - 5000:5000
+      - 5001:5001
+      - 5002:5002
+      - 5003:5003
+    networks:
+      - app-network
+  mongo:
+    image: mongo:latest
+    container_name: mongo-container
+    environment:
+      MONGO_INITDB_DATABASE: ${DATANAME}
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo-init/:/docker-entrypoint-initdb.d/:ro
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
