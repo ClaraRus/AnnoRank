@@ -1,0 +1,15 @@
+{
+  "exp_id": 3,
+  "description": "test experiment",
+
+  "tasks": [
+    {
+      "query_title": "Die-Cast & Toy Vehicles > Toy Trains & Accessories > Toy Trains & Sets",
+      "ranking_type": "original"
+    },
+    {
+      "query_title": "Games > Dominoes & Tile Games",
+      "ranking_type": "original"
+    }
+  ]
+}

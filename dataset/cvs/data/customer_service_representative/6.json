@@ -1,0 +1,41 @@
+{
+	"_name": "Moussa Diouf",
+	"_gender": "male",
+	"_continent": "NEU",
+	"_country": "senegal",
+	"_unusual": "True",
+	"_target_fitness": "5",
+	"_fitness_edu": "5.01",
+	"_fitness_exp": "5.63",
+	"_fitness_ski": "4.00",
+	"education": [
+		{
+			"degree": "Diploma",
+			"institution": "Pikine East High School"
+		}
+	],
+	"experience": [
+		{
+			"role": "Customer support agent",
+			"duration": "1.2 years",
+			"start_date": "Dec 2022",
+			"end_date": "Feb 2024",
+			"organization": "Air Senegal International, Dakar, Senegal"
+		},
+		{
+			"role": "Customer service associate",
+			"duration": "1.2 years",
+			"start_date": "Aug 2021",
+			"end_date": "Nov 2022",
+			"organization": "Ikatel, Dakar, Senegal"
+		}
+	],
+	"skills": [
+		"Telephone etiquette",
+		"CRM",
+		"Confident communication",
+		"Logging",
+		"Client support",
+		"Telecommunications sector"
+	]
+}

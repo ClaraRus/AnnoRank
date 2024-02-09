@@ -1,0 +1,38 @@
+{
+	"_name": "Manuel Montero Diaz",
+	"_gender": "male",
+	"_continent": "EU",
+	"_country": "spain",
+	"_unusual": "False",
+	"_target_fitness": "5",
+	"_fitness_edu": "5.00",
+	"_fitness_exp": "5.49",
+	"_fitness_ski": "5.00",
+	"education": [
+	],
+	"experience": [
+		{
+			"role": "Customer service representative",
+			"duration": "1.2 years",
+			"start_date": "Dec 2022",
+			"end_date": "Feb 2024",
+			"organization": "Cupra, Martorell, Spain"
+		},
+		{
+			"role": "Customer support agent",
+			"duration": "0.9 years",
+			"start_date": "Dec 2021",
+			"end_date": "Nov 2022",
+			"organization": "Grifols, Barcelona, Spain"
+		}
+	],
+	"skills": [
+		"CRM",
+		"Telephone etiquette",
+		"Logging",
+		"KPI management",
+		"MS Office",
+		"Multi-channel services",
+		"Customer orientation"
+	]
+}

@@ -1,0 +1,9 @@
+/dataset/xing/format_data/
+/dataset/xing/models/
+/dataset/cvs/format_data/
+/dataset/amazon/format_data/
+/dataset/flickr/format_data/
+/dataset/cvs/models/
+/dataset/amazon/models/
+/dataset/flickr/models/
+/src/fairness_interventions/modules/FAIR_module/temp/

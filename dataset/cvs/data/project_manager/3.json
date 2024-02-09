@@ -1,0 +1,55 @@
+{
+	"_name": "Cristina Fernandez Medina",
+	"_gender": "female",
+	"_continent": "EU",
+	"_country": "spain",
+	"_unusual": "False",
+	"_target_fitness": "5",
+	"_fitness_edu": "4.50",
+	"_fitness_exp": "4.91",
+	"_fitness_ski": "5.40",
+	"education": [
+		{
+			"degree": "Bachelor's Degree",
+			"major": "Civil engineering",
+			"institution": "University of the Basque Country, Bilbao, Spain"
+		}
+	],
+	"experience": [
+		{
+			"role": "Project manager",
+			"duration": "1.7 years",
+			"start_date": "Jun 2022",
+			"end_date": "Feb 2024",
+			"organization": "KLB Group, Zaragoza, Spain"
+		},
+		{
+			"role": "Site and project manager",
+			"duration": "0.3 years",
+			"start_date": "Feb 2022",
+			"end_date": "May 2022",
+			"organization": "Konforza, Zaragoza, Spain"
+		},
+		{
+			"role": "Engineering site inspector",
+			"duration": "0.4 years",
+			"start_date": "Aug 2021",
+			"end_date": "Jan 2022",
+			"organization": "Konforza, Zaragoza, Spain"
+		}
+	],
+	"skills": [
+		"Coaching",
+		"MS Project",
+		"Risk management",
+		"Leadership",
+		"Health and safety regulation",
+		"Agile project management",
+		"ISO 9001",
+		"PRINCE2",
+		"Lean project management",
+		"Online marketing",
+		"Statistics",
+		"Analytics"
+	]
+}

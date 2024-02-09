@@ -1,0 +1,17 @@
+{
+  "exp_id": 2,
+  "description": "compare rankings side by side",
+
+  "tasks": [
+    {
+      "query_title": "Games > Dominoes & Tile Games",
+      "ranking_type_1": "original",
+      "ranking_type_2": "original"
+    },
+    {
+      "query_title": "Games > Dominoes & Tile Games",
+      "ranking_type_1": "original",
+      "ranking_type_2": "original"
+    }
+  ]
+}

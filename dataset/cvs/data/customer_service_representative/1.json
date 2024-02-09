@@ -1,0 +1,46 @@
+{
+	"_name": "Lucia Castro Barrera",
+	"_gender": "female",
+	"_continent": "EU",
+	"_country": "spain",
+	"_unusual": "False",
+	"_target_fitness": "5",
+	"_fitness_edu": "5.00",
+	"_fitness_exp": "5.99",
+	"_fitness_ski": "4.00",
+	"education": [
+	],
+	"experience": [
+		{
+			"role": "Customer service representative",
+			"duration": "1.1 years",
+			"start_date": "Jan 2023",
+			"end_date": "Feb 2024",
+			"organization": "Euskaltel, Derio, Spain"
+		},
+		{
+			"role": "Customer service representative",
+			"duration": "1.0 years",
+			"start_date": "Dec 2021",
+			"end_date": "Dec 2022",
+			"organization": "Iberdrola, Bilbao, Spain"
+		},
+		{
+			"role": "Customer service representative",
+			"duration": "1.1 years",
+			"start_date": "Oct 2020",
+			"end_date": "Nov 2021",
+			"organization": "Red Electrica de Espana, Alcobendas, Spain"
+		}
+	],
+	"skills": [
+		"MS Office",
+		"Telephone etiquette",
+		"Logging",
+		"KPI management",
+		"Deadline monitoring",
+		"Administration skills",
+		"Customer orientation",
+		"Conflict management"
+	]
+}

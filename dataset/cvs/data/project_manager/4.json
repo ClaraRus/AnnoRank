@@ -1,0 +1,43 @@
+{
+	"_name": "Aissatou Gaye",
+	"_gender": "female",
+	"_continent": "NEU",
+	"_country": "senegal",
+	"_unusual": "True",
+	"_target_fitness": "4.5",
+	"_fitness_edu": "5.00",
+	"_fitness_exp": "3.94",
+	"_fitness_ski": "4.80",
+	"education": [
+		{
+			"degree": "Master's Degree",
+			"major": "Management engineering",
+			"institution": "University Gaston Berger, St Louis, Senegal"
+		},
+		{
+			"degree": "Bachelor's Degree",
+			"major": "Structural engineering",
+			"institution": "University Gaston Berger, St Louis, Senegal"
+		}
+	],
+	"experience": [
+		{
+			"role": "Development project manager",
+			"duration": "1.5 years",
+			"start_date": "Aug 2022",
+			"end_date": "Feb 2024",
+			"organization": "Holland Construction Services, St Louis, Senegal"
+		}
+	],
+	"skills": [
+		"MS Project",
+		"Leadership",
+		"ISO 9001",
+		"PRINCE2",
+		"Agile project management",
+		"Risk management",
+		"Coaching",
+		"Stakeholder management",
+		"PESTEL"
+	]
+}

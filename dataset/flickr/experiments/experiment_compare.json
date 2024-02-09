@@ -1,0 +1,17 @@
+{
+  "exp_id": 3,
+  "description": "compare rankings side by side",
+
+  "tasks": [
+    {
+      "query_title": "1000092795.jpg",
+      "ranking_type_1": "original",
+      "ranking_type_2": "original"
+    },
+    {
+      "query_title": "1000344755.jpg",
+      "ranking_type_1": "original",
+      "ranking_type_2": "original"
+    }
+  ]
+}

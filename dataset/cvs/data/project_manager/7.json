@@ -1,0 +1,48 @@
+{
+	"_name": "Isabel Castro Barrera",
+	"_gender": "female",
+	"_continent": "EU",
+	"_country": "spain",
+	"_unusual": "False",
+	"_target_fitness": "4",
+	"_fitness_edu": "5.00",
+	"_fitness_exp": "4.12",
+	"_fitness_ski": "3.00",
+	"education": [
+		{
+			"degree": "Master's Degree",
+			"major": "Management engineering",
+			"institution": "Pompeu Fabra University, Barcelona, Spain"
+		},
+		{
+			"degree": "Bachelor's Degree",
+			"major": "Environmental engineering",
+			"institution": "Complutense University of Madrid, Spain"
+		}
+	],
+	"experience": [
+		{
+			"role": "Project manager",
+			"duration": "1.4 years",
+			"start_date": "Sep 2022",
+			"end_date": "Feb 2024",
+			"organization": "Equinix, Madird, Spain"
+		},
+		{
+			"role": "Project manager",
+			"duration": "0.2 years",
+			"start_date": "Jun 2022",
+			"end_date": "Aug 2022",
+			"organization": "BASF, Tarragona, Spain"
+		}
+	],
+	"skills": [
+		"MS Project",
+		"Risk management",
+		"Leadership",
+		"Agile project management",
+		"Health and safety regulation",
+		"Quality assurance",
+		"Decision logging"
+	]
+}

@@ -1,0 +1,53 @@
+{
+	"_name": "Hicham Filali",
+	"_gender": "male",
+	"_continent": "NEU",
+	"_country": "morocco",
+	"_unusual": "False",
+	"_target_fitness": "5",
+	"_fitness_edu": "5.01",
+	"_fitness_exp": "5.81",
+	"_fitness_ski": "4.00",
+	"education": [
+		{
+			"degree": "Diploma",
+			"institution": "Academia Arganzuela, Madrid, Spain"
+		}
+	],
+	"experience": [
+		{
+			"role": "Customer service representative",
+			"duration": "0.8 years",
+			"start_date": "May 2023",
+			"end_date": "Feb 2024",
+			"organization": "ACS Group, Madrid, Spain"
+		},
+		{
+			"role": "Customer service representative",
+			"duration": "1.1 years",
+			"start_date": "Mar 2022",
+			"end_date": "Apr 2023",
+			"organization": "Telefonica, Madrid, Spain"
+		},
+		{
+			"role": "Customer service associate",
+			"duration": "1.0 years",
+			"start_date": "Feb 2021",
+			"end_date": "Jan 2022",
+			"organization": "Repsol, Madrid, Spain"
+		}
+	],
+	"skills": [
+		"CRM",
+		"Telephone etiquette",
+		"KPI management",
+		"Confident communication",
+		"Salesforce",
+		"Attention to detail",
+		"Time management",
+		"Publishing sector",
+		"Record keeping",
+		"Conflict management",
+		"Customer orientation"
+	]
+}

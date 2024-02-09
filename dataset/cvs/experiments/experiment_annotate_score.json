@@ -1,0 +1,25 @@
+{
+  "exp_id": 2,
+  "description": "test experiment",
+
+  "tasks": [
+    {
+      "query_title": "project_manager",
+      "index": "0",
+      "setting": "The employer is an international company.",
+      "ranking_type": "original"
+    },
+    {
+      "query_title": "project_manager",
+      "index": "1",
+      "ranking_type": "original"
+    },
+    {
+      "query_title": "project_manager",
+      "index": "2",
+      "ranking_type": "original"
+    }
+  ]
+
+
+}

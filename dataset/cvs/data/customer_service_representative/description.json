@@ -1,0 +1,24 @@
+{
+    "education_background": [
+        {
+        }
+    ],
+    "professional_experience": [
+        {
+            "role": "customer service representative",
+			"duration": "1 year"
+        }
+    ],
+    "skills": {
+        "hard": [
+            "CRM",
+            "KPI management",
+            "Logging",
+            "Telephone etiquette",
+            "MS Office"
+        ],
+        "soft": [
+            "Confident communication"
+        ]
+    }
+}

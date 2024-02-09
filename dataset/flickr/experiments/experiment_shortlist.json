@@ -1,0 +1,15 @@
+{
+  "exp_id": 2,
+  "description": "test experiment",
+
+  "tasks": [
+    {
+      "query_title": "1000092795.jpg",
+      "ranking_type": "original"
+    },
+    {
+      "query_title": "1000344755.jpg",
+      "ranking_type": "original"
+    }
+  ]
+}

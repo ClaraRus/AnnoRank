@@ -1,0 +1,17 @@
+{
+  "exp_id": 1,
+  "description": "test experiment",
+
+  "tasks": [
+    {
+      "query_title": "project_manager",
+      "ranking_type": "original"
+    },
+    {
+      "query_title": "customer_service_representative",
+      "ranking_type": "original"
+    }
+  ]
+
+
+}

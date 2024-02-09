@@ -1,0 +1,19 @@
+{
+  "exp_id": 3,
+  "description": "compare rankings side by side",
+
+  "tasks": [
+    {
+      "query_title": "Actuary",
+      "ranking_type_1": "original",
+      "ranking_type_2": "ranker_1:qualification__qualification"
+    },
+    {
+      "query_title": "Actuary",
+      "ranking_type_1": "ranker_1:preprocessing_1:qualification_fair__qualification_fair",
+      "ranking_type_2": "ranker_1:qualification__qualification"
+    }
+  ]
+
+
+}

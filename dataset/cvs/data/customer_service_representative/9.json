@@ -1,0 +1,55 @@
+{
+	"_name": "Tahmina Saha",
+	"_gender": "female",
+	"_continent": "NEU",
+	"_country": "bangladesh",
+	"_unusual": "True",
+	"_target_fitness": "5.0",
+	"_fitness_edu": "5.00",
+	"_fitness_exp": "5.96",
+	"_fitness_ski": "4.00",
+	"education": [
+	],
+	"experience": [
+		{
+			"role": "Customer service advisor",
+			"duration": "0.8 years",
+			"start_date": "May 2023",
+			"end_date": "Feb 2024",
+			"organization": "GE Bangladesh, Dhaka, Bangladesh"
+		},
+		{
+			"role": "Customer service assistant",
+			"duration": "0.7 years",
+			"start_date": "Jul 2022",
+			"end_date": "Apr 2023",
+			"organization": "Agrani Bank, Dhaka, Bangladesh"
+		},
+		{
+			"role": "Customer support advisor",
+			"duration": "0.9 years",
+			"start_date": "Jun 2021",
+			"end_date": "May 2022",
+			"organization": "Airtel Bangladesh, Dhaka, Bangladesh"
+		},
+		{
+			"role": "Customer support agent",
+			"duration": "0.8 years",
+			"start_date": "Aug 2020",
+			"end_date": "May 2021",
+			"organization": "Robi Axiata ltd, Dhaka, Bangladesh"
+		}
+	],
+	"skills": [
+		"MS Office",
+		"Confident communication",
+		"Logging",
+		"CRM",
+		"Telecommunications sector",
+		"Multitasking",
+		"SAP",
+		"Banking sector",
+		"Deadline monitoring",
+		"Customer orientation"
+	]
+}

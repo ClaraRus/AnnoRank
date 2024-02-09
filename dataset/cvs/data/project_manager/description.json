@@ -1,0 +1,30 @@
+{
+    "education_background": [
+        {
+            "degree": "bachelors degree",
+			"major": "civil engineering or environmental engineering or management engineering"
+        }
+    ],
+    "professional_experience": [
+        {
+            "role": "project manager",
+			"duration": "2 years"
+        }
+    ],
+    "skills": {
+        "hard": [
+            "Agile project management",
+            "Lean project management",
+            "PRINCE2",
+            "MS Project",
+            "Health and safety regulation",
+            "ISO 9001"
+        ],
+        "soft": [
+            "Leadership",
+            "Risk management",
+            "Coaching",
+			"Stakeholder management"
+        ]
+    }
+}

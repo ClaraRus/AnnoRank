@@ -1,0 +1,40 @@
+{
+	"_name": "Cristina Leon Torres",
+	"_gender": "female",
+	"_continent": "EU",
+	"_country": "spain",
+	"_unusual": "False",
+	"_target_fitness": "5",
+	"_fitness_edu": "5.00",
+	"_fitness_exp": "5.94",
+	"_fitness_ski": "4.00",
+	"education": [
+	],
+	"experience": [
+		{
+			"role": "Customer service representative",
+			"duration": "1.7 years",
+			"start_date": "May 2022",
+			"end_date": "Feb 2024",
+			"organization": "Bankia, Valencia, Spain"
+		},
+		{
+			"role": "Customer service representative",
+			"duration": "1.4 years",
+			"start_date": "Oct 2020",
+			"end_date": "Mar 2022",
+			"organization": "Unicaja, Malaga, Spain"
+		}
+	],
+	"skills": [
+		"Telephone etiquette",
+		"Logging",
+		"KPI management",
+		"Confident communication",
+		"Banking sector",
+		"SAP",
+		"Salesforce",
+		"Customer orientation",
+		"Time management"
+	]
+}

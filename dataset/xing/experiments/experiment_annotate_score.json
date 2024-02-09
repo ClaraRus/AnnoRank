@@ -1,0 +1,24 @@
+{
+  "exp_id": 5,
+  "description": "test experiment",
+
+  "tasks": [
+    {
+      "query_title": "Actuary",
+      "index": "0",
+      "ranking_type": "original"
+    },
+    {
+      "query_title": "Actuary",
+      "index": "1",
+      "ranking_type": "original"
+    },
+    {
+      "query_title": "Actuary",
+      "index": "2",
+      "ranking_type": "original"
+    }
+  ]
+
+
+}

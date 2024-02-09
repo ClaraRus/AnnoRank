@@ -1,0 +1,55 @@
+{
+	"_name": "Luis Sanchez Cuevas",
+	"_gender": "male",
+	"_continent": "EU",
+	"_country": "spain",
+	"_unusual": "False",
+	"_target_fitness": "5.0",
+	"_fitness_edu": "5.00",
+	"_fitness_exp": "5.98",
+	"_fitness_ski": "4.00",
+	"education": [
+	],
+	"experience": [
+		{
+			"role": "Customer service representative",
+			"duration": "0.9 years",
+			"start_date": "Apr 2023",
+			"end_date": "Feb 2024",
+			"organization": "Red Electrica de Espana, Alcobendas, Spain"
+		},
+		{
+			"role": "Customer service representative",
+			"duration": "1.1 years",
+			"start_date": "Feb 2022",
+			"end_date": "Mar 2023",
+			"organization": "Repsol, Madrid, Spain"
+		},
+		{
+			"role": "Customer service representative",
+			"duration": "0.6 years",
+			"start_date": "Jun 2021",
+			"end_date": "Jan 2022",
+			"organization": "Banco de Santander, Santander, Spain"
+		},
+		{
+			"role": "Customer service assistant",
+			"duration": "0.7 years",
+			"start_date": "Sep 2020",
+			"end_date": "May 2021",
+			"organization": "Balay, Zaragoza, Spain"
+		}
+	],
+	"skills": [
+		"MS Office",
+		"Confident communication",
+		"KPI management",
+		"Logging",
+		"Customer care",
+		"Multitasking",
+		"Client support",
+		"Customer orientation",
+		"Multi-channel services",
+		"SAP"
+	]
+}

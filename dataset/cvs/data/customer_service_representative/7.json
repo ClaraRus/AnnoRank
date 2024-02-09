@@ -1,0 +1,50 @@
+{
+	"_name": "Astou Dione",
+	"_gender": "female",
+	"_continent": "NEU",
+	"_country": "senegal",
+	"_unusual": "False",
+	"_target_fitness": "5",
+	"_fitness_edu": "5.01",
+	"_fitness_exp": "5.76",
+	"_fitness_ski": "4.00",
+	"education": [
+		{
+			"degree": "Diploma",
+			"institution": "Escuela Superior de Hostelería Bilbao, Spain"
+		}
+	],
+	"experience": [
+		{
+			"role": "Customer service representative",
+			"duration": "0.8 years",
+			"start_date": "Apr 2023",
+			"end_date": "Feb 2024",
+			"organization": "Banco Bilbao Vizcaya Argentaria, Bilbao, Spain"
+		},
+		{
+			"role": "Customer service representative",
+			"duration": "1.1 years",
+			"start_date": "Feb 2022",
+			"end_date": "Mar 2023",
+			"organization": "Iberdrola, Bilbao, Spain"
+		},
+		{
+			"role": "Customer service representative",
+			"duration": "0.8 years",
+			"start_date": "Mar 2021",
+			"end_date": "Jan 2022",
+			"organization": "Banco de Santander, Santander, Spain"
+		}
+	],
+	"skills": [
+		"Confident communication",
+		"MS Office",
+		"Telephone etiquette",
+		"CRM",
+		"Multi-channel services",
+		"Deadline monitoring",
+		"Problem solver",
+		"Attention to detail"
+	]
+}

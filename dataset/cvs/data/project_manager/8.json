@@ -1,0 +1,53 @@
+{
+	"_name": "Fatih Avci",
+	"_gender": "male",
+	"_continent": "NEU",
+	"_country": "turkey",
+	"_unusual": "True",
+	"_target_fitness": "5",
+	"_fitness_edu": "5.00",
+	"_fitness_exp": "4.80",
+	"_fitness_ski": "5.40",
+	"education": [
+		{
+			"degree": "Master's Degree",
+			"major": "Management engineering",
+			"institution": "Middle East Technical University, Ankara, Turkey"
+		},
+		{
+			"degree": "Bachelor's Degree",
+			"major": "Transport engineering",
+			"institution": "Koç University, Istnabul, Turkey"
+		}
+	],
+	"experience": [
+		{
+			"role": "Engineering project manager",
+			"duration": "1.0 years",
+			"start_date": "Feb 2023",
+			"end_date": "Feb 2024",
+			"organization": "Stantec, Istanbul, Turkey"
+		},
+		{
+			"role": "Engineering project manager",
+			"duration": "0.9 years",
+			"start_date": "Feb 2022",
+			"end_date": "Jan 2023",
+			"organization": "Medair, Gaziantep, Turkey"
+		}
+	],
+	"skills": [
+		"Health and safety regulation",
+		"Leadership",
+		"Lean project management",
+		"Agile project management",
+		"PRINCE2",
+		"ISO 9001",
+		"MS Project",
+		"Stakeholder management",
+		"Coaching",
+		"PESTEL",
+		"Incident investigation",
+		"Procurement"
+	]
+}
