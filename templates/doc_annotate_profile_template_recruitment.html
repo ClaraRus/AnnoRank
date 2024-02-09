@@ -1,0 +1,233 @@
+<style>
+
+        /* Style for the score container */
+             /* Style for the score container */
+            .score-container {
+                display: flex;
+                align-items: center;
+            }
+
+            /* Style for the "Score Overall" text */
+            .score-label {
+                margin-right: 10px;
+                line-height: 30px; /* Align text with score options */
+            }
+
+            /* Hide default radio button styles */
+            input[type="radio"] {
+                display: none;
+            }
+
+            /* Style for the custom radio button */
+            input[type="radio"] + label {
+                cursor: pointer;
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                margin-right: 10px;
+                border: 2px solid #ddd;
+                border-radius: 50%;
+                text-align: center;
+                line-height: 30px;
+                font-weight: bold;
+                color: #333; /* Text color */
+                transition: background-color 0.3s ease;
+            }
+
+            /* Style for the hover effect */
+            input[type="radio"] + label:hover {
+                background-color: #f0f0f0; /* Grey hover color */
+            }
+
+            /* Style for the selected radio button */
+            input[type="radio"]:checked + label {
+                background-color: #4CAF50;
+                color: #fff;
+            }
+
+
+            .inline-block {
+              display: inline-block;
+            }
+    </style>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/static/js_scripts/annotateNextButton_recruitment.js" defer></script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/static/js_scripts/annotateNextButton.js" defer></script>
+
+<div class="mt-4">
+        <div class="-mx-1">
+                <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
+                    <div class="mt-2 px-6">
+
+                    </div>
+
+                    <div  name="{{data_obj._id}}" id="doc_row" class="w-full mt-2">
+                        <div id="candidate_name" class="mt-4 py-bottom-3">
+                            <div class="flex flex-wrap -mx-6">
+                                <div class="mt-2">
+                                <h3 class="text-gray-700 text-3xl font-medium">{{data_obj.name_display}}</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div  class="flex w-full flex-wrap px-10 -mx-6">
+                            <div id="candidate_work_exp" class="mt-2 w-50 px-5">
+                                 <h4 class="text-gray-700 text-3xl py-bottom-3">Work Experience</h4>
+
+                                <div id="work_score" class="mt-2 px-3 py-3">
+                                    <div id="score-bar-id_1" class="score-bar px-3 py-bottom-6" >
+                                     {% for n in range(score_range[0], score_range[1] + 1) %}
+                                        <input type="radio" id="score-bar-id_1_{{ n }}" name="work_score" value="{{ n }}">
+                                        <label for="score-bar-id_1_{{ n }}">{{ n }}</label>
+                                    {% endfor %}
+                                    </div>
+                                </div>
+
+                                <div class="w-full">
+                                <div class="bg-white shadow rounded-md overflow-scroll my-6">
+                                <table class="text-left w-full border-collapse">
+                                    <thead class="border-b">
+                                        <tr>
+                                            <th class="py-3 px-5 bg-indigo-800 font-medium uppercase text-sm text-gray-100">Role</th>
+                                            <th class="py-3 px-5 bg-indigo-800 font-medium uppercase text-sm text-gray-100">Duration (Years)</th>
+                                            <th class="py-3 px-5 bg-indigo-800 font-medium uppercase text-sm text-gray-100">Company</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+
+
+                                    {% for work_info in data_obj.experience %}
+                                        <tr class="">
+                                            <td class="py-4 px-6 border-b text-gray-500 text-sm">{{work_info.role}}</td>
+                                            <td class="text-center py-4 px-6 border-b text-gray-500 text-sm">{{work_info.duration}}</td>
+                                            <td class="py-4 px-6 border-b text-gray-500 text-sm">{{work_info.company}}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                            <div id="candidate_edu_exp" class="mt-2 w-50 px-5">
+                                <h4 class="text-gray-700 text-3xl py-bottom-3">Education</h4>
+
+                                 <div id="edu_score" class="mt-2 px-3 py-3">
+                                    <div id="score-bar-id_2" class="score-bar px-3 py-bottom-6" >
+                                     {% for n in range(score_range[0], score_range[1] + 1) %}
+                                        <input type="radio" id="score-bar-id_2_{{ n }}" name="edu_score" value="{{ n }}">
+                                        <label for="score-bar-id_2_{{ n }}">{{ n }}</label>
+                                    {% endfor %}
+                                    </div>
+                                </div>
+
+                                <div class="w-full">
+                                    <div class="bg-white shadow rounded-md overflow-scroll my-6">
+                                        <table class="text-left w-full border-collapse">
+                                            <thead class="border-b">
+                                                <tr>
+                                                <th class="py-3 px-5 bg-indigo-800 font-medium uppercase text-sm text-gray-100">Degree</th>
+                                                <th class="text-center py-3 px-5 bg-indigo-800 font-medium uppercase text-sm text-gray-100">University</th>
+                                                </tr>
+                                             </thead>
+                                        <tbody>
+                                            {% for edu_info in data_obj.education %}
+                                                <tr class="">
+                                                    <td class="py-4 px-6 border-b text-gray-500 text-sm">{{edu_info.degree}}</td>
+                                                    <td class="text-center py-4 px-6 border-b text-gray-500 text-sm">{{edu_info.university}}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+
+                    </div>
+
+
+                            </div>
+                        </div>
+
+
+                        </div>
+
+
+                        <div id="candidate_skills_exp" class="flex w-full flex-wrap px-10 -mx-6">
+                            <div  class="mt-2 px-5">
+                                <h4 class="text-gray-700 text-3xl py-bottom-3">Skills</h4>
+                                 <div id="skills_score" class="mt-2 px-3 py-3">
+                                    <div id="score-bar-id_3" class="score-bar px-3 py-bottom-6" >
+                                     {% for n in range(score_range[0], score_range[1] + 1) %}
+                                        <input type="radio" id="score-bar-id_3_{{ n }}" name="skills_score" value="{{ n }}">
+                                        <label for="score-bar-id_3_{{ n }}">{{ n }}</label>
+                                    {% endfor %}
+                                    </div>
+                                </div>
+
+                                <div class="bg-white shadow overflow-scroll rounded-md my-6">
+                                <table id="candidate_skills" class="text-left w-full border-collapse">
+                                    <thead class="border-b">
+                                        <tr>
+                                            {% for i in range(0, 7) %}
+                                                <th class="text-center py-3 px-5 bg-indigo-800 font-medium uppercase text-sm text-gray-100"> </th>
+                                            {% endfor %}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for i in range(0, data_obj.skills|length-1, 7) %}
+                                    <tr class="">
+                                        {% for j in range(i, i+7) %}
+                                            <td class="py-4 px-6 border-b text-gray-500 text-sm">{{data_obj.skills[j]}}</td>
+                                        {% endfor %}
+                                    </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            </div>
+                            <div class="mt-2 w-50 px-5">
+
+                            </div>
+                        </div>
+
+                        <div id="overall_score_div" class="mt-2 px-10 py-bottom-6">
+                            <h4 class="text-gray-600"><b>Overall Score</b></h4>
+                             <div id="overall_score" class="mt-2 px-3 py-3">
+                                    <div id="score-bar-id_4" class="score-bar px-3 py-bottom-6" >
+                                     {% for n in range(score_range[0], score_range[1] + 1) %}
+                                        <input type="radio" id="score-bar-id_4_{{ n }}" name="overall_score" value="{{ n }}">
+                                        <label for="score-bar-id_4_{{ n }}">{{ n }}</label>
+                                    {% endfor %}
+                                    </div>
+                                </div>
+
+                        </div>
+
+                        <div id="buttonNext" class="mt-2 flex-wrap pr-10 overflow-visible">
+                         <div class="inline-block">
+                                <a onclick="collectDataAnnotateRecruitment()" class="next-button hover:bg-gray-200" >Next</a>
+                         </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+</div>
+
+
+
+
+
+<script>
+        // Dynamically set left padding based on the width of the container
+        const buttonContainer = document.getElementById('buttonNext');
+        const buttonLabel = document.querySelector('.inline-block');
+
+        buttonLabel.style.paddingLeft = buttonContainer.offsetWidth - buttonContainer.offsetWidth/7 + 'px';
+</script>
+

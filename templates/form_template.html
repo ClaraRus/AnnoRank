@@ -1,0 +1,80 @@
+{% extends "_layout/master.html" %}
+
+{% block body %}
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/static/js_scripts/form_submit.js" defer></script>
+
+<style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    form {
+      max-width: 800px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    select,
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  </style>
+
+<div class="mt-4">
+        <div class="-mx-1">
+                    <div id="" class="mt-2 shadow-sm rounded-md bg-white">
+                        <div class="text-center">
+                            <h4 class="text-2xl font-semibold text-gray-700 py-3">Exit Survey</h4>
+                        </div>
+                        <form id="userForm">
+                            {% for item in items %}
+                            <label for="{{ item.field }}" class="text-gray-700">{{item.question}}</label>
+
+                              {% if item.options == "text" %}
+                            <!-- Render a free text input -->
+                                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="{{ item.field }}" name="{{item.field}}"  placeholder="Enter text">
+                            {% else %}
+                            <!-- Render a dropdown list with options from item.options -->
+                                <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="{{ item.field }}" name="{{item.field}}" {% if item.mandatory %}required{% endif %}>
+                                    {% for value in item.options %}
+                                        <option value="{{ value }}">{{ value }}</option>
+                                    {% endfor %}
+                                </select>
+                             {% endif %}
+                            {% endfor %}
+                          </form>
+                            <div class="py-3 text-center">
+                                <button onclick='submit_form({{ items|tojson|safe }})'>Submit</button>
+                            </div>
+                    </div>
+            </div>
+        </div>
+
+{% endblock %}

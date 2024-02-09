@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dist/output.css') }}">
+    <title>Login FindHR</title>
+    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+</head>
+<body>
+
+    <div class="flex justify-center items-center min-h-screen bg-gray-200 px-6">
+
+        <div class="w-full max-w-xs">
+
+            <div class="mt-4">
+        <div class="-mx-1">
+
+        </div>
+    </div>
+
+            <form id="login-form" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" >
+                <!--<div class="flex justify-center items-center py-bottom-6">
+                    <img src="/static/images/logo-findhr.jpg">
+                </div>-->
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">USER ID: </label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="user_id" name="user_id" type="text" required>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <button id="start_button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">Start</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+function getURL() {
+    // Extract the experiment ID from the current URL using JavaScript
+    var currentURL = window.location.href;
+    var experimentId = currentURL.split('/').pop();  // Assumes the experiment ID is the last part of the URL
+    var URL = "/start_compare_annotate/" + experimentId;
+    return URL
+}
+
+// Get experimentID from the current URL
+    var URL = getURL();
+
+    // Dynamically set hx-post attribute
+    var button = document.getElementById('start_button');
+    console.log(URL)
+    if (URL) {
+      button.setAttribute('hx-post', URL);
+    }
+</script>

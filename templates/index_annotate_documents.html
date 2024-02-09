@@ -1,0 +1,12 @@
+{% extends "_layout/master.html" %}
+
+{% block body %}
+    {% if task_description != "" %}
+        {% include 'task_description_template.html' %}
+    {% endif %}
+    {% include 'query_template.html' %}
+
+    {% include 'doc_annotate_profile_template.html' %}
+
+{% endblock %}
+

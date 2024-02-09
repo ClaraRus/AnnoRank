@@ -1,0 +1,157 @@
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/static/js_scripts/annotateNextButton.js" defer></script>
+
+<script src="/static/js_scripts/highlightText.js" defer></script>
+
+
+    <style>
+
+        /* Style for the score container */
+             /* Style for the score container */
+            .score-container {
+                display: flex;
+                align-items: center;
+            }
+
+            /* Style for the "Score Overall" text */
+            .score-label {
+                margin-right: 10px;
+                line-height: 30px; /* Align text with score options */
+            }
+
+            /* Hide default radio button styles */
+            input[type="radio"] {
+                display: none;
+            }
+
+            /* Style for the custom radio button */
+            input[type="radio"] + label {
+                cursor: pointer;
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                margin-right: 10px;
+                border: 2px solid #ddd;
+                border-radius: 50%;
+                text-align: center;
+                line-height: 30px;
+                font-weight: bold;
+                color: #333; /* Text color */
+                transition: background-color 0.3s ease;
+            }
+
+            /* Style for the hover effect */
+            input[type="radio"] + label:hover {
+                background-color: #f0f0f0; /* Grey hover color */
+            }
+
+            /* Style for the selected radio button */
+            input[type="radio"]:checked + label {
+                background-color: #4CAF50;
+                color: #fff;
+            }
+
+
+            .inline-block {
+              display: inline-block;
+            }
+
+
+
+
+
+
+    </style>
+
+<div class="flex flex-col mt-8">
+        <div class="-my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+            <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+                <table id="data-body" class="min-w-full">
+                    <thead>
+                       {% for field_name in doc_field_names %}
+                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ field_name|replace('_display', '') }}</th>
+                       {% endfor %}
+                    </thead>
+                    <tbody class="bg-white">
+                    <tr>
+                        {% for field_name in doc_field_names %}
+                        <td class="align-top px-2 py-4 whitespace-no-wrap border-b border-gray-200">
+                                <div class="ml-4 " name ="{{data_obj._id}}" id="doc_row">
+                                    {% if 'preprocessing' in ranking_type %}
+                                        {% set fair_field_name = field_name + '_fair' %}
+                                        {% for pre_data in data_obj[ranking_type] %}
+                                            {% if pre_data.ranking_type == ranking_type %}
+                                                {% if fair_field_name in pre_data %}
+                                                    {% for line in (pre_data[fair_field_name]|round(2)|string).split('\n') %}
+                                                    <div class="text-sm font-medium text-gray-900">{{ line }}</div>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    {% for line in (data_obj[field_name]|string).split('\n') %}
+                                                    <div class="text-sm font-medium text-gray-900">{{ line }}</div>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+
+                                    {% else %}
+
+                                        {% for line in (data_obj[field_name]|string).split('\n') %}
+                                        {% if '<img' in line %}
+                                            <div class="text-gray-900" style="margin-bottom: 10px;">
+                                                {{ line | safe }}
+                                            </div>
+                                        {% else %}
+                                            <div class="text-sm font-medium text-gray-900">{{ line }}</div>
+                                        {%endif%}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+
+            </div>
+            <div id="overall_score" class="mt-2 px-3 py-3">
+                            <h4 class="text-gray-600"><b>Overall Score</b></h4>
+                            <div id="score-bar-id" class="inline-block score-bar px-3 py-bottom-6" >
+                             {% for n in range(score_range[0], score_range[1] + 1) %}
+                                <input type="radio" id="score{{ n }}" name="score" value="{{ n }}">
+                                <label for="score{{ n }}">{{ n }}</label>
+                            {% endfor %}
+                            </div>
+                            <div class="">
+                                <a onclick="collectDataAnnotate()" class="next-button hover:bg-gray-200" >Next</a>
+                            </div>
+                </div>
+        </div>
+</div>
+
+
+<script>
+    if (view_configs.highlight_match) {
+    window.onload = function() {
+        highlightText();
+    };
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

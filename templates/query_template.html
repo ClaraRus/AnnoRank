@@ -1,0 +1,29 @@
+<div class="sticky-placeholder"></div>
+<div class="mt-4 ">
+        <div class="-mx-1">
+                <div class="flex sticky-top items-center px-5 py-6 shadow-sm rounded-md bg-white">
+                    <div class="mt-2 px-6">
+
+                    </div>
+                    <div id="query_info" qid="{{query_title}}" class="mt-2">
+                        {% for line in query_text.split('\n') %}
+                            {% if '<img' in line %}
+                                <div class="text-gray-900" style="margin-bottom: 10px;">
+                                    {{ line | safe }}
+                                </div>
+                            {% else %}
+                                
+                                {% if line == '' %}
+                                    <h4 class="text-gray-900 py-3">{{ line }}</h4>
+                                {%endif%}
+
+                                {% if line != '' %}
+                                    <div class="text-gray-900">{{ line }}</div>
+                                {%endif%}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+            </div>
+        </div>
+    </div>
+

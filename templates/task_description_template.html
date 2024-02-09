@@ -1,0 +1,46 @@
+<style>
+    .sticky-top-1 {
+    position: relative;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    background-color: white;
+    width:
+}
+</style>
+<div class="mt-4 ">
+        <div class="-mx-1">
+                <div class="flex items-center sticky-top-1 px-5 py-6 shadow-sm rounded-md bg-white">
+                    <div class="mt-2 px-6">
+
+                    </div>
+
+                    <div id="task" class="mt-2">
+                        <h4 class="text-2xl font-semibold text-gray-700">Task Description</h4>
+                        <div class="text-gray-500">{{ task_description }} </div>
+                    </div>
+            </div>
+        </div>
+</div>
+
+<script>
+    window.addEventListener('load', function() {
+    var stickyElement = document.querySelector('.sticky-top-1');
+    var originalWidth = stickyElement.offsetWidth; // Store the original width
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 0) {
+            stickyElement.style.position = 'fixed';
+            stickyElement.style.top = '0';
+            stickyElement.style.zIndex = '100';
+            stickyElement.style.backgroundColor = 'white';
+            stickyElement.style.width = originalWidth + 'px'; // Apply the original width
+        } else {
+            stickyElement.removeAttribute('style'); // Remove inline styles
+        }
+    });
+});
+</script>
