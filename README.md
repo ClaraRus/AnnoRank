@@ -133,4 +133,13 @@ To access the Score Annotate UI go to the following link: http://localhost:5003/
 
 [3] Dang, V. "The Lemur Project-Wiki-RankLib." Lemur Project,[Online]. Available: http://sourceforge. net/p/lemur/wiki/RankLib.
 
-[4] Van Gysel, C., & de Rijke, M. (2018, June). Pytrec_eval: An extremely fast python interface to trec_eval. In The 41st International ACM SIGIR Conference on Research & Development in Information Retrieval (pp. 873-876).
+[4] Van Gysel, Christophe, and Maarten de Rijke. 2018. Pytrec_eval: An extremely fast python interface to trec_eval. The 41st International ACM SIGIR Conference on Research & Development in Information Retrieval, 873-876.
+
+[5] Jacob Cohen. 1960.  A coefficient of agreement for nominal scales. Educational and psychological measurement 20.1, 37-46.
+
+[6]  Klaus Krippendorff. 2004. Reliability in content analysis: Some common misconceptions and recommendations. Human communication research 30, 3 (2004), 411–433.
+
+[7] Joseph Fleiss, Jacob Cohen. 1973. The equivalence of weighted kappa and the intraclass correlation coefficient as measures of reliability. Educational and psychological measurement, 33.3: 613-619.
+
+[8] Harrisen Scells, Jimmy, & Guido Zuccon. 2021. Big Brother: A Drop-In Website Interaction Logging Service. Proceedings of the 44th International ACM SIGIR Conference on Research and Development in Information Retrieval.
+
