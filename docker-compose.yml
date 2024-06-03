@@ -5,7 +5,10 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
+    container_name: annorank-container
     command: /bin/bash /app/apps_docker.sh -d ${DATANAME}
+    environment:
+      FLASK_ENV: development
     volumes:
       - .:/app
     ports:
@@ -13,6 +16,7 @@ services:
       - 5001:5001
       - 5002:5002
       - 5003:5003
+      - 1984:1984
     networks:
       - app-network
   mongo:

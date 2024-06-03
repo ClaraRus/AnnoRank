@@ -51,8 +51,14 @@ RUN conda env create -f env.yml
 
 RUN rm -rf /var/lib/apt/lists/*
 
-RUN wget -qO- "https://cmake.org/files/v3.17/cmake-3.17.0-Linux-x86_64.tar.gz" | tar --strip-components=1 -xz -C /usr/local
+# RUN wget -P /usr/local "https://go.dev/dl/go1.22.3.linux-amd64.tar.gz" && tar -C /usr/local -xzf /usr/local/go1.22.3.linux-amd64.tar.gz
 
+# RUN apt install golang-go && go version
+# RUN echo export PATH=$HOME/go/bin:/usr/local/go/bin:$PATH >> ~/.profile
+# RUN source ~/.profile && go version
+
+
+# RUN go install github.com/hscells/bigbro/cmd/bigbro@latest
 # Activate the Conda environment
 SHELL ["conda", "run", "-n", "tool_ui", "/bin/bash", "-c"]
 
@@ -62,9 +68,12 @@ COPY . /app
 
 RUN chmod +x -R /app/
 
-
-
-
+RUN wget https://go.dev/dl/go1.22.3.linux-amd64.tar.gz -O go.tar.gz
+RUN tar -xzvf go.tar.gz -C /usr/local
+ENV PATH=$PATH:/usr/local/go/bin 
+# RUN go version
+RUN go install github.com/hscells/bigbro/cmd/bigbro@latest
+ENV PATH=/root/go/bin:$PATH
 
 
 

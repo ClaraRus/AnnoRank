@@ -43,7 +43,7 @@ def loader_user(_user_id):
 @app.route("/start_ranking/<int:experiment_id>", methods=['GET', 'POST'])
 def start_ranking(experiment_id):
     # app.logger.debug(database.test_connection())
-
+    session['exp_id'] = experiment_id
     if current_user.is_authenticated:
         session['user_id'] = current_user._user_id
 
@@ -141,7 +141,7 @@ def index_ranking(experiment_id, n_task, doc_id):
                            view_configs=view_configs,
                            doc_data_objects=docs_obj, ranking_type=task_obj.ranking_type,  query_title=query_title,
                            query_text=query_text,
-                           current_url=current_url, task_description=task_description)
+                           current_url=current_url, task_description=task_description, session_id = session['user_id'])
 
 
 
@@ -213,7 +213,25 @@ def form_submit():
 @app.route("/stop_experiment/", methods=['GET', 'POST'])
 # @login_required
 def stop_experiment():
+
+    if "attention_check" in configs:
+        user = database.User.objects(_user_id=session['user_id']).first()
+        experiment = database.Experiment.objects(_exp_id=str(session['exp_id'])).first()
+        task = database.Task.objects(query_title = configs["attention_check"]["task"]["query_title"], ranking_type= configs["attention_check"]["task"]["ranking_type"]).first()
+        attention_check_task = [task_visited for task_visited in user.tasks_visited if
+                                task_visited.task == str(experiment.tasks.index(str(task._id)))][0]
+        correct_answers = []
+        for doc_id in configs["attention_check"]["correct_answer"]:
+            filter = {configs["data_reader_class"]["docID"]: doc_id}
+            correct_answer = database.DocRepr.objects.filter(**filter).first()
+            correct_answers.append(str(correct_answer._id))
+
+        attention_check = sorted(attention_check_task.order_checkbox) == sorted(correct_answers)
+        user._attention_check = str(attention_check)
+        user.save()
+
     return render_template('stop_experiment_template.html')
+
 
 
 if __name__ == '__main__':

@@ -13,6 +13,7 @@ import os
 import logging
 from src.utils import add_fields_from_data
 
+
 logging.basicConfig(filename='record.log', level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
@@ -40,7 +41,7 @@ def loader_user(_user_id):
 @app.route("/start_annotate/<int:experiment_id>", methods=['GET', 'POST'])
 def start_annotate(experiment_id):
     # app.logger.debug(database.test_connection())
-
+    session['exp_id'] = experiment_id
     if current_user.is_authenticated:
         session['user_id'] = current_user._user_id
 
@@ -114,10 +115,11 @@ def index_annotate(experiment_id, n_task):
     data_obj = database.Data.objects(_id=task_obj.data).first()
     query_obj = database.QueryRepr.objects(_id=data_obj.query).first()
     docs = [ranking for ranking in data_obj.rankings if ranking.ranking_type == task_obj.ranking_type][0].docs
+
     docs_obj = [database.DocRepr.objects(_id=doc_id).first() for doc_id in docs]
     doc_obj = docs_obj[int(task_obj.index)]
-    doc_field_names_display = configs["ui_display_config"]["display_fields"]
 
+    doc_field_names_display = configs["ui_display_config"]["display_fields"]
 
     user = database.User.objects(_user_id=session['user_id']).first()
     if n_task not in [item.task for item in user.tasks_visited]:
@@ -146,7 +148,8 @@ def index_annotate(experiment_id, n_task):
                            view_configs=view_configs,
                            data_obj=doc_obj, ranking_type=task_obj.ranking_type, query_title=query_title,
                            query_text=query_text,
-                           current_url=current_url, task_description=task_description, score_range=configs["ui_display_config"]["score_range"])
+                           current_url=current_url, task_description=task_description, score_range=configs["ui_display_config"]["score_range"],
+                           session_id = session['user_id'])
 
 
 @app.route('/store_data_annotate', methods=['POST'])
@@ -194,14 +197,68 @@ def form_submit():
     user.save()
 
     return "ok"
+       
+def compute_krippendorf_kappa():
+    """
+        reference: https://pypi.org/project/agreement/
+    """
+    all_users = database.User.objects()
+    users_rates_dataset = []
+    for user in all_users:
+        user_id = user._user_id
+        app.logger.debug("user_id in the krippendorf func %s", user_id)
+        # query_interaction = {}
+        # temp = []
+        for task_visited in user.tasks_visited:
+            temp = []
+            interaction_score = task_visited.interaction_score
+            temp.append((interaction_score.query, interaction_score.doc))
+            temp.append(user_id)
+            temp.append(interaction_score.score)
+            # print(len(temp))
+            users_rates_dataset.append(temp)
+    # print(len(users_rates_dataset))
+    # app.logger.debug("users rates dataset ", users_rates_dataset)
 
+    unique_ids = {}
+    id_counter = 1
+
+    for i in range(len(users_rates_dataset)):
+        key = users_rates_dataset[i][0]  #get the unique combination of query and doc
+        if key not in unique_ids:
+            unique_ids[key] = f"id_{id_counter}"  #assign a new unique id
+            id_counter += 1
+        users_rates_dataset[i][0] = unique_ids[key] 
+    for item in users_rates_dataset:
+        for val in item:
+            app.logger.debug("before numpy %s", str(val))
+    users_rates_dataset = np.array(users_rates_dataset)
+    for item in users_rates_dataset:
+        for val in item:
+            app.logger.debug("after numpy %s", str(val))
+    app.logger.debug("users rates dataset in numpy", users_rates_dataset)
+    questions_answers_table = pivot_table_frequency(users_rates_dataset[:, 0], users_rates_dataset[:, 2])
+    alpha = krippendorffs_alpha(questions_answers_table)
+    
+    return alpha
 
 @app.route("/stop_experiment/", methods=['GET', 'POST'])
 # @login_required
 def stop_experiment():
+    if "attention_check" in configs:
+        user = database.User.objects(_user_id=session['user_id']).first()
+        experiment = database.Experiment.objects(_exp_id=str(session['exp_id'])).first()
+        task = database.TaskScore.objects(query_title = configs["attention_check"]["task"]["query_title"], index = configs["attention_check"]["task"]["index"], ranking_type= configs["attention_check"]["task"]["ranking_type"]).first()
+        attention_check_task = [task_visited for task_visited in user.tasks_visited if
+                                task_visited.task == str(experiment.tasks.index(str(task._id)))][0]
+
+        attention_check = attention_check_task.interaction_score.score == configs["attention_check"]["correct_answer"]
+        user._attention_check = str(attention_check)
+        user.save()
+
     return render_template('stop_experiment_template.html')
 
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True, host='0.0.0.0',
-            port=5003)  # with this we dont need to stop the running flask app, only need to refresh the page in the browser to load the new changes
+            port=5003) 

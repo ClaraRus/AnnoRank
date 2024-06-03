@@ -8,7 +8,9 @@ while getopts ":d:" opt; do
       conda run -n tool_ui python app_ranking.py --config_path ./configs/$OPTARG\_tutorial/config_shortlist_$OPTARG.json & \
       conda run -n tool_ui python app_ranking_compare.py --config_path ./configs/$OPTARG\_tutorial/config_compare_$OPTARG.json & \
       conda run -n tool_ui python app_ranking_compare_annotate.py --config_path ./configs/$OPTARG\_tutorial/config_compare_annotate_$OPTARG.json & \
-      conda run -n tool_ui python app_annotate_document.py --config_path ./configs/$OPTARG\_tutorial/config_annotate_score_$OPTARG.json
+      conda run -n tool_ui python app_annotate_document.py --config_path ./configs/$OPTARG\_tutorial/config_annotate_score_$OPTARG.json & \
+      bigbro --filename my_application.log csv
+      
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
