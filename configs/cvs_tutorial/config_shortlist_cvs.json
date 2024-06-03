@@ -31,5 +31,11 @@
 
       "shortlist_button": true,
       "shortlist_select": [3,3]
-  }
+  },
+    "iaa": {
+        "krippendorfs": true, 
+        "cohens": true,
+        "weighted_cohens": true, 
+        "filter_per_task": true
+      }
 }

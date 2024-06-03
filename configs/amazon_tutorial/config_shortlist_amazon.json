@@ -13,9 +13,9 @@
     "view_button": true,
     "shortlist_button": true,
     "shortlist_select": [3,3],
-    "display_fields": ["product_name", "product_description", "price", "average_review_rating"],
-    "view_fields": ["product_information","number_of_reviews_display"],
-    "task_description": "Choose the top 3 items that most accurately align with both the shopping category and product description. Additionally, prioritize items based on a combination of price and rating. Clicking the 'View' button will provide more detailed information about the product.",
+    "display_fields": ["product_name", "price", "average_review_rating"],
+    "view_fields": ["product_description"],
+    "task_description": "Choose the top 3 items that you would buy given that you are searching for a product that matches the below shopping category. Clicking the 'View' button will provide more detailed information about the product.",
     "exit_survey": [
       {
         "question":"Gender Identity:",
@@ -30,4 +30,6 @@
         "mandatory": false
       }]
   }
+
+
 }

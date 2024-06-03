@@ -11,8 +11,8 @@
     "ui_display_config": {
        "highlight_match": false,
       "display_fields": ["caption"],
-      "score_range": [0, 1],
-      "task_description": "Verify whether image and caption given are relevant! Annotate the given caption as either 1-relevant or 0-not relevant for the given image.",
+      "score_range": ["Relevant", "Not Relevant"],
+      "task_description": "Verify whether image and caption given are relevant! Annotate the given caption as either relevant or not relevant for the given image.",
   
       "exit_survey": [
         {
@@ -27,5 +27,14 @@
           "field": "feedback",
           "mandatory": false
         }]
+    },
+
+    "attention_check": {
+      "task": {
+        "query_title": "1000344755.jpg",
+        "index": "2",
+        "ranking_type": "original"
+      },
+      "correct_answer": "Relevant"
     }
   }

@@ -27,5 +27,12 @@
         "field": "feedback",
         "mandatory": false
       }]
+  }, 
+
+  "iaa": {
+    "krippendorfs": true, 
+    "cohens": true,
+    "weighted_cohens": true, 
+    "filter_per_task": true
   }
 }
