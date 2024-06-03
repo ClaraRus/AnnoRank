@@ -13,7 +13,6 @@ AnnoRank is designed to be flexible, configurable, and easy to deploy to meet di
 
 # External Resource
 In the folder external resources the following can be found:
-- AnnoRank.zip - a downloadable version of the tool
 - Usability_Study_Anno_Rank.pdf - the usability study conducted for Anno Rank
 - Anno_Rank_Documentation.pdf - the documentation provided for Anno Rank
   
