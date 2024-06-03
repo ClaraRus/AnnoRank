@@ -1,4 +1,4 @@
-function collectDataShortlist(minSelection) {
+function collectDataShortlist(selection_range) {
       // Get all checkboxes with the name "item"
       var checkboxes = document.getElementsByName("shortlist");
 
@@ -62,7 +62,7 @@ function collectDataShortlist(minSelection) {
         interactions[doc_id] = interactions_c
       }
 
-     if (selecteddocIds.length == minSelection) {
+     if (selecteddocIds.length >= selection_range[0] && selecteddocIds.length <= selection_range[1]) {
 //       //Use jQuery AJAX to send data to the Flask app
 
       $.ajax({
@@ -97,7 +97,7 @@ function collectDataShortlist(minSelection) {
           });
       } else {
         // Display a message to the user if less than three docs are selected
-        alert("Please select at least " +minSelection+ " docs.");
+        alert("Please select at least " +selection_range[0] + " docs.");
       }
        })
         .catch(error => console.error('Error:', error));
