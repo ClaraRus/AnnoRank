@@ -52,7 +52,7 @@
 
                                     {% else %}
                                         {% for line in (data_obj[field_name]|string).split('\n') %}
-                                        {% if '<img' in line %}
+                                        {% if "<img" in line %}
                                             <div class="text-gray-900" style="margin-bottom: 10px;">
                                                 {{ line | safe }}
                                             </div>
@@ -75,11 +75,11 @@
 
                         {% if view_configs.shortlist_button %}
                         <td class="py-4 px-8 whitespace-no-wrap text-center border-b border-gray-200 text-sm font-medium">
-                            <input class="largerCheckbox" type="checkbox" name="shortlist" id="{{ loop.index|string }}" value="" onclick="limitSelection(this, {{ view_configs.shortlist_select[1] }}); orderCheckBox(this, '{{ loop.index|string }}')">
+                            <input class="largerCheckbox" type="checkbox" name="shortlist" id="{{ loop.index|string }}" value="" onclick="limitSelection(this, {{ view_configs.shortlist_select[1] }}); orderCheckBox(this, '{{ data_obj['_id'] }}'  )">
                         </td>
                         {% endif %}
                     </tr>
-                    <tr id="expandable-row-{{loop.index|string}}" docid='{{loop.index|string}}' name="doc_row" style="display: none; overflow-y: hidden;">
+                    <tr id="expandable-row-{{loop.index|string}}" docid='{{data_obj["_id"]|string}}' name="doc_row" style="display: none; overflow-y: hidden;">
                         <td colspan="5">
                             <table>
                                 <tr>
@@ -104,7 +104,7 @@
 
                         <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
                             <div class=".button-container">
-                                <a  onclick="collectDataShortlist({{view_configs.shortlist_select[0]}})" class="next-button hover:bg-gray-200">Next</a>
+                                <a  onclick="collectDataShortlist({{ view_configs.shortlist_select }})" class="next-button hover:bg-gray-200">Next</a>
                             </div>
                         </td>
                     </tr>

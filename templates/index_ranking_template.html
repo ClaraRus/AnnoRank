@@ -2,7 +2,10 @@
 
 {% block body %}
 <script src="https://unpkg.com/htmx.org@1.7.1/dist/htmx.js"></script>
-
+<script type="text/javascript" src="/static/js_scripts/bigbro.js"></script>
+<script type="text/javascript">
+    BigBro.init('**{{session_id}}**', "localhost:1984", ["click", "onload"]);
+</script>
     {% if task_description != "" %}
     {% include 'task_description_template.html' %}
     {% endif %}

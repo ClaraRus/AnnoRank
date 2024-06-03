@@ -29,13 +29,15 @@
             input[type="radio"] + label {
                 cursor: pointer;
                 display: inline-block;
-                width: 30px;
-                height: 30px;
+                width: auto;
+                height: auto;
+                padding: 0 10px;
                 margin-right: 10px;
                 border: 2px solid #ddd;
                 border-radius: 50%;
                 text-align: center;
-                line-height: 30px;
+                line-height: 28px; /* Adjusted line height */
+                font-size: 14px; /* Adjusted font size */
                 font-weight: bold;
                 color: #333; /* Text color */
                 transition: background-color 0.3s ease;
@@ -116,12 +118,14 @@
 
 
             </div>
-            <div id="overall_score" class="mt-2 px-3 py-3">
-                            <h4 class="text-gray-600"><b>Overall Score</b></h4>
-                            <div id="score-bar-id" class="inline-block score-bar px-3 py-bottom-6" >
-                             {% for n in range(score_range[0], score_range[1] + 1) %}
-                                <input type="radio" id="score{{ n }}" name="score" value="{{ n }}">
-                                <label for="score{{ n }}">{{ n }}</label>
+            <div id="overall_score" class="mt-2 px-3 py-3 ">
+                            <h4 class="text-gray-600"><b>Choose the label:</b></h4>
+                            <div id="score-bar-id" class="inline-block score-bar px-3 py-bottom-6 flex flex-wrap" >
+                             {% for score in score_range %}
+                                <div class="inline-block score-bar flex flex-wrap">
+                                <input type="radio" id="score{{ score }}" name="score" value="{{ score }}">
+                                <label for="score{{ score }}">{{ score }}</label>
+                                </div>
                             {% endfor %}
                             </div>
                             <div class="">
