@@ -11,7 +11,7 @@ class DataReaderAmazon(DataReader):
 
         query_df = pd.DataFrame(columns=['title', 'text'])
         query_df['title'] = amazon_product_df['amazon_category_and_sub_category']
-        query_df['text'] = amazon_product_df['amazon_category_and_sub_category'].split(">")[-1]
+        query_df['text'] = amazon_product_df['amazon_category_and_sub_category'].apply(lambda x: x.split(">")[-1])
 
         amazon_product_df["number_of_reviews_display"] = amazon_product_df["number_of_reviews"].apply(lambda x: str(x) + "reviews")
         data_train = amazon_product_df.head(101)
