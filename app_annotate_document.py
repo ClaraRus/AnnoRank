@@ -134,8 +134,9 @@ def index_annotate(experiment_id, n_task):
     view_configs = configs["ui_display_config"]
 
     for filed in doc_field_names_display:
-        if '{' in doc_obj[filed] or '[' in doc_obj[filed]:
-            doc_obj[filed] = eval(doc_obj[filed])
+        if isinstance(doc_obj[filed], str):
+            if '{' in doc_obj[filed] or '[' in doc_obj[filed]:
+                doc_obj[filed] = eval(doc_obj[filed])
 
     if task_obj.setting:
         task_description = "Please pay attention to the extra information provided as it might differ between the tasks. "
