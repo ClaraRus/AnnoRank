@@ -114,7 +114,9 @@ class User(DynamicDocument):
     }
     _id = ObjectIdField()
     _user_id = StringField(required=True)
+    _attention_check = StringField(default="")
     tasks_visited = EmbeddedDocumentListField(TaskVisited)
+
 
 
 
