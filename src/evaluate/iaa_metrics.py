@@ -3,8 +3,6 @@ import json
 from json.decoder import JSONDecodeError
 import os
 import sys
-sys.path.append('/app/')
-# print(sys.path)
 import numpy as np
 import math
 import sys
@@ -14,15 +12,28 @@ from agreement.utils.transform import pivot_table_frequency
 from agreement.utils.kernels import linear_kernel
 from agreement.metrics import cohens_kappa, krippendorffs_alpha
 import database
+sys.path.append('/app/')
+# print(sys.path)
+
 def create_unique_ids_agreement(data):
     """
-    data is a list of list data, where it stores values with structure such as: 
-    (exp_id, task_id, query, doc), user_id, score, for example:
-    [[(1, 2, 'project_manager', 'axasfasdfas'), '9870', 5],
-    [(1, 3, 'project_manager', 'axasfasdfas'), '9870', 5]
-    and will return output such as:
-    [["id_1", '9870', 5],
-    ["id_1", 9870, 5]
+    Create unique IDs for the given data.
+
+    Args:
+        data (list): A list of lists containing the data. Each inner list should have the following structure:
+                     [(exp_id, task_id, query, doc), user_id, score]
+
+    Returns:
+        numpy.ndarray: A numpy array with the updated data, where the first element of each inner list is replaced
+                       with a unique ID.
+
+    Example:
+        data = [[(1, 2, 'project_manager', 'axasfasdfas'), '9870', 5],
+                [(1, 3, 'project_manager', 'axasfasdfas'), '9870', 5]]
+        output = create_unique_ids_agreement(data)
+        print(output)
+        # Output: [["id_1", '9870', 5],
+        #          ["id_1", '9870', 5]]
     """
     unique_ids = {}
     id_counter = 1
@@ -30,22 +41,38 @@ def create_unique_ids_agreement(data):
     for i in range(len(data)):
         key = data[i][0]
         if key not in unique_ids:
-            unique_ids[key] = f"id_{id_counter}"  #assign a new unique id
+            unique_ids[key] = f"id_{id_counter}"  # assign a new unique id
             id_counter += 1
         data[i][0] = unique_ids[key]
+    
     data = np.array(data)
     return data
     
 def compute_kappas(data, krippendorffs, cohens, weighted_cohens, filter_attribute, mode):
     """
-        filter_attribute is an dictionary where it shows the filter attribute that the config file mentioned
+    Compute inter-annotator agreement metrics including Krippendorff's alpha, Cohen's kappa, and weighted Cohen's kappa.
+
+    Args:
+        data (numpy.ndarray): The input data containing annotations.
+        krippendorffs (bool): Flag indicating whether to compute Krippendorff's alpha.
+        cohens (bool): Flag indicating whether to compute Cohen's kappa.
+        weighted_cohens (bool): Flag indicating whether to compute weighted Cohen's kappa.
+        filter_attribute (dict): A dictionary specifying the filter attribute mentioned in the config file.
+        mode (str): The mode of the computation.
+
+    Returns:
+        dict: A dictionary containing the computed inter-annotator agreement metrics, filter attribute, and error message.
+
+    Raises:
+        None
+
     """
     k_kappa = -1.0
     cohens_k = -1.0
     weighted_cohens_k = -1.0
-    if len(data)>=3:
+    if len(data) >= 3:
         questions_answers_table = pivot_table_frequency(data[:, 0], data[:, 2])
-        users_answers_table = pivot_table_frequency(data[:,1], data[:,2])
+        users_answers_table = pivot_table_frequency(data[:, 1], data[:, 2])
 
         if krippendorffs:
             k_kappa = krippendorffs_alpha(questions_answers_table)
@@ -56,28 +83,40 @@ def compute_kappas(data, krippendorffs, cohens, weighted_cohens, filter_attribut
         if weighted_cohens:
             weighted_cohens_k = cohens_kappa(questions_answers_table, users_answers_table, weights_kernel=linear_kernel)
 
-    if len(data)==0:
+    if len(data) == 0:
         k_kappa = -1.0
         cohens_k = -1.0
         weighted_cohens_k = -1.0
         message = "No data"
     elif math.isnan(k_kappa) or math.isnan(cohens_k) or math.isnan(weighted_cohens_k):
-        if len(data)<3 and len(data) >0:
-            message = "There should be at least 3 raters"     
+        if len(data) < 3 and len(data) > 0:
+            message = "There should be at least 3 raters"
         else:
-            message = "nan values for one/all IAA metrics"   
+            message = "nan values for one/all IAA metrics"
     else:
         message = "No error"
     new_data = {mode: {
-                "filters": filter_attribute, #the filter attribute, can be exp_id or task_id or query
-                "iaa_metrics":
-                    {"krippendorffs": k_kappa, "cohens": cohens_k, "weighted_cohens": weighted_cohens_k},
-                "error_message": message}}
-                
+            "filters": filter_attribute,  # the filter attribute, can be exp_id or task_id or query
+            "iaa_metrics": {"krippendorffs": k_kappa, "cohens": cohens_k, "weighted_cohens": weighted_cohens_k},
+            "error_message": message
+        }
+    }
+
     write_to_file(new_data, "iaa_metrics.jsonl")
     
 def compute_iaa_annotate(krippendorffs, cohens, weighted_cohens):
-    # is_per_experiment = configs_annotate["iaa"]["filter"]["per_experiment"]
+    """
+    Computes the inter-annotator agreement (IAA) for annotation tasks.
+
+    Args:
+        krippendorffs (list): List to store Krippendorff's alpha values.
+        cohens (list): List to store Cohen's kappa values.
+        weighted_cohens (list): List to store weighted Cohen's kappa values.
+
+    Returns:
+        None
+    """
+
     is_per_task = configs_annotate["iaa"]["filter_per_task"]
 
     all_users = database.User.objects()
@@ -113,16 +152,6 @@ def compute_iaa_annotate(krippendorffs, cohens, weighted_cohens):
                 users_rates_dataset.append(temp)
             else:
                 continue
-
-    # print("annotate exp_unique_id_list", exp_unique_id_list)
-    # print("annotate task_unique_id_list", task_unique_id_list)
-    # if is_per_experiment: #i dont think this will work
-    #     for exp_id in exp_unique_id_list:
-    #         grouped_data = [item for item in users_rates_dataset if isinstance(item[0], tuple) and item[0][0] == exp_id]
-    #         transformed_data = [[exp_id, user_id, score] for [(exp_id, task_id, doc_id), user_id, score] in grouped_data]
-    #         transformed_data = np.array(transformed_data)
-    #         print("annotate per experiment", transformed_data)
-    #         compute_kappas(transformed_data, krippendorffs, cohens, weighted_cohens, "exp_id", exp_id, "annotate")
     
     if is_per_task: #task_id is a query
         filter_attribute = {}
@@ -146,6 +175,17 @@ def compute_iaa_annotate(krippendorffs, cohens, weighted_cohens):
         compute_kappas(users_rates_dataset, krippendorffs, cohens, weighted_cohens, filter_attribute, "annotate")
         
 def compute_iaa_ranking(krippendorffs, cohens, weighted_cohens):
+    """
+    Computes inter-annotator agreement (IAA) ranking based on the given krippendorffs, cohens, and weighted_cohens.
+
+    Args:
+        krippendorffs (list): List of Krippendorff's alpha values.
+        cohens (list): List of Cohen's kappa values.
+        weighted_cohens (list): List of weighted Cohen's kappa values.
+
+    Returns:
+        None
+    """
     # is_per_experiment = configs_annotate["iaa"]["filter"]["per_experiment"]
     is_per_task = configs_annotate["iaa"]["filter_per_task"]
 
@@ -220,6 +260,16 @@ def compute_iaa_ranking(krippendorffs, cohens, weighted_cohens):
         compute_kappas(users_rates_dataset, krippendorffs, cohens, weighted_cohens, filter_attribute, "ranking")
       
 def write_to_file(new_data, filename):
+    """
+    Writes new_data to a JSON file specified by filename.
+
+    Args:
+        new_data (dict): The data to be written to the file.
+        filename (str): The name of the file to write the data to.
+
+    Returns:
+        None
+    """
     filename = "./output/"+filename
     list_obj = []
     if not os.path.isfile(filename):
@@ -241,7 +291,6 @@ def write_to_file(new_data, filename):
     list_obj.append(modified_dict)
 
     with open(filename, 'w') as file:
-        # json_line = json.dumps(list_obj)
         json.dump(list_obj, file, indent=4, separators=(',',': '))
      
 if __name__ == '__main__':

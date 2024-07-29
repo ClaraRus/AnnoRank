@@ -31,6 +31,13 @@ class RankLibRanker(Ranker):
                      self.configs['lr'], self.configs['epochs']]
 
     def train_model(self, data_train, data_test, experiment):
+        """Train model 
+
+        Args:
+            data_train (Object dataframe): Chunck of training dataset
+            data_test (Object dataframe): Chunk of test dataset
+            experiment (Object dataframe): experiment configurations
+        """
         install_java_command = "mkdir /opt/java && cd /opt/java && \
                               wget https://download.java.net/java/GA/jdk15.0.2/0d1cfde4252546c6931946de8db48ee2/7/GPL/openjdk-15.0.2_linux-x64_bin.tar.gz && cd /opt/java && tar -zxvf openjdk-15.0.2_linux-x64_bin.tar.gz"
         subprocess.run(install_java_command, shell=True, capture_output=True, text=True)

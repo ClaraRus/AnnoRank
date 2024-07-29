@@ -3,6 +3,8 @@ import os
 
 class FairnessMethod():
     def __init__(self, configs, data_configs, model_path):
+        """Define your own fairness method.
+        """
         self.configs = configs
         self.data_configs = data_configs
 

@@ -9,6 +9,16 @@ class DataReaderFlickr(DataReader):
         super().__init__(configs)
 
     def transform_data(self):
+        """Transform data with various kind of data preprocessing.
+
+        Reads the flickr data from a CSV file, performs data preprocessing, and returns the transformed data.
+
+        Returns:
+            tuple: A tuple containing the transformed data.
+                - dataframe_query (pandas.DataFrame): A DataFrame containing the transformed query data.
+                - data_train (pandas.DataFrame): A DataFrame containing the transformed training data.
+                - data_test (pandas.DataFrame): A DataFrame containing the transformed testing data.
+        """
         flickr_df = pd.read_csv(os.path.join(self.data_path, 'data', 'flickr.csv'))
         flickr_df = flickr_df.dropna(how='any', axis=0)
 

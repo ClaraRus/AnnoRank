@@ -7,6 +7,17 @@ from numpy import mean
 
 
 def parity_of_exposer(df_top, group_col, s_values):
+    """
+    Calculate the parity of exposer metric.
+
+    Args:
+        df_top (pandas.DataFrame): DataFrame containing the top-ranked items.
+        group_col (str): Name of the column representing the groups.
+        s_values (list): List of group values.
+
+    Returns:
+        float: Parity of exposer metric value.
+    """
     rank = len(df_top)
     ranks = []
     for index in range(len(df_top)):
@@ -20,12 +31,23 @@ def parity_of_exposer(df_top, group_col, s_values):
     for gr in s_values:
         if gr in exposer:
             res = abs(res - exposer[gr])
-    return np.round(abs(res),2)
+    return np.round(abs(res), 2)
 
 
 def selection_parity(_top_df, orig_df,  group_col):
-    top_counts = _top_df[group_col].value_counts()/len(_top_df)
-    orig_counts = orig_df[group_col].value_counts()/len(orig_df)
+    """
+    Calculate the selection parity metric.
+
+    Args:
+        _top_df (pandas.DataFrame): DataFrame containing the top-ranked items.
+        orig_df (pandas.DataFrame): DataFrame containing the original items.
+        group_col (str): Name of the column representing the groups.
+
+    Returns:
+        float: Selection parity metric value.
+    """
+    top_counts = _top_df[group_col].value_counts() / len(_top_df)
+    orig_counts = orig_df[group_col].value_counts() / len(orig_df)
     result = top_counts - orig_counts
     res_value = 0
     for gr in orig_df[group_col].unique():
@@ -34,7 +56,19 @@ def selection_parity(_top_df, orig_df,  group_col):
 
 
 def compute_igf_ratio(_top_df, _orig_df, group_col, _orig_sort_col, _id_col):
+    """
+    Calculate the IGF (Item Group Fairness) ratio.
 
+    Args:
+        _top_df (pandas.DataFrame): DataFrame containing the top-ranked items.
+        _orig_df (pandas.DataFrame): DataFrame containing the original items.
+        group_col (str): Name of the column representing the groups.
+        _orig_sort_col (str): Name of the column used for sorting the original items.
+        _id_col (str): Name of the column representing the item IDs.
+
+    Returns:
+        str: IGF ratio for each group in the format "GROUP: RATIO, GROUP: RATIO, ...".
+    """
     # assume _orig_df is sorted according to the _orig_sort_col
     cur_res = dict()
     for group in _orig_df[group_col].unique():

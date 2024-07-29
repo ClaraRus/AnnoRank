@@ -44,6 +44,15 @@ class DataReaderCvs(DataReader):
         super(DataReaderCvs, self).__init__(configs=configs)
 
     def query_to_text(self, query):
+        """
+        Converts a query object into a formatted text representation.
+
+        Args:
+            query (pandas.DataFrame): The query object to be converted.
+
+        Returns:
+            str: The formatted text representation of the query.
+        """
         query_text = ""
         for col in query.columns:
             query_text = query_text + clean_text(col, upper=True) + "\n"
@@ -62,6 +71,20 @@ class DataReaderCvs(DataReader):
         return query_text
 
     def transform_data(self):
+        """Transform data with various kind of data preprocessing.
+
+        This method reads and preprocesses data from multiple files and directories.
+        It iterates over each occupation directory, reads the query description from a JSON file,
+        formats the query as plain text, and appends it to the `dataframes_occupations` list.
+        It then lists all JSON files in each occupation directory, reads the candidate data from each file,
+        preprocesses the candidate data, and appends it to the `dataframes_candidates` list.
+        Finally, it concatenates all the DataFrames into a single DataFrame and returns the result.
+
+        Returns:
+            dataframe_occupations (pandas.DataFrame): A DataFrame containing the preprocessed query data.
+            data_train (pandas.DataFrame): A DataFrame containing the preprocessed candidate data for training.
+            data_test (pandas.DataFrame): A DataFrame containing the preprocessed candidate data for testing.
+        """
         occupation_dirs = [dir_name for dir_name in os.listdir(os.path.join(self.data_path, 'data')) if
                            dir_name != 'experiments' and dir_name != 'format_data' and dir_name != 'models']
         dataframes_occupations = []
@@ -98,6 +121,5 @@ class DataReaderCvs(DataReader):
         data_train = data_test
 
         dataframe_occupations = pd.concat(dataframes_occupations, ignore_index=True)
-
 
         return dataframe_occupations, data_train, data_test

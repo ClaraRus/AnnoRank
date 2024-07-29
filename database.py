@@ -2,7 +2,9 @@ import re
 
 from mongoengine import *
 
-
+"""
+Definition of the MongoDB data structure. 
+"""
 class DocRepr(DynamicDocument):
     meta = {
         'collection': 'documents'

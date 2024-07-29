@@ -40,6 +40,19 @@ def loader_user(_user_id):
 @app.route("/")
 @app.route("/start_compare_annotate/<int:experiment_id>", methods=['GET', 'POST'])
 def start_compare_annotate(experiment_id):
+    """
+    The first function is when the user logs in to the ranking compare annotate app. 
+    The ranking compares annotate app, which is used to select which ranking is better based on the visual investigation. In this app, the user has to select one of the best-displayed rankings.  
+
+    Parameters:
+    - experiment_id: The ID of the experiment.
+
+    Returns:
+    - If the user is authenticated, it redirects to the next task URL.
+    - If the request method is POST, it records the user in the database, creates a new user in the database if it doesn't exist, creates a user session, and redirects to the next task URL.
+    - If the user is not authenticated and the request method is not POST, it renders the 'start_compare.html' template.
+
+    """
     if current_user.is_authenticated:
         session['user_id'] = current_user._user_id
 
@@ -74,19 +87,42 @@ def start_compare_annotate(experiment_id):
 
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
-    logout_user();
+    """
+    Logs out the user and redirects to the login page.
+
+    Returns:
+        A Flask response object with a redirect to the login page.
+    """
+    logout_user()
     response = make_response(redirect('/login', code=200))
     response.headers['HX-Redirect'] = '/login'
     return response
 
 
 def get_next_task_URL(exp_id, n_task):
+    """Generate the URL for the next task based on the task in experiment list
+    
+    Args:
+        exp_id (int): The ID of the experiment.
+        n_task (int): The task number.
+    
+    Returns:
+        str: The URL for the next task.
+    """
     url = str(exp_id) + '/index_compare_annotate/' + str(n_task)
     return url
 
 
 @app.route('/api/<experiment_id>/get_next_task_annotate_compare/', methods=['GET'])
 def get_next_task_annotate_compare(experiment_id):
+    """Get the next task to be assessed by the annotator based on the experiment list.
+
+    Args:
+        experiment_id (str): The ID of the experiment.
+
+    Returns:
+        dict: A JSON response containing the next task to be assessed by the annotator.
+    """
     experiment = database.Experiment.objects(_exp_id=str(experiment_id)).first()
     user = database.User.objects(_user_id=session['user_id']).first()
 
@@ -105,6 +141,15 @@ def get_next_task_annotate_compare(experiment_id):
 @app.route("/form/", methods=['GET', 'POST'])
 # @login_required
 def form_demographic_data():
+    """
+    Renders a template based on the exit survey configuration.
+
+    If the 'exit_survey' configuration is not set to False, it renders the 'form_template.html' template
+    with the items specified in the 'exit_survey' configuration. Otherwise, it renders the 'stop_experiment_template.html' template.
+
+    Returns:
+        A rendered template based on the exit survey configuration.
+    """
     if configs['ui_display_config']['exit_survey'] is not False:
         return render_template('form_template.html', items=configs['ui_display_config']['exit_survey'])
     else:
@@ -126,6 +171,19 @@ def form_submit():
 
 @app.route('/store_data_compare_ranking', methods=['POST'])
 def store_data_compare_ranking_ranking():
+    """Store the researcher ranking selection.
+
+    This function is responsible for storing the researcher ranking selection made by the user. It retrieves the ranking
+    types, the task number, and the selected ranking from the request's JSON data. It then creates an instance of the
+    InteractionCompare class with the provided ranking types and selected ranking.
+
+    The function retrieves the user object based on the session's user ID and updates the interaction_compare attribute
+    of the corresponding task in the user's tasks_visited list. Finally, it saves the updated user object and returns
+    "ok" to indicate successful storage.
+
+    Returns:
+        str: A string indicating the success of the storage operation ("ok").
+    """
     data = request.get_json()
     ranking_type_1 = data.get('ranking_type_1')
     ranking_type_2 = data.get('ranking_type_2')
@@ -146,6 +204,15 @@ def store_data_compare_ranking_ranking():
     return "ok"
 @app.route("/start_compare_annotate/<experiment_id>/index_compare_annotate/<n_task>", methods=['GET', 'POST'])
 def index_compare_annotate(experiment_id, n_task):
+    """Defines all the data required for the annotate 2 rankings app.
+
+    Args:
+        experiment_id (str): The ID of the experiment.
+        n_task (int): The index of the task.
+
+    Returns:
+        render_template: The rendered template for the annotate 2 rankings app.
+    """
     exp_obj = database.Experiment.objects(_exp_id=str(experiment_id)).first()
     task_id = exp_obj.tasks[int(n_task)]
 
@@ -197,4 +264,4 @@ def stop_experiment():
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True, host='0.0.0.0',
-            port=5002)  # with this we dont need to stop the running flask app, only need to refresh the page in the browser to load the new changes
+            port=5002)  

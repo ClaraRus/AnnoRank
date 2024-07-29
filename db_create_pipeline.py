@@ -22,19 +22,52 @@ connect(config["data_reader_class"]["name"], host='mongo', port=27017)
 #connect(config["data_reader_class"]["name"], host='0.0.0.0', port=27017)
 
 def add_fields_from_data(attr_names, values, object):
+    """Add data of user responses for various assigned tasks. 
+
+    This function takes a list of new features (attr_names) and their corresponding values (values),
+    and adds them to a given database object (object). Each feature is associated with a single user,
+    representing their response to a specific task.
+
+    Args:
+        attr_names (List): A list of new features that we want to associate with a single user.
+        values (List): A list of values based on the attr_names.
+        object (Database object): The database object that we want to add new data into.
+
+    Returns:
+        Database object: The updated database object with the new data added.
+    """
     for index, attr_name in enumerate(attr_names):
-        # setattr(object, attr_name, values[index])
         object.__setattr__(attr_name, values[index])
 
     return object
 
 def get_doc_object_in_db(attr_names, values, display_fields):
+    """
+    Retrieves a document object from the database based on the provided attribute names, values, and display fields.
+
+    Args:
+        attr_names (list): A list of attribute names.
+        values (list): A list of corresponding attribute values.
+        display_fields (list): A list of fields to be displayed.
+
+    Returns:
+        doc_obj: The document object retrieved from the database.
+    """
     filter_ = {attr: value for attr, value in zip(attr_names, values) if attr in display_fields}
     doc_obj = database.DocRepr.objects.filter(**filter_).first()
     return doc_obj
 
 
 def add_exp_to_db(data_exp):
+    """
+    Adding experiment to the database based on what is defined in the config files, for instance experiment_annotate_score.json.
+
+    Args:
+        data_exp (list): A list of dictionaries containing information about the experiments.
+
+    Returns:
+        None
+    """
     for exp_info in data_exp:
         exp_obj = database.Experiment.objects(_exp_id=str(exp_info['exp_id'])).first()
 
@@ -45,7 +78,7 @@ def add_exp_to_db(data_exp):
                 data_obj = database.Data.objects(query=str(query_obj._id)).first()
                 if data_obj is not None:
                     if 'index' in task.keys():
-                        task_obj = database.TaskScore.objects(data=str(data_obj._id), ranking_type = task['ranking_type'], index=str(task['index'])).first()
+                        task_obj = database.TaskScore.objects(data=str(data_obj._id), ranking_type=task['ranking_type'], index=str(task['index'])).first()
                         if not task_obj:
                             task_obj = database.TaskScore()
                             task_obj = add_fields_from_data(list(task.keys()), list(task.values()), task_obj)
@@ -56,21 +89,18 @@ def add_exp_to_db(data_exp):
                             task_obj = database.Task()
                             task_obj = add_fields_from_data(list(task.keys()), list(task.values()), task_obj)
                             task_obj.ranking_type = task['ranking_type']
-
                     elif 'ranking_type_2' in task.keys():
-                        task_obj = database.TaskCompare.objects(data=str(data_obj._id), ranking_type_1=task['ranking_type_1'],
-                                                                ranking_type_2=task['ranking_type_2']).first()
+                        task_obj = database.TaskCompare.objects(data=str(data_obj._id), ranking_type_1=task['ranking_type_1'], ranking_type_2=task['ranking_type_2']).first()
                         if not task_obj:
                             task_obj = database.TaskCompare()
                             task_obj = add_fields_from_data(list(task.keys()), list(task.values()), task_obj)
                             task_obj.ranking_type_1 = task['ranking_type_1']
                             task_obj.ranking_type_2 = task['ranking_type_2']
 
-
                     task_obj.data = str(data_obj._id)
                     task_obj.save()
 
-                    if not exp_obj or (not str(task_obj.auto_id_0) in exp_obj.tasks or not str(task_obj._id) in exp_obj.tasks ):
+                    if not exp_obj or (not str(task_obj.auto_id_0) in exp_obj.tasks or not str(task_obj._id) in exp_obj.tasks):
                         tasks_obj.append(str(task_obj.auto_id_0))
 
         if exp_obj:
@@ -78,12 +108,18 @@ def add_exp_to_db(data_exp):
                 exp_obj.tasks.extend(tasks_obj)
         else:
             if not exp_obj and tasks_obj is not None:
-                exp_obj = database.Experiment(_exp_id=str(exp_info['exp_id']), _description=exp_info['description'],
-                                              tasks=tasks_obj)
+                exp_obj = database.Experiment(_exp_id=str(exp_info['exp_id']), _description=exp_info['description'], tasks=tasks_obj)
         exp_obj.save()
 
 
 def add_query_docs_to_db(data, query_col, data_configs):
+    """Adding query to the database based on what is defined in the config files, for instance config_annotate_score_xing.json for xing tutorial. 
+
+    Args:
+        data (Dataframe): query dataframe
+        query_col (String): column in the dataset that is assigned as a query text
+        data_configs (List): List of config features
+    """
     fields = list(data_configs.values())
     for query, group in data['docs'].groupby(query_col):
         query_obj = database.QueryRepr.objects(title=query).first()
@@ -102,6 +138,13 @@ def add_query_docs_to_db(data, query_col, data_configs):
 
 
 def add_data_to_db(data, fields, ranking_type, query_col, sort_col='score', ascending=False):
+    """Adding document data to the database based on what is defined in the config files, for instance config_annotate_score_xing.json for xing tutorial. 
+
+    Args:
+        data (Dataframe): document dataframe
+        fields (String): column in the dataset that is assigned as a query text
+        data_configs (List): List of config features
+    """
     data['docs'] = data['docs'].groupby(query_col).apply(
         lambda x: x.sort_values(sort_col, ascending=ascending)).reset_index(drop=True)
     for query, group in data['docs'].groupby(query_col):
@@ -151,6 +194,16 @@ def add_data_to_db(data, fields, ranking_type, query_col, sort_col='score', asce
 
 
 def get_docs_df(ranking_type, data_config, features):
+    """Retrieve document dataframe 
+    get_docs_df(train_data, self.config['data_reader_class'], setting['features'])
+    Args:
+        ranking_type (_type_): The ranking type can be original, preprocessing based on what is defined in the train_ranker_config
+        data_config (_type_): Config of the dataset from
+        features (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     data_list = []
     for doc in database.DocRepr.objects():
         if 'original' not in ranking_type:
@@ -182,6 +235,11 @@ class Pipeline:
             "DataReader" + self.config['data_reader_class']["name"].title())(configs=self.config['data_reader_class'])
 
     def read_data(self):
+        """Read data from json file to dataframe
+
+        Returns:
+            dataset splitted into training and test data. 
+        """
         self.config['train_path'] = os.path.join(self.data_reader.output_file_path, 'train')
         self.config['test_path'] = os.path.join(self.data_reader.output_file_path, 'test')
 
@@ -207,6 +265,26 @@ class Pipeline:
         return data_train, data_test
 
     def train_ranker(self):
+        """
+        Trains the ranking model based on the specified ranking library.
+
+        This method iterates over the settings specified in the `train_ranker_config` section of the config file.
+        For each setting, it creates an instance of the specified ranking library and trains the model using the
+        provided training and test data. It then predicts the ranking for the test data and stores the results in
+        the database.
+
+        Note: The `train_ranker_config` section in the config file should contain the following keys:
+        - `name`: The name of the ranking library to use.
+        - `settings`: A list of dictionaries, where each dictionary represents a specific setting for training the model.
+          Each dictionary should contain the following keys:
+          - `train_data`: A list of paths to the training data files.
+          - `test_data`: A list of paths to the test data files.
+          - `features`: A list of features to use for training the model.
+          - `ranking_type`: The type of ranking to perform.
+
+        Returns:
+        None
+        """
         for setting in self.config['train_ranker_config']['settings']:
             ranker = ranker_mapping[self.config['train_ranker_config']['name']](
                 setting, self.config['data_reader_class'],
@@ -215,7 +293,6 @@ class Pipeline:
             for train_data, test_data in zip(setting['train_data'], setting['test_data']):
                 data_train = get_docs_df(train_data, self.config['data_reader_class'], setting['features'])
                 data_test = get_docs_df(test_data, self.config['data_reader_class'], setting['features'])
-
 
                 ranker.train_model(data_train, data_test, experiment=(train_data, test_data))
                 data_test_dict = {
@@ -244,6 +321,18 @@ class Pipeline:
                                query_col=self.config['data_reader_class']['query'], sort_col=sort_col, ascending=True)
 
     def apply_fair_method(self, fields, config_method_key, sort_column, ascending):
+        """Apply fairness into the dataset features based on the data_reader_class attributes. 
+
+         Args:
+            fields (Object data)
+                attributes of the data_reader_class except name
+            config_method_key (Object data)
+                apply either pre-processing or post-processing fairness intervention
+            sort_column (String)
+                sort data based on certain columns, for instance, average_review_rating
+            ascending (boolean)
+                True or False, if set to True, then the displayed ranking with fairness intervention will be shown in ascending manner.
+        """
         already_added_rankings = [r_type for r_type in [item.ranking_type for item in database.Data.objects().first().rankings]]
         for setting in self.config[config_method_key]['settings']:
           fairness_method = fairness_method_mapping[self.config[config_method_key]['name']](

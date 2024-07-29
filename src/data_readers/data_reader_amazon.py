@@ -6,6 +6,16 @@ class DataReaderAmazon(DataReader):
         super().__init__(configs)
 
     def transform_data(self):
+        """Transform data with various kind of data preprocessing.
+
+        Reads the 'amazon.csv' file from the specified data path, drops rows with missing values,
+        and performs data transformations on the columns. Returns the transformed data.
+
+        Returns:
+            dataframe_query (pandas.DataFrame): A DataFrame containing the transformed query data.
+            data_train (pandas.DataFrame): A DataFrame containing the transformed training data.
+            data_test (pandas.DataFrame): A DataFrame containing the transformed testing data.
+        """
         amazon_product_df = pd.read_csv(os.path.join(self.data_path, 'data', 'amazon.csv'))
         amazon_product_df = amazon_product_df.dropna(how='any', axis=0)
 

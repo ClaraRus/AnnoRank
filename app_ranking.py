@@ -42,7 +42,16 @@ def loader_user(_user_id):
 @app.route("/")
 @app.route("/start_ranking/<int:experiment_id>", methods=['GET', 'POST'])
 def start_ranking(experiment_id):
-    # app.logger.debug(database.test_connection())
+    """First function when the user logged in into the ranking app. 
+    In this ranking app, the user will be presented by list of items, where they have to choose the top-3 items based on a given query. 
+
+    Parameters:
+    experiment_id (int): The ID of the experiment.
+
+    Returns:
+    flask.Response or flask.render_template: The response object or the rendered template for the start ranking page.
+    """
+
     session['exp_id'] = experiment_id
     if current_user.is_authenticated:
         session['user_id'] = current_user._user_id
@@ -85,7 +94,13 @@ def get_next_task_URL(exp_id, n_task):
 
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
-    logout_user();
+    """
+    Logs out the user and redirects to the login page.
+
+    Returns:
+        A Flask response object with a redirect to the login page.
+    """
+    logout_user()
     response = make_response(redirect('/login', code=200))
     response.headers['HX-Redirect'] = '/login'
     return response
@@ -94,6 +109,17 @@ def logout():
 @app.route("/start_ranking/<experiment_id>/index_ranking/<n_task>/<doc_id>", methods=['GET', 'POST'])
 # @login_required
 def index_ranking(experiment_id, n_task, doc_id):
+    """
+    Renders the index ranking template for a given experiment, task, and document.
+
+    Args:
+        experiment_id (str): The ID of the experiment.
+        n_task (int): The index of the task.
+        doc_id (str): The ID of the document.
+
+    Returns:
+        str: The rendered HTML template for the index ranking page.
+    """
     exp_obj = database.Experiment.objects(_exp_id=str(experiment_id)).first()
     task_id = exp_obj.tasks[int(n_task)]
 
@@ -147,6 +173,15 @@ def index_ranking(experiment_id, n_task, doc_id):
 
 @app.route('/api/<experiment_id>/get_next_task/', methods=['GET'])
 def get_next_task(experiment_id):
+    """Get the next task based on the experiment list. The task list should be defined in the experiment list. 
+    
+    Args:
+        experiment_id (str): The ID of the experiment.
+        
+    Returns:
+        dict: A dictionary containing the next task.
+            - 'next_task' (str): The ID of the next task.
+    """
     experiment = database.Experiment.objects(_exp_id=str(experiment_id)).first()
     user = database.User.objects(_user_id=session['user_id']).first()
 
@@ -165,6 +200,15 @@ def get_next_task(experiment_id):
 
 @app.route('/store_data_ranking', methods=['POST'])
 def store_data_ranking():
+    """
+    Stores the ranking data received from the client.
+
+    This function retrieves the ranking data from the request's JSON payload and stores it in the database.
+    The ranking data includes the number of tasks, interactions, and order checkbox values.
+
+    Returns:
+        str: A string indicating the success of the data storage process.
+    """
     data = request.get_json()
     n_task = data.get('nTask')
     interactions = data.get('interactions')
@@ -191,6 +235,17 @@ def store_data_ranking():
 @app.route("/form/", methods=['GET', 'POST'])
 # @login_required
 def form_demographic_data():
+    """
+    Renders a template based on the exit survey configuration.
+
+    If the 'exit_survey' configuration in 'ui_display_config' is not False,
+    it renders the 'form_template.html' template with the items from the
+    'exit_survey' configuration. Otherwise, it renders the
+    'stop_experiment_template.html' template.
+
+    Returns:
+        The rendered template.
+    """
     if configs['ui_display_config']['exit_survey'] is not False:
         return render_template('form_template.html', items=configs['ui_display_config']['exit_survey'])
     else:
@@ -213,11 +268,25 @@ def form_submit():
 @app.route("/stop_experiment/", methods=['GET', 'POST'])
 # @login_required
 def stop_experiment():
-
+    """This function is called when the final task in the ranking task is completed.
+    
+    It performs the following actions:
+    1. Checks if there is an attention check task defined in the configs.
+    2. Retrieves the user and experiment objects from the database.
+    3. Retrieves the attention check task from the database based on the query title and ranking type defined in the configs.
+    4. Retrieves the attention check task visited by the user.
+    5. Retrieves the correct answers for the attention check task from the database.
+    6. Compares the user's selected answers with the correct answers to determine if the attention check is passed or failed.
+    7. Updates the user's attention check status in the database.
+    8. Renders the 'stop_experiment_template.html' template.
+    
+    Returns:
+        The rendered template 'stop_experiment_template.html'.
+    """
     if "attention_check" in configs:
         user = database.User.objects(_user_id=session['user_id']).first()
         experiment = database.Experiment.objects(_exp_id=str(session['exp_id'])).first()
-        task = database.Task.objects(query_title = configs["attention_check"]["task"]["query_title"], ranking_type= configs["attention_check"]["task"]["ranking_type"]).first()
+        task = database.Task.objects(query_title=configs["attention_check"]["task"]["query_title"], ranking_type=configs["attention_check"]["task"]["ranking_type"]).first()
         attention_check_task = [task_visited for task_visited in user.tasks_visited if
                                 task_visited.task == str(experiment.tasks.index(str(task._id)))][0]
         correct_answers = []

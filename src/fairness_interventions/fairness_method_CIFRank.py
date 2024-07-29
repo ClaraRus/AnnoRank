@@ -13,6 +13,11 @@ class CIFRank(FairnessMethod):
         super().__init__(configs, data_configs, model_path)
 
     def train_model(self, data_train):
+        """Train CIFRank model
+
+        Args:
+            data_train (Object dataframe):train dataset for CIFRank model
+        """
         if not os.path.exists(self.model_path):
             os.makedirs(self.model_path)
             self.run_causal_model(data_train)
@@ -23,6 +28,8 @@ class CIFRank(FairnessMethod):
         return counter_data
 
     def run_causal_model(self, data):
+        """Causal model for CIFRank model
+        """
         from rpy2 import robjects
         from rpy2.robjects import pandas2ri
 
@@ -49,6 +56,10 @@ class CIFRank(FairnessMethod):
             self.save_med_results(temp, os.path.join(self.model_path, str(qid)))
 
     def generate_counterfactual_data(self, data):
+        """Generates counterfactual data between document/item feature relationships
+        Returns:
+            Object dataframe with counterfactual information
+        """
         qids = data[self.data_configs['query']].unique()
         count_dfs = []
         for qid in qids:
@@ -64,6 +75,8 @@ class CIFRank(FairnessMethod):
         return final_df
 
     def save_med_results(self, temp, out_path):
+        """Save mediator fairness ranking output. This is useful to evaluate the performance of the causal model.  
+        """
         if os.path.exists(os.path.join(out_path, 'med_output.txt')):
             with open(os.path.join(out_path, 'med_output.txt'), 'r') as f:
                 content = f.readlines()

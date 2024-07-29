@@ -11,6 +11,15 @@ from src.evaluate.fairness_metrics import selection_parity, parity_of_exposer, c
 
 
 def get_fairness_metrics(configs, docs_obj):
+    """Generates fairness metrics based on the dataset sensitive features.
+
+    Args:
+        configs (object): Config from specific dataset comes from either config_annotate or config_shortlist file.
+        docs_obj (object): Document object for fairness evaluation.
+
+    Returns:
+        dict: Dictionary containing fairness metrics.
+    """
     results = dict()
 
     orig_df = pd.concat([pd.json_normalize(json.loads(doc.to_json())) for doc in docs_obj])
@@ -27,7 +36,16 @@ def get_fairness_metrics(configs, docs_obj):
 
 
 def get_utility_metrics(configs, query_title, docs_obj):
+    """Generates utility metrics on measuring the matching degree between a query and document objects.
 
+    Args:
+        configs (object): Config from specific dataset comes from either config_annotate or config_shortlist file.
+        query_title (str): Title of the query.
+        docs_obj (object): Document object for utility evaluation.
+
+    Returns:
+        dict: Dictionary containing utility metrics.
+    """
     qrel = dict()
     run = dict()
 
@@ -60,6 +78,15 @@ def get_utility_metrics(configs, query_title, docs_obj):
 
 
 def get_average_interactions(experiment_id, interaction="n_views"):
+    """Generates average interaction per ranking type, e.g original or with fairness intervention.
+
+    Args:
+        experiment_id (string): Experiment id configured in the config_annotate or config_shortlist file.
+        interaction (string): Interaction intent configured in the config_annotate or config_shortlist file.
+
+    Returns:
+        dict: Dictionary containing average interactions per ranking type.
+    """
     users = database.User.objects(tasks_visited__exp=str(experiment_id))
     exp_obj = database.Experiment.objects(_exp_id=str(experiment_id)).first()
 
@@ -70,8 +97,7 @@ def get_average_interactions(experiment_id, interaction="n_views"):
             if task_vis.exp == str(experiment_id):
                 task_obj = database.Task.objects(_id=exp_obj.tasks[int(task_vis.task)]).first()
                 data_obj = database.Data.objects(_id=task_obj.data).first()
-                doc_ids = [ranking for ranking in data_obj.rankings if ranking.ranking_type == task_obj.ranking_type][
-                    0].docs
+                doc_ids = [ranking for ranking in data_obj.rankings if ranking.ranking_type == task_obj.ranking_type][0].docs
                 for index, doc in enumerate(doc_ids):
                     if doc not in avg_interactions:
                         avg_interactions[str(doc) + '__' + task_obj.ranking_type] = 0
@@ -82,3 +108,4 @@ def get_average_interactions(experiment_id, interaction="n_views"):
         avg_interactions[key] = avg_interactions[key] / len(users)
 
     return avg_interactions
+

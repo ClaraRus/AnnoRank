@@ -40,7 +40,21 @@ def loader_user(_user_id):
 @app.route("/")
 @app.route("/start_annotate/<int:experiment_id>", methods=['GET', 'POST'])
 def start_annotate(experiment_id):
-    # app.logger.debug(database.test_connection())
+    """First function when the user logs in to the annotate app.
+
+    Args:
+        experiment_id (int): The ID of the experiment.
+
+    Returns:
+        flask.Response or flask.render_template: The response object or the rendered template.
+
+    Notes:
+        This function is responsible for handling the initial steps when a user logs in to the annotate app.
+        If the user is authenticated, it sets the session variables and redirects to the next task URL.
+        If the request method is POST, it records the user in the database and creates a new user if necessary.
+        Finally, it renders the 'start_annotate.html' template.
+
+    """
     session['exp_id'] = experiment_id
     if current_user.is_authenticated:
         session['user_id'] = current_user._user_id
@@ -77,19 +91,48 @@ def start_annotate(experiment_id):
 
 
 def get_next_task_URL(exp_id, n_task):
+    """Generate the URL for the next task based on the task in experiment list
+
+    Args:
+        exp_id (int): The ID of the experiment.
+        n_task (int): The task number.
+
+    Returns:
+        str: The URL for the next task.
+
+    """
     url = str(exp_id) + '/index_annotate/' + str(n_task)
     return url
 
 
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
-    logout_user();
+    """
+    Logs out the user and redirects to the login page.
+
+    Returns:
+        flask.Response: The response object with the redirect to the login page.
+    """
+    logout_user()
     response = make_response(redirect('/login', code=200))
     response.headers['HX-Redirect'] = '/login'
     return response
 
 @app.route('/api/<experiment_id>/get_next_task/', methods=['GET'])
 def get_next_task(experiment_id):
+    """Get the next task to be assessed by the annotator based on the experiment list.
+
+    Args:
+        experiment_id (str): The ID of the experiment.
+
+    Returns:
+        dict: A JSON response containing the next task to be assessed.
+            The response has the following format:
+            {
+                'next_task': str
+            }
+            If there are no more tasks to be assessed, the 'next_task' value will be 'form'.
+    """
     experiment = database.Experiment.objects(_exp_id=str(experiment_id)).first()
     user = database.User.objects(_user_id=session['user_id']).first()
 
@@ -108,6 +151,19 @@ def get_next_task(experiment_id):
 @app.route("/start_annotate/<experiment_id>/index_annotate/<n_task>", methods=['GET', 'POST'])
 # @login_required
 def index_annotate(experiment_id, n_task):
+    """Defines all the data required for the annotate app.
+
+    Args:
+        experiment_id (str): The ID of the experiment.
+        n_task (int): The index of the task.
+
+    Returns:
+        render_template: The rendered template for the annotate documents page.
+
+    Raises:
+        None
+
+    """
     exp_obj = database.Experiment.objects(_exp_id=str(experiment_id)).first()
     task_id = exp_obj.tasks[int(n_task)]
 
@@ -155,6 +211,12 @@ def index_annotate(experiment_id, n_task):
 
 @app.route('/store_data_annotate', methods=['POST'])
 def store_data_annotate():
+    """
+    Stores the annotation data received from the client to the MongoDB database. 
+
+    Returns:
+        str: A string indicating the success of the operation.
+    """
     data = request.get_json()
     score = str(data.get('score', []))
 
@@ -181,6 +243,16 @@ def store_data_annotate():
 @app.route("/form/", methods=['GET', 'POST'])
 # @login_required
 def form_demographic_data():
+    """
+    Renders a template based on the configuration settings.
+
+    If the 'exit_survey' setting in the 'ui_display_config' is not False, it renders the 'form_template.html' template
+    with the items specified in the 'exit_survey' configuration. Otherwise, it renders the 'stop_experiment_template.html'
+    template.
+
+    Returns:
+        The rendered template.
+    """
     if configs['ui_display_config']['exit_survey'] is not False:
         return render_template('form_template.html', items=configs['ui_display_config']['exit_survey'])
     else:
@@ -198,58 +270,22 @@ def form_submit():
     user.save()
 
     return "ok"
-       
-def compute_krippendorf_kappa():
-    """
-        reference: https://pypi.org/project/agreement/
-    """
-    all_users = database.User.objects()
-    users_rates_dataset = []
-    for user in all_users:
-        user_id = user._user_id
-        app.logger.debug("user_id in the krippendorf func %s", user_id)
-        # query_interaction = {}
-        # temp = []
-        for task_visited in user.tasks_visited:
-            temp = []
-            interaction_score = task_visited.interaction_score
-            temp.append((interaction_score.query, interaction_score.doc))
-            temp.append(user_id)
-            temp.append(interaction_score.score)
-            # print(len(temp))
-            users_rates_dataset.append(temp)
-    # print(len(users_rates_dataset))
-    # app.logger.debug("users rates dataset ", users_rates_dataset)
-
-    unique_ids = {}
-    id_counter = 1
-
-    for i in range(len(users_rates_dataset)):
-        key = users_rates_dataset[i][0]  #get the unique combination of query and doc
-        if key not in unique_ids:
-            unique_ids[key] = f"id_{id_counter}"  #assign a new unique id
-            id_counter += 1
-        users_rates_dataset[i][0] = unique_ids[key] 
-    for item in users_rates_dataset:
-        for val in item:
-            app.logger.debug("before numpy %s", str(val))
-    users_rates_dataset = np.array(users_rates_dataset)
-    for item in users_rates_dataset:
-        for val in item:
-            app.logger.debug("after numpy %s", str(val))
-    app.logger.debug("users rates dataset in numpy", users_rates_dataset)
-    questions_answers_table = pivot_table_frequency(users_rates_dataset[:, 0], users_rates_dataset[:, 2])
-    alpha = krippendorffs_alpha(questions_answers_table)
-    
-    return alpha
 
 @app.route("/stop_experiment/", methods=['GET', 'POST'])
 # @login_required
 def stop_experiment():
+    """
+    Stops the experiment and performs checks on the annotator's responses.
+
+    This function is called when the app reaches the last experiment task. It checks whether the annotator's responses are as expected based on the default correct answer.
+
+    Returns:
+        A rendered template for the stop_experiment_template.html.
+    """
     if "attention_check" in configs:
         user = database.User.objects(_user_id=session['user_id']).first()
         experiment = database.Experiment.objects(_exp_id=str(session['exp_id'])).first()
-        task = database.TaskScore.objects(query_title = configs["attention_check"]["task"]["query_title"], index = configs["attention_check"]["task"]["index"], ranking_type= configs["attention_check"]["task"]["ranking_type"]).first()
+        task = database.TaskScore.objects(query_title=configs["attention_check"]["task"]["query_title"], index=configs["attention_check"]["task"]["index"], ranking_type=configs["attention_check"]["task"]["ranking_type"]).first()
         attention_check_task = [task_visited for task_visited in user.tasks_visited if
                                 task_visited.task == str(experiment.tasks.index(str(task._id)))][0]
 

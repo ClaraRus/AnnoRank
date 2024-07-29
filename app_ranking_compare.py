@@ -38,6 +38,16 @@ login_manager.init_app(app)
 # login page
 @login_manager.user_loader
 def loader_user(_user_id):
+    """
+    Load a user from the database based on the given user ID.
+
+    Args:
+        _user_id (str): The ID of the user to load.
+
+    Returns:
+        User: The loaded user object.
+
+    """
     user = database.User.objects(_user_id=_user_id).first()
     return user
 
@@ -45,6 +55,21 @@ def loader_user(_user_id):
 @app.route("/")
 @app.route("/start_compare_annotate/<int:experiment_id>", methods=['GET', 'POST'])
 def start_compare_annotate(experiment_id):
+    """
+    The first function is when the user logs in to the ranking compare app.
+    The ranking compares annotate app is used to select which ranking is better based on the visual investigation.
+    This is different with the app_ranking_compare_annotate.
+
+    Parameters:
+    - experiment_id: The ID of the experiment.
+
+    Returns:
+    - If the user is authenticated, it redirects to the next task URL.
+    - If the request method is POST, it records the user in the database, creates a new user in the database if it doesn't exist,
+      creates a user session, and redirects to the next task URL.
+    - If the user is not authenticated and the request method is not POST, it renders the 'start_compare.html' template.
+
+    """
     if current_user.is_authenticated:
         session['user_id'] = current_user._user_id
 
@@ -89,6 +114,15 @@ def logout():
 @app.route("/")
 @app.route("/start_compare/<int:experiment_id>", methods=['GET', 'POST'])
 def start_compare(experiment_id):
+    """
+    Redirects to the next task URL for the given experiment ID.
+
+    Parameters:
+    experiment_id (int): The ID of the experiment.
+
+    Returns:
+    response (flask.Response): The redirect response with the next task URL.
+    """
     url = get_next_task_URL(experiment_id, 0)
     response = make_response(redirect(url, code=200))
     response.headers['HX-Redirect'] = url
@@ -96,12 +130,33 @@ def start_compare(experiment_id):
 
 
 def get_next_task_URL(exp_id, n_task):
+    """Generate the URL for the next task based on the task in experiment list
+
+    Args:
+        exp_id (int): The ID of the experiment.
+        n_task (int): The task number.
+
+    Returns:
+        str: The URL for the next task.
+    """
     url = str(exp_id) + '/index_compare/' + str(n_task)
     return url
 
 
 @app.route('/api/<experiment_id>/get_task/<direction>/<task_n>', methods=['GET'])
 def get_task(experiment_id, direction, task_n):
+    """
+    Retrieves the next or previous task based on the given experiment ID, direction, and task number.
+
+    Args:
+        experiment_id (str): The ID of the experiment.
+        direction (str): The direction to navigate the tasks. Can be either 'next' or 'previous'.
+        task_n (int): The current task number.
+
+    Returns:
+        dict: A JSON response containing the next task number.
+
+    """
     experiment = database.Experiment.objects(_exp_id=str(experiment_id)).first()
     if direction == 'next':
         next_task = int(task_n) + 1
@@ -117,6 +172,16 @@ def get_task(experiment_id, direction, task_n):
 
 @app.route("/start_compare/<experiment_id>/index_compare/<n_task>", methods=['GET', 'POST'])
 def index_compare(experiment_id, n_task):
+    """The main page of compare rankings app. Defines all the data required for the annotate 2 rankings app.
+
+    Args:
+        experiment_id (str): The ID of the experiment.
+        n_task (int): The index of the task.
+
+    Returns:
+        render_template: The rendered HTML template for the index_ranking_compare_template.
+
+    """
     exp_obj = database.Experiment.objects(_exp_id=str(experiment_id)).first()
     task_id = exp_obj.tasks[int(n_task)]
 
