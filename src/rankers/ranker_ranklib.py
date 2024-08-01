@@ -16,6 +16,17 @@ new_path = f'{current_path}:{java_bin_path}'
 # Update the PATH environment variable
 os.environ['PATH'] = new_path
 
+import subprocess
+
+# Command to change file permissions
+command = "chmod +rx /app/src/rankers/modules/ranklib/run-LTR-model.sh"
+
+# Execute the command
+try:
+    subprocess.run(command, shell=True, check=True)
+    print("File permissions changed successfully.")
+except subprocess.CalledProcessError as e:
+    print(f"Error occurred: {e}")
 
 class RankLibRanker(Ranker):
     def __init__(self, configs, data_configs, model_path):
