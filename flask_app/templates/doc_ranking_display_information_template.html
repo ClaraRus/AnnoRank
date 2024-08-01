@@ -1,0 +1,125 @@
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script src="/static/js_scripts/limitSelectionCheckbox.js" defer></script>
+<script src="/static/js_scripts/viewDocInfo.js" defer></script>
+<script src="/static/js_scripts/shortlistNextButton.js" defer></script>
+<script src="/static/js_scripts/viewCounts.js" defer></script>
+<script src="/static/js_scripts/viewTime.js" defer></script>
+<script src="/static/js_scripts/orderCheckbox.js" defer></script>
+<script src="/static/js_scripts/highlightText.js" defer></script>
+
+<script>
+    if ({{view_configs | tojson}}.highlight_match) {
+    window.onload = function() {
+        highlightText();
+    };
+}
+</script>
+
+<div class="flex flex-col mt-8">
+        <div class="-my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+            <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+                <table id="data-body" class="min-w-full">
+                    <thead>
+                        <tr>
+                            {% for field_name in doc_field_names %}
+                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ field_name|replace('_display', '') }}</th>
+                            {% endfor %}
+
+                            {% if view_configs.shortlist_button %}
+                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+                            {% endif %}
+
+                            {% if view_configs.view_button %}
+                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+                            {% endif %}
+                        </tr>
+                    </thead>
+
+                    <tbody class="bg-white">
+                    {% for data_obj in doc_data_objects %}
+                    <tr>
+                        {% for field_name in doc_field_names %}
+                        <td class="align-top px-2 py-4 whitespace-no-wrap border-b border-gray-200">
+                                <div id="item-text" class="ml-4">
+                                    {% if 'preprocessing' in ranking_type %}
+                                        {% set fair_field_name = field_name + '_fair' %}
+                                        {% for pre_data in data_obj[ranking_type] %}
+                                            {% if pre_data.ranking_type == ranking_type %}
+                                                {% if fair_field_name in pre_data %}
+                                                    {% for line in (pre_data[fair_field_name]|round(2)|string).split('\n') %}
+                                                    <div class="text-sm font-medium text-gray-900">{{ line }}</div>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    {% for line in (data_obj[field_name]|string).split('\n') %}
+                                                    <div class="text-sm font-medium text-gray-900">{{ line }}</div>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+
+                                    {% else %}
+                                        {% for line in (data_obj[field_name]|string).split('\n') %}
+                                        {% if "<img" in line %}
+                                            <div class="text-gray-900" style="margin-bottom: 10px;">
+                                                {{ line | safe }}
+                                            </div>
+                                        {% else %}
+                                            <div class="text-sm font-medium text-gray-900">{{ line }}</div>
+                                        {%endif%}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                        </td>
+                        {% endfor %}
+
+                        {% if view_configs.view_button %}
+                        <td class="text-left py-4 whitespace-no-wrap  border-b border-gray-200 text-sm  font-medium">
+                            <button class="view-button hover:text-blue-600" onclick="loadAndToggleVisibility('expandable-row-{{loop.index|string}}', '{{loop.index}}','{{current_url + loop.index|string}}')">
+                                View
+                            </button>
+                        </td>
+                        {% endif %}
+
+                        {% if view_configs.shortlist_button %}
+                        <td class="py-4 px-8 whitespace-no-wrap text-center border-b border-gray-200 text-sm font-medium">
+                            <input class="largerCheckbox" type="checkbox" name="shortlist" id="{{ loop.index|string }}" value="" onclick="limitSelection(this, {{ view_configs.shortlist_select[1] }}); orderCheckBox(this, '{{ data_obj['_id'] }}'  )">
+                        </td>
+                        {% endif %}
+                    </tr>
+                    <tr id="expandable-row-{{loop.index|string}}" docid='{{data_obj["_id"]|string}}' name="doc_row" style="display: none; overflow-y: hidden;">
+                        <td colspan="5">
+                            <table>
+                                <tr>
+                                    <td>Subtable Content</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        {% for field_name in doc_field_names[:-1] %}
+                            <td></td>
+                        {% endfor %}
+
+                        {% if view_configs.shortlist_button %}
+                            <td></td>
+                        {% endif %}
+
+                        {% if view_configs.view_button %}
+                            <td></td>
+                        {% endif %}
+
+                        <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                            <div class=".button-container">
+                                <a  onclick="collectDataShortlist({{ view_configs.shortlist_select }})" class="next-button hover:bg-gray-200">Next</a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>
+
+

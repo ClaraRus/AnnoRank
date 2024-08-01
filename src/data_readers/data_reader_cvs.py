@@ -1,77 +1,19 @@
 import os
 import pandas as pd
-from src.data_readers.data_reader import DataReader
 import json
 
-from src.utils import clean_text
-
-
-def candidate_to_text(candidate):
-    for col in candidate.columns:
-        if isinstance(candidate[col][0], list):
-            text = ""
-            first=True
-            if len(candidate[col][0]) > 0:
-                if isinstance(candidate[col][0][0], dict):
-                    for item in candidate[col][0]:
-                        for key in item.keys():
-                            text = text + clean_text(key, upper=True) + ': '
-                            text = text + clean_text(item[key]) + '\n'
-                            if first:
-                                candidate[col+"_display"] = text
-                                first=False
-                            else:
-                                candidate[col + "_view"] = text
-                        text = text + '\n'
-                else:
-                    values = candidate[col][0]
-                    for val in values:
-                        text = text + clean_text(val) + ', '
-                    text = text.strip(', ') + '\n'
-                    candidate[col+"_display"] = text
-        else:
-            if col == '_name':
-                candidate['name_display'] = candidate[col]
-            else:
-                candidate[col.replace('_', '') + "_protected"] = candidate[col]
-
-    return candidate
+from utils.utils import clean_text
+from data_readers.data_reader import DataReader
 
 
 class DataReaderCvs(DataReader):
 
     def __init__(self, configs):
-        super(DataReaderCvs, self).__init__(configs=configs)
-
-    def query_to_text(self, query):
-        """
-        Converts a query object into a formatted text representation.
-
-        Args:
-            query (pandas.DataFrame): The query object to be converted.
-
-        Returns:
-            str: The formatted text representation of the query.
-        """
-        query_text = ""
-        for col in query.columns:
-            query_text = query_text + clean_text(col, upper=True) + "\n"
-            if isinstance(query[col][0][0], dict):
-                values = query[col][0][0]
-                for key in values.keys():
-                    if values[key] != '':
-                        query_text = query_text + clean_text(key, upper=True) + ': '
-                        query_text = query_text + clean_text(values[key]) + '\n'
-            else:
-                values = query[col][0]
-                for val in values:
-                    query_text = query_text + clean_text(val) + ', '
-                query_text = query_text.strip(', ') + '\n'
-            query_text = query_text + '\n'
-        return query_text
+        super().__init__(configs)
 
     def transform_data(self):
-        """Transform data with various kind of data preprocessing.
+        """
+        Transform data into pandas.DataFrame and apply cleaning steps.
 
         This method reads and preprocesses data from multiple files and directories.
         It iterates over each occupation directory, reads the query description from a JSON file,
@@ -94,7 +36,7 @@ class DataReaderCvs(DataReader):
             with open(os.path.join(self.data_path, 'data', dir_name, 'description.json'), 'r') as json_file:
                 query = json.load(json_file)
             query = pd.json_normalize(query)
-            query['text'] = clean_text(dir_name, upper=True) + "\n" + self.query_to_text(query)
+            query['text'] = clean_text(dir_name, upper=True) + "\n" + query_to_text(query)
             query['title'] = dir_name
             dataframes_occupations.append(query)
 
@@ -104,9 +46,9 @@ class DataReaderCvs(DataReader):
 
             # Iterate over each JSON file
             for json_file in json_files:
-                file_path = os.path.join(self.data_path, 'data',dir_name, json_file)
+                file_path = os.path.join(self.data_path, 'data', dir_name, json_file)
 
-                with open(os.path.join(self.data_path, 'data',dir_name, file_path), 'r') as json_file:
+                with open(os.path.join(self.data_path, 'data', dir_name, file_path), 'r') as json_file:
                     candidate_data = json.load(json_file)
 
                 candidate_data = pd.json_normalize(candidate_data)
@@ -118,8 +60,79 @@ class DataReaderCvs(DataReader):
 
         # Concatenate all DataFrames into a single DataFrame
         data_test = pd.concat(dataframes_candidates, ignore_index=True)
+        # Set data_train to be the same as data_test for testing the ranker and fairness intervention on this dataset
         data_train = data_test
 
         dataframe_occupations = pd.concat(dataframes_occupations, ignore_index=True)
 
         return dataframe_occupations, data_train, data_test
+
+
+# Helper functions for preprocessing the CVS dataset
+def candidate_to_text(candidate):
+    """
+    Converts a candidate object into a formatted text representation.
+
+    Args:
+        candidate (pandas.DataFrame): The query object to be converted.
+
+    Returns:
+        str: The formatted text representation of the query.
+    """
+    for col in candidate.columns:
+        if isinstance(candidate[col][0], list):
+            text = ""
+            first = True
+            if len(candidate[col][0]) > 0:
+                if isinstance(candidate[col][0][0], dict):
+                    for item in candidate[col][0]:
+                        for key in item.keys():
+                            text = text + clean_text(key, upper=True) + ': '
+                            text = text + clean_text(item[key]) + '\n'
+                            if first:
+                                candidate[col + "_display"] = text
+                                first = False
+                            else:
+                                candidate[col + "_view"] = text
+                        text = text + '\n'
+                else:
+                    values = candidate[col][0]
+                    for val in values:
+                        text = text + clean_text(val) + ', '
+                    text = text.strip(', ') + '\n'
+                    candidate[col + "_display"] = text
+        else:
+            if col == '_name':
+                candidate['name_display'] = candidate[col]
+            else:
+                candidate[col.replace('_', '') + "_protected"] = candidate[col]
+
+    return candidate
+
+
+def query_to_text(query):
+    """
+        Converts query object into a formatted text representation.
+
+        Args:
+            query (pandas.DataFrame): The query object to be converted.
+
+        Returns:
+            str: The formatted text representation of the query.
+        """
+    query_text = ""
+    for col in query.columns:
+        query_text = query_text + clean_text(col, upper=True) + "\n"
+        if isinstance(query[col][0][0], dict):
+            values = query[col][0][0]
+            for key in values.keys():
+                if values[key] != '':
+                    query_text = query_text + clean_text(key, upper=True) + ': '
+                    query_text = query_text + clean_text(values[key]) + '\n'
+        else:
+            values = query[col][0]
+            for val in values:
+                query_text = query_text + clean_text(val) + ', '
+            query_text = query_text.strip(', ') + '\n'
+        query_text = query_text + '\n'
+    return query_text

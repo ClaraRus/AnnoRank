@@ -42,6 +42,7 @@ RUN apt-get install -y \
 	libnlopt-dev \
 	libxml2-dev
 
+RUN wget -qO- "https://cmake.org/files/v3.17/cmake-3.17.0-Linux-x86_64.tar.gz" | tar --strip-components=1 -xz -C /usr/local
 
 RUN apt-get install -y	r-base \
 	r-base-dev
@@ -51,14 +52,6 @@ RUN conda env create -f env.yml
 
 RUN rm -rf /var/lib/apt/lists/*
 
-# RUN wget -P /usr/local "https://go.dev/dl/go1.22.3.linux-amd64.tar.gz" && tar -C /usr/local -xzf /usr/local/go1.22.3.linux-amd64.tar.gz
-
-# RUN apt install golang-go && go version
-# RUN echo export PATH=$HOME/go/bin:/usr/local/go/bin:$PATH >> ~/.profile
-# RUN source ~/.profile && go version
-
-
-# RUN go install github.com/hscells/bigbro/cmd/bigbro@latest
 # Activate the Conda environment
 SHELL ["conda", "run", "-n", "tool_ui", "/bin/bash", "-c"]
 
@@ -75,5 +68,6 @@ ENV PATH=$PATH:/usr/local/go/bin
 RUN go install github.com/hscells/bigbro/cmd/bigbro@latest
 ENV PATH=/root/go/bin:$PATH
 
+RUN chmod +rx /app/src/rankers/modules/ranklib/run-LTR-model.sh
 
 

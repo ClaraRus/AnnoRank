@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="{{ 'en' }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="referrer" content="always">
+        <link rel="canonical" href="/">
+
+        <meta name="description" content="{{ "AnnoRank" }}">
+
+        <title>{{ "AnnoRank" }}</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dist/output.css') }}">
+        <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    </head>
+    <body>
+
+
+                <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
+                    <div class="container mx-auto px-6 py-8">
+                        {% block body %}{% endblock %}
+                    </div>
+                </main>
+            </div>
+        </div>
+    </body>
+</html>

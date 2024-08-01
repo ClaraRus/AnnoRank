@@ -11,7 +11,7 @@
   "ui_display_config": {
     "highlight_match": true,
     "display_fields": ["product_name", "product_description", "price", "average_review_rating"],
-    "score_range": [1, 5],
+    "score_range": [1, 2, 3, 4, 5],
     "task_description": "",
 
     "exit_survey": [

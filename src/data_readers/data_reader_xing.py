@@ -9,15 +9,11 @@ import glob
 import datetime
 import math
 import os
-import random
-
-import numpy as np
 import pandas as pd
 import pickle
 
 from sklearn.model_selection import train_test_split
-
-from src.data_readers.data_reader import DataReader
+from data_readers.data_reader import DataReader
 
 '''
 Created on 23.12.2016
@@ -25,7 +21,6 @@ Created on 23.12.2016
 @author: meike.zehlike
 '''
 import uuid
-
 
 
 class Candidate(object):
@@ -108,6 +103,17 @@ class DataReaderXing(DataReader):
         super().__init__(configs)
 
     def transform_data(self):
+        """
+        Transform data into pandas.DataFrame and apply cleaning steps.
+
+        Reads the XING data from a JSON file, performs data preprocessing, and returns the transformed data.
+
+        Returns:
+            tuple: A tuple containing the transformed data.
+                - dataframe_query (pandas.DataFrame): A DataFrame containing the transformed query data.
+                - data_train (pandas.DataFrame): A DataFrame containing the transformed training data.
+                - data_test (pandas.DataFrame): A DataFrame containing the transformed testing data.
+        """
 
         dataset = self.concat_data()
 
@@ -117,10 +123,15 @@ class DataReaderXing(DataReader):
         dataset["member_since_string"] = dataset["member_since"].apply(lambda x: "Member Since: " + str(x))
         dataset["degree_string"] = dataset["degree"].apply(lambda x: "Degree: " + str(x))
 
+        # the query dataframe
         dataset_queries = pd.DataFrame(columns=['title', 'text'])
         dataset_queries['text'] = dataset[self.query_col].unique()
         dataset_queries['title'] = dataset[self.query_col].unique()
 
+        data_train, data_test = self.create_train_test_split(dataset)
+        return dataset_queries, data_train, data_test
+
+    def create_train_test_split(self, dataset):
         data_train_list = []
         data_test_list = []
         for query, group in dataset.groupby([self.query_col]):
@@ -134,10 +145,10 @@ class DataReaderXing(DataReader):
             if len(data_train) == 2:
                 data_train_list.append(pd.concat(data_train))
                 data_test_list.append(pd.concat(data_test))
-
         data_train = pd.concat(data_train_list)
         data_test = pd.concat(data_test_list)
-        return dataset_queries, data_train, data_test
+
+        return data_train, data_test
 
     def concat_data(self):
         entireDataSet = pd.DataFrame(columns=['protected', 'nonProtected', 'originalOrdering'])
@@ -161,7 +172,6 @@ class DataReaderXing(DataReader):
             new_cols.append(new_col)
             dataset[new_col] = dataset[col].values
         dataset = dataset[new_cols]
-
         return dataset
 
     def dumpDataSet(self, pathToFile):
@@ -214,7 +224,8 @@ class DataReaderXing(DataReader):
             score = (work_experience + edu_experience) * int(hits)
 
             if self.__determineIfProtected(r, protectedAttribute):
-                protected.append(Candidate(work_experience, edu_experience, hits, score, [protectedAttribute], member_since, degree))
+                protected.append(
+                    Candidate(work_experience, edu_experience, hits, score, [protectedAttribute], member_since, degree))
             else:
                 nonProtected.append(Candidate(work_experience, edu_experience, hits, score, [], member_since, degree))
 

@@ -1,0 +1,273 @@
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" xmlns="http://www.w3.org/1999/html"></script>
+<script src="/static/js_scripts/nextButton.js" defer></script>
+<script src="/static/js_scripts/limitSelectionCheckbox.js" defer></script>
+
+
+<div class="flex w-full mt-8">
+    <div class="-my-2 py-2 pr-2 overflow-x-auto">
+        <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+                <table class="min-w-full" name="ranking_table" id="{{ ranking_type_1 }}">
+                    <thead>
+                        <tr>
+                            {% for field_name in doc_field_names %}
+                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ field_name }}</th>
+                            {% endfor %}
+
+                            {% if "avg_interaction" in view_configs %}
+                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ view_configs.avg_interaction.interaction }}</th>
+                            {% endif %}
+
+                        </tr>
+                    </thead>
+
+                    <tbody class="bg-white">
+                    {% if not view_configs.annotate %}
+                        <tr>
+                            {% if "avg_interaction" in view_configs %}
+                        <td class="py-4 px-8 whitespace-no-wrap text-center border-b border-gray-200 text-sm font-medium" colspan="{{doc_field_names|length + 1 }}">
+                            <div class="text-sm font-medium text-gray-900">{{ ranking_type_1 }}</div>
+                        </td>
+                            {% else %}
+                            <td class="py-4 px-8 whitespace-no-wrap text-center border-b border-gray-200 text-sm font-medium" colspan="{{doc_field_names|length }}">
+                            <div class="text-sm font-medium text-gray-900">{{ ranking_type_1 }}</div>
+                            </td>
+                            {% endif %}
+                        </td>
+                        </tr>
+                    {% endif %}
+                    {% for data_obj in doc_data_objects_1 %}
+                    <tr>
+                        {% for field_name in doc_field_names %}
+                        <td class="align-top px-2 py-4 whitespace-no-wrap border-b border-gray-200">
+                                <div class="ml-4">
+                                    {% if 'preprocessing' in ranking_type_1 %}
+                                        {% set fair_field_name = field_name + '_fair' %}
+                                        {% for pre_data in data_obj[ranking_type_1] %}
+                                            {% if pre_data.ranking_type == ranking_type_1 %}
+                                                {% if fair_field_name in pre_data %}
+                                                    {% for line in (pre_data[fair_field_name]|round(2)|string).split('\n') %}
+                                                    <div class="text-sm font-medium text-gray-900">{{ line }}</div>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    {% for line in (data_obj[field_name]|string).split('\n') %}
+                                                    <div class="text-sm font-medium text-gray-900">{{ line }}</div>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+
+                                    {% else %}
+                                        {% for line in (data_obj[field_name]|string).split('\n') %}
+                                        {% if '<img' in line %}
+                                            <div class="text-gray-900" style="margin-bottom: 10px;">
+                                                {{ line | safe }}
+                                            </div>
+                                        {% else %}
+                                            <div class="text-sm font-medium text-gray-900">{{ line }}</div>
+                                        {%endif%}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                        </td>
+                        {% endfor %}
+                        {% if "avg_interaction" in view_configs %}
+                            <td class="align-top px-2 py-4 whitespace-no-wrap border-b border-gray-200">
+                                <div class="text-sm font-medium text-gray-900">{{ avg_interaction[data_obj._id|string + '__' + ranking_type_1] }}</div>
+                            </td>
+                        {% endif %}
+
+
+
+                    </tr>
+
+                    {% endfor %}
+
+                    {% if not view_configs.annotate %}
+                    <tr>
+                        {% if "avg_interaction" in view_configs %}
+                            <td class="py-4 px-8 whitespace-no-wrap text-center border-b border-gray-200 text-sm font-medium" colspan="{{doc_field_names|length + 1 }}">
+                                {% if "fairness_metrics" in view_configs.display_metrics %}
+                                    <div class="text-left text-sm font-medium text-gray-900"><b>Fairness Metrics</b></div>
+                                    {% for metric in fairness_metrics[ranking_type_1] %}
+                                        <div class="text-left pl-4 text-sm font-medium text-gray-900 capitalize">{{ metric }}: {{ fairness_metrics[ranking_type_1][metric] }}</div>
+                                    {% endfor %}
+                                {% endif %}
+
+                                {% if "utility_metrics" in view_configs.display_metrics %}
+                                <div class="text-left pt-3 text-sm font-medium text-gray-900"><b>Utility Metrics</b></div>
+                                    {% for metric in utility_metrics[ranking_type_1] %}
+                                        <div class="text-left pl-4 text-sm font-medium text-gray-900 capitalize">{{ metric }}: {{ utility_metrics[ranking_type_1][metric] }}</div>
+                                    {% endfor %}
+                                {% endif %}
+                            </td>
+                        {% else %}
+                             <td class="py-4 px-8 whitespace-no-wrap text-center border-b border-gray-200 text-sm font-medium" colspan="{{doc_field_names|length  }}">
+                                {% if "fairness_metrics" in view_configs.display_metrics %}
+                                    <div class="text-left text-sm font-medium text-gray-900"><b>Fairness Metrics</b></div>
+                                    {% for metric in fairness_metrics[ranking_type_1] %}
+                                        <div class="text-left pl-4 text-sm font-medium text-gray-900 capitalize">{{ metric }}: {{ fairness_metrics[ranking_type_1][metric] }}</div>
+                                    {% endfor %}
+                                {% endif %}
+
+                                {% if "utility_metrics" in view_configs.display_metrics %}
+                                <div class="text-left pt-3 text-sm font-medium text-gray-900"><b>Utility Metrics</b></div>
+                                    {% for metric in utility_metrics[ranking_type_1] %}
+                                        <div class="text-left pl-4 text-sm font-medium text-gray-900 capitalize">{{ metric }}: {{ utility_metrics[ranking_type_1][metric] }}</div>
+                                    {% endfor %}
+                                {% endif %}
+                            </td>
+                        {% endif %}
+                    </tr>
+                    {% endif %}
+
+                    {% if view_configs.annotate %}
+                    <tr>
+                    <td class="py-4 px-8 whitespace-no-wrap text-center border-b border-gray-200 text-sm font-medium" colspan="{{doc_field_names|length }}">
+                            <input class="largerCheckbox" type="checkbox" name="{{ ranking_type_1 }}" id="shortlist_1" value="" onclick="toggleCheckbox('shortlist_1', 'shortlist_2');">
+                    </td>
+                    </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
+        </div>
+    </div>
+
+    <div class="-my-2 py-2 pl-2 overflow-x-auto">
+        <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+                <table class="min-w-full" name="ranking_table" id="{{ ranking_type_2 }}">
+                    <thead>
+                        <tr>
+                            {% for field_name in doc_field_names %}
+                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ field_name }}</th>
+                            {% endfor %}
+
+                            {% if "avg_interaction" in view_configs %}
+                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ view_configs.avg_interaction.interaction }}</th>
+                            {% endif %}
+                        </tr>
+                    </thead>
+
+                    <tbody class="bg-white">
+                    {% if not view_configs.annotate %}
+                        <tr>
+                            {% if "avg_interaction" in view_configs %}
+                        <td class="py-4 px-8 whitespace-no-wrap text-center border-b border-gray-200 text-sm font-medium" colspan="{{doc_field_names|length + 1 }}">
+                            <div class="text-sm font-medium text-gray-900">{{ ranking_type_2 }}</div>
+                        </td>
+                            {% else %}
+                            <td class="py-4 px-8 whitespace-no-wrap text-center border-b border-gray-200 text-sm font-medium" colspan="{{doc_field_names|length }}">
+                            <div class="text-sm font-medium text-gray-900">{{ ranking_type_2 }}</div>
+                            </td>
+                            {% endif %}
+                        </td>
+                        </tr>
+                    {% endif %}
+                    {% for data_obj in doc_data_objects_2 %}
+                    <tr>
+                        {% for field_name in doc_field_names %}
+                        <td class="align-top px-2 py-4 whitespace-no-wrap border-b border-gray-200">
+                                <div class="ml-4">
+                                    {% if 'preprocessing' in ranking_type_2 %}
+                                        {% set fair_field_name = field_name + '_fair' %}
+                                        {% for pre_data in data_obj[ranking_type_2] %}
+                                            {% if pre_data.ranking_type == ranking_type_2 %}
+                                                {% if fair_field_name in pre_data %}
+                                                    {% for line in (pre_data[fair_field_name]|round(2)|string).split('\n') %}
+                                                    <div class="text-sm font-medium text-gray-900">{{ line }}</div>
+                                                    {%endfor %}
+                                                {% else %}
+                                                    {% for line in (data_obj[field_name]|string).split('\n') %}
+                                                    <div class="text-sm font-medium text-gray-900">{{ line }}</div>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            {% endif %}
+                                        {%  endfor %}
+
+                                    {% else %}
+                                        {% for line in (data_obj[field_name]|string).split('\n') %}
+                                        {% if '<img' in line %}
+                                            <div class="text-gray-900" style="margin-bottom: 10px;">
+                                                {{ line | safe }}
+                                            </div>
+                                        {% else %}
+                                            <div class="text-sm font-medium text-gray-900">{{ line }}</div>
+                                        {%endif%}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                        </td>
+                        {% endfor %}
+                        {% if "avg_interaction" in view_configs %}
+                            <td class="align-top px-2 py-4 whitespace-no-wrap border-b border-gray-200">
+                                <div class="text-sm font-medium text-gray-900">{{ avg_interaction[data_obj._id|string + '__' + ranking_type_2] }}</div>
+                            </td>
+                        {% endif %}
+                    </tr>
+
+                    {% endfor %}
+                    {% if view_configs.annotate %}
+                    <tr>
+                    <td class="py-4 px-8 whitespace-no-wrap text-center border-b border-gray-200 text-sm font-medium" colspan="{{doc_field_names|length }}">
+                            <input class="largerCheckbox" type="checkbox" name="{{ranking_type_2}}" value="" id="shortlist_2" onclick="toggleCheckbox('shortlist_2', 'shortlist_1');">
+                    </td>
+                    </tr>
+                    {% endif %}
+
+                    {% if not view_configs.annotate %}
+                    <tr>
+                        {% if "avg_interaction" in view_configs %}
+                            <td class="py-4 px-8 whitespace-no-wrap text-center border-b border-gray-200 text-sm font-medium" colspan="{{doc_field_names|length + 1 }}">
+                                {% if "fairness_metrics" in view_configs.display_metrics %}
+                                    <div class="text-left text-sm font-medium text-gray-900"><b>Fairness Metrics</b></div>
+                                    {% for metric in fairness_metrics[ranking_type_2] %}
+                                        <div class="text-left pl-4 text-sm font-medium text-gray-900 capitalize">{{ metric }}: {{ fairness_metrics[ranking_type_2][metric] }}</div>
+                                    {% endfor %}
+                                {% endif %}
+
+                                {% if "utility_metrics" in view_configs.display_metrics %}
+                                <div class="text-left pt-3 text-sm font-medium text-gray-900"><b>Utility Metrics</b></div>
+                                    {% for metric in utility_metrics[ranking_type_2] %}
+                                        <div class="text-left pl-4 text-sm font-medium text-gray-900 capitalize">{{ metric }}: {{ utility_metrics[ranking_type_2][metric] }}</div>
+                                    {% endfor %}
+                                {% endif %}
+                            </td>
+                        {% else %}
+                             <td class="py-4 px-8 whitespace-no-wrap text-center border-b border-gray-200 text-sm font-medium" colspan="{{doc_field_names|length  }}">
+                                {% if "fairness_metrics" in view_configs.display_metrics %}
+                                    <div class="text-left text-sm font-medium text-gray-900"><b>Fairness Metrics</b></div>
+                                    {% for metric in fairness_metrics[ranking_type_2] %}
+                                        <div class="text-left pl-4 text-sm font-medium text-gray-900 capitalize">{{ metric }}: {{ fairness_metrics[ranking_type_2][metric] }}</div>
+                                    {% endfor %}
+                                {% endif %}
+
+                                {% if "utility_metrics" in view_configs.display_metrics %}
+                                <div class="text-left pt-3 text-sm font-medium text-gray-900"><b>Utility Metrics</b></div>
+                                    {% for metric in utility_metrics[ranking_type_2] %}
+                                        <div class="text-left pl-4 text-sm font-medium text-gray-900 capitalize">{{ metric }}: {{ utility_metrics[ranking_type_2][metric] }}</div>
+                                    {% endfor %}
+                                {% endif %}
+                            </td>
+                        {% endif %}
+                    </tr>
+                    {% endif %}
+
+                    </tbody>
+                </table>
+        </div>
+    </div>
+</div>
+<div class="flex w-full mt-8">
+        {% if not view_configs.annotate %}
+        <div class="mr-auto">
+            <a  onclick="nextButton('prev')" class="next-button hover:bg-gray-200">Prev</a>
+        </div>
+        <div class="ml-auto">
+            <a  onclick="nextButton('next')" class="next-button text-right ml-80 hover:bg-gray-200">Next</a>
+        </div>
+        {% endif %}
+        {% if view_configs.annotate %}
+        <div class="ml-auto">
+            <a  onclick="nextButtonAnnotateCompare()" class="next-button text-right ml-80 hover:bg-gray-200">Next</a>
+        </div>
+        {% endif %}
+</div>

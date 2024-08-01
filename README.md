@@ -10,7 +10,6 @@ AnnoRank offers support for applying fairness interventions in the pipeline of a
 In addition, the tool is integrated with the Ranklib library, offering a vast range of ranking models that can be applied to the data and displayed in the UI. 
 AnnoRank is designed to be flexible, configurable, and easy to deploy to meet diverse requirements and a larger audience. 
 
-
 # External Resource
 In the folder external resources the following can be found:
 - Usability_Study_Anno_Rank.pdf - the usability study conducted for Anno Rank
@@ -117,11 +116,11 @@ Depending on your development system, instructions on how to install the Docker 
 
 Before accessing the links you need to wait for the app to finish the install and start. This tutorial makes use of the ready to use fairness interventions and Ranklib, meaning that the installation time is higher as it needs to install extra packages for the fairness interventions and for the Ranklib library.
 
-To access the Interaction Annotation UI go to the following link: http://localhost:5000/start_ranking/1
+To access the Interaction Annotation UI go to the following link: http://localhost:5000/start_ranking/4
 
-To access the Ranking Comparison Visualise UI go to the following link: http://localhost:5001/start_compare/2
+To access the Ranking Comparison Visualise UI go to the following link: http://localhost:5001/start_compare/3
 
-To access the Ranking Comparison Annotate UI go to the following link: http://localhost:5002/start_compare_annotate/2 
+To access the Ranking Comparison Annotate UI go to the following link: http://localhost:5002/start_compare_annotate/3
 
 To access the Score Annotate UI go to the following link: http://localhost:5003/start_annotate/5 
 

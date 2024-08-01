@@ -1,7 +1,36 @@
 # code for estimating the causal model
-if(!require('mma')) install.packages("mma", repos = "https://cloud.r-project.org")
+# @article{yang2020causal,
+#   title={Causal intersectionality for fair ranking},
+#   author={Yang, Ke and Loftus, Joshua R and Stoyanovich, Julia},
+#   journal={arXiv preprint arXiv:2006.08688},
+#   year={2020}
+# }
+# License
+# Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+# documentation files (the "Software"), to deal in the Software without restriction, including without limitation
+# the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software,
+# and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+# INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+# WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+# OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+# if installation of mma fails delete the following folders from the docker container.
+# Run the following commands in the Exec tab in Docker Desktop:
+# rm -r /usr/local/lib/R/site-library/00LOCK-cli
+# rm -r /usr/local/lib/R/site-library/00LOCK-pkgconfig
+# rm -r /usr/local/lib/R/site-library/000LOCK-stringi
+# keep in mind that the installation of the mma package takes a few minutes
+#if(!require('mma'))
+install.packages("mma", repos = "https://cloud.r-project.org")
 library(mma)
 
+# CMake was not found on the PATH. Please install CMake:
+# ERROR: configuration failed for package ‘nloptr’
 save_mediation_results <- function (res, group_list, out_path){
     df_total <- res$bin.result$results$total.effect
     df_direct <- res$bin.result$results$direct.effect
@@ -12,8 +41,6 @@ save_mediation_results <- function (res, group_list, out_path){
     {
         cols[i] <- strsplit(names(df_indirect)[i], 'pred')[[1]][2]
     }
-
-
     for(i in 1:length(group_list))
     {
         if(group_list[i] %in% cols)
@@ -32,28 +59,21 @@ save_mediation_results <- function (res, group_list, out_path){
     }
 }
 
-get_mediators <-function (out_path, data_i, MED){
-    stop = length(colnames(data_i))
-
-    start = stop - length(MED) + 1
-    cols = colnames(data_i[start:stop])
-
-    return(cols)
+get_mediators <-function (data_i, MED){
+    return(unlist(MED))
 }
 
 
 estimate_causal_model <- function (data_i, IV, DV, MED, control, out_path){
-    dir.create(out_path, showWarnings = TRUE)
-
     # Create Causal Model
     data_i[, IV] <- as.factor(data_i[, IV])
 
     group_list<- unique(data_i[[IV]])
     group_list<-group_list[group_list != control]
-
     #print("Mediation...")
     # https://www.rdocumentation.org/packages/mma/versions/10.6-1/topics/mma
-    med_cols = get_mediators(out_path, data_i, MED)
+    med_cols = get_mediators(data_i, MED)
+
 
     check_med <- data.org(x=data_i[med_cols],y=data_i[, DV],pred=data_i[, IV], mediator=med_cols, predref=control)
     if(is.character(check_med)){
@@ -64,22 +84,21 @@ estimate_causal_model <- function (data_i, IV, DV, MED, control, out_path){
     }
 
     if(is.null(mediators)) {
-        print("No mediators found!")
         mediators = c('NULL')
         df <- data.frame(mediators)
         file_name = "identified_mediators.csv"
         write.csv(df, file=paste(out_path, file_name, sep='/'))
 
-        print("Test Effect of IV to DV")
         model.str = paste0(DV, "~", IV, '-1')
         form1 = as.formula(model.str)
         model.dv_iv <- lm(form1, data = data_i)
+
+
         write.csv(data.frame(summary(model.dv_iv)$coefficients), file=paste(out_path, paste0(model.str, '.csv', sep=''), sep='/'))
     }
     else{
-        print("Found")
+
         med_i<-med(data=check_med)
-        capture.output(print(med_i), file=paste(out_path, "med_output.txt", sep='/'))
 
         df <- data.frame(mediators)
         file_name = "identified_mediators.csv"
@@ -90,9 +109,8 @@ estimate_causal_model <- function (data_i, IV, DV, MED, control, out_path){
             model.str = paste0(mediators[[i]], "~", IV, '-1')
             form2 = as.formula(model.str)
             model.iv_med <- lm(form2, data=data_i)
-
             write.csv(data.frame(summary(model.iv_med)$coefficients), file=paste(out_path, paste0(model.str, '.csv', sep=''), sep='/'))
         }
         }
-    #print("Done causal model estimation")
 }
+

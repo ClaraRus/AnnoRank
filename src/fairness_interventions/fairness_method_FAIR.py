@@ -5,21 +5,30 @@ import sys
 
 import pandas as pd
 
-from src.fairness_interventions.fairness_method import FairnessMethod
+from fairness_interventions.fairness_method import FairnessMethod
 
 
 def conda_activate(env_name):
+    # due to conflicting versions FA*IR needs a different conda env activated
     activate_cmd = "cd /opt/conda/ && . activate " + env_name
     subprocess.run(activate_cmd, shell=True)
 class FAIRRanking(FairnessMethod):
     def __init__(self, configs, data_configs, model_path):
-        super().__init__(configs=configs,data_configs=data_configs, model_path=None)
+        super().__init__(configs, data_configs, model_path=None)
 
-    def generate_fair_data(self, data_test):
+    def generate_fair_data(self, data):
+        """Generate the fair data by appending the new fair columns to the data.
+        Fair columns are added following the name convention <column_name>_fair.
+
+        Args:
+            data (pandas.Dataframe): dataset to apply the fairness method
+        Returns:
+            data (pandas.Dataframe): dataset containing the transformed columns
+        """
         temp_dir = "/app/src/fairness_interventions/modules/FAIR_module/temp"
         if not os.path.exists(temp_dir):
             os.makedirs(temp_dir)
-        data_test.to_csv(os.path.join(temp_dir, "data_test.csv"))
+        data.to_csv(os.path.join(temp_dir, "data_test.csv"))
 
         with open(os.path.join(temp_dir, "config.json"), 'w') as file:
             json.dump(self.configs, file, indent=4)

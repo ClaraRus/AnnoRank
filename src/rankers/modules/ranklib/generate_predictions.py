@@ -1,8 +1,22 @@
 import os
-from src.utils import get_ltr_cols
+from utils.utils import get_ltr_cols
 
 
 def get_prediction_scores(file_path, ranker, file_name='prediction.txt'):
+    """
+        Retrieves prediction scores from the specified RankLib prediction file.
+
+        Args:
+            file_path (str): Path to the directory containing the prediction files.
+            ranker (str): Ranker name used to find the prediction file.
+            file_name (str): Name of the prediction file. Default is 'prediction.txt'.
+
+        Returns:
+            dict: Dictionary where keys are UUIDs and values are their prediction scores.
+
+        Raises:
+            ValueError: If no prediction file is found at the specified path.
+    """
     # return a dict in which key is the uuid and value is their prediction score
     # score is used to retrieve the relative order, not for other use!!!
     pred_latest_path = file_path + "/ranklib-experiments/" + ranker + "/"
@@ -25,8 +39,23 @@ def get_prediction_scores(file_path, ranker, file_name='prediction.txt'):
 
 
 def get_LTR_predict(count_df, ranklib_path, ranker, experiment, data_configs, features):
-    test_cols = get_ltr_cols(features, data_configs['score'], experiment[1])
-    train_cols = get_ltr_cols(features, data_configs['score'], experiment[0])
+    """
+        Integrates RankLib predictions into the provided DataFrame.
+
+        Args:
+            count_df (DataFrame): DataFrame containing the data to be ranked.
+            ranklib_path (str): Path to the RankLib predictions.
+            ranker (str): Ranker name used to find the prediction file.
+            experiment (tuple): Tuple containing the <train_ranking_type> and <test_ranking_type> defined
+            in the configuration file.
+            data_configs (dict): Configuration dict of the dataset.
+            features (list): List of feature columns.
+
+        Returns:
+            DataFrame: DataFrame with RankLib predictions added and sorted by query.
+    """
+    test_cols = get_ltr_cols(features, data_configs['score'], "original" not in experiment[0])
+    train_cols = get_ltr_cols(features, data_configs['score'], "original" not in experiment[1])
 
     count_df = count_df.sort_values(data_configs['docID'])
     count_df['docID_int'] = count_df[data_configs['docID']].astype('category').cat.codes

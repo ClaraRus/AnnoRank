@@ -3,19 +3,18 @@ import json
 import numpy as np
 import pandas as pd
 import pytrec_eval
-from pandas import json_normalize
 
 import database
 
-from src.evaluate.fairness_metrics import selection_parity, parity_of_exposer, compute_igf_ratio
+from evaluate.fairness_metrics import selection_parity, parity_of_exposer, compute_igf_ratio
 
 
 def get_fairness_metrics(configs, docs_obj):
     """Generates fairness metrics based on the dataset sensitive features.
 
     Args:
-        configs (object): Config from specific dataset comes from either config_annotate or config_shortlist file.
-        docs_obj (object): Document object for fairness evaluation.
+        configs (object): Config object for specific dataset.
+        docs_obj (object): Document object for fairness evaluation representing a ranking for a specific query.
 
     Returns:
         dict: Dictionary containing fairness metrics.
@@ -35,13 +34,12 @@ def get_fairness_metrics(configs, docs_obj):
     return results
 
 
-def get_utility_metrics(configs, query_title, docs_obj):
+def get_utility_metrics(configs, docs_obj):
     """Generates utility metrics on measuring the matching degree between a query and document objects.
 
     Args:
-        configs (object): Config from specific dataset comes from either config_annotate or config_shortlist file.
-        query_title (str): Title of the query.
-        docs_obj (object): Document object for utility evaluation.
+        configs (object): Config object for specific dataset.
+        docs_obj (object): Document object for fairness evaluation representing a ranking for a specific query.
 
     Returns:
         dict: Dictionary containing utility metrics.
@@ -49,8 +47,8 @@ def get_utility_metrics(configs, query_title, docs_obj):
     qrel = dict()
     run = dict()
 
-    qrel[query_title] = dict()
-    run[query_title] = dict()
+    qrel["current_query"] = dict()
+    run["current_query"] = dict()
 
     docs_original = sorted(docs_obj, key=lambda x: x[configs["data_reader_class"]["score"]], reverse=True)
     top_k_docs_orig = docs_original[:configs["ui_display_config"]["display_metrics"]["top_k"]]
@@ -58,12 +56,12 @@ def get_utility_metrics(configs, query_title, docs_obj):
 
     rel = len(top_k_docs_orig)
     for doc in top_k_docs_orig:
-        qrel[query_title][str(doc._id)] = rel
+        qrel["current_query"][str(doc._id)] = rel
         rel = rel - 1
 
     rel = len(top_k_docs_orig)
     for doc in top_k_docs:
-        run[query_title][str(doc._id)] = rel
+        run["current_query"][str(doc._id)] = rel
         rel = rel - 1
 
     evaluator = pytrec_eval.RelevanceEvaluator(
@@ -71,18 +69,17 @@ def get_utility_metrics(configs, query_title, docs_obj):
 
     results_eval = evaluator.evaluate(run)
     results = dict()
-    results[query_title] = dict()
-    for metric in results_eval[query_title]:
-        results[query_title][metric.upper()] = np.round(results_eval[query_title][metric], 2)
+    for metric in results_eval["current_query"]:
+        results[metric.upper()] = np.round(results_eval["current_query"][metric], 2)
     return results
 
 
 def get_average_interactions(experiment_id, interaction="n_views"):
-    """Generates average interaction per ranking type, e.g original or with fairness intervention.
+    """Generates average interaction for an experiment.
 
     Args:
-        experiment_id (string): Experiment id configured in the config_annotate or config_shortlist file.
-        interaction (string): Interaction intent configured in the config_annotate or config_shortlist file.
+        experiment_id (string): Experiment ID for which to compute the average.
+        interaction (string): Interaction type for which to compute the average.
 
     Returns:
         dict: Dictionary containing average interactions per ranking type.
@@ -92,7 +89,6 @@ def get_average_interactions(experiment_id, interaction="n_views"):
 
     avg_interactions = dict()
     for user in users:
-
         for task_vis in user.tasks_visited:
             if task_vis.exp == str(experiment_id):
                 task_obj = database.Task.objects(_id=exp_obj.tasks[int(task_vis.task)]).first()

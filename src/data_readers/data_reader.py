@@ -17,30 +17,37 @@ class DataReader():
         Data reader init class.
         Attributes
         ----------
+        configs : dict
+            configuration dict of the dataset
         name : str
             name of the dataset set in run_apps args
         query_col : str
-            query column
+            name of the query column
         sensitive_col : str
-            sensitive features for ranking process
+            name of the sensitive column (e.g. gender) used for applying fairness interventions (optional)
         data_path : str
             path to the dataset file
         output_file_path : str
-            path to the output file
+            path to the output file where the transformed dataset will be saved
         """
         self.name = configs["name"]
         self.query_col = configs["query"]
-        self.sensitive_col = configs["group"]
         self.score_col = configs["score"]
+
+        if 'group' in configs:
+            self.sensitive_col = configs["group"]
+        else:
+            self.sensitive_col =  None
 
         self.data_path = os.path.join(
             project_dir, 'dataset/' + self.name)
         self.output_file_path = os.path.join(self.data_path, 'format_data')
         if not os.path.exists(self.output_file_path):
+            # save transformed data
             self.save_data()
 
     def read(self, split):
-        """Read dataset file and read it into Pandas dataframe for further processing.
+        """Read dataset file.
 
         Args:
             split (str): The split of the dataset to read ('test' or 'train').
@@ -72,14 +79,16 @@ class DataReader():
             return dataframe_data, dataframe_query
 
     def save_data(self):
-        """Save data based on the splits category and after the dataset transformation process.
+        """Save the transformed data in splits.
 
         This method creates the necessary directories and saves the transformed data to CSV files.
         The data is saved in the following structure:
         - The main output directory is created at `self.output_file_path`.
         - Inside the main output directory, two subdirectories are created: 'test' and 'train'.
         - The transformed test data is saved as 'data.csv' inside the 'test' subdirectory.
+            This will be displayed in the UI.
         - If there is transformed train data available, it is saved as 'data.csv' inside the 'train' subdirectory.
+            This will be used for training the ranker or fairness intervention.
         - The dataset queries are saved as 'query.csv' inside the main output directory.
 
         Note: The method assumes that the necessary data has already been transformed and is available.
@@ -87,8 +96,11 @@ class DataReader():
         Returns:
             None
         """
-        os.makedirs(self.output_file_path)
+
+        # transform dataset into a pandas.DataFrame
         dataset_queries, data_train, data_test = self.transform_data()
+
+        os.makedirs(self.output_file_path)
         os.makedirs(os.path.join(self.output_file_path, 'test'))
         os.makedirs(os.path.join(self.output_file_path, 'train'))
         data_test.to_csv(os.path.join(self.output_file_path, 'test', 'data.csv'), index=False)
