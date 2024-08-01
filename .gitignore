@@ -6,4 +6,9 @@
 /dataset/cvs/models/
 /dataset/amazon/models/
 /dataset/flickr/models/
+/src/fairness_interventions/modules/FAIR_module/temp/config.json
+/src/fairness_interventions/modules/FAIR_module/temp/data_configs.json
+/src/fairness_interventions/modules/FAIR_module/temp/data_test.csv
+/src/fairness_interventions/modules/FAIR_module/temp/re_ranked.csv
 /src/fairness_interventions/modules/FAIR_module/temp/
+
