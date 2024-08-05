@@ -1,0 +1,18 @@
+site_name: AnnoRank
+
+theme:
+  name: material
+
+markdown_extensions:
+  - pymdownx.highlight
+  - deduplicate-toc
+
+plugins:
+- mkdocstrings:
+    enabled: !ENV [ENABLE_MKDOCSTRINGS, true]
+    default_handler: python
+    watch: [flask_app, src]
+    handlers:
+      python:
+        options:
+          show_source: false
