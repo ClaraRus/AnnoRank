@@ -28,6 +28,6 @@ jobs:
       - name: Deploy to gh-pages
         if: github.event_name == 'push' && github.ref == 'refs/heads/mkdocs'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use PAT secret here
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         run: mkdocs gh-deploy --force --verbose
         
