@@ -29,5 +29,5 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/mkdocs'
         env:
           ACCESS_TOKEN: ${{ secrets.mkdocs_token }}  # Use PAT secret here
-        run: mkdocs gh-deploy --force --verbose
+        run: mkdocs gh-deploy --force --verbose --remote-name origin --remote-branch mkdcos --token $ACCESS_TOKEN
         
