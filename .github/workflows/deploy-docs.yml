@@ -28,3 +28,5 @@ jobs:
       - name: Deploy to gh-pages
         if: github.event_name == 'push' && github.ref == 'refs/heads/mkdocs'
         run: mkdocs gh-deploy --force --verbose
+        env:
+          ACCESS_TOKEN: ${{ secret.mkdcos_token }}
