@@ -26,8 +26,8 @@ jobs:
       - name: Build site
         run: mkdocs build
       - name: Deploy to gh-pages
-        with:
-          github_token: ${{ secrets.mkdcos_token }}
-          if: github.event_name == 'push' && github.ref == 'refs/heads/mkdocs'
-          run: mkdocs gh-deploy --force --verbose
+        if: github.event_name == 'push' && github.ref == 'refs/heads/mkdocs'
+        env:
+          ACCESS_TOKEN: ${{ secrets.mkdocs_token }}  # Use PAT secret here
+        run: mkdocs gh-deploy --force --verbose
         
