@@ -17,5 +17,11 @@ plugins:
     watch: [flask_app, src]
     handlers:
       python:
+        setup_commands:
+            - import sys
+            - sys.path.append("src")
+            - sys.path.append("flask_app")
+        rendering:
+          show_source: true
         options:
           show_source: false
