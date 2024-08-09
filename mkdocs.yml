@@ -1,4 +1,7 @@
 site_name: AnnoRank
+site_url: https://ClaraRus.github.io/AnnoRank/
+repo_url: https://github.com/ClaraRus/AnnoRank
+edit_uri: blob/master/docs/
 
 theme:
   name: material
