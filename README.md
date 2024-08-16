@@ -124,6 +124,13 @@ To access the Ranking Comparison Annotate UI go to the following link: http://lo
 
 To access the Score Annotate UI go to the following link: http://localhost:5003/start_annotate/5 
 
+### Acknowledgments
+
+We thank our reviewers for valuable feedback.
+
+This research was supported by the FINDHR (Fairness and Intersectional Non-Discrimination in Human Recommendation) project that received funding from the European Union’s Horizon Europe research and innovation program under grant agreement No 101070212, and by the Dutch Research Council (NWO), under project numbers VI.Vidi.223.166, 024.004.022, NWA.1389.20.\-183, and KICH3.LTP.20.006.
+
+All content represents the opinion of the authors, which is not necessarily shared or endorsed by their respective employers and/or sponsors.
 
 ### References
 [1] Ke Yang, Joshua R. Loftus, and Julia Stoyanovich. 2021. Causal intersectionality and fair ranking. In Symposium on Foundations of Responsible Computing (FORC).
