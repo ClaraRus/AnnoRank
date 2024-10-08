@@ -12,8 +12,11 @@ AnnoRank is designed to be flexible, configurable, and easy to deploy to meet di
 
 # External Resource
 In the folder external resources the following can be found:
-- Usability_Study_Anno_Rank.pdf - the usability study conducted for Anno Rank
-- Anno_Rank_Documentation.pdf - the documentation provided for Anno Rank
+- The code to run AnnoRank can be found [here](https://github.com/ClaraRus/AnnoRank/tree/main). 
+- More information about configuring AnnoRank to your own dataset and needs can be found [here](https://github.com/ClaraRus/AnnoRank/blob/main/external-resources/Anno_Rank_Documentation.pdf).
+- Code documentation can be found [here](https://github.com/ClaraRus/AnnoRank/tree/main).
+- The usability study conducted with AnnoRank can be found [here](https://github.com/ClaraRus/AnnoRank/blob/main/external-resources/Anno_Rank_Documentation.pdf).
+
   
 # Requirements 
 Depending on your development system, instructions on how to install the Docker and MongoDB can be found here:
