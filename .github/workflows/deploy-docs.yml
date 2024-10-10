@@ -43,6 +43,7 @@ name: Deploy docs
 on:
   push:
     branches:
+      - main
       - mkdocs # Also trigger on push to 'mkdocs' branch
   pull_request:
     branches:
@@ -58,6 +59,11 @@ jobs:
         with:
           ref: main # Checkout the 'main' branch to get the source code
 
+      - name: Checkout mkdocs branch
+        run: |
+          git fetch origin mkdocs # Fetch the mkdocs branch
+          git checkout mkdocs # Switch to the mkdocs branch
+          
       - name: Install Crystal
         uses: oprypin/install-crystal@v1
 
@@ -76,11 +82,6 @@ jobs:
 
       - name: Check current directory
         run: pwd
-
-      - name: Checkout mkdocs branch
-        run: |
-          git fetch origin mkdocs # Fetch the mkdocs branch
-          git checkout mkdocs # Switch to the mkdocs branch
 
       - name: Build site
         run: mkdocs build
