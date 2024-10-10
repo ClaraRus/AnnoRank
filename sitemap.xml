@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://clararus.github.io/AnnoRank/</loc>
+         <lastmod>2024-10-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://clararus.github.io/AnnoRank/Annotate_Document_App/</loc>
+         <lastmod>2024-10-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://clararus.github.io/AnnoRank/Database_Pipeline/</loc>
+         <lastmod>2024-10-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://clararus.github.io/AnnoRank/Ranking_Compare_Annotate_App/</loc>
+         <lastmod>2024-10-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://clararus.github.io/AnnoRank/Ranking_Compare_App/</loc>
+         <lastmod>2024-10-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://clararus.github.io/AnnoRank/my_page/</loc>
+         <lastmod>2024-10-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+</urlset>
