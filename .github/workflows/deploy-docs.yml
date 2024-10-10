@@ -1,7 +1,14 @@
 
 
 name: Deploy docs
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main # Trigger only on push to 'main' branch
+      - mkdocs
+  pull_request:
+    branches:
+      - main # Trigger on pull request targeting 'main' branch
 jobs:
   build:
     name: Deploy docs
