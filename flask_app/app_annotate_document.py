@@ -69,7 +69,7 @@ def loader_user(_user_id):
 @app.route("/")
 @app.route("/start_annotate/<int:experiment_id>", methods=['GET', 'POST'])
 def start_annotate(experiment_id):
-    """Renders the Log-in page for the Score Annotate UI.
+    """Renders the Log-in page for the Score Annotate UI testv2.
 
     Args:
         experiment_id (int): The ID of the experiment.
