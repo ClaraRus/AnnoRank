@@ -41,6 +41,9 @@
 
 name: Deploy docs
 on:
+  repository_dispatch:
+    types: [trigger-mkdocs]
+
   push:
     branches:
       - main
@@ -63,7 +66,7 @@ jobs:
         run: |
           git fetch origin mkdocs # Fetch the mkdocs branch
           git checkout mkdocs # Switch to the mkdocs branch
-          
+
       - name: Install Crystal
         uses: oprypin/install-crystal@v1
 
