@@ -46,7 +46,6 @@ on:
 
   push:
     branches:
-      - main
       - mkdocs # Also trigger on push to 'mkdocs' branch
   pull_request:
     branches:
