@@ -1,10 +1,10 @@
-::: flask_app.database.DocRepr
+::: flask_app.database.PreDocRepr
     handler: python
     options:
         show_root_heading: true
         show_source: true
 
-::: flask_app.database.PreDocRepr
+::: flask_app.database.DocRepr
     handler: python
     options:
         show_root_heading: true
