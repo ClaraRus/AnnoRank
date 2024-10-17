@@ -1,0 +1,769 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://clararus.github.io/AnnoRank/UI_Functionalities/">
+      
+      
+        <link rel="prev" href="../Ranking_Compare_App/">
+      
+      
+        <link rel="next" href="../my_page/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
+    
+    
+      
+        <title>UI Functionalities - AnnoRank</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.3cba04c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ui-functionalities" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AnnoRank" class="md-header__button md-logo" aria-label="AnnoRank" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AnnoRank
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              UI Functionalities
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ClaraRus/AnnoRank" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AnnoRank" class="md-nav__button md-logo" aria-label="AnnoRank" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    AnnoRank
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ClaraRus/AnnoRank" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AnnoRank
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Additional_Support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Additional Support
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Annotate_Document_App/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Annotate Document App
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Annotations_Quality/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Annotations Quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Configuration_File/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration File
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Data_Readers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Main class DataReader
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Database/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Database
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Database_Pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Database Pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Database_structure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Database structure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Displaying_Dataset/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Displaying a new Dataset
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Experiment_File/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Experiment File
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ranking_App/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ranking App
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ranking_Compare_Annotate_App/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ranking Compare Annotate App
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ranking_Compare_App/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ranking Compare App
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    UI Functionalities
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    UI Functionalities
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#collection-of-user-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Collection of User Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#display-interaction-annotate-ui-ranking-annotate-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      Display Interaction Annotate UI (Ranking Annotate UI)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../my_page/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    My page
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#collection-of-user-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Collection of User Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#display-interaction-annotate-ui-ranking-annotate-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      Display Interaction Annotate UI (Ranking Annotate UI)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="ui-functionalities">UI Functionalities</h1>
+<h2 id="collection-of-user-data">Collection of User Data</h2>
+<p>When interacting with the tool the users will be first asked to provide an ID with which they
+will be registered in the database. The user can interact with the UI by typing in the empty
+field the ID and then clicking start. All interactions will be collected during the session for
+each user ID. <br></p>
+<p>At the end of the interaction with the tool, the users can be asked to complete an exit survey in which one can collect feedback or demographic data about the user. An example of an exit survey can be seen below. This can be configured to include other fields. More details about the configuration of the Exit Survey can be found under the section Configuration File. The user can interact with the UI by typing in the empty fields (e.g. feedback field) or by choosing an option from a drop-down (e.g. gender field), then when clicking submit all the collected values are stored in the database for the corresponding user ID. <br></p>
+<h2 id="display-interaction-annotate-ui-ranking-annotate-ui">Display Interaction Annotate UI (Ranking Annotate UI)</h2>
+<p>Source code documentation: <a href="../Ranking_App/">Ranking App</a><br></p>
+<p><img alt="Ranking Annotate UI" src="../images/Ranking_Annotate_UI.png" />
+In the option for displaying a query-ranking pair the UI will show in the top of the page the query, and in the bottom of the page the list of documents. The user can interact with the UI in the following ways:
+ - <strong>View Button</strong>: the user can expand the table to view more information about the document. When the user clicks on another View Button, the current expand will close. Only, one expand can be open at a time. <br>
+    <img alt="View Button Ranking Annotate" src="../images/View_Button_Ranking_Annotate.png" />
+ - <strong>Check Box</strong>: the user can select top-k documents that are the most relevant given the displayed query. If the predefined minimum and maximum of selected documents is not met, the UI will display an alert to the user.
+ - <strong>Next Button</strong>: the user can navigate to the next query using the Next Button.</p>
+<p>For each user, the following interactions can be collected:
+- <strong>Clicks</strong>: number of clicks for each document on the View Button
+- <strong>Timestamps</strong>: for each click the timestamp of the click to open the expand and the
+timestamp of closing the expand are collected.
+- <strong>Top-k Documents</strong>: the list of the selected documents in the order in which the user
+checked the box</p>
+<h1 id="integration-with-bigbrother-logging-tool">Integration with BigBrother Logging Tool</h1>
+<p>On top of the above mentioned, AnnoRank is integrated with the BigBrother logging tool. The BigBrother logging tool is one of the application-independent services, with minimal configuration to the web-based user interface [8]. See here <a href="https://github.com/hscells/bigbro">BigBrother logging tool</a>. <br></p>
+<p>The tool can record the <strong>mouse clicks</strong> and <strong>movements</strong> of the annotators. The logs are stored in the ./dataset/<data_name>/big_borther.log file. <br></p>
+<p>To collect mouse clicks insert this script into the html body:</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+BigBro.init('**{{session_id}}**', &quot;localhost:1984&quot;, [&quot;click&quot;, &quot;onload&quot;]);
+&lt;/script&gt;
+</code></pre>
+<p>To collect mouse movements insert this script into the html body: </p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+BigBro.init('**{{session_id}}**', &quot;localhost:1984&quot;, [&quot;mousemove&quot;, &quot;onload&quot;]);
+&lt;/script&gt;
+</code></pre>
+<p>The <strong>session_id</strong> is the <strong>"user_id"</strong> of the current annotator. <br>
+Below is an example of the Big Brother logging tool output for clicks when used in the
+Interaction Annotation UI app: <br></p>
+<pre><code>2024-06-03 09:50:26.303 +0000
+UTC,**3456**,click,INPUT,shortlist,1,http://localhost:5000/start_ranking/1/
+index_ranking/0/view,1229,423,1360,807,
+2024-06-03 09:50:26.693 +0000
+UTC,**3456**,click,INPUT,shortlist,2,http://localhost:5000/start_ranking/1/
+index_ranking/0/view,1233,508,1360,807,
+2024-06-03 09:50:27.14 +0000
+UTC,**3456**,click,TD,,,http://localhost:5000/start_ranking/1/index_ranking
+/0/view,1239,587,1360,807,
+</code></pre>
+<p>Below is an example of the BigBrother logging tool output for the mousemove in score
+Annotation UI:</p>
+<pre><code>2024-06-03 11:19:25.017 +0000
+UTC,**23445**,mousemove,H4,,,http://localhost:5003/start_annotate/2/index_a
+nnotate/1,692,450,1360,807,
+2024-06-03 11:19:25.033 +0000
+UTC,**23445**,mousemove,H4,,,http://localhost:5003/start_annotate/2/index_a
+nnotate/1,949,368,1360,807,
+2024-06-03 11:19:25.05 +0000
+UTC,**23445**,mousemove,DIV,,,http://localhost:5003/start_annotate/2/index_
+annotate/1,1129,336,1360,807,
+2024-06-03 11:19:25.069 +0000
+UTC,**23445**,mousemove,DIV,,,http://localhost:5003/start_annotate/2/index_
+annotate/1,1303,322,1360,807,
+</code></pre>
+<p>The logs follow the structure:</p>
+<pre><code>&lt;Time of logged event&gt;, &lt;User identifier&gt; , &lt;Method causing the event&gt;, &lt;HTML element&gt;, &lt;Name of HTML element&gt; , &lt;ID of HTML element&gt; , &lt;URL&gt; ,&lt;X position&gt; ,&lt;Y position&gt; , &lt;ScreenWidth&gt; , &lt;ScreenHeight&gt; , &lt;Comment&gt;
+</code></pre>
+<h2 id="score-annotate-ui">Score Annotate UI</h2>
+<p>Source code documentation: <a href="../Annotate_Document_App/">Annotate Document App</a><br></p>
+<div class="highlight"><pre><span></span><code>![Score Annotate UI](images/Score_Annotate_UI.png)
+</code></pre></div>
+<p>In the option for annotating a document by giving it a score, the UI will show in the top of the page the query, and in the bottom of the page document. The user can interact with the UI in the following ways:
+- <strong>Score Bar</strong>: the user can give a score to the document by clicking on the numbers in the score bar.
+- <strong>Next Button</strong>: the user can navigate to the next query using the Next Button.</p>
+<p>For each user, the following interactions can be collected:
+- <strong>Score</strong>: the score the user things the document should receive given the displayed
+query and the task description.
+- <strong>Next Button</strong>: the user can navigate to the next query using the Next Button.</p>
+<p>For each user, the following interactions can be collected:
+- <strong>Score</strong>: the score the user things the document should receive given the displayed
+query and the task description.</p>
+<h2 id="display-ranking-comparison-ui">Display Ranking Comparison UI</h2>
+<p>Source code documentation: 
+<a href="../Ranking_Compare_App/">Ranking Compare App</a><br>
+<a href="../Ranking_Compare_Annotate_App/">Ranking Compare Annotate App</a><br></p>
+<h3 id="ranking-compare-visualize-metrics-ui">Ranking Compare Visualize metrics UI</h3>
+<p><img alt="Ranking Compare Visualize UI" src="../images/Ranking_Compare_Visualize_UI.png" /></p>
+<p>On top of this, this UI can be used by the researcher to compare rankings produced using different ranking methods or evaluate the impact of a fairness intervention. The UI has the option to display metrics for each ranking, as shown in the bottom of the UI. Moreover, if interaction data is available, the UI can display the average of the interactions collected by the users. The navigation between several ranking comparison can be performed using the Prev/Next Button. <br></p>
+<h3 id="evaluation-metrics-supported-by-annorank">Evaluation Metrics supported by AnnoRank</h3>
+<p>The utility metrics that can be displayed are computed using the Pytrec eval library[4] on the displayed ranking. The ready to use fairness metrics that the tool offers are: selection parity, parity of exposer, and IGF (in group fairness). Selection parity measures whether the selection rates between the two groups in the top-k are equal. The parity of exposure measures whether a group's exposure is equal to the exposure of the other group at the top. Lower values mean the ranking offers equal representation/exposure among the groups. IGF is computed as the ratio between the lowest accepted score and the highest rejected score of a group at the top. Higher values mean more in group fairness.<br></p>
+<h3 id="ranking-compare-annotate-ui">Ranking Compare Annotate UI</h3>
+<p><img alt="Ranking Compare Annotate UI" src="../images/Ranking_Compare_Annotate_UI.png" /></p>
+<p>Additionally, the comparison UI could be configured to collect annotations by asking the user to indicate which returned list of items is more suitable, given the query. In the option for displaying a ranking comparison, the UI will show in the top of the page the query, and below the two rankings to be compared. <br></p>
+<p>The user can interact with the UI in the following ways:
+- <strong>Check Box</strong>: depending on the task, the user can choose which ranking is more
+suitable for the displayed query.
+- <strong>Next Button</strong>: the user can navigate to the next query using the Next Button.</p>
+<p>For each user, the following interactions can be collected:
+- <strong>Best Ranking</strong>: the chosen ranking by the user to be more suitable for the displayed
+query.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>

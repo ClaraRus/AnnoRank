@@ -1,0 +1,1767 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://clararus.github.io/AnnoRank/Annotate_Document_App/">
+      
+      
+        <link rel="prev" href="../Additional_Support/">
+      
+      
+        <link rel="next" href="../Annotations_Quality/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
+    
+    
+      
+        <title>Annotate Document App - AnnoRank</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.3cba04c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#flask_app.app_annotate_document.start_annotate" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AnnoRank" class="md-header__button md-logo" aria-label="AnnoRank" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AnnoRank
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Annotate Document App
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ClaraRus/AnnoRank" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AnnoRank" class="md-nav__button md-logo" aria-label="AnnoRank" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    AnnoRank
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ClaraRus/AnnoRank" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AnnoRank
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Additional_Support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Additional Support
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Annotate Document App
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Annotate Document App
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#flask_app.app_annotate_document.start_annotate" class="md-nav__link">
+    <span class="md-ellipsis">
+      start_annotate
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flask_app.app_annotate_document.logout" class="md-nav__link">
+    <span class="md-ellipsis">
+      logout
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flask_app.app_annotate_document.get_next_task" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_next_task
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flask_app.app_annotate_document.index_annotate" class="md-nav__link">
+    <span class="md-ellipsis">
+      index_annotate
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flask_app.app_annotate_document.store_data_annotate" class="md-nav__link">
+    <span class="md-ellipsis">
+      store_data_annotate
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flask_app.app_annotate_document.form_demographic_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      form_demographic_data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flask_app.app_annotate_document.form_submit" class="md-nav__link">
+    <span class="md-ellipsis">
+      form_submit
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flask_app.app_annotate_document.stop_experiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      stop_experiment
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Annotations_Quality/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Annotations Quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Configuration_File/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration File
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Data_Readers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Main class DataReader
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Database/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Database
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Database_Pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Database Pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Database_structure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Database structure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Displaying_Dataset/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Displaying a new Dataset
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Experiment_File/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Experiment File
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ranking_App/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ranking App
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ranking_Compare_Annotate_App/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ranking Compare Annotate App
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ranking_Compare_App/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ranking Compare App
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UI_Functionalities/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    UI Functionalities
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../my_page/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    My page
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#flask_app.app_annotate_document.start_annotate" class="md-nav__link">
+    <span class="md-ellipsis">
+      start_annotate
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flask_app.app_annotate_document.logout" class="md-nav__link">
+    <span class="md-ellipsis">
+      logout
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flask_app.app_annotate_document.get_next_task" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_next_task
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flask_app.app_annotate_document.index_annotate" class="md-nav__link">
+    <span class="md-ellipsis">
+      index_annotate
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flask_app.app_annotate_document.store_data_annotate" class="md-nav__link">
+    <span class="md-ellipsis">
+      store_data_annotate
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flask_app.app_annotate_document.form_demographic_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      form_demographic_data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flask_app.app_annotate_document.form_submit" class="md-nav__link">
+    <span class="md-ellipsis">
+      form_submit
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flask_app.app_annotate_document.stop_experiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      stop_experiment
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Annotate Document App</h1>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="flask_app.app_annotate_document.start_annotate" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">flask_app</span><span class="o">.</span><span class="n">app_annotate_document</span><span class="o">.</span><span class="n">start_annotate</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+      <p>Renders the Log-in page for the Score Annotate UI.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>experiment_id</code></td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The ID of the experiment.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>flask.Response or flask.render_template: The response object or the rendered template.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="notes" open>
+  <summary>Notes</summary>
+  <p>This function is responsible for handling the initial steps when a user logs in to the Score Annotate UI.
+If the user is authenticated, it sets the session variables and redirects to the next task URL.
+If the request method is POST, it records the user in the database and creates a new user if necessary.
+Finally, it renders the 'start_annotate.html' template.</p>
+</details>
+            <details class="quote">
+              <summary>Source code in <code>flask_app/app_annotate_document.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/start_annotate/&lt;int:experiment_id&gt;&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">start_annotate</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Renders the Log-in page for the Score Annotate UI.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        experiment_id (int): The ID of the experiment.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        flask.Response or flask.render_template: The response object or the rendered template.</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">        This function is responsible for handling the initial steps when a user logs in to the Score Annotate UI.</span>
+<span class="sd">        If the user is authenticated, it sets the session variables and redirects to the next task URL.</span>
+<span class="sd">        If the request method is POST, it records the user in the database and creates a new user if necessary.</span>
+<span class="sd">        Finally, it renders the &#39;start_annotate.html&#39; template.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">session</span><span class="p">[</span><span class="s1">&#39;exp_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">experiment_id</span>
+    <span class="k">if</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">:</span>
+        <span class="n">session</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">current_user</span><span class="o">.</span><span class="n">_user_id</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">next_task</span> <span class="o">=</span> <span class="n">get_next_task</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">)</span><span class="o">.</span><span class="n">get_json</span><span class="p">()</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">make_response</span><span class="p">(</span><span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/404/Failed get next task!&quot;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="mi">200</span><span class="p">))</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;HX-Redirect&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/404/Failed get next task!&quot;</span>
+            <span class="k">return</span> <span class="n">response</span>
+
+        <span class="k">if</span> <span class="n">next_task</span><span class="p">[</span><span class="s1">&#39;next_task&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;form&#39;</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;/form/&#39;</span>
+        <span class="k">elif</span> <span class="n">next_task</span><span class="p">[</span><span class="s1">&#39;next_task&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;stop_experiment&#39;</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;/stop_experiment/&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/index_annotate/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">next_task</span><span class="p">[</span><span class="s1">&#39;next_task&#39;</span><span class="p">])</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">make_response</span><span class="p">(</span><span class="n">redirect</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="mi">200</span><span class="p">))</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;HX-Redirect&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">url</span>
+        <span class="k">return</span> <span class="n">response</span>
+
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="c1"># record user in the db</span>
+        <span class="n">user_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span>
+        <span class="c1"># create new user in the db</span>
+        <span class="n">new_user</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">User</span><span class="p">(</span><span class="n">_user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span>
+
+        <span class="n">existing_document</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">_user_id</span><span class="o">=</span><span class="n">new_user</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">existing_document</span><span class="p">:</span>
+            <span class="n">new_user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+        <span class="c1"># create user session and redirect</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">_user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">user</span> <span class="ow">and</span> <span class="n">user</span><span class="o">.</span><span class="n">_user_id</span> <span class="o">==</span> <span class="n">user_id</span><span class="p">:</span>
+            <span class="n">login_user</span><span class="p">(</span><span class="n">current_user</span><span class="p">)</span>
+            <span class="n">session</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">user_id</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">next_task</span> <span class="o">=</span> <span class="n">get_next_task</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">)</span><span class="o">.</span><span class="n">get_json</span><span class="p">()</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="n">make_response</span><span class="p">(</span><span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;/404/Failed get next task!&quot;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="mi">200</span><span class="p">))</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;HX-Redirect&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/404/Failed get next task!&quot;</span>
+                <span class="k">return</span> <span class="n">response</span>
+
+            <span class="k">if</span> <span class="n">next_task</span><span class="p">[</span><span class="s1">&#39;next_task&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;form&#39;</span><span class="p">:</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;/form/&#39;</span>
+            <span class="k">elif</span> <span class="n">next_task</span><span class="p">[</span><span class="s1">&#39;next_task&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;stop_experiment&#39;</span><span class="p">:</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;/stop_experiment/&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/index_annotate/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">next_task</span><span class="p">[</span><span class="s1">&#39;next_task&#39;</span><span class="p">])</span>
+
+            <span class="n">response</span> <span class="o">=</span> <span class="n">make_response</span><span class="p">(</span><span class="n">redirect</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="mi">200</span><span class="p">))</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;HX-Redirect&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">url</span>
+            <span class="k">return</span> <span class="n">response</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;Invalid user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;danger&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;start_annotate.html&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="flask_app.app_annotate_document.logout" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">flask_app</span><span class="o">.</span><span class="n">app_annotate_document</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+      <p>Logs out the user and redirects to the login page.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>flask.Response: The response object with the redirect to the login page.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+            <details class="quote">
+              <summary>Source code in <code>flask_app/app_annotate_document.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/logout&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">logout</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Logs out the user and redirects to the login page.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        flask.Response: The response object with the redirect to the login page.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logout_user</span><span class="p">()</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">make_response</span><span class="p">(</span><span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="mi">200</span><span class="p">))</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;HX-Redirect&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/login&#39;</span>
+    <span class="k">return</span> <span class="n">response</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="flask_app.app_annotate_document.get_next_task" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">flask_app</span><span class="o">.</span><span class="n">app_annotate_document</span><span class="o">.</span><span class="n">get_next_task</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+      <p>Get the next task to be assessed by the annotator based on the experiment list.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>experiment_id</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The ID of the experiment.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>dict</code></td>            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A JSON response containing the next task to be assessed.
+The response has the following format:
+{
+    'next_task': str
+}
+If there are no more tasks to be assessed, the 'next_task' value will be 'form' or 'stop_experiment'.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+            <details class="quote">
+              <summary>Source code in <code>flask_app/app_annotate_document.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/&lt;experiment_id&gt;/get_next_task/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">get_next_task</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the next task to be assessed by the annotator based on the experiment list.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        experiment_id (str): The ID of the experiment.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: A JSON response containing the next task to be assessed.</span>
+<span class="sd">            The response has the following format:</span>
+<span class="sd">            {</span>
+<span class="sd">                &#39;next_task&#39;: str</span>
+<span class="sd">            }</span>
+<span class="sd">            If there are no more tasks to be assessed, the &#39;next_task&#39; value will be &#39;form&#39; or &#39;stop_experiment&#39;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">experiment</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">Experiment</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">_exp_id</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">))</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">_user_id</span><span class="o">=</span><span class="n">session</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+
+    <span class="n">experiment_tasks</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">experiment</span><span class="o">.</span><span class="n">tasks</span><span class="p">)))</span>
+    <span class="n">user_tasks_visited</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">task</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">user</span><span class="o">.</span><span class="n">tasks_visited</span><span class="p">]</span>
+    <span class="n">not_visited</span> <span class="o">=</span> <span class="p">[</span><span class="n">task</span> <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">experiment_tasks</span> <span class="k">if</span> <span class="n">task</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">user_tasks_visited</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">not_visited</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">next_task</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">not_visited</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">configs</span><span class="p">[</span><span class="s2">&quot;ui_display_config&quot;</span><span class="p">][</span><span class="s2">&quot;exit_survey&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">next_task</span> <span class="o">=</span> <span class="s1">&#39;form&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">next_task</span> <span class="o">=</span> <span class="s1">&#39;stop_experiment&#39;</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">&#39;next_task&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">next_task</span><span class="p">)})</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="flask_app.app_annotate_document.index_annotate" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">flask_app</span><span class="o">.</span><span class="n">app_annotate_document</span><span class="o">.</span><span class="n">index_annotate</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">,</span> <span class="n">n_task</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+      <p>Renders the Score Annotate UI.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>experiment_id</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The ID of the experiment.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>n_task</code></td>
+            <td>
+                  <code>int</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The index of the task.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>render_template</code></td>            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The rendered template for the Score Annotate UI.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+            <details class="quote">
+              <summary>Source code in <code>flask_app/app_annotate_document.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/start_annotate/&lt;experiment_id&gt;/index_annotate/&lt;n_task&gt;&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="c1"># @login_required</span>
+<span class="k">def</span> <span class="nf">index_annotate</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">,</span> <span class="n">n_task</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Renders the Score Annotate UI.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        experiment_id (str): The ID of the experiment.</span>
+<span class="sd">        n_task (int): The index of the task.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        render_template: The rendered template for the Score Annotate UI.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        None</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">exp_obj</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">Experiment</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">_exp_id</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">))</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+        <span class="n">task_id</span> <span class="o">=</span> <span class="n">exp_obj</span><span class="o">.</span><span class="n">tasks</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">n_task</span><span class="p">)]</span>
+
+        <span class="n">task_obj</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">TaskScore</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">_id</span><span class="o">=</span><span class="n">task_id</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+        <span class="n">data_obj</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">Data</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">_id</span><span class="o">=</span><span class="n">task_obj</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+        <span class="n">query_obj</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">QueryRepr</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">_id</span><span class="o">=</span><span class="n">data_obj</span><span class="o">.</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">make_response</span><span class="p">(</span><span class="n">redirect</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;/404/Experiment type is not for app_annotate!&quot;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="mi">200</span><span class="p">))</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;HX-Redirect&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/404/Experiment type is not for app_annotate!&quot;</span>
+        <span class="k">return</span> <span class="n">response</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">docs</span> <span class="o">=</span> <span class="p">[</span><span class="n">ranking</span> <span class="k">for</span> <span class="n">ranking</span> <span class="ow">in</span> <span class="n">data_obj</span><span class="o">.</span><span class="n">rankings</span> <span class="k">if</span> <span class="n">ranking</span><span class="o">.</span><span class="n">ranking_type</span> <span class="o">==</span> <span class="n">task_obj</span><span class="o">.</span><span class="n">ranking_type</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">docs</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">make_response</span><span class="p">(</span><span class="n">redirect</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;/404/No document with the ranking type!&quot;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="mi">200</span><span class="p">))</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;HX-Redirect&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/404/No document with the ranking type!&quot;</span>
+        <span class="k">return</span> <span class="n">response</span>
+
+    <span class="n">docs_obj</span> <span class="o">=</span> <span class="p">[</span><span class="n">database</span><span class="o">.</span><span class="n">DocRepr</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">_id</span><span class="o">=</span><span class="n">doc_id</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span> <span class="k">for</span> <span class="n">doc_id</span> <span class="ow">in</span> <span class="n">docs</span><span class="p">]</span>
+    <span class="n">doc_obj</span> <span class="o">=</span> <span class="n">docs_obj</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">task_obj</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span>
+
+    <span class="n">doc_field_names_display</span> <span class="o">=</span> <span class="n">configs</span><span class="p">[</span><span class="s2">&quot;ui_display_config&quot;</span><span class="p">][</span><span class="s2">&quot;display_fields&quot;</span><span class="p">]</span>
+
+    <span class="n">user</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">_user_id</span><span class="o">=</span><span class="n">session</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">n_task</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">task</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">user</span><span class="o">.</span><span class="n">tasks_visited</span><span class="p">]:</span>
+        <span class="n">task_visited</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">TaskVisited</span><span class="p">(</span><span class="n">task</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">n_task</span><span class="p">),</span> <span class="n">exp</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">))</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">tasks_visited</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">task_visited</span><span class="p">)</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="n">query_title</span> <span class="o">=</span> <span class="n">query_obj</span><span class="o">.</span><span class="n">title</span>
+    <span class="n">query_text</span> <span class="o">=</span> <span class="n">query_obj</span><span class="o">.</span><span class="n">text</span>
+
+    <span class="n">current_url</span> <span class="o">=</span> <span class="s1">&#39;/start_annotate/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/index_annotate/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">n_task</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span>
+    <span class="n">view_configs</span> <span class="o">=</span> <span class="n">configs</span><span class="p">[</span><span class="s2">&quot;ui_display_config&quot;</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">filed</span> <span class="ow">in</span> <span class="n">doc_field_names_display</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">doc_obj</span><span class="p">[</span><span class="n">filed</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s1">&#39;{&#39;</span> <span class="ow">in</span> <span class="n">doc_obj</span><span class="p">[</span><span class="n">filed</span><span class="p">]</span> <span class="ow">or</span> <span class="s1">&#39;[&#39;</span> <span class="ow">in</span> <span class="n">doc_obj</span><span class="p">[</span><span class="n">filed</span><span class="p">]:</span>
+                <span class="n">doc_obj</span><span class="p">[</span><span class="n">filed</span><span class="p">]</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">doc_obj</span><span class="p">[</span><span class="n">filed</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">task_obj</span><span class="o">.</span><span class="n">setting</span><span class="p">:</span>
+        <span class="n">task_description</span> <span class="o">=</span> <span class="s2">&quot;Please pay attention to the extra information provided as it might differ between the tasks. &quot;</span>
+        <span class="n">task_description</span> <span class="o">=</span> <span class="n">task_description</span> <span class="o">+</span> <span class="n">configs</span><span class="p">[</span><span class="s2">&quot;ui_display_config&quot;</span><span class="p">][</span>
+            <span class="s2">&quot;task_description&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; EXTRA INFORMATION TO CONSIDER: &quot;</span> <span class="o">+</span> <span class="n">task_obj</span><span class="o">.</span><span class="n">setting</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">task_description</span> <span class="o">=</span> <span class="n">configs</span><span class="p">[</span><span class="s2">&quot;ui_display_config&quot;</span><span class="p">][</span><span class="s2">&quot;task_description&quot;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;index_annotate_documents.html&#39;</span><span class="p">,</span> <span class="n">doc_field_names</span><span class="o">=</span><span class="n">doc_field_names_display</span><span class="p">,</span>
+                           <span class="n">view_configs</span><span class="o">=</span><span class="n">view_configs</span><span class="p">,</span>
+                           <span class="n">data_obj</span><span class="o">=</span><span class="n">doc_obj</span><span class="p">,</span> <span class="n">ranking_type</span><span class="o">=</span><span class="n">task_obj</span><span class="o">.</span><span class="n">ranking_type</span><span class="p">,</span> <span class="n">query_title</span><span class="o">=</span><span class="n">query_title</span><span class="p">,</span>
+                           <span class="n">query_text</span><span class="o">=</span><span class="n">query_text</span><span class="p">,</span>
+                           <span class="n">current_url</span><span class="o">=</span><span class="n">current_url</span><span class="p">,</span> <span class="n">task_description</span><span class="o">=</span><span class="n">task_description</span><span class="p">,</span>
+                           <span class="n">score_range</span><span class="o">=</span><span class="n">configs</span><span class="p">[</span><span class="s2">&quot;ui_display_config&quot;</span><span class="p">][</span><span class="s2">&quot;score_range&quot;</span><span class="p">],</span>
+                           <span class="n">session_id</span><span class="o">=</span><span class="n">session</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="flask_app.app_annotate_document.store_data_annotate" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">flask_app</span><span class="o">.</span><span class="n">app_annotate_document</span><span class="o">.</span><span class="n">store_data_annotate</span><span class="p">()</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+      <p>Stores the annotation data received from the user to the MongoDB database.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>str</code></td>            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A string indicating the success of the operation.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+            <details class="quote">
+              <summary>Source code in <code>flask_app/app_annotate_document.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/store_data_annotate&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">store_data_annotate</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Stores the annotation data received from the user to the MongoDB database.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: A string indicating the success of the operation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get_json</span><span class="p">()</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="p">[]))</span>
+
+    <span class="n">doc_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;docId&#39;</span><span class="p">))</span>
+    <span class="n">query_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;queryId&#39;</span><span class="p">))</span>
+    <span class="n">n_task</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;nTask&#39;</span><span class="p">))</span>
+
+    <span class="n">interaction_obj</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">InteractionScore</span><span class="p">(</span><span class="n">doc</span><span class="o">=</span><span class="n">doc_id</span><span class="p">,</span> <span class="n">query</span><span class="o">=</span><span class="n">query_id</span><span class="p">,</span>
+                                                <span class="n">score</span><span class="o">=</span><span class="n">score</span><span class="p">)</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">_user_id</span><span class="o">=</span><span class="n">session</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">tasks_visited</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">task</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">n_task</span><span class="p">):</span>
+            <span class="n">item</span><span class="o">.</span><span class="n">interaction_score</span> <span class="o">=</span> <span class="n">interaction_obj</span>
+            <span class="n">user</span><span class="o">.</span><span class="n">tasks_visited</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
+            <span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="k">break</span>
+
+    <span class="k">return</span> <span class="s2">&quot;ok&quot;</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="flask_app.app_annotate_document.form_demographic_data" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">flask_app</span><span class="o">.</span><span class="n">app_annotate_document</span><span class="o">.</span><span class="n">form_demographic_data</span><span class="p">()</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+      <p>Renders the 'form_template.html' template
+with the items specified in the 'exit_survey' configuration.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The rendered template.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+            <details class="quote">
+              <summary>Source code in <code>flask_app/app_annotate_document.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/form/&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="c1"># @login_required</span>
+<span class="k">def</span> <span class="nf">form_demographic_data</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Renders the &#39;form_template.html&#39; template</span>
+<span class="sd">    with the items specified in the &#39;exit_survey&#39; configuration.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The rendered template.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;form_template.html&#39;</span><span class="p">,</span> <span class="n">items</span><span class="o">=</span><span class="n">configs</span><span class="p">[</span><span class="s1">&#39;ui_display_config&#39;</span><span class="p">][</span><span class="s1">&#39;exit_survey&#39;</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="flask_app.app_annotate_document.form_submit" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">flask_app</span><span class="o">.</span><span class="n">app_annotate_document</span><span class="o">.</span><span class="n">form_submit</span><span class="p">()</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+      <p>Stores the data collected in the form to the MongoDB database.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>str</code></td>            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A string indicating the success of the operation.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+            <details class="quote">
+              <summary>Source code in <code>flask_app/app_annotate_document.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span>
+<span class="normal">323</span>
+<span class="normal">324</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/form_submit/&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="c1"># @login_required</span>
+<span class="k">def</span> <span class="nf">form_submit</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Stores the data collected in the form to the MongoDB database.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: A string indicating the success of the operation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get_json</span><span class="p">()</span>
+    <span class="n">form_results</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;form_results&#39;</span><span class="p">,</span> <span class="p">[])</span>
+
+    <span class="n">user</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">_user_id</span><span class="o">=</span><span class="n">session</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+    <span class="n">add_fields_from_data</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">form_results</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="nb">list</span><span class="p">(</span><span class="n">form_results</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">user</span><span class="p">)</span>
+    <span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="s2">&quot;ok&quot;</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="flask_app.app_annotate_document.stop_experiment" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">flask_app</span><span class="o">.</span><span class="n">app_annotate_document</span><span class="o">.</span><span class="n">stop_experiment</span><span class="p">()</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+      <p>Stops the experiment and performs a quality check on the annotator's responses.</p>
+<p>This function is called when the app reaches the last experiment task.
+It checks whether the annotator failed the attention check task.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A rendered template for the stop_experiment_template.html.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+            <details class="quote">
+              <summary>Source code in <code>flask_app/app_annotate_document.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span>
+<span class="normal">335</span>
+<span class="normal">336</span>
+<span class="normal">337</span>
+<span class="normal">338</span>
+<span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
+<span class="normal">342</span>
+<span class="normal">343</span>
+<span class="normal">344</span>
+<span class="normal">345</span>
+<span class="normal">346</span>
+<span class="normal">347</span>
+<span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span>
+<span class="normal">351</span>
+<span class="normal">352</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/stop_experiment/&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="c1"># @login_required</span>
+<span class="k">def</span> <span class="nf">stop_experiment</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Stops the experiment and performs a quality check on the annotator&#39;s responses.</span>
+
+<span class="sd">    This function is called when the app reaches the last experiment task.</span>
+<span class="sd">    It checks whether the annotator failed the attention check task.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A rendered template for the stop_experiment_template.html.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="s2">&quot;attention_check&quot;</span> <span class="ow">in</span> <span class="n">configs</span><span class="p">:</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">_user_id</span><span class="o">=</span><span class="n">session</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+        <span class="n">experiment</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">Experiment</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">_exp_id</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">session</span><span class="p">[</span><span class="s1">&#39;exp_id&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">TaskScore</span><span class="o">.</span><span class="n">objects</span><span class="p">(</span><span class="n">query_title</span><span class="o">=</span><span class="n">configs</span><span class="p">[</span><span class="s2">&quot;attention_check&quot;</span><span class="p">][</span><span class="s2">&quot;task&quot;</span><span class="p">][</span><span class="s2">&quot;query_title&quot;</span><span class="p">],</span>
+                                          <span class="n">index</span><span class="o">=</span><span class="n">configs</span><span class="p">[</span><span class="s2">&quot;attention_check&quot;</span><span class="p">][</span><span class="s2">&quot;task&quot;</span><span class="p">][</span><span class="s2">&quot;index&quot;</span><span class="p">],</span>
+                                          <span class="n">ranking_type</span><span class="o">=</span><span class="n">configs</span><span class="p">[</span><span class="s2">&quot;attention_check&quot;</span><span class="p">][</span><span class="s2">&quot;task&quot;</span><span class="p">][</span><span class="s2">&quot;ranking_type&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+        <span class="n">attention_check_task</span> <span class="o">=</span> <span class="p">[</span><span class="n">task_visited</span> <span class="k">for</span> <span class="n">task_visited</span> <span class="ow">in</span> <span class="n">user</span><span class="o">.</span><span class="n">tasks_visited</span> <span class="k">if</span>
+                                <span class="n">task_visited</span><span class="o">.</span><span class="n">task</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">experiment</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">_id</span><span class="p">)))][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">attention_check</span> <span class="o">=</span> <span class="n">attention_check_task</span><span class="o">.</span><span class="n">interaction_score</span><span class="o">.</span><span class="n">score</span> <span class="o">==</span> <span class="n">configs</span><span class="p">[</span><span class="s2">&quot;attention_check&quot;</span><span class="p">][</span><span class="s2">&quot;correct_answer&quot;</span><span class="p">]</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">_attention_check</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">attention_check</span><span class="p">)</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;stop_experiment_template.html&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>

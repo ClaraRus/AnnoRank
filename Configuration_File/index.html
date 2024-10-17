@@ -1,0 +1,664 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://clararus.github.io/AnnoRank/Configuration_File/">
+      
+      
+        <link rel="prev" href="../Annotations_Quality/">
+      
+      
+        <link rel="next" href="../Data_Readers/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
+    
+    
+      
+        <title>Configuration File - AnnoRank</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.3cba04c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configuration-file" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AnnoRank" class="md-header__button md-logo" aria-label="AnnoRank" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AnnoRank
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Configuration File
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ClaraRus/AnnoRank" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AnnoRank" class="md-nav__button md-logo" aria-label="AnnoRank" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    AnnoRank
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ClaraRus/AnnoRank" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AnnoRank
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Additional_Support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Additional Support
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Annotate_Document_App/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Annotate Document App
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Annotations_Quality/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Annotations Quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Configuration File
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Data_Readers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Main class DataReader
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Database/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Database
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Database_Pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Database Pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Database_structure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Database structure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Displaying_Dataset/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Displaying a new Dataset
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Experiment_File/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Experiment File
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ranking_App/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ranking App
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ranking_Compare_Annotate_App/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ranking Compare Annotate App
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ranking_Compare_App/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ranking Compare App
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UI_Functionalities/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    UI Functionalities
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../my_page/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    My page
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="configuration-file">Configuration File</h1>
+<p>Under ./configs create a josn file which represents the configurations with which to run the tool with the desired dataset.<br></p>
+<ul>
+<li>“data_reader_class” - Configuration for the data.</li>
+<li>“name” - Specify the dataset name you want to run the tool with.</li>
+<li>“score” - Column to be used for ranking the documents.</li>
+<li>“group” - Column to be used by the fairness interventions representing the
+sensitive information of the documents (e.g. gender).</li>
+<li>
+<p>“query” - Column representing the query to which the document is linked to. This
+should contain the same values found in dataframe_queries under ‘title’. “docID” - Column representing the document IDs. <br></p>
+</li>
+<li>
+<p>“ui_display_config” - Configuration for what to display in the UI. “highlight_match” - Option to highlight the matching words of the query in the item’s display field.</p>
+</li>
+<li>“display_fields” - List of columns to display.</li>
+<li>“task_description” - guidelines of how the user should perform the assessment.</li>
+<li>“exit_survey” - List of questions to be asked in the exit survey.</li>
+<li>“question” - The question to be displayed.</li>
+<li>“field” - The field name that will be used to store the value in the database.</li>
+<li>“options” - If a drop-down is wanted, list of options to be shown in the drop-down, otherwise set the value to “text” to display a free text input. “mandatory” - Boolean to be set if the field is mandatory to be completed by the user or not. <br></li>
+</ul>
+<p>Specific fields to declare for the Interaction Annotation UI:
+- “shortlist_button” - Boolean value for whether to display the shortlist button. 
+- “shortlist_select” List representing the range [min, max] of top-k items the user has to select as being the most relevant for the given query.
+- “view_button” - Boolean value for whether to display or not the view button. “view_fields” - List of columns to display when clicking on the view button.
+- “view_fields” - List of columns to display when clicking on the view button.</p>
+<p>Specific fields to declare for the Score Annotation UI:
+- “score_range“ - range for the score bar (e.g [1,5]), with the first value being the start of the range and the second value being the last value from the range. The score bar will have 5 circles starting with values from 1 to 5.</p>
+<p>Specific fields to declare for the Ranking Comparision UI:
+- “annotate” - Boolean to be set to true if wanting to run the Ranking Compare Annotate UI, or set to false if wanting to run Ranking Compare Visualise UI. “avg_interaction” - Configuration for the interactions to be displayed.
+  - “avg_interaction” - Configuration for the interactions to be displayed.
+  - “experiment_id” - Experiment ID out of which we want to visualise the collected interactions.
+  - “interaction” - Interaction type to be displayed (e.g. “n_views” - clicks on the view button).
+- “display_metrics” - Configuration for metrics to be displayed. 
+  - “top_k” - Compute the metric at @k.
+  - “utility_metrics” - List of utility metrics to be computed and displayed.
+  - “fairness_metrics” - List of fairness metrics to be computed and displayed.
+- “attention_check” - Configuration to define which task is the attention check. 
+  - “task” - The task to be considered as the attention check. 
+  - “correct_answer” - The correct answer expected for this task. It should be defined as list of documents for the Interaction Annotation UI. For the Score Annotation UI it should be the value of the correct label.</p>
+<ul>
+<li>“iaa” - Configuration for the inter-annotator agreement</li>
+<li>“krippendorfs” - Boolean to be set to true to compute Krippendorf’s IAA [6] </li>
+<li>“cohens” - Boolean to be set to true to compute Cohen’s Kappa IAA [5] “weighted_cohens” - Boolean to be set to true to compute Weighted Cohen’s Kappa [7]</li>
+<li>“filter_per_task” - Boolean to be set to true if wanting to compute the IAA per task</li>
+</ul>
+<p>“train_ranker_config” - Configuration for applying a ranker on the original ranking. If set to null, no ranker will be applied to the original ranking, otherwise, the documents will be ranked based on the predicted score by the defined ranker.
+“name” - Name of the ranker to be applied.
+“model_path” - Path to load a pre-trained model. If no pre-trained model is
+available, a new model will be saved at the specified path.
+“settings” - List of configurations to run the ranker (specify your own fields used by the ranker class). The ranker class should be initialised with the settings specified.
+“ranking_type” - Specify under which tag the ranking of the documents should be saved in the database.
+- ranker_<name> - for running a ranking model</p>
+<ul>
+<li>“pre/in/post_processing_config” - Configurations to apply a pre-processing fairness intervention on the data. If set to null, no ranker will be applied to the original ranking, otherwise, the documents will be ranked based on the predicted score by the defined ranker.</li>
+<li>“name” - Name of the method to be applied.</li>
+<li>“model_path” - Path to load a pre-trained model. If no pre-trained model is available, a new model will be saved at the specified path.</li>
+<li>“settings” - List of configurations to run the method (specify your own fields used by the fairness intervention class). The fairness intervention class should be initialised with the settings specified.</li>
+<li>“ranking_type” - Specify under which tag the ranking of the documents should be saved in the database. It is important to keep the following naming convention for the ranking type:<ul>
+<li>preprocessing_<name> - for running a preprocessing fairness intervention.</li>
+<li>postprocessing_<name> - for running a postprocessing fairness intervention.</li>
+<li>inprocessing_<name> - for running an in-processing fairness intervention.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Example highlight match functionality" src="../images/Example_highlight_match_functionality.png" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>
