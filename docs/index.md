@@ -20,13 +20,11 @@ If you are using Windows make sure you have WSL2. Allow WSL2 usage in docker set
 docker exec -it $(docker ps -q | sed -n '1p') bash -c 'mongoexport --host="localhost:27017" --collection=<collection_name> --db=<db_name> --out=./app/database.json' && docker cp "$(docker ps -q | head -n 1)":./app/database.json <local_path_to_save>
 ```
 
-More information about the software usage, UI and database configurations, and others additional support can be found in these pages. 
+More information about the software usage, UI and database configurations, and others additional support can be found in these pages. <br>
 [UI Functionalities](UI_Functionalities.md)<br>
 [Displaying a new Dataset](Displaying_Dataset.md)<br>
 [Configuration File](Configuration_File.md)<br>
-[Database Pipeline](Database_Pipeline.md)<br>
-[Database Structure](Database_Structure.md)<br>
+[Experiment File](Experiment_File.md)<br>
+[Database](Database.md)
+[Additional Support](Additional_Support.md)
 
-
-
-See [the API documentation](my_page.md) [Annotate Document App](Annotate_Document_App.md). Make sure to check out23.
