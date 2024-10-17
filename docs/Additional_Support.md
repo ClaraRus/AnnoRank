@@ -127,4 +127,99 @@ The tool supports applying:
 It is to be considered that the fairness interventions might require additional libraries to be installed in the docker container, thus, on the first run it might take longer for the app to start as it first needs to install the required libraries.
 
 ## Add a new fairness method
+In order to add a new fairness intervention the following steps should be followed:
+- Under ./src/fairnes_interventions create the following python file: fairness_method_<method_name>.py. Inside the python file create the class that implementes the fairness method:
+  ```
+  class <method_name>(FairnessMethod):
+                  def __init__(self, configs, data_configs, model_path):
+                        super().__init__(configs, data_configs, model_path)
+
+  ```
+    - model_path - path to save/load the model
+    - configs - dictionary of hyperparameters needed to run the fairness method. This is defined in the config file as “settings”.
+    - data_configs - dictionary of configs defined for the data_reader_class. This is needed to be able to access the required columns by the fairness intervention.
+- Implement the methods defined in the parent class FairnessMethod, which can be found in ./src/fairness_interventions/fairness_method.py.
+    ```
+    def train_model(self, data_train)
+               data_train - data to train the model
+    ```
+    The train_model method should save the fairness intervention method to self.model_path.
+    ```
+    def generate_fair_data(self, data):
+               data - data to be used to generate the fair data
+
+    ```
+    The generate_fair_data method should return a new dataframe that has the same columns as data, to which the fair columns are added following the name convention <column_name>_fair.<br>
+    For example, when running a pre-processing fairness intervention like CIF- Rank[1], both the features defined under “features” and the score define under “score” will be changed. The fair columns should be “score”_fair,where “score” is the value defined in the config file under the “score” field, and same for all the features defined under “features”. When running a post-processing intervention like FA*IR[2], which re-ranks the candidates, then the fair column should represent the new ranking, thus, the name of the returned column is rank_fair.
+- If needed any files related to the fairness method can be saved under ./src/fairness_interventions/modules/<method_name>.
+- Define the new fairness method in ./src/constants in the dictionary containing fairness methods.
+- Using the new fairness method:
+  ```
+    "name": "<method_name>" 
+    "model_path": "./dataset/<data_name>/models/<method_name>", 
+    "settings": [{
+        "train_data":["original"],
+        "test_data": ["original"], 
+        "ranking_type": ["original"]}]
+
+  ```
+
+
+The figure below describes how the fairness interventions can be applied on the data and how their outputs can be used to train a ranking model, if the configuration file has enabled the use of both the fairness interventions and the use of a ranking model. The Pre-processing fairness intervention is applied on the data and saved in the database. As mentioned before, the fair values are saved in the documents collection, while the fair ranking is saved in the dataset collection. The Ranker, the In-processing fairness intervention and the Post-processing fairness intervention can be trained/tested on either the pre-processed data or on the original data. This can be set in the configuration file using the field "train_data" and "test_data". The predicted rankings are saved in the database in the collection dataset. The post-processing method can be applied on any kind of ranking, including the ranking based on the original “score” column, the ranking based on the output of the fairness interventions or of the ranker. The predicted rankings are saved in the database under the dataset collection.
+
+![Fairness Intervention Pipeline](images/Fairness_intervention_pipeline.png)
+
+
+Given the following example of a configuration for the post-processing intervention using
+FA*IR:
+
+```
+"post_processing_config": {
+ "name": "FA*IR",
+ "model_path": "",
+ "settings": [{
+      "k": 10,
+      "p": 0.7,
+      "alpha": 0.1,
+"test_data": ["original", "preprocessing_1", "ranker_1:preprocessing_1:qualification_fair__qualification_fair", "ranker_1:qualification__qualification"],
+      "ranking_type": "postprocessing_1"}]
+
+```
+
+The post-processing fairness intervention will be applied on the following rankings:
+- "original" - the ranking produced by column “score”
+- "preprocessing_1" - the ranking produced by the pre-processed score column (qualification_fair)
+- "ranker_1:preprocessing_1:qualification_fair__qualification_fair" - the ranking produced by ranker_1 which was trained on the qualification_fair column produced by the pre-processing method defined as preprocessing_1.
+- "ranker_1:qualification__qualification" - the ranking produced by ranker_1 which was trained on the qualification column.
+
+The ranking_type of the ranking saved in the database are defined as it follows for the above use cases:
+- postprocessing_1:qualification
+- postprocessing_1:qualification_fair
+- postprocessing_1:ranker_1:preprocessing_1:qualification_fair__
+     qualification_fair
+- postprocessing_1:ranker_1:qualification__qualification
+
+## Run the tool
+AnnoRank is designed to be easy to use. We provide easy to run examples, that can be used to tailor the app to specific needs, as well as a step by step tutorial. The figure below depicts the workflow of the AnnoRank application.
+![Pipeline of running the AnnoRank](images/Running_pipeline.png)
+
+
+### Requirements
+AnnoRank utilizes docker containers to handle our applications and database. The docker- compose command directs the machine to construct the necessary containers and their dependencies as outlined in the docker-compose file. This includes installing the necessary python packages to run the app as well as other requirements such as Java to be able to make use of the Ranklib library, or R to be able to run the pre-processing fairness intervention. Depending on the use of the app one can comment out or add the dependecises in the docker-compose file. To make use of other python packages the env.yml file needs to be updated. Thus, the AnnoRank web apps can be effortlessly deployed on any web hosting server.
+- Install Docker by following the steps presented here:
+[Docker Installation](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04) Select the operating system of the device you want to run the app on and proceed with the steps indicated.
+- Install [Docker Desktop]( https://www.docker.com/products/docker-desktop/) to be able to monitor the docker instances.
+- Install [MongoDB Compass](https://www.mongodb.com/products/tools/compass) to view the dataset created and its collections. The connection should be set as mongodb://<IP>:27017. <IP> should be set to IP address for of the machine where the docker container is running.
+- If you are using Windows make sure you have WSL2. Allow WSL2 usage in
+docker settings.
+
+Starting the app is easy and straightforward as one needs to only define the desired configuration files and run the script run_apps.sh. Add the paths to the configuration files needed to run the app in: apps.docker.sh. <br>
+
+The script will lunch the creation of the docker container, the population of the database with the specified dataset, and the web apps. After starting the app, the web apps will be accessible at the following URLs:
+- Interaction Annotation UI: http://localhost:5000/start_ranking/<exp\_id>
+- Score Annotation UI: http://localhost:5003/start_annotate/<exp\_id>
+- Ranking Comparison Visualise UI: http://localhost:5001/start_compare/<exp\_id>
+- Ranking Comparison Annotate UI: http://localhost:5002/start_compare_annotate/<exp\_id>
+
+The ports where the apps are running are defined in the docker-compose file, if needed one can change the ports to other values. The <exp_id> is the ID of the assignment to be displayed to the users which was defined in the experiment file and stored in the collection experiment.
 
