@@ -1,6 +1,6 @@
 Base of data reader class
 
-::: src.data_readers.data_reader.DataReaders
+::: src.data_readers.data_reader.DataReader
     handler: python
     options:
         show_root_heading: true
