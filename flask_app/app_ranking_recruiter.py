@@ -69,7 +69,7 @@ def loader_user(_user_id):
 
 # login page
 @app.route("/")
-@app.route("/start_ranking/<int:experiment_id>", methods=['GET', 'POST'])
+@app.route("/start_ranking_recruiter/<int:experiment_id>", methods=['GET', 'POST'])
 def start_ranking(experiment_id):
     """Renders the Log-in page for the Interaction Annotate UI.
 
@@ -148,7 +148,7 @@ def start_ranking(experiment_id):
         else:
             flash('Invalid user_id', 'danger')
 
-    return render_template('start_ranking.html')
+    return render_template('start_ranking_recruiter.html')
 
 
 @app.route("/logout", methods=['GET', 'POST'])
@@ -201,7 +201,7 @@ def get_next_task(experiment_id):
     return jsonify({'next_task': str(next_task)})
 
 
-@app.route("/start_ranking/<experiment_id>/index_ranking/<n_task>/<doc_id>", methods=['GET', 'POST'])
+@app.route("/start_ranking_recruiter/<experiment_id>/index_ranking/<n_task>/<doc_id>", methods=['GET', 'POST'])
 # @login_required
 def index_ranking(experiment_id, n_task, doc_id):
     """
@@ -253,7 +253,7 @@ def index_ranking(experiment_id, n_task, doc_id):
     if doc_id != 'view':
         doc_obj = docs_obj[int(doc_id) - 1]
 
-        return render_template('doc_ranking_view_plot_and_discription_template_recruiter.html', doc_obj=doc_obj,
+        return render_template('doc_ranking_view_information_template_recruiter.html', doc_obj=doc_obj,
                                field_names=doc_field_names_view, doc_index=doc_id, task_description=task_description)
 
     user = database.User.objects(_user_id=session['user_id']).first()
@@ -265,13 +265,13 @@ def index_ranking(experiment_id, n_task, doc_id):
     query_title = query_obj.title
     query_text = query_obj.text
 
-    current_url = '/start_ranking/' + str(experiment_id) + '/index_ranking/' + str(n_task) + '/'
+    current_url = '/start_ranking_recruiter/' + str(experiment_id) + '/index_ranking/' + str(n_task) + '/'
     view = len(doc_field_names_view) > 0
     if not view:
         configs["ui_display_config"]["view"] = False
 
     view_configs = configs["ui_display_config"]
-    return render_template('index_ranking_template.html', doc_field_names=doc_field_names_display,
+    return render_template('index_ranking_template_recruiter.html', doc_field_names=doc_field_names_display,
                            view_configs=view_configs,
                            doc_data_objects=docs_obj, ranking_type=task_obj.ranking_type, query_title=query_title,
                            query_text=query_text,
@@ -382,4 +382,4 @@ def error_handling(error):
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=False, host='0.0.0.0',
-            port=5000)  # with this we dont need to stop the running flask app, only need to refresh the page in the browser to load the new changes
+            port=5004)  # with this we dont need to stop the running flask app, only need to refresh the page in the browser to load the new changes

@@ -87,15 +87,17 @@
                         </td>
                         {% endif %}
                     </tr>
-                    <tr id="expandable-row-{{loop.index|string}}" docid='{{data_obj["_id"]|string}}' name="doc_row" style="display: none; overflow-y: hidden;">
-                        <td colspan="5">  
-                            <table>
-                                <tr>
-                                    <td>Subtable Content</td>
-                                </tr>
-                            </table>
+                    <tr id="expandable-row-{{loop.index | safe | escape }}" docid='{{data_obj["_id"] | safe | escape}}' name="doc_row"  style="display: none; overflow-y: hidden;">
+                        <td colspan="{{ doc_field_names|length + (1 if view_configs.view_button else 0) + (1 if view_configs.shortlist_button else 0) }}">
+                            {% set content =
+                            '<div id= "injected-container">
+                                    Hello from {{ loop.index }}
+                            </div>' %}
+                            <div>{{ content }}</div>  {# this will escape it #}
+
                         </td>
                     </tr>
+
                     {% endfor %}
                     <tr>
                         {% for field_name in doc_field_names[:-1] %}
