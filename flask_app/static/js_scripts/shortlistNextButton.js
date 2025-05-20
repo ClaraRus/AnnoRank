@@ -15,12 +15,16 @@ function collectDataShortlist(selection_range) {
             }
           }
       }
-      if(currentOpenItem !== null){
-      if(currentOpenItem.style.display !== 'none'){
-        currentOpenItem.style.display = 'none';
-        viewDocTime(currentOpenItem.id, currentOpenItem.getAttribute('docid'))
+      if (currentOpenItem_view !== null && currentOpenItem_view.style.display !== 'none') {
+          currentOpenItem_view.style.display = 'none';
+          viewDocTime(currentOpenItem_view.id, currentOpenItem_view.getAttribute('docid'));
       }
+      
+      if (currentOpenItem_cf !== null && currentOpenItem_cf.style.display !== 'none') {
+          currentOpenItem_cf.style.display = 'none';
+          viewDocTime(currentOpenItem_cf.id, currentOpenItem_cf.getAttribute('docid'));
       }
+
 
       var element = document.getElementById('query_info');
       var queryId = element.getAttribute('qid');
@@ -88,7 +92,7 @@ function collectDataShortlist(selection_range) {
             }
         else {
             // Redirect to the default link for other cases
-            window.location.href = "/start_ranking/" + expId + "/index_ranking/" + nextTask +"/view";
+            window.location.href = "/start_ranking_jobseeker/" + expId + "/index_ranking/" + nextTask +"/view";
         }
         },
         error: function(error) {

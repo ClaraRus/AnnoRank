@@ -2,8 +2,11 @@ import os
 import pandas as pd
 import json
 
-from utils.utils import clean_text
-from data_readers.data_reader import DataReader
+from src.utils.utils import clean_text, read_json
+from src.data_readers.data_reader import DataReader
+
+import argparse
+from mongoengine import *
 
 class DataReaderCvs(DataReader):
 
@@ -109,7 +112,6 @@ def candidate_to_text(candidate):
 
     return candidate
 
-
 def query_to_text(query):
     """
         Converts query object into a formatted text representation.
@@ -136,3 +138,49 @@ def query_to_text(query):
             query_text = query_text.strip(', ') + '\n'
         query_text = query_text + '\n'
     return query_text
+
+def main():
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument('--config_path')
+    # args = parser.parse_args()
+    config = read_json("configs/cvs_tutorial/config_create_db_cvs.json")
+    config = config["data_reader_class"]
+    
+    # connect(config["data_reader_class"]["name"], host='mongo', port=27017)
+    
+    data_reader = DataReaderCvs(config)
+        
+    config['train_path'] = os.path.join(data_reader.output_file_path, 'train')
+    config['test_path'] = os.path.join(data_reader.output_file_path, 'test')
+
+    if os.path.exists(config['train_path']):
+        data_train_docs, data_train_queries = data_reader.read('train')
+        data_train = {
+            "docs": data_train_docs,
+            "query": data_train_queries
+        }
+    else:
+        data_train = None
+
+    if config['test_path']:
+        data_test_docs, data_test_queries, experiments = data_reader.read('test')
+        data_test = {
+            "docs": data_test_docs,
+            "query": data_test_queries,
+            "exp": experiments
+        }
+    else:
+        raise "You need to specify the Test Data as it is the dataset to be displayed!"
+
+    # --- Print sample output ---
+    print("=== Sample Test Document Columns ===")
+    print(data_test["docs"].columns.tolist())
+
+    print("\n=== Sample Test Document Row ===")
+    print(data_test["docs"].iloc[0])
+
+    print("\n=== Sample Query ===")
+    print(data_test["query"].iloc[0]["text"])
+     
+if __name__ == "__main__":
+    main()   

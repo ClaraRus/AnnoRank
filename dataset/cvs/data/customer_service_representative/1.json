@@ -42,5 +42,28 @@
 		"Administration skills",
 		"Customer orientation",
 		"Conflict management"
+	], 
+	"counterfactuals": [ 
+		{
+		"education": "Adding a Master Degree would increase your chances",
+		"skills": "You should possess skill B"
+		}
+	], 
+	"updated_education": [
+		{
+			"degree": "Master's degree",
+			"institution": "Leiden University"
+		}
+	],
+	"updated_skills": [
+		"MS Office",
+		"Telephone etiquette",
+		"Logging",
+		"KPI management",
+		"Deadline monitoring",
+		"Administration skills",
+		"Customer orientation",
+		"Conflict management", 
+		"Skill B"
 	]
 }

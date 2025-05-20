@@ -33,6 +33,7 @@ import json
 import numpy as np
 import os
 import logging
+import ast
 
 import database
 from flask import Flask, render_template, request, redirect, session, flash, make_response, jsonify, abort
@@ -223,6 +224,7 @@ def index_ranking(experiment_id, n_task, doc_id):
         task_obj = database.Task.objects(_id=task_id).first()
         data_obj = database.Data.objects(_id=task_obj.data).first()
         query_obj = database.QueryRepr.objects(_id=data_obj.query).first()
+        logger.info(f"Task data: {task_obj.data}")
     except:
         response = make_response(redirect(f"/404/Experiment type is not for app_ranking!", code=200))
         response.headers['HX-Redirect'] = f"/404/Experiment type is not for app_ranking!"
@@ -249,21 +251,24 @@ def index_ranking(experiment_id, n_task, doc_id):
             "task_description"] + " EXTRA INFORMATION TO CONSIDER: " + task_obj.setting
     else:
         task_description = configs["ui_display_config"]["task_description"]
+        
+    query_title = query_obj.title
+    query_text = query_obj.text
 
     if doc_id != 'view':
         doc_obj = docs_obj[int(doc_id) - 1]
-        explanation_cf = "counterfactual explanation"
-        return render_template('doc_ranking_view_information_template_jobseekers.html', doc_obj=doc_obj,
-                               field_names=doc_field_names_view, doc_index=doc_id, task_description=task_description, explanation_cf=explanation_cf)
+        
+        if isinstance(doc_obj.counterfactuals, str): # to loop over counterfactuals for jobseekers
+            doc_obj.counterfactuals = ast.literal_eval(doc_obj.counterfactuals)
 
+        return render_template('doc_ranking_view_information_template_jobseekers.html', doc_obj=doc_obj, experiment_id=experiment_id, n_task=n_task,
+                               field_names=doc_field_names_view, doc_index=doc_id, task_description=task_description, job_title=query_title)
+        
     user = database.User.objects(_user_id=session['user_id']).first()
     if n_task not in [item.task for item in user.tasks_visited]:
         task_visited = database.TaskVisited(task=str(n_task), exp=str(experiment_id))
         user.tasks_visited.append(task_visited)
         user.save()
-
-    query_title = query_obj.title
-    query_text = query_obj.text
 
     current_url = '/start_ranking_jobseeker/' + str(experiment_id) + '/index_ranking/' + str(n_task) + '/'
     view = len(doc_field_names_view) > 0
@@ -277,6 +282,28 @@ def index_ranking(experiment_id, n_task, doc_id):
                            query_text=query_text,
                            current_url=current_url, task_description=task_description, session_id=session['user_id'])
 
+@app.route("/start_ranking_jobseeker/<experiment_id>/index_ranking/<n_task>/<doc_id>/cf_explanation/<category>", methods=['GET'])
+def cf_explanation(experiment_id, n_task, doc_id, category):
+    doc_obj = database.DocRepr.objects(_id=doc_id).first()    
+    
+    # updated_education = getattr(doc_obj, 'updated_education', []) What if no updated_data given
+    # updated_experience = getattr(doc_obj, 'updated_experience', [])
+    # updated_skills = getattr(doc_obj, 'updated_skills', [])
+    
+    # Add original data
+    doc_obj.button_education = doc_obj.updated_education if category == "education" else doc_obj.education
+    doc_obj.button_experience = doc_obj.updated_experience if category == "experience" else doc_obj.experience
+    doc_obj.button_skills = doc_obj.updated_skills if category == "skills" else doc_obj.skills
+    
+    # Convert string representation back to python object
+    if isinstance(doc_obj.button_education, str):
+        doc_obj.button_education = ast.literal_eval(doc_obj.button_education)
+    if isinstance(doc_obj.button_experience, str):
+        doc_obj.button_experience = ast.literal_eval(doc_obj.button_experience)
+    if isinstance(doc_obj.button_skills, str):
+        doc_obj.button_skills = ast.literal_eval(doc_obj.button_skills)
+
+    return render_template('CF_explanation.html', doc_obj=doc_obj, category=category)
 
 @app.route('/store_data_ranking', methods=['POST'])
 def store_data_ranking():
@@ -287,6 +314,7 @@ def store_data_ranking():
         str: A string indicating the success of the operation.
     """
     data = request.get_json()
+    logger.info(f"Data received: {data}")
     n_task = data.get('nTask')
     interactions = data.get('interactions')
     orderCheckbox = data.get('orderCheckBox', [])
@@ -332,6 +360,7 @@ def form_submit():
         str: A string indicating the success of the operation.
     """
     data = request.get_json()
+    logger.info(f"Data received mongodb: {data}")
     form_results = data.get('form_results', [])
 
     user = database.User.objects(_user_id=session['user_id']).first()

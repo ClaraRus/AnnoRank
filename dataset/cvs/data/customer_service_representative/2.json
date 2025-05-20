@@ -49,5 +49,6 @@
 		"Record keeping",
 		"Conflict management",
 		"Customer orientation"
-	]
+	], 
+	"counterfactuals": [{}]
 }
