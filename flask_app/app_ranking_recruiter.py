@@ -35,7 +35,7 @@ import os
 import logging
 
 import database
-from flask import Flask, render_template, request, redirect, session, flash, make_response, jsonify, abort, send_from_directory
+from flask import Flask, render_template, request, redirect, session, flash, make_response, jsonify, abort, send_from_directory, url_for
 from flask_login import login_user, LoginManager, logout_user, current_user
 from mongoengine import *
 
@@ -138,20 +138,65 @@ def start_ranking(experiment_id):
                 response.headers['HX-Redirect'] = "/404/Failed get next task!"
                 return response
 
+            # if next_task['next_task'] == 'form':
+            #     url = '/form/'
+            # elif next_task['next_task'] == 'stop_experiment':
+            #     url = '/stop_experiment/'
+            # else:
+            #     url = str(experiment_id) + '/index_ranking/' + str(next_task['next_task']) + "/view"
+
+            # response = make_response(redirect(url, code=200))
+            # response.headers['HX-Redirect'] = url
+            # return response
+
             if next_task['next_task'] == 'form':
                 url = '/form/'
             elif next_task['next_task'] == 'stop_experiment':
                 url = '/stop_experiment/'
             else:
-                url = str(experiment_id) + '/index_ranking/' + str(next_task['next_task']) + "/view"
+                url = url_for('index_ranking', experiment_id=experiment_id, n_task=next_task['next_task'], doc_id="view")
+                #url = f"{experiment_id}/index_ranking/{next_task['next_task']}/view"
 
-            response = make_response(redirect(url, code=200))
-            response.headers['HX-Redirect'] = url
+            # Store target for after consent
+            session['next_url'] = url
+
+            # Redirect to consent form instead
+            consent_url = url_for('consent_form', experiment_id=experiment_id)
+            response = make_response(redirect(consent_url, code=200))
+            response.headers['HX-Redirect'] = consent_url
             return response
+
         else:
             flash('Invalid user_id', 'danger')
 
     return render_template('start_ranking_recruiter.html')
+
+#added
+@app.route("/consent/<int:experiment_id>", methods=['GET', 'POST'])
+def consent_form(experiment_id):
+    if request.method == 'POST':
+        # Redirect to instructions page, NOT directly to tasks
+        instructions_url = url_for('instructions', experiment_id=experiment_id)
+        return redirect(instructions_url)
+
+    return render_template('consent_form_template_recruiter.html', experiment_id=experiment_id)
+
+
+#added
+@app.route("/instructions/<int:experiment_id>", methods=['GET', 'POST'])
+def instructions(experiment_id):
+    if request.method == 'POST':
+        # After instructions are acknowledged, redirect to next task
+        next_url = session.get('next_url')
+        if next_url:
+            return redirect(next_url)
+        else:
+            return redirect('/')  # fallback
+
+    return render_template('task_description_shortlist_page_template_recruiter.html', experiment_id=experiment_id)
+
+
+
 
 
 @app.route("/logout", methods=['GET', 'POST'])
