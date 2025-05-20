@@ -108,9 +108,12 @@ class Experiment(Document):
 
 class Interaction(EmbeddedDocument):
     doc_id = StringField(default="")
-    n_views = StringField(default="")
-    timestamps = ListField()
-    shortlisted = StringField(default="")
+    view_n = StringField(default="0")  # Number of view interactions
+    detail_n = StringField(default="0")  # Number of detail interactions
+    view_timestamps = ListField()  # When view interactions happened
+    detail_timestamps = ListField()  # When detail interactions happened
+    shortlisted = StringField(default="false")  # Whether it was shortlisted
+
 
 
 class InteractionCompare(EmbeddedDocument):

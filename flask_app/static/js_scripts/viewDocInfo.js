@@ -43,7 +43,7 @@ function loadAndToggleVisibility(targetElementId,docId, htmlFile) {
         viewDocTime(targetElementId, docId)
         currentOpenItem = null;
 
-    }
+    }
 
 
 

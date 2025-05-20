@@ -49,5 +49,13 @@
 		"Record keeping",
 		"Conflict management",
 		"Customer orientation"
+	],
+	"image": "images/animal.jpg",
+	"factuals": [
+		{
+		"education": "456",
+		"experience": "3",
+		"skills": "404"
+		}
 	]
 }

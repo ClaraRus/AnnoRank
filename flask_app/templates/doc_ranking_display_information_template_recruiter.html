@@ -1,10 +1,10 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script src="/static/js_scripts/limitSelectionCheckbox.js" defer></script>
-<script src="/static/js_scripts/viewDocInfo.js" defer></script>
-<script src="/static/js_scripts/shortlistNextButton.js" defer></script>
-<script src="/static/js_scripts/viewCounts.js" defer></script>
-<script src="/static/js_scripts/viewTime.js" defer></script>
+<script src="/static/js_scripts/viewDocInfoR.js" defer></script>
+<script src="/static/js_scripts/shortlistNextButtonRecruiter.js" defer></script>
+<script src="/static/js_scripts/viewCountsRecruiter.js" defer></script>
+<script src="/static/js_scripts/viewTimeRecruiter.js" defer></script>
 <script src="/static/js_scripts/orderCheckbox.js" defer></script>
 <script src="/static/js_scripts/highlightText.js" defer></script>
 
@@ -19,7 +19,7 @@
 <div class="flex flex-col mt-8">
         <div class="-my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
             <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
-                <table id="data-body" class="min-w-full">
+                <table id="data-body" class="table-fixed w-full">
                     <thead>
                         <tr>
                             {% for field_name in doc_field_names %}
@@ -74,8 +74,8 @@
                         {% endfor %}
 
                         {% if view_configs.view_button %}
-                        <td class="text-left py-4 whitespace-no-wrap  border-b border-gray-200 text-sm  font-medium">
-                            <button class="view-button hover:text-blue-600" onclick="loadAndToggleVisibility('expandable-row-{{loop.index|string}}', '{{loop.index}}','{{current_url + loop.index|string}}')">
+                        <td class="text-center py-4 whitespace-no-wrap  border-b border-gray-200 text-sm  font-medium">
+                            <button class="view-button hover:text-blue-600" onclick="loadAndToggleVisibility('expandable-row-{{loop.index|string}}', '{{data_obj._id}}','{{current_url + loop.index|string}}', 'view')">
                                 View
                             </button>
                         </td>
@@ -90,7 +90,7 @@
                     <tr id="expandable-row-{{loop.index | safe | escape }}" docid='{{data_obj["_id"] | safe | escape}}' name="doc_row"  style="display: none; overflow-y: hidden;">
                         <td colspan="{{ doc_field_names|length + (1 if view_configs.view_button else 0) + (1 if view_configs.shortlist_button else 0) }}">
                             {% set content =
-                            '<div id= "injected-container">
+                            '<div class="p-4 bg-white" id= "injected-container">
                                     Hello from {{ loop.index }}
                             </div>' %}
                             <div>{{ content }}</div>  {# this will escape it #}

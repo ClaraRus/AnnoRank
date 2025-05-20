@@ -35,12 +35,15 @@ import os
 import logging
 
 import database
-from flask import Flask, render_template, request, redirect, session, flash, make_response, jsonify, abort
+from flask import Flask, render_template, request, redirect, session, flash, make_response, jsonify, abort, send_from_directory
 from flask_login import login_user, LoginManager, logout_user, current_user
 from mongoengine import *
 
 from utils.utils import add_fields_from_data
 from config import Config
+
+import ast
+import math
 
 logging.basicConfig(filename='../record.log', level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -250,11 +253,49 @@ def index_ranking(experiment_id, n_task, doc_id):
     else:
         task_description = configs["ui_display_config"]["task_description"]
 
+    # all_columns = set()
+    # for doc in docs_obj:
+    #     all_columns.update(doc._data.keys())
+    normalized_field_names = [name.replace('_display', '') for name in doc_field_names_display]
+
+
+    # get factual data
+    factual_fields = configs["ui_display_config"]["factual_fields"]
+
+
+
+
     if doc_id != 'view':
         doc_obj = docs_obj[int(doc_id) - 1]
 
+        factual_raw = getattr(doc_obj, "factuals", None)
+        factual_list = []
+
+        if factual_raw is None or (isinstance(factual_raw, float) and math.isnan(factual_raw)):
+            pass  # Leave list empty
+        elif isinstance(factual_raw, str):
+            try:
+                factual_list = ast.literal_eval(factual_raw)
+            except Exception:
+                factual_list = []
+        elif isinstance(factual_raw, list):
+            factual_list = factual_raw
+
+        # Extract fields like education_factual, etc.
+        if factual_list:
+            flat_factuals = factual_list[0]
+            for key in factual_fields:
+                value = flat_factuals.get(key, '')
+                setattr(doc_obj, key + "_factual", value)
+        else:
+            for key in factual_fields:
+                setattr(doc_obj, key + "_factual", '')
+        
+        field_names = [f + "_factual" for f in factual_fields]
+
+
         return render_template('doc_ranking_view_information_template_recruiter.html', doc_obj=doc_obj,
-                               field_names=doc_field_names_view, doc_index=doc_id, task_description=task_description)
+                               field_names=field_names, doc_index=doc_id, task_description=task_description, all_columns=normalized_field_names)
 
     user = database.User.objects(_user_id=session['user_id']).first()
     if n_task not in [item.task for item in user.tasks_visited]:
@@ -277,6 +318,36 @@ def index_ranking(experiment_id, n_task, doc_id):
                            query_text=query_text,
                            current_url=current_url, task_description=task_description, session_id=session['user_id'])
 
+#added
+@app.route('/get_doc_detail/<doc_id>', methods=['GET'])
+def get_doc_detail(doc_id):
+    doc_obj = database.DocRepr.objects(_id=doc_id).first()
+    if not doc_obj:
+        return "Document not found", 404
+
+    field_names = configs["ui_display_config"].get("detail_fields", [])
+    return render_template(
+        'doc_ranking_view_plot_and_discription_template_recruiter.html',
+        doc_obj=doc_obj,
+        field_names=field_names
+    )
+
+#added
+@app.route('/customer_service_images/<path:filename>')
+def customer_service_images(filename):
+    image_dir = os.path.abspath(
+        os.path.join(app.root_path, '..', 'dataset', 'cvs', 'data', 'customer_service_representative')
+    )
+
+    # Optional: restrict file types
+    if not filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
+        abort(403)
+
+    return send_from_directory(image_dir, filename)
+
+
+
+
 
 @app.route('/store_data_ranking', methods=['POST'])
 def store_data_ranking():
@@ -292,10 +363,15 @@ def store_data_ranking():
     orderCheckbox = data.get('orderCheckBox', [])
 
     all_interactions = []
-    for doc_id in interactions.keys():
-        interactions_document = database.Interaction(doc_id=doc_id, n_views=str(interactions[doc_id]['n_views']),
-                                                     timestamps=interactions[doc_id]['timestamps'],
-                                                     shortlisted=str(interactions[doc_id]['shortlisted']))
+    for doc_id, info in interactions.items():
+        interactions_document = database.Interaction(
+            doc_id=doc_id,
+            view_n=str(info.get('view_n', 0)),
+            detail_n=str(info.get('detail_n', 0)),
+            view_timestamps=info.get('view_timestamps', []),
+            detail_timestamps=info.get('detail_timestamps', []),
+            shortlisted=str(info.get('shortlisted', 'false'))
+        )
         all_interactions.append(interactions_document)
 
     user = database.User.objects(_user_id=session['user_id']).first()

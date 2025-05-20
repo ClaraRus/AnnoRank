@@ -42,5 +42,12 @@
 		"Administration skills",
 		"Customer orientation",
 		"Conflict management"
+	],
+	"image": "images/tree.jpg",
+	"factuals": [
+		{
+		"education": "0",
+		"experience": "0.5"
+		}
 	]
 }
