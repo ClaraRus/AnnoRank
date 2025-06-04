@@ -1,0 +1,52 @@
+{% block body %}
+<!-- <div id="doc_obj"> -->
+<table class="table-fixed w-full">
+    <tbody>
+        <!-- Main Row -->
+
+        <tr id="expandable-row-extrainfo-{{ doc_index }}">
+            <!-- <td></td> -->
+            {% for field in all_columns %}
+                <td class="align-top px-2 py-4 whitespace-normal border-b border-gray-200"> 
+                {% set field_key = field ~ '_factual' %}
+                {% if field_key in field_names %}
+                    {% for line in (doc_obj[field_key]|string).split('\n') %}
+                        {% if '<img' in line %}
+                            <div class="text-gray-900 mb-2">
+                            {{ line | safe }}
+                            </div>
+                        {% elif line == '' %}
+                            <div class="text-sm leading-5 text-gray-500 py-3">{{ line }}</div>
+                        {% else %}
+                            <div class="text-sm leading-5 text-gray-500">{{ line }}</div>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    &mdash;
+                {% endif %}
+                </td>
+            {% endfor %}
+            <!-- <td></td> -->
+            <td class="align-top px-2 py-4 whitespace-normal border-b border-gray-200" style="padding: 10px; background-color: transparent;"></td>
+            <td class="text-center px-2 py-4 whitespace-normal border-b border-gray-200 text-sm  font-medium">
+                <button
+                        class="view-button hover:text-blue-600"
+                        onclick="loadAndToggleVisibility('expandable-row-detail-{{doc_obj._id|string}}', '{{doc_obj._id}}', 
+                        '/start_ranking_jobseeker/{{experiment_id}}/index_ranking/{{n_task}}/{{doc_obj._id}}/f_explanation/plot', 'detail')">
+                        More Details
+                    </button>
+            </td>
+            <!-- <td class="align-top px-2 py-4 whitespace-normal border-b border-gray-200" style="padding: 10px; background-color: transparent;"></td> -->
+        </tr>
+        <tr id="expandable-row-detail-{{doc_obj._id}}" style="display: none;" class="mt-4" docid="{{doc_obj._id}}">
+            <td colspan="6">
+                <div id="{{doc_obj._id}}-detail">
+                    <div id="injected-container"></div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+{% endblock %}

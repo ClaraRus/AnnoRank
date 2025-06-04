@@ -24,6 +24,7 @@ SOFTWARE.
 
 import sys
 from pathlib import Path
+import math
 
 sys.path.append(str(Path(__file__).resolve().parent.parent / 'src'))
 
@@ -36,7 +37,7 @@ import logging
 import ast
 
 import database
-from flask import Flask, render_template, request, redirect, session, flash, make_response, jsonify, abort
+from flask import Flask, render_template, request, redirect, session, flash, make_response, jsonify, abort, send_from_directory
 from flask_login import login_user, LoginManager, logout_user, current_user
 from mongoengine import *
 
@@ -255,14 +256,14 @@ def index_ranking(experiment_id, n_task, doc_id):
     query_title = query_obj.title
     query_text = query_obj.text
 
-    if doc_id != 'view':
-        doc_obj = docs_obj[int(doc_id) - 1]
+    # if doc_id != 'view':
+    #     doc_obj = docs_obj[int(doc_id) - 1]
         
-        if isinstance(doc_obj.counterfactuals, str): # to loop over counterfactuals for jobseekers
-            doc_obj.counterfactuals = ast.literal_eval(doc_obj.counterfactuals)
+    #     if isinstance(doc_obj.counterfactuals, str): # to loop over counterfactuals for jobseekers
+    #         doc_obj.counterfactuals = ast.literal_eval(doc_obj.counterfactuals)
 
-        return render_template('doc_ranking_view_information_template_jobseekers.html', doc_obj=doc_obj, experiment_id=experiment_id, n_task=n_task,
-                               field_names=doc_field_names_view, doc_index=doc_id, task_description=task_description, job_title=query_title)
+    #     return render_template('doc_ranking_view_information_template_jobseekers.html', doc_obj=doc_obj, experiment_id=experiment_id, n_task=n_task,
+    #                            field_names=doc_field_names_view, doc_index=doc_id, task_description=task_description, job_title=query_title)
         
     user = database.User.objects(_user_id=session['user_id']).first()
     if n_task not in [item.task for item in user.tasks_visited]:
@@ -277,13 +278,112 @@ def index_ranking(experiment_id, n_task, doc_id):
 
     view_configs = configs["ui_display_config"]
     return render_template('index_ranking_template_jobseekers.html', doc_field_names=doc_field_names_display,
-                           view_configs=view_configs,
+                           view_configs=view_configs, experiment_id=experiment_id, n_task=n_task,
                            doc_data_objects=docs_obj, ranking_type=task_obj.ranking_type, query_title=query_title,
                            query_text=query_text,
                            current_url=current_url, task_description=task_description, session_id=session['user_id'])
+    
+@app.route('/start_ranking_jobseeker/<experiment_id>/index_ranking/<n_task>/<doc_id>/f_explanation', methods=['GET'])
+def f_explanation(experiment_id, n_task, doc_id):
+    doc_obj = database.DocRepr.objects(_id=doc_id).first()       
+   
+    exp_obj = database.Experiment.objects(_exp_id=str(experiment_id)).first()
+    task_id = exp_obj.tasks[int(n_task)]
+    task_obj = database.Task.objects(_id=task_id).first()
+    if task_obj.setting:
+        task_description = "Please pay attention to the extra information provided as it might differ between the tasks. "
+        task_description = task_description + configs["ui_display_config"][
+            "task_description"] + " EXTRA INFORMATION TO CONSIDER: " + task_obj.setting
+    else:
+        task_description = configs["ui_display_config"]["task_description"]
+             
+    factual_raw = getattr(doc_obj, "factuals", None)
+    factual_list = []
 
+    if factual_raw is None or (isinstance(factual_raw, float) and math.isnan(factual_raw)):
+        pass  # Leave list empty
+    elif isinstance(factual_raw, str):
+        try:
+            factual_list = ast.literal_eval(factual_raw)
+        except Exception:
+            factual_list = []
+    elif isinstance(factual_raw, list):
+        factual_list = factual_raw
+
+    # Extract fields like education_factual, etc.
+    factual_fields = configs["ui_display_config"]["factual_fields"]
+    if factual_list:
+        flat_factuals = factual_list[0]
+        for key in factual_fields:
+            value = flat_factuals.get(key, '')
+            setattr(doc_obj, key + "_factual", value)
+    else:
+        for key in factual_fields:
+            setattr(doc_obj, key + "_factual", '')
+             
+    field_names = [f + "_factual" for f in factual_fields]
+      
+    doc_field_names_display = configs["ui_display_config"]["display_fields"]
+    normalized_field_names = [name.replace('_display', '') for name in doc_field_names_display]
+
+    return render_template('doc_ranking_view_information_template_recruiter.html', doc_obj=doc_obj, experiment_id=experiment_id, n_task=n_task,
+                               field_names=field_names, doc_index=doc_id, task_description=task_description, all_columns=normalized_field_names)
+    
+@app.route('/start_ranking_jobseeker/<experiment_id>/index_ranking/<n_task>/<doc_id>/f_explanation/plot', methods=['GET'])
+def get_doc_detail(experiment_id, n_task, doc_id):
+    doc_obj = database.DocRepr.objects(_id=doc_id).first()
+    if not doc_obj:
+        return "Document not found", 404
+
+    field_names = configs["ui_display_config"].get("detail_fields", [])
+    return render_template(
+        'doc_ranking_view_plot_and_discription_template_recruiter.html',
+        doc_obj=doc_obj,
+        field_names=field_names)
+    
+@app.route('/customer_service_images/<path:filename>')
+def customer_service_images(filename):
+    image_dir = os.path.abspath(
+        os.path.join(app.root_path, '..', 'dataset', 'cvs', 'data', 'customer_service_representative')
+    )
+
+    # Optional: restrict file types
+    if not filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
+        abort(403)
+
+    return send_from_directory(image_dir, filename)
+    
+@app.route('/start_ranking_jobseeker/<experiment_id>/index_ranking/<n_task>/<doc_id>/cf_explanation', methods=['GET'])
+def cf_explanation(experiment_id, n_task, doc_id):
+    doc_obj = database.DocRepr.objects(_id=doc_id).first()  
+        
+    if isinstance(doc_obj.counterfactuals, str): # to loop over counterfactuals for jobseekers
+        doc_obj.counterfactuals = ast.literal_eval(doc_obj.counterfactuals)
+        
+    if configs["ui_display_config"]["view_button"]:
+        doc_field_names_view = configs["ui_display_config"]["view_fields"]
+    else:
+        doc_field_names_view = []
+        
+    exp_obj = database.Experiment.objects(_exp_id=str(experiment_id)).first()
+    task_id = exp_obj.tasks[int(n_task)]
+    task_obj = database.Task.objects(_id=task_id).first()
+    if task_obj.setting:
+        task_description = "Please pay attention to the extra information provided as it might differ between the tasks. "
+        task_description = task_description + configs["ui_display_config"][
+            "task_description"] + " EXTRA INFORMATION TO CONSIDER: " + task_obj.setting
+    else:
+        task_description = configs["ui_display_config"]["task_description"]
+        
+    data_obj = database.Data.objects(_id=task_obj.data).first()
+    query_obj = database.QueryRepr.objects(_id=data_obj.query).first()
+    query_title = query_obj.title
+
+    return render_template('doc_ranking_view_information_template_jobseekers.html', doc_obj=doc_obj, experiment_id=experiment_id, n_task=n_task,
+                            field_names=doc_field_names_view, doc_index=doc_id, task_description=task_description, job_title=query_title)
+    
 @app.route("/start_ranking_jobseeker/<experiment_id>/index_ranking/<n_task>/<doc_id>/cf_explanation/<category>", methods=['GET'])
-def cf_explanation(experiment_id, n_task, doc_id, category):
+def cf_updated_data(experiment_id, n_task, doc_id, category):
     doc_obj = database.DocRepr.objects(_id=doc_id).first()    
     
     # updated_education = getattr(doc_obj, 'updated_education', []) What if no updated_data given

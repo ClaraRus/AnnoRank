@@ -28,6 +28,7 @@
 
       "view_button": true,
       "view_fields": ["education_view","experience_view"],
+      "factual_fields": ["education","experience", "skills"],
 
       "shortlist_button": true,
       "shortlist_select": [3,3]

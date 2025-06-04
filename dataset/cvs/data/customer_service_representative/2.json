@@ -50,5 +50,13 @@
 		"Conflict management",
 		"Customer orientation"
 	], 
-	"counterfactuals": [{}]
+	"counterfactuals": [{}], 
+	"image": "images/animal.jpg",
+	"factuals": [
+		{
+		"education": "456",
+		"experience": "3",
+		"skills": "404"
+		}
+	]
 }

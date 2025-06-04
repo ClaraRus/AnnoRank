@@ -17,12 +17,12 @@ function collectDataShortlist(selection_range) {
       }
       if (currentOpenItem_view !== null && currentOpenItem_view.style.display !== 'none') {
           currentOpenItem_view.style.display = 'none';
-          viewDocTime(currentOpenItem_view.id, currentOpenItem_view.getAttribute('docid'));
+        //   viewDocTime(currentOpenItem_view.id, currentOpenItem_view.getAttribute('docid'));
       }
       
       if (currentOpenItem_cf !== null && currentOpenItem_cf.style.display !== 'none') {
           currentOpenItem_cf.style.display = 'none';
-          viewDocTime(currentOpenItem_cf.id, currentOpenItem_cf.getAttribute('docid'));
+        //   viewDocTime(currentOpenItem_cf.id, currentOpenItem_cf.getAttribute('docid'));
       }
 
 

@@ -36,42 +36,116 @@
 		"Customer orientation"
 	], 
 	"counterfactuals": [
-		{
-			"education": "You should have a Bachelor's degree",
-			"experience": "Adding 3 years of experience would increase your chances", 
-			"skills": "You should possess skill A"
-		}
-	], 
-	"updated_education": [	
-		{
-		"degree": "Bachelor's degree",
-		"institution": "University of Amsterdam"
-		}
-	],
-	"updated_experience": [
-		{
+	{
+		"text": "You should have a Bachelor's degree",
+		"updated_data": {
+		"education": [
+			{
+			"degree": "* Bachelor's degree",
+			"institution": "* University of Amsterdam"
+			}
+		],
+		"experience": [
+			{
 			"role": "Customer service representative",
-			"duration": "4.2 years",
+			"duration": "1.2 years",
 			"start_date": "Dec 2022",
 			"end_date": "Feb 2024",
 			"organization": "Cupra, Martorell, Spain"
-		},
-		{
+			},
+			{
 			"role": "Customer support agent",
 			"duration": "0.9 years",
 			"start_date": "Dec 2021",
 			"end_date": "Nov 2022",
 			"organization": "Grifols, Barcelona, Spain"
+			}
+		],
+		"skills": [
+			"CRM",
+			"Telephone etiquette",
+			"Logging",
+			"KPI management",
+			"MS Office",
+			"Multi-channel services",
+			"Customer orientation"
+		]
 		}
-	],
-	"updated_skills": [
-		"CRM",
-		"Telephone etiquette",
-		"Logging",
-		"KPI management",
-		"MS Office",
-		"Multi-channel services",
-		"Customer orientation",
-		"Skill A"
-	] 
+	},
+	{
+		"text": "Adding 3 years of experience would increase your chances",
+		"updated_data": {
+		"education": [
+		],
+		"experience": [
+			{
+			"role": "Customer service representative",
+			"duration": "* 4.2 years",
+			"start_date": "Dec 2022",
+			"end_date": "Feb 2024",
+			"organization": "Cupra, Martorell, Spain"
+			},
+			{
+			"role": "Customer support agent",
+			"duration": "0.9 years",
+			"start_date": "Dec 2021",
+			"end_date": "Nov 2022",
+			"organization": "Grifols, Barcelona, Spain"
+			}
+		],
+		"skills": [
+			"CRM",
+			"Telephone etiquette",
+			"Logging",
+			"KPI management",
+			"MS Office",
+			"Multi-channel services",
+			"Customer orientation"
+		]
+		}
+	},
+	{
+		"text": "You should possess skill A",
+		"updated_data": {
+		"education": [
+			{
+			}
+		],
+		"experience": [
+			{
+			"role": "Customer service representative",
+			"duration": "1.2 years",
+			"start_date": "Dec 2022",
+			"end_date": "Feb 2024",
+			"organization": "Cupra, Martorell, Spain"
+			},
+			{
+			"role": "Customer support agent",
+			"duration": "0.9 years",
+			"start_date": "Dec 2021",
+			"end_date": "Nov 2022",
+			"organization": "Grifols, Barcelona, Spain"
+			}
+		],
+		"skills": [
+			"CRM",
+			"Telephone etiquette",
+			"Logging",
+			"KPI management",
+			"MS Office",
+			"Multi-channel services",
+			"Customer orientation",
+			"* Skill A"
+		]
+		}
+	}
+	], 
+	"image": "images/boom.png",
+	"factuals": [
+		{
+			"education": "123",
+			"experience": "0.5",
+			"skills": "007"
+		}
+	]
 }

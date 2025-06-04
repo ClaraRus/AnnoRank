@@ -15,8 +15,19 @@
                         <ul class="list-disc pl-5">
                             {% for edu in doc_obj.button_education %}
                                 <li>
-                                    <strong>Degree:</strong> {{ edu.degree }}<br>
-                                    <strong>Institution:</strong> {{ edu.institution }}
+                                    <strong>Degree:</strong>
+                                    {% if edu.degree.startswith('*') %}
+                                        <span class="text-blue-600 font-semibold">{{ edu.degree[2:] }}</span>
+                                    {% else %}
+                                        {{ edu.degree }}
+                                    {% endif %}
+                                    <br>
+                                    <strong>Institution:</strong>
+                                    {% if edu.institution.startswith('*') %}
+                                        <span class="text-blue-600 font-semibold">{{ edu.institution[2:] }}</span>
+                                    {% else %}
+                                        {{ edu.institution }}
+                                    {% endif %}
                                 </li>
                             {% endfor %}
                         </ul>
@@ -31,9 +42,26 @@
                         <ul class="list-disc pl-5">
                             {% for exp in doc_obj.button_experience %}
                                 <li>
-                                    <strong>Role:</strong> {{ exp.role }}<br>
-                                    <strong>Organization:</strong> {{ exp.organization }}<br>
-                                    <strong>Duration:</strong> {{ exp.duration }}
+                                    <strong>Role:</strong>
+                                    {% if exp.role.startswith('*') %}
+                                        <span class="text-blue-600 font-semibold">{{ exp.role[2:] }}</span>
+                                    {% else %}
+                                        {{ exp.role }}
+                                    {% endif %}
+                                    <br>
+                                    <strong>Organization:</strong>
+                                    {% if exp.organization.startswith('*') %}
+                                        <span class="text-blue-600 font-semibold">{{ exp.organization[2:] }}</span>
+                                    {% else %}
+                                        {{ exp.organization }}
+                                    {% endif %}
+                                    <br>
+                                    <strong>Duration:</strong>
+                                    {% if exp.duration.startswith('*') %}
+                                        <span class="text-blue-600 font-semibold">{{ exp.duration[2:] }}</span>
+                                    {% else %}
+                                        {{ exp.duration }}
+                                    {% endif %}
                                 </li>
                             {% endfor %}
                         </ul>
@@ -47,14 +75,17 @@
                     {% if doc_obj.button_skills %}
                         <ul class="list-disc pl-5">
                             {% for skill in doc_obj.button_skills %}
-                                <li>{{ skill }}</li>
+                                {% if skill.startswith('*') %}
+                                    <li class="text-blue-600 font-semibold">{{ skill[2:] }}</li>
+                                {% else %}
+                                    <li>{{ skill }}</li>
+                                {% endif %}
                             {% endfor %}
                         </ul>
                     {% else %}
                         <p>No skills listed.</p>
                     {% endif %}
                 </td>
-
             </tr>
         </tbody>
     </table>
