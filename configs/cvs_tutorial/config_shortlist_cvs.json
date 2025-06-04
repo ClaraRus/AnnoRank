@@ -40,7 +40,7 @@
         "mandatory": false
       }],
 
-      "view_button": true,
+      "view_button": false,
       "view_fields": ["education_view","experience_view", "skills_view"],
       "factual_fields": ["education","experience", "skills"],
 

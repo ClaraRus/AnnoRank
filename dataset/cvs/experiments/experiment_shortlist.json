@@ -108,6 +108,40 @@
         "field": "feedback",
         "mandatory": false
       }]
+    },
+    {
+      "query_title": "second_gen_quest",
+      "ranking_type": "form",
+      "questionnaire": [
+      {
+        "question":"age:",
+        "field": "gender",
+        "options": ["5100", "25", "30"],
+        "mandatory": true
+      },
+      {
+        "question": "Feedback on the task:",
+        "options": "text",
+        "field": "feedback",
+        "mandatory": false
+      }]
+    },
+    {
+      "query_title": "second_end_gen_quest",
+      "ranking_type": "form",
+      "questionnaire": [
+      {
+        "question":"age:",
+        "field": "gender",
+        "options": ["6100", "25", "30"],
+        "mandatory": true
+      },
+      {
+        "question": "Feedback on the task:",
+        "options": "text",
+        "field": "feedback",
+        "mandatory": false
+      }]
     }
   ]
   
