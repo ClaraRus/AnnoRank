@@ -125,6 +125,13 @@ def add_exp_to_db(data_exp):
                     task_obj.data = str(data_obj._id)
                     task_obj.save()
 
+                    # if 'questionaire' in task.keys():
+                    #     questionnaire_obj = database.Questionnaire(
+                    #         task_id=task_obj,
+                    #         questions=task['questionaire']
+                    #     )
+                    #     questionnaire_obj.save()
+
                     if not exp_obj or (
                             not str(task_obj.auto_id_0) in exp_obj.tasks or not str(task_obj._id) in exp_obj.tasks):
                         tasks_obj.append(str(task_obj.auto_id_0))
@@ -219,8 +226,8 @@ def add_data_to_db(data, fields, ranking_type, query_col, sort_col='score', asce
                 if ranking_obj.ranking_type not in saved_rankings:
                     data_obj.rankings.append(ranking_obj)
                     data_obj.save()
-        else:
-            continue
+
+
 
 
 def get_docs_df(ranking_type, data_config, features):

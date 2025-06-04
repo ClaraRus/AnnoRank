@@ -1,0 +1,44 @@
+{
+	"_name": "Said Bouchama",
+	"_gender": "male",
+	"_continent": "NEU",
+	"_country": "algeria",
+	"_unusual": "False",
+	"_target_fitness": "4",
+	"_fitness_edu": "4.50",
+	"_fitness_exp": "3.49",
+	"_fitness_ski": "4.20",
+	"education": [
+		{
+			"degree": "Bachelor's Degree",
+			"major": "Environmental engineering",
+			"institution": "University of the Basque Country, Bilbao, Spain"
+		}
+	],
+	"experience": [
+		{
+			"role": "Project manager",
+			"duration": "1.2 years",
+			"start_date": "Nov 2022",
+			"end_date": "Feb 2024",
+			"organization": "Eni renewables, Madrid, Spain"
+		},
+		{
+			"role": "Civil engineering technologist",
+			"duration": "0.7 years",
+			"start_date": "Feb 2022",
+			"end_date": "Oct 2022",
+			"organization": "Eni renewables, Madrid, Spain"
+		}
+	],
+	"skills": [
+		"Risk management",
+		"Agile project management",
+		"Coaching",
+		"PRINCE2",
+		"Health and safety regulation",
+		"ISO 9001",
+		"Stakeholder management",
+		"Analytics"
+	]
+}

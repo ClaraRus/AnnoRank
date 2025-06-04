@@ -35,7 +35,8 @@
 		"Multi-channel services",
 		"Customer orientation"
 	],
-	"image": "images/boom.png",
+	"factual_image": "images/boom.png",
+	"factual_text": "Information about the image",
 
 	"factuals": [
 		{

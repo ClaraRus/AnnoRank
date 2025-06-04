@@ -1,0 +1,50 @@
+{
+	"_name": "Shazia Baig",
+	"_gender": "female",
+	"_continent": "NEU",
+	"_country": "pakistan",
+	"_unusual": "True",
+	"_target_fitness": "4.5",
+	"_fitness_edu": "5.00",
+	"_fitness_exp": "4.28",
+	"_fitness_ski": "4.20",
+	"education": [
+		{
+			"degree": "Master's Degree",
+			"major": "Management engineering",
+			"institution": "University Of Engineering & Technology, Pakistan"
+		},
+		{
+			"degree": "Bachelor's Degree",
+			"major": "Transport engineering",
+			"institution": "University Of Engineering & Technology, Pakistan"
+		}
+	],
+	"experience": [
+		{
+			"role": "Development project manager",
+			"duration": "1.0 years",
+			"start_date": "Feb 2023",
+			"end_date": "Feb 2024",
+			"organization": "Kozmek Engineering, Islamabad, Pakistan"
+		},
+		{
+			"role": "Technical project manager",
+			"duration": "0.6 years",
+			"start_date": "May 2022",
+			"end_date": "Jan 2023",
+			"organization": "Zameen Developments, Lahore, Pakistan"
+		}
+	],
+	"skills": [
+		"Health and safety regulation",
+		"PRINCE2",
+		"Risk management",
+		"ISO 9001",
+		"MS Project",
+		"Lean project management",
+		"Coaching",
+		"Performance monitoring",
+		"Analytics"
+	]
+}

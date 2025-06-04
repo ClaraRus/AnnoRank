@@ -39,3 +39,5 @@ function loadAndToggleVisibility(targetElementId, docId, htmlFile, type = "view"
         }
     }
 }
+
+

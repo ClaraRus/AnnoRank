@@ -1,0 +1,52 @@
+{
+	"_name": "Ayesha Younus",
+	"_gender": "female",
+	"_continent": "NEU",
+	"_country": "pakistan",
+	"_unusual": "True",
+	"_target_fitness": "5",
+	"_fitness_edu": "5.00",
+	"_fitness_exp": "5.73",
+	"_fitness_ski": "4.20",
+	"education": [
+		{
+			"degree": "Master's Degree",
+			"major": "Management engineering",
+			"institution": "Ned University Of Engineering & Technology, Karachi, Pakistan"
+		},
+		{
+			"degree": "Bachelor's Degree",
+			"major": "Hydraulic engineering",
+			"institution": "Mehran University Of Engineering & Technology, Jamshoro, Pakistan"
+		}
+	],
+	"experience": [
+		{
+			"role": "Engineering project manager",
+			"duration": "1.4 years",
+			"start_date": "Sep 2022",
+			"end_date": "Feb 2024",
+			"organization": "AAA Facility Management, Karachi, Pakistan"
+		},
+		{
+			"role": "Strategic project manager",
+			"duration": "1.3 years",
+			"start_date": "May 2021",
+			"end_date": "Aug 2022",
+			"organization": "Water seal, Karachi, Pakistan"
+		}
+	],
+	"skills": [
+		"Coaching",
+		"ISO 9001",
+		"Leadership",
+		"PRINCE2",
+		"Risk management",
+		"Lean project management",
+		"Stakeholder management",
+		"Performance monitoring",
+		"MS Office",
+		"Incident investigation",
+		"Documentation"
+	]
+}

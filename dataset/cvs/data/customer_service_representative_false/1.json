@@ -43,7 +43,7 @@
 		"Customer orientation",
 		"Conflict management"
 	],
-	"image": "images/tree.jpg",
+	"factual_image": "images/tree.jpg",
 	"factuals": [
 		{
 		"education": "0",

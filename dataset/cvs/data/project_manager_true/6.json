@@ -1,0 +1,46 @@
+{
+	"_name": "Manuel Ortega Corral",
+	"_gender": "male",
+	"_continent": "EU",
+	"_country": "spain",
+	"_unusual": "False",
+	"_target_fitness": "5",
+	"_fitness_edu": "5.00",
+	"_fitness_exp": "4.24",
+	"_fitness_ski": "6.00",
+	"education": [
+		{
+			"degree": "Master's Degree",
+			"major": "Management engineering",
+			"institution": "University of Valencia, Spain"
+		},
+		{
+			"degree": "Bachelor's Degree",
+			"major": "Environmental engineering",
+			"institution": "University of Valencia, Spain"
+		}
+	],
+	"experience": [
+		{
+			"role": "Project manager",
+			"duration": "1.6 years",
+			"start_date": "Jul 2022",
+			"end_date": "Feb 2024",
+			"organization": "Amazon Spain Services, Madrid, Spain"
+		}
+	],
+	"skills": [
+		"Health and safety regulation",
+		"ISO 9001",
+		"Leadership",
+		"Stakeholder management",
+		"Lean project management",
+		"MS Project",
+		"Agile project management",
+		"Coaching",
+		"Risk management",
+		"PRINCE2",
+		"Analytics",
+		"Incident investigation"
+	]
+}

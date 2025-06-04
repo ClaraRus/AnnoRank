@@ -26,6 +26,20 @@
         "mandatory": false
       }],
 
+      "firts_q": [
+      {
+        "question":"age:",
+        "field": "gender",
+        "options": ["67", "25", "30"],
+        "mandatory": true
+      },
+      {
+        "question": "Feedback on the task:",
+        "options": "text",
+        "field": "feedback",
+        "mandatory": false
+      }],
+
       "view_button": true,
       "view_fields": ["education_view","experience_view", "skills_view"],
       "factual_fields": ["education","experience", "skills"],

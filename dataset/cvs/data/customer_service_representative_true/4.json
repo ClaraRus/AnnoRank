@@ -1,0 +1,41 @@
+{
+	"_name": "Fernando Perez Bermejo",
+	"_gender": "male",
+	"_continent": "EU",
+	"_country": "spain",
+	"_unusual": "False",
+	"_target_fitness": "5",
+	"_fitness_edu": "5.01",
+	"_fitness_exp": "5.49",
+	"_fitness_ski": "4.00",
+	"education": [
+		{
+			"degree": "Diploma",
+			"institution": "Escuela Profesional Javeriana"
+		}
+	],
+	"experience": [
+		{
+			"role": "Customer service representative",
+			"duration": "0.9 years",
+			"start_date": "Mar 2023",
+			"end_date": "Feb 2024",
+			"organization": "Liberbank, Madrid, Spain"
+		},
+		{
+			"role": "Customer support agent",
+			"duration": "1.2 years",
+			"start_date": "Nov 2021",
+			"end_date": "Feb 2023",
+			"organization": "Iberia, Madrid, Spain"
+		}
+	],
+	"skills": [
+		"CRM",
+		"MS Office",
+		"Logging",
+		"KPI management",
+		"Deadline monitoring",
+		"Client support"
+	]
+}

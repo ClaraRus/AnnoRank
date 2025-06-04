@@ -74,7 +74,7 @@
                                 </div>
                             </div>
 </div>
-                            <form method="POST" action="{{ url_for('instructions', experiment_id=experiment_id) }}"class="py-3 text-center">
+                            <form method="POST" action="{{ url_for('instructions', experiment_id=experiment_id, n_task=n_task) }}"class="py-3 text-center">
                                 <!-- your instructions content -->
                                  <div class="py-3 text-center">
                                     <button type="submit" id="done_button">Next</button>

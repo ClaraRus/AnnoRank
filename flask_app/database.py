@@ -105,6 +105,10 @@ class Experiment(Document):
     _description = StringField(default="")
     tasks = ListField()
 
+class Questionnaire(Document): #added
+    task_id = ReferenceField(Task, required=False)
+    questions = ListField(DictField())  # each dict is a question with options, etc.
+
 
 class Interaction(EmbeddedDocument):
     doc_id = StringField(default="")
@@ -184,3 +188,7 @@ def create_collections():
         dummy_document = Experiment(_exp_id="dummy--")
         dummy_document.save()
         Experiment.objects().delete()
+    if 'questionnaire' not in db.list_collection_names(): #added
+        dummy_document = Questionnaire(task_id=None, questions=[])
+        dummy_document.save()
+        Questionnaire.objects().delete()

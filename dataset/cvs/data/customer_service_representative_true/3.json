@@ -1,0 +1,45 @@
+{
+	"_name": "Sevim Yavuz",
+	"_gender": "female",
+	"_continent": "NEU",
+	"_country": "turkey",
+	"_unusual": "False",
+	"_target_fitness": "5",
+	"_fitness_edu": "5.00",
+	"_fitness_exp": "5.61",
+	"_fitness_ski": "4.00",
+	"education": [
+	],
+	"experience": [
+		{
+			"role": "Customer service representative",
+			"duration": "0.8 years",
+			"start_date": "Apr 2023",
+			"end_date": "Feb 2024",
+			"organization": "Vueling, Barcelona, Spain"
+		},
+		{
+			"role": "Customer service assistant",
+			"duration": "0.8 years",
+			"start_date": "May 2022",
+			"end_date": "Feb 2023",
+			"organization": "CaixaBank, Valencia, Spain"
+		},
+		{
+			"role": "Customer support agent",
+			"duration": "0.8 years",
+			"start_date": "Jun 2021",
+			"end_date": "Mar 2022",
+			"organization": "Grifols, Barcelona, Spain"
+		}
+	],
+	"skills": [
+		"KPI management",
+		"MS Office",
+		"CRM",
+		"Telephone etiquette",
+		"Record keeping",
+		"Banking sector",
+		"Client support"
+	]
+}

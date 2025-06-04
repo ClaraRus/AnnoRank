@@ -86,12 +86,14 @@ function collectDataShortlist(selection_range) {
       // Get the current URL
       if (nextTask == 'stop_experiment') {
           window.location.href = "/stop_experiment";
-      } if (nextTask == 'form') {
-          window.location.href ="/form"
-          }
+      } //if (nextTask == 'form') {
+        //  window.location.href ="/form"
+        //  }
       else {
           // Redirect to the default link for other cases
-          window.location.href = "/start_ranking_recruiter/" + expId + "/index_ranking/" + nextTask +"/view";
+          //window.location.href = "/start_ranking_recruiter/" + expId + "/index_ranking/" + nextTask +"/view";
+          window.location.href = "/form2/" + expId + "/" + nextTask + "/" + currentTask;
+
       }
       },
       error: function(error) {

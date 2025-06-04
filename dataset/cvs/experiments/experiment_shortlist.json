@@ -4,14 +4,113 @@
 
   "tasks": [
     {
-      "query_title": "project_manager",
-      "ranking_type": "original"
+      "query_title": "project_manager_false",
+      "ranking_type": "original",
+      "show_xai": "False",
+      "questionnaire": [
+      {
+        "question":"age:",
+        "field": "gender",
+        "options": ["21", "25", "30"],
+        "mandatory": true
+      },
+      {
+        "question": "Feedback on the task:",
+        "options": "text",
+        "field": "feedback",
+        "mandatory": false
+      }]
     },
     {
-      "query_title": "customer_service_representative",
-      "ranking_type": "original"
+      "query_title": "customer_service_representative_false",
+      "ranking_type": "original",
+      "show_xai": "False",
+      "questionnaire": [
+      {
+        "question":"age:",
+        "field": "gender",
+        "options": ["100", "25", "30"],
+        "mandatory": true
+      },
+      {
+        "question": "Feedback on the task:",
+        "options": "text",
+        "field": "feedback",
+        "mandatory": false
+      }]
+    },
+    {
+      "query_title": "project_manager_true",
+      "ranking_type": "original",
+      "show_xai": "True",
+      "questionnaire": [
+      {
+        "question":"age:",
+        "field": "gender",
+        "options": ["true", "25", "30"],
+        "mandatory": true
+      },
+      {
+        "question": "Feedback on the task:",
+        "options": "text",
+        "field": "feedback",
+        "mandatory": false
+      }]
+    },
+    {
+      "query_title": "customer_service_representative_true",
+      "ranking_type": "original",
+      "show_xai": "True",
+      "questionnaire": [
+      {
+        "question":"age:",
+        "field": "gender",
+        "options": ["true", "25", "30"],
+        "mandatory": true
+      },
+      {
+        "question": "Feedback on the task:",
+        "options": "text",
+        "field": "feedback",
+        "mandatory": false
+      }]
+    },
+    {
+      "query_title": "first_gen_quest",
+      "ranking_type": "form",
+      "questionnaire": [
+      {
+        "question":"age:",
+        "field": "gender",
+        "options": ["50", "25", "30"],
+        "mandatory": true
+      },
+      {
+        "question": "Feedback on the task:",
+        "options": "text",
+        "field": "feedback",
+        "mandatory": false
+      }]
+    },
+    {
+      "query_title": "first_end_gen_quest",
+      "ranking_type": "form",
+      "questionnaire": [
+      {
+        "question":"age:",
+        "field": "gender",
+        "options": ["60", "25", "30"],
+        "mandatory": true
+      },
+      {
+        "question": "Feedback on the task:",
+        "options": "text",
+        "field": "feedback",
+        "mandatory": false
+      }]
     }
   ]
+  
 
 
 }

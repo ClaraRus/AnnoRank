@@ -1,0 +1,44 @@
+{
+	"_name": "Carlos Gonzalez Gil",
+	"_gender": "male",
+	"_continent": "EU",
+	"_country": "spain",
+	"_unusual": "False",
+	"_target_fitness": "4",
+	"_fitness_edu": "4.50",
+	"_fitness_exp": "3.41",
+	"_fitness_ski": "4.20",
+	"education": [
+		{
+			"degree": "Bachelor's Degree",
+			"major": "Civil engineering",
+			"institution": "Autonomous University of Barcelona, Spain"
+		}
+	],
+	"experience": [
+		{
+			"role": "Project manager",
+			"duration": "1.2 years",
+			"start_date": "Dec 2022",
+			"end_date": "Feb 2024",
+			"organization": "Novo Real Estate Property Investment, Barcelona, Spain"
+		},
+		{
+			"role": "Civil engineering drafter",
+			"duration": "0.7 years",
+			"start_date": "Feb 2022",
+			"end_date": "Oct 2022",
+			"organization": "Photosol, Alicante, Spain"
+		}
+	],
+	"skills": [
+		"Agile project management",
+		"Coaching",
+		"Health and safety regulation",
+		"Risk management",
+		"ISO 9001",
+		"MS Project",
+		"Leadership",
+		"Earned Value management"
+	]
+}

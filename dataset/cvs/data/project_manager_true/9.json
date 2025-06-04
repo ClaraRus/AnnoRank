@@ -1,0 +1,43 @@
+{
+	"_name": "Malika Filali",
+	"_gender": "female",
+	"_continent": "NEU",
+	"_country": "morocco",
+	"_unusual": "False",
+	"_target_fitness": "4",
+	"_fitness_edu": "4.50",
+	"_fitness_exp": "3.96",
+	"_fitness_ski": "3.60",
+	"education": [
+		{
+			"degree": "Bachelor's Degree",
+			"major": "Environmental engineering",
+			"institution": "Rovira i Virgili University, Tarragona, Spain"
+		}
+	],
+	"experience": [
+		{
+			"role": "Project manager",
+			"duration": "1.5 years",
+			"start_date": "Aug 2022",
+			"end_date": "Feb 2024",
+			"organization": "Wood, Madrid, Spain"
+		},
+		{
+			"role": "Civil engineering drafter",
+			"duration": "0.7 years",
+			"start_date": "Sep 2021",
+			"end_date": "Jun 2022",
+			"organization": "Wood, Madrid, Spain"
+		}
+	],
+	"skills": [
+		"Health and safety regulation",
+		"Agile project management",
+		"MS Project",
+		"Stakeholder management",
+		"Lean project management",
+		"Coaching",
+		"Statistics"
+	]
+}

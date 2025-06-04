@@ -45,6 +45,7 @@ from config import Config
 import ast
 import math
 
+
 logging.basicConfig(filename='../record.log', level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
@@ -161,7 +162,7 @@ def start_ranking(experiment_id):
             session['next_url'] = url
 
             # Redirect to consent form instead
-            consent_url = url_for('consent_form', experiment_id=experiment_id)
+            consent_url = url_for('consent_form', experiment_id=experiment_id, n_task='4')
             response = make_response(redirect(consent_url, code=200))
             response.headers['HX-Redirect'] = consent_url
             return response
@@ -172,28 +173,32 @@ def start_ranking(experiment_id):
     return render_template('start_ranking_recruiter.html')
 
 #added
-@app.route("/consent/<int:experiment_id>", methods=['GET', 'POST'])
-def consent_form(experiment_id):
+@app.route("/consent/<int:experiment_id>/<n_task>", methods=['GET', 'POST'])
+def consent_form(experiment_id, n_task):
     if request.method == 'POST':
         # Redirect to instructions page, NOT directly to tasks
-        instructions_url = url_for('instructions', experiment_id=experiment_id)
+        instructions_url = url_for('instructions', experiment_id=experiment_id, n_task=n_task)
         return redirect(instructions_url)
 
-    return render_template('consent_form_template_recruiter.html', experiment_id=experiment_id)
+    return render_template('consent_form_template_recruiter.html', experiment_id=experiment_id, n_task=n_task)
 
 
 #added
-@app.route("/instructions/<int:experiment_id>", methods=['GET', 'POST'])
-def instructions(experiment_id):
+@app.route("/instructions/<int:experiment_id>/<n_task>", methods=['GET', 'POST'])
+def instructions(experiment_id, n_task):
     if request.method == 'POST':
         # After instructions are acknowledged, redirect to next task
-        next_url = session.get('next_url')
-        if next_url:
-            return redirect(next_url)
-        else:
-            return redirect('/')  # fallback
 
-    return render_template('task_description_shortlist_page_template_recruiter.html', experiment_id=experiment_id)
+        instructions_form1 = url_for('form_demographic_data1', experiment_id=experiment_id, n_task=n_task)
+        return redirect(instructions_form1)
+
+        # next_url = session.get('next_url')
+        # if next_url:
+        #     return redirect(next_url)
+        # else:
+        #     return redirect('/')  # fallback
+
+    return render_template('task_description_shortlist_page_template_recruiter.html', experiment_id=experiment_id, n_task=n_task)
 
 
 
@@ -236,15 +241,69 @@ def get_next_task(experiment_id):
     experiment_tasks = list(range(0, len(experiment.tasks)))
     user_tasks_visited = [int(item.task) for item in user.tasks_visited]
 
-    not_visited = [task for task in experiment_tasks if task not in user_tasks_visited]
+    # Get all tasks and their properties
+    tasks_info = []
+    task_order = []  # To store the base names of tasks (without _false/_true)
+    for task_idx in experiment_tasks:
+        task_id = experiment.tasks[task_idx]
+        task_obj = database.Task.objects(_id=task_id).first()
+        if task_obj:
+            data_obj = database.Data.objects(_id=task_obj.data).first()
+            if data_obj:
+                query_obj = database.QueryRepr.objects(_id=data_obj.query).first()
+                if query_obj:
+                    tasks_info.append({
+                        'idx': task_idx,
+                        'query_title': query_obj.title,
+                        'show_xai': getattr(task_obj, 'show_xai', None),
+                        'ranking_type': task_obj.ranking_type
+                    })
+                    #Store base name if it's a show_xai task
+                    if query_obj.title.endswith('_false'):
+                        base_name = query_obj.title.replace('_false', '')
+                        if base_name not in task_order:
+                            task_order.append(base_name)
 
-    if len(not_visited) > 0:
-        next_task = np.random.choice(not_visited)
+    # First, get unvisited tasks with show_xai=False
+    not_visited_false = [task['idx'] for task in tasks_info 
+                        if task['idx'] not in user_tasks_visited 
+                        and task['show_xai'] == 'False'
+                        and task['ranking_type'] != 'form']
+
+    # If we still have show_xai=False tasks to do
+    if not_visited_false:
+        next_task = np.random.choice(not_visited_false)
+        return jsonify({'next_task': str(next_task)})
+
+    # Check if all show_xai=False tasks are completed
+    all_false_tasks = [task['idx'] for task in tasks_info if task['show_xai'] == 'False' and task['ranking_type'] != 'form']
+    all_false_completed = all(task_idx in user_tasks_visited for task_idx in all_false_tasks)
+
+    # If all False tasks are done, find first_end_gen_quest
+    if all_false_completed:
+        for task in tasks_info:
+            if task['query_title'] == 'first_end_gen_quest' and task['idx'] not in user_tasks_visited:
+                return jsonify({'next_task': str(task['idx'])})
+            # if task['query_title'] == 'first_gen_quest' and task['idx'] not in user_tasks_visited:
+            #     #user = database.User.objects(_user_id=session['user_id']).first()
+            #     if task['idx'] not in [item.task for item in user.tasks_visited]:
+            #         #task_visited = database.TaskVisited(task=str(task), exp=str(experiment_id))
+            #         user.tasks_visited.append(task['idx'])
+            #         user.save()
+
+        # After first_end_gen_quest, do show_xai=True tasks in same order as False tasks
+        for base_name in task_order:
+            true_task = next((task for task in tasks_info 
+                            if task['query_title'] == f"{base_name}_true" 
+                            and task['idx'] not in user_tasks_visited), None)
+            if true_task:
+                return jsonify({'next_task': str(true_task['idx'])})
+
+    # If we've completed everything
+    if configs["ui_display_config"]["exit_survey"] is not None:
+        next_task = 'form'
     else:
-        if configs["ui_display_config"]["exit_survey"] is not None:
-            next_task = 'form'
-        else:
-            next_task = 'stop_experiment'
+        next_task = 'stop_experiment'
 
     return jsonify({'next_task': str(next_task)})
 
@@ -441,6 +500,114 @@ def form_demographic_data():
         The rendered template.
     """
     return render_template('form_template.html', items=configs['ui_display_config']['exit_survey'])
+
+#first general questionnaire
+@app.route("/form1/<int:experiment_id>/<n_task>", methods=['GET', 'POST'])
+# @login_required
+def form_demographic_data1(experiment_id, n_task):
+    """
+    Renders the form template with questionnaire from the first_gen_quest task.
+
+    Returns:
+        The rendered template with the questionnaire from first_gen_quest task.
+    """
+    if n_task == '5':
+        user = database.User.objects(_user_id=session['user_id']).first()
+        if n_task not in [item.task for item in user.tasks_visited]:
+            task_visited = database.TaskVisited(task=str(n_task), exp=str(experiment_id))
+            user.tasks_visited.append(task_visited)
+            user.save()
+        
+        response = get_next_task(experiment_id)
+        next_task_data = response.get_json()
+        next_task = next_task_data['next_task']
+
+        exp_obj = database.Experiment.objects(_exp_id=str(experiment_id)).first()
+        for task_idx, task_id in enumerate(exp_obj.tasks):
+            task_obj = database.Task.objects(_id=task_id).first()
+            if task_obj:
+                data_obj = database.Data.objects(_id=task_obj.data).first()
+                if data_obj:
+                    query_obj = database.QueryRepr.objects(_id=data_obj.query).first()
+                    if query_obj and query_obj.title == "first_end_gen_quest":
+                        task_dict = task_obj.to_mongo().to_dict()
+                        question_list = task_dict.get("questionnaire", [])  # Get questionnaire from the task
+                        next_url = url_for('index_ranking', experiment_id=experiment_id, n_task=next_task, doc_id="view")
+                        return render_template('form_template_recruiter.html', items=question_list, next_url=next_url, current_task=n_task)
+    else:
+        next_url = session.get('next_url')
+
+        # Get the task with query_title "first_gen_quest"
+        exp_obj = database.Experiment.objects(_exp_id=str(experiment_id)).first()
+        for task_idx, task_id in enumerate(exp_obj.tasks):
+            task_obj = database.Task.objects(_id=task_id).first()
+            if task_obj:
+                data_obj = database.Data.objects(_id=task_obj.data).first()
+                if data_obj:
+                    query_obj = database.QueryRepr.objects(_id=data_obj.query).first()
+                    if query_obj and query_obj.title == "first_gen_quest":
+                        user = database.User.objects(_user_id=session['user_id']).first()
+                        if n_task not in [item.task for item in user.tasks_visited]:
+                            task_visited = database.TaskVisited(task=str(n_task), exp=str(experiment_id))
+                            user.tasks_visited.append(task_visited)
+                            user.save()
+                        task_dict = task_obj.to_mongo().to_dict()
+                        question_list = task_dict.get("questionnaire", [])  # Get questionnaire from the task
+                        return render_template('form_template_recruiter.html', items=question_list, next_url=next_url, current_task=n_task)
+
+    # Fallback to empty questionnaire if first_gen_quest task not found
+    return render_template('form_template_recruiter.html', items=[], next_url=next_url, current_task=n_task)
+
+#taskspecific questionnaires
+@app.route("/form2/<experiment_id>/<next_task>/<n_task>", methods=['GET', 'POST'])
+# @login_required
+def form_demographic_data2(experiment_id, next_task, n_task):
+    """
+    Renders the 'form_template.html' template
+    with the items specified in the 'exit_survey' configuration.
+
+    Returns:
+        The rendered template.
+    """
+    exp_obj = database.Experiment.objects(_exp_id=str(experiment_id)).first()
+    task_id = exp_obj.tasks[int(n_task)]
+
+    task_obj = database.Task.objects(_id=task_id).first() 
+
+
+    task_dict = task_obj.to_mongo().to_dict()
+    questionnaire_key = f"questionnaire"
+    question_list = task_dict.get(questionnaire_key, [])  # fallback to [] if not present
+
+    if next_task == 'form':
+        next_url = url_for('form_demographic_data')
+    elif next_task == '5':
+        next_url = url_for('form_demographic_data1', experiment_id=experiment_id, n_task=next_task)
+    else:
+        next_url = url_for('index_ranking', experiment_id=experiment_id, n_task=next_task, doc_id="view")
+
+    return render_template('form_template_recruiter.html', items=question_list, next_url=next_url, current_task=n_task)
+
+@app.route("/form_submit1/<current_task>", methods=['GET', 'POST'])
+def form_submit1(current_task):
+    data = request.get_json()
+    form_results = data.get('form_results', {})
+
+    user = database.User.objects(_user_id=session['user_id']).first()
+
+    structured_entry = {
+        "task_number": current_task,
+        "form_results": form_results
+    }
+
+    # Ensure the list exists
+    if not hasattr(user, 'form_submissions') or user.form_submissions is None:
+        user.form_submissions = []
+
+    user.form_submissions.append(structured_entry)
+    user.save()
+
+    return "ok"
 
 
 @app.route("/form_submit/", methods=['GET', 'POST'])
