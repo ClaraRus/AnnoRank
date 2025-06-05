@@ -355,10 +355,10 @@ def customer_service_images(filename):
     
 @app.route('/start_ranking_jobseeker/<experiment_id>/index_ranking/<n_task>/<doc_id>/cf_explanation', methods=['GET'])
 def cf_explanation(experiment_id, n_task, doc_id):
-    doc_obj = database.DocRepr.objects(_id=doc_id).first()  
-        
-    if isinstance(doc_obj.counterfactuals, str): # to loop over counterfactuals for jobseekers
-        doc_obj.counterfactuals = ast.literal_eval(doc_obj.counterfactuals)
+    doc_obj = database.DocRepr.objects(_id=doc_id).first()       
+
+    if isinstance(doc_obj.cf, str): 
+        doc_obj.counterfactuals = ast.literal_eval(doc_obj.cf)
         
     if configs["ui_display_config"]["view_button"]:
         doc_field_names_view = configs["ui_display_config"]["view_fields"]
@@ -382,28 +382,18 @@ def cf_explanation(experiment_id, n_task, doc_id):
     return render_template('doc_ranking_view_information_template_jobseekers.html', doc_obj=doc_obj, experiment_id=experiment_id, n_task=n_task,
                             field_names=doc_field_names_view, doc_index=doc_id, task_description=task_description, job_title=query_title)
     
-@app.route("/start_ranking_jobseeker/<experiment_id>/index_ranking/<n_task>/<doc_id>/cf_explanation/<category>", methods=['GET'])
-def cf_updated_data(experiment_id, n_task, doc_id, category):
+@app.route("/start_ranking_jobseeker/<experiment_id>/index_ranking/<n_task>/<doc_id>/cf_explanation/<cf_idx>", methods=['GET'])
+def cf_updated_data(experiment_id, n_task, doc_id, cf_idx):
     doc_obj = database.DocRepr.objects(_id=doc_id).first()    
     
-    # updated_education = getattr(doc_obj, 'updated_education', []) What if no updated_data given
-    # updated_experience = getattr(doc_obj, 'updated_experience', [])
-    # updated_skills = getattr(doc_obj, 'updated_skills', [])
+    cf_index = int(cf_idx) - 1
     
-    # Add original data
-    doc_obj.button_education = doc_obj.updated_education if category == "education" else doc_obj.education
-    doc_obj.button_experience = doc_obj.updated_experience if category == "experience" else doc_obj.experience
-    doc_obj.button_skills = doc_obj.updated_skills if category == "skills" else doc_obj.skills
-    
-    # Convert string representation back to python object
-    if isinstance(doc_obj.button_education, str):
-        doc_obj.button_education = ast.literal_eval(doc_obj.button_education)
-    if isinstance(doc_obj.button_experience, str):
-        doc_obj.button_experience = ast.literal_eval(doc_obj.button_experience)
-    if isinstance(doc_obj.button_skills, str):
-        doc_obj.button_skills = ast.literal_eval(doc_obj.button_skills)
+    if isinstance(doc_obj.cf, str): 
+        doc_obj.counterfactuals = ast.literal_eval(doc_obj.cf)
+        
+    updated_data = doc_obj.counterfactuals[cf_index].get("updated_data", {})
 
-    return render_template('CF_explanation.html', doc_obj=doc_obj, category=category)
+    return render_template('CF_explanation.html', doc_obj=doc_obj, updated_data=updated_data)
 
 @app.route('/store_data_ranking', methods=['POST'])
 def store_data_ranking():
@@ -420,10 +410,18 @@ def store_data_ranking():
     orderCheckbox = data.get('orderCheckBox', [])
 
     all_interactions = []
-    for doc_id in interactions.keys():
-        interactions_document = database.Interaction(doc_id=doc_id, n_views=str(interactions[doc_id]['n_views']),
-                                                     timestamps=interactions[doc_id]['timestamps'],
-                                                     shortlisted=str(interactions[doc_id]['shortlisted']))
+    for doc_id, info in interactions.items():
+        interactions_document = database.Interaction(
+                    doc_id=doc_id,
+                    view_n=str(info.get('view_n', 0)),
+                    detail_n=str(info.get('detail_n', 0)),
+                    cf_n=str(info.get('cf_n', 0)),
+                    updated_n=str(info.get('updated_n', 0)),
+                    view_timestamps=info.get('view_timestamps', []),
+                    detail_timestamps=info.get('detail_timestamps', []),
+                    cf_timestamps=info.get('cf_timestamps', []),
+                    updated_timestamps=info.get('updated_timestamps', []),
+                    shortlisted=str(info.get('shortlisted', 'false')))
         all_interactions.append(interactions_document)
 
     user = database.User.objects(_user_id=session['user_id']).first()

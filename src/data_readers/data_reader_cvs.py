@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 import json
+import ast
 
 from utils.utils import clean_text
 from data_readers.data_reader import DataReader
@@ -47,15 +48,26 @@ class DataReaderCvs(DataReader):
             for json_file in json_files:
                 file_path = os.path.join(self.data_path, 'data', dir_name, json_file)
 
-                with open(os.path.join(self.data_path, 'data', dir_name, file_path), 'r') as json_file:
-                    candidate_data = json.load(json_file)
+                with open(file_path, 'r') as f:
+                    candidate_data = json.load(f)
+
+                #######################################MANUAL FLATTENING#####################################
+                counterfactuals = candidate_data.get('counterfactuals', [])
+                if counterfactuals:
+                    candidate_data['cf'] = repr(counterfactuals)
+
+                    # Remove the orignal 'counterfactuals' key from candidate_data
+                    candidate_data.pop('counterfactuals', None)
+
+                ###################################END OF MANUAL FLATTENING###################################
 
                 candidate_data = pd.json_normalize(candidate_data)
                 candidate_data = candidate_to_text(candidate_data)
 
                 candidate_data['query'] = dir_name
-
+                
                 dataframes_candidates.append(candidate_data)
+
 
         # Concatenate all DataFrames into a single DataFrame
         data_test = pd.concat(dataframes_candidates, ignore_index=True)

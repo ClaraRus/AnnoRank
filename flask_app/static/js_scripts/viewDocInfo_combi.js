@@ -1,10 +1,10 @@
 let currentOpenItem_detail = null;
 let currentOpenItem_cf = null;
-let currentOpenItem_updated = null;
+let currentOpenItems_updated = {}; //As there can exist multiple updated buttons
 let currentOpenItem_view = null;
 
 
-function loadAndToggleVisibility(targetElementId, docId, htmlFile, type, close=false) {//the close boolean controls whether to close the previous open item of the same type
+function loadAndToggleVisibility(targetElementId, docId, htmlFile, type, close=true) {//the close boolean controls whether to close the previous open item of the same type
     const targetElement = document.getElementById(targetElementId);
 
     const container = targetElement.querySelector("#injected-container");
@@ -27,64 +27,65 @@ function loadAndToggleVisibility(targetElementId, docId, htmlFile, type, close=f
                     // If another view is already open, close it
                     if (currentOpenItem_view && currentOpenItem_view !== targetElement && close) {
                         const prevDocId = currentOpenItem_view.getAttribute('docid');
-                        // viewDocTime(prevDocId, "view", "stop");
-
-                        // Also stop any open detail row for that view
-                        // const detailRowId = `expandable-row-detail-${prevDocId}`;
-                        // const detailRow = document.getElementById(detailRowId);
-                        // if (detailRow && detailRow.style.display !== 'none') {
-                        //     // viewDocTime(prevDocId, "detail", "stop");
-                        //     detailRow.style.display = 'none';
-                        //     currentOpenItem_detail = null;
-                        // }
+                        viewDocTime(prevDocId, "view", "stop");
+                        
+                        // Also stop and hide detail nested in that view
+                        if (currentOpenItem_detail && currentOpenItem_detail.getAttribute('docid') === prevDocId) {
+                            viewDocTime(prevDocId, "detail", "stop");
+                            currentOpenItem_detail.style.display = 'none';
+                            currentOpenItem_detail = null;
+                        }
 
                         currentOpenItem_view.style.display = 'none';
                         currentOpenItem_view = null;
                     }
 
-                    // viewDocCount(targetElementId, docId, "view");
-                    // viewDocTime(docId, "view", "start");
+                    viewDocCount(targetElementId, docId, "view");
+                    viewDocTime(docId, "view", "start");
                     currentOpenItem_view = targetElement;
 
                 } else if (type === "detail") {
                     if (currentOpenItem_detail && currentOpenItem_detail !== targetElement && close) {
                         const prevDocId = currentOpenItem_detail.getAttribute('docid');
-                        // viewDocTime(prevDocId, "detail", "stop");
+                        viewDocTime(prevDocId, "detail", "stop");
                         currentOpenItem_detail.style.display = 'none';
                         currentOpenItem_detail = null;
                     }
 
-                    // viewDocCount(targetElementId, docId, "detail");
-                    // viewDocTime(docId, "detail", "start");
+                    viewDocCount(targetElementId, docId, "detail");
+                    viewDocTime(docId, "detail", "start");
                     currentOpenItem_detail = targetElement;
                 } else if (type === "cf") {
                     if (currentOpenItem_cf && currentOpenItem_cf !== targetElement && close) {
                         const prevDocId = currentOpenItem_cf.getAttribute('docid');
-                        // viewDocTime(prevDocId, "cf", "stop");
+                        viewDocTime(prevDocId, "cf", "stop");
+                        
+                        // Also stop and hide any nested updated for the same docId
+                        if (currentOpenItems_updated[prevDocId]) {
+                            viewDocTime(prevDocId, "updated", "stop");
+                            currentOpenItems_updated[prevDocId].style.display = 'none';
+                            delete currentOpenItems_updated[prevDocId];
+                        }
 
                         currentOpenItem_cf.style.display = 'none';
                         currentOpenItem_cf = null;
                     }
 
-                    // viewDocCount(targetElementId, docId, "cf");
-                    // viewDocTime(docId, "cf", "start");
+                    viewDocCount(targetElementId, docId, "cf");
+                    viewDocTime(docId, "cf", "start");
                     currentOpenItem_cf = targetElement;
                 } else if (type === "updated") {
-                    console.log("Updated view opened for docId:", docId);
-                    console.log("Current open updated item:", currentOpenItem_updated);
-                    console.log("Target element:", targetElement);
-                    if (currentOpenItem_updated && currentOpenItem_updated !== targetElement && close) {
-                        // console.log("Closing previous updated view for docId:", currentOpenItem_updated.getAttribute('docid'));
-                        const prevDocId = currentOpenItem_updated.getAttribute('docid');
-                        // viewDocTime(prevDocId, "updated", "stop");
-                        currentOpenItem_updated.style.display = 'none';
-                        currentOpenItem_updated = null;
+                    if (currentOpenItems_updated[docId] && currentOpenItems_updated[docId] !== targetElement && close) {
+                        const prevElement = currentOpenItems_updated[docId];
+                        viewDocTime(docId, "updated", "stop");
+                        prevElement.style.display = 'none';
+                        delete currentOpenItems_updated[docId];
                     }
 
-                    // viewDocCount(targetElementId, docId, "updated");
-                    // viewDocTime(docId, "updated", "start");
-                    currentOpenItem_updated = targetElement;
-                    console.log("Current open updated item set to:", currentOpenItem_updated);
+                    viewDocCount(targetElementId, docId, "updated");
+                    viewDocTime(docId, "updated", "start");
+
+                    currentOpenItems_updated[docId] = targetElement;
                 }
             })
             .catch(error => console.error(error));
@@ -93,29 +94,35 @@ function loadAndToggleVisibility(targetElementId, docId, htmlFile, type, close=f
         targetElement.style.display = 'none';
 
         if (type === "view") {
-            // viewDocTime(docId, "view", "stop");
+            viewDocTime(docId, "view", "stop");
 
-            // Also stop and hide detail if it's open
-            // const detailRowId = `expandable-row-detail-${docId}`;
-            // const detailRow = document.getElementById(detailRowId);
-            // if (detailRow && detailRow.style.display !== 'none') {
-            //     // viewDocTime(docId, "detail", "stop");
-            //     detailRow.style.display = 'none';
-            //     currentOpenItem_detail = null;
-            // }
+            // Also stop and hide nested detail if open
+            if (currentOpenItem_detail && currentOpenItem_detail.getAttribute('docid') === docId) {
+                viewDocTime(docId, "detail", "stop");
+                currentOpenItem_detail.style.display = 'none';
+                currentOpenItem_detail = null;
+            }
+
 
             currentOpenItem_view = null;
 
         } else if (type === "detail") {
-            // viewDocTime(docId, "detail", "stop");
+            viewDocTime(docId, "detail", "stop");
             currentOpenItem_detail = null;
         } else if (type === "cf") {
-            // viewDocTime(docId, "cf", "stop");
+            viewDocTime(docId, "cf", "stop");
+
+            // Also stop and hide nested updated if open
+            if (currentOpenItems_updated[docId]) {
+                viewDocTime(docId, "updated", "stop");
+                currentOpenItems_updated[docId].style.display = 'none';
+                delete currentOpenItems_updated[docId];
+            }
             
             currentOpenItem_cf = null;
         } else if (type === "updated") {
-            // viewDocTime(docId, "updated", "stop");
-            currentOpenItem_updated = null;
+            viewDocTime(docId, "updated", "stop");
+            delete currentOpenItems_updated[docId];
         }
     }
 }

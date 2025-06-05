@@ -1,30 +1,34 @@
+
+{% block body %}
+
 <div class="mt-4 p-4 bg-white border border-gray-300 text-sm text-black">
     <table class="table-auto w-full text-sm text-black">
         <thead>
             <tr class="bg-gray-200">
-                <th class="p-2 border border-gray-300 text-left">Education</th>
-                <th class="p-2 border border-gray-300 text-left">Experience</th>
-                <th class="p-2 border border-gray-300 text-left">Skills</th>
+                {% for section in updated_data.keys() %}
+                    <th class="p-2 border border-gray-300 text-left capitalize">{{ section.replace('_', ' ') }}</th>
+                {% endfor %}
             </tr>
         </thead>
         <tbody>
             <tr>
                 <!-- Education -->
                 <td class="p-2 border border-gray-300 align-top">
-                    {% if doc_obj.button_education %}
+                    {% set education = updated_data.get('education', []) %}
+                    {% if education %}
                         <ul class="list-disc pl-5">
-                            {% for edu in doc_obj.button_education %}
+                            {% for edu in education %}
                                 <li>
                                     <strong>Degree:</strong>
                                     {% if edu.degree.startswith('*') %}
-                                        <span class="text-blue-600 font-semibold">{{ edu.degree[2:] }}</span>
+                                        <span class="text-blue-600 font-semibold">{{ edu.degree[2:-1] }}</span>
                                     {% else %}
                                         {{ edu.degree }}
                                     {% endif %}
                                     <br>
                                     <strong>Institution:</strong>
                                     {% if edu.institution.startswith('*') %}
-                                        <span class="text-blue-600 font-semibold">{{ edu.institution[2:] }}</span>
+                                        <span class="text-blue-600 font-semibold">{{ edu.institution[2:-1] }}</span>
                                     {% else %}
                                         {{ edu.institution }}
                                     {% endif %}
@@ -38,27 +42,28 @@
 
                 <!-- Experience -->
                 <td class="p-2 border border-gray-300 align-top">
-                    {% if doc_obj.button_experience %}
+                    {% set experience = updated_data.get('experience', []) %}
+                    {% if experience %}
                         <ul class="list-disc pl-5">
-                            {% for exp in doc_obj.button_experience %}
+                            {% for exp in experience %}
                                 <li>
                                     <strong>Role:</strong>
                                     {% if exp.role.startswith('*') %}
-                                        <span class="text-blue-600 font-semibold">{{ exp.role[2:] }}</span>
+                                        <span class="text-blue-600 font-semibold">{{ exp.role[2:-1] }}</span>
                                     {% else %}
                                         {{ exp.role }}
                                     {% endif %}
                                     <br>
                                     <strong>Organization:</strong>
                                     {% if exp.organization.startswith('*') %}
-                                        <span class="text-blue-600 font-semibold">{{ exp.organization[2:] }}</span>
+                                        <span class="text-blue-600 font-semibold">{{ exp.organization[2:-1] }}</span>
                                     {% else %}
                                         {{ exp.organization }}
                                     {% endif %}
                                     <br>
                                     <strong>Duration:</strong>
                                     {% if exp.duration.startswith('*') %}
-                                        <span class="text-blue-600 font-semibold">{{ exp.duration[2:] }}</span>
+                                        <span class="text-blue-600 font-semibold">{{ exp.duration[2:-1] }}</span>
                                     {% else %}
                                         {{ exp.duration }}
                                     {% endif %}
@@ -72,11 +77,12 @@
 
                 <!-- Skills -->
                 <td class="p-2 border border-gray-300 align-top">
-                    {% if doc_obj.button_skills %}
+                    {% set skills = updated_data.get('skills', []) %}
+                    {% if skills %}
                         <ul class="list-disc pl-5">
-                            {% for skill in doc_obj.button_skills %}
+                            {% for skill in skills %}
                                 {% if skill.startswith('*') %}
-                                    <li class="text-blue-600 font-semibold">{{ skill[2:] }}</li>
+                                    <li class="text-blue-600 font-semibold">{{ skill[2:-1] }}</li>
                                 {% else %}
                                     <li>{{ skill }}</li>
                                 {% endif %}
@@ -86,7 +92,21 @@
                         <p>No skills listed.</p>
                     {% endif %}
                 </td>
+
+                <!-- Other Dynamic Fields -->
+                {% for section, values in updated_data.items() if section not in ['education', 'experience', 'skills'] %}
+                    <td class="p-2 border border-gray-300 align-top">
+                        <p class="text-red-600 italic">
+                            Currently, there is no display logic defined. Please update CF_explanation.html to format this data.
+                        </p>
+                        <pre class="text-xs text-gray-700 bg-gray-100 p-2 border border-gray-200 rounded overflow-x-auto">
+                {{ values | tojson(indent=2) }}
+                        </pre>
+                    </td>
+                {% endfor %}
             </tr>
         </tbody>
     </table>
 </div>
+
+{% endblock %}

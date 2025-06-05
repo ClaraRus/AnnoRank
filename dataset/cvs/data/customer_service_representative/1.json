@@ -49,8 +49,8 @@
 		"updated_data": {
 		"education": [
 			{
-			"degree": "* Master's degree",
-			"institution": "* Leiden University"
+			"degree": "* Master's degree *",
+			"institution": "* Leiden University *"
 			}
 		],
 		"experience": [
@@ -85,7 +85,8 @@
 			"Administration skills",
 			"Customer orientation",
 			"Conflict management"
-		]
+		], 
+		"other": ["another field"]
 		}
 	},
 	{
@@ -125,12 +126,13 @@
 			"Administration skills",
 			"Customer orientation",
 			"Conflict management",
-			"* Skill B"
-		]
+			"* Skill B *"
+		], 
+		"other": ["another field"]
 		}
 	}
 	],
-	"image": "images/tree.jpg",
+	"factual_image": "images/tree.jpg",
 	"factuals": [
 		{
 		"education": "0",

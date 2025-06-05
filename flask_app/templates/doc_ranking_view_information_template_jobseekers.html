@@ -5,31 +5,32 @@
         <td colspan="5">
             <div class="mt-4 p-4 bg-gray-100 border border-gray-300 text-sm text-black">
                 <p class="mb-2">
-                    Your application for the position of {{job_title}} was not selected for the interview. To be considered for the interview,...
+                    Your application for the position of <strong>{{job_title.replace('_', ' ')}}</strong> was not selected for the interview. To be considered for the interview,...
                 </p>
             </div>
 
             <!-- Counterfactual Explanations -->
-            {% set cf_data = doc_obj.counterfactuals[0] if doc_obj.counterfactuals and doc_obj.counterfactuals[0] is mapping else {} %}
-
-            {% if cf_data %}
-                {% for category, explanation in cf_data.items() %}
+            {% if doc_obj.counterfactuals %}
+                {% for cf in doc_obj.counterfactuals %}
                     <div class="mt-4 p-4 bg-gray-100 border border-gray-300 text-sm text-black">
                         <div class="flex justify-between items-center">    
                             <p class="mb-2">
-                                <strong>{{ category | capitalize }}:</strong> {{ explanation }}
+                                <strong>Counterfactual {{ loop.index }}:</strong> {{ cf.text }}
                             </p>
                             <button
                                 class="view-button hover:text-blue-600"
-                                onclick="loadAndToggleVisibility('expandable-row-updated-{{doc_obj._id}}-{{ category}}', '{{ doc_obj._id}}', 
-                                '/start_ranking_jobseeker/{{experiment_id}}/index_ranking/{{n_task}}/{{doc_obj._id}}/cf_explanation/{{category}}', 'updated')"
+                                onclick="loadAndToggleVisibility(
+                                    'expandable-row-updated-{{ doc_obj._id }}-{{ loop.index }}', '{{ doc_obj._id }}', 
+                                    '/start_ranking_jobseeker/{{ experiment_id }}/index_ranking/{{ n_task }}/{{ doc_obj._id }}/cf_explanation/{{ loop.index }}', 
+                                    'updated'
+                                )"
                             >
                                 More Details
                             </button>
                         </div>
                     </div>
                 
-                    <div id="expandable-row-updated-{{doc_obj._id}}-{{ category}}" style="display: none;" class="mt-4">
+                    <div id="expandable-row-updated-{{ doc_obj._id }}-{{ loop.index }}" style="display: none;" class="mt-4">
                         <!-- CF_explanation.html -->
                     </div>
                 {% endfor %}

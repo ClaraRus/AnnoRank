@@ -41,8 +41,8 @@
 		"updated_data": {
 		"education": [
 			{
-			"degree": "* Bachelor's degree",
-			"institution": "* University of Amsterdam"
+			"degree": "* Bachelor's degree *",
+			"institution": "* University of Amsterdam *"
 			}
 		],
 		"experience": [
@@ -80,7 +80,7 @@
 		"experience": [
 			{
 			"role": "Customer service representative",
-			"duration": "* 4.2 years",
+			"duration": "* 4.2 years *",
 			"start_date": "Dec 2022",
 			"end_date": "Feb 2024",
 			"organization": "Cupra, Martorell, Spain"
@@ -108,8 +108,6 @@
 		"text": "You should possess skill A",
 		"updated_data": {
 		"education": [
-			{
-			}
 		],
 		"experience": [
 			{
@@ -135,12 +133,12 @@
 			"MS Office",
 			"Multi-channel services",
 			"Customer orientation",
-			"* Skill A"
+			"* Skill A *"
 		]
 		}
 	}
 	], 
-	"image": "images/boom.png",
+	"factual_image": "images/boom.png",
 	"factuals": [
 		{
 			"education": "123",
