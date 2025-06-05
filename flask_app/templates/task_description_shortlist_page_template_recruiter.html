@@ -59,22 +59,13 @@
 
                                         <div id="task" class="mt-2">
                                             <h4 class="text-2xl font-semibold text-gray-700">Task Description</h4>
-                                            <div class="text-gray-500">Select the best {{ shortlist_candidates }} for the job description displayed below.
-                                                {% if ai_priming == "True" %}
-                                                The candidates are the top 10 selected candidates by an AI out of 100 applicants.
-                                                {% endif %}
-                                            All candidates already comply with all legal requirements to take the position (e.g., those who need it, already have a work permit).
-                                            All candidates have at least a lower-secondary education diploma.
-                                                {% if expand == "True" %}
-                                                In order to view more information about a candidate, one can click on the "View" button.
-                                                {% endif %}
-                                                After selecting the {{ shortlist_candidates }} click the "Next" button to navigate to the next assignment.
-</div>
+                                            <div class="text-gray-500">{{ task_description }} </div>
+
                                         </div>
                                 </div>
                             </div>
 </div>
-                            <form method="POST" action="{{ url_for('instructions', experiment_id=experiment_id, n_task=n_task) }}"class="py-3 text-center">
+                            <form method="POST" action="{{ url_for('instructions', experiment_id=experiment_id) }}"class="py-3 text-center">
                                 <!-- your instructions content -->
                                  <div class="py-3 text-center">
                                     <button type="submit" id="done_button">Next</button>

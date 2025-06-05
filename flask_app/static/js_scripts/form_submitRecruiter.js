@@ -17,7 +17,7 @@
       // Use jQuery AJAX to send data to the Flask app
       $.ajax({
         type: "POST",
-        url: "/form_submit1"+ "/" + current_task,
+        url: "/questionnaire_submit"+ "/" + current_task,
         contentType: "application/json;charset=UTF-8",
         data: JSON.stringify({
             form_results: form_value_dict,

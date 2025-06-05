@@ -21,7 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-
+import json
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent / 'src'))
@@ -89,6 +89,7 @@ def add_exp_to_db(data_exp):
     Returns:
         None
     """
+
     for exp_info in data_exp:
         exp_obj = database.Experiment.objects(_exp_id=str(exp_info['exp_id'])).first()
 
@@ -98,7 +99,16 @@ def add_exp_to_db(data_exp):
             if query_obj is not None:
                 data_obj = database.Data.objects(query=str(query_obj._id)).first()
                 if data_obj is not None:
-                    if 'index' in task.keys():
+                    if 'show_xai' in task.keys():
+                        task_obj = database.Task.objects(data=str(data_obj._id), ranking_type=task['ranking_type'],
+                                                              show_xai=str(task['show_xai'])).first()
+                        if not task_obj:
+                            task_obj = database.Task()
+                            task_obj = add_fields_from_data(list(task.keys()), list(task.values()), task_obj)
+                            task_obj.ranking_type = task['ranking_type']
+
+
+                    elif 'index' in task.keys():
                         task_obj = database.TaskScore.objects(data=str(data_obj._id), ranking_type=task['ranking_type'],
                                                               index=str(task['index'])).first()
                         if not task_obj:
@@ -125,17 +135,24 @@ def add_exp_to_db(data_exp):
                     task_obj.data = str(data_obj._id)
                     task_obj.save()
 
-                    # if 'questionaire' in task.keys():
-                    #     questionnaire_obj = database.Questionnaire(
-                    #         task_id=task_obj,
-                    #         questions=task['questionaire']
-                    #     )
-                    #     questionnaire_obj.save()
+                    if not exp_obj or (
+                            not str(task_obj.id) in exp_obj.tasks or not str(task_obj.id) in exp_obj.tasks):
+                        tasks_obj.append(str(task_obj.id))
+            else:
+                if task['ranking_type'] == 'form':
+                    task_obj = database.Task.objects(query_title=task['query_title'],
+                                                     ranking_type=task['ranking_type']).first()
+                    if not task_obj:
+                        task_obj = database.Task()
+                        task_obj = add_fields_from_data(list(task.keys()), list(task.values()), task_obj)
+                        task_obj.ranking_type = task['ranking_type']
+
+                    task_obj.data = str(data_obj._id)
+                    task_obj.save()
 
                     if not exp_obj or (
-                            not str(task_obj.auto_id_0) in exp_obj.tasks or not str(task_obj._id) in exp_obj.tasks):
-                        tasks_obj.append(str(task_obj.auto_id_0))
-
+                            not str(task_obj.id) in exp_obj.tasks or not str(task_obj.id) in exp_obj.tasks):
+                        tasks_obj.append(str(task_obj.id))
         if exp_obj:
             if len(tasks_obj) > 0:
                 exp_obj.tasks.extend(tasks_obj)
@@ -183,8 +200,11 @@ def add_data_to_db(data, fields, ranking_type, query_col, sort_col='score', asce
         sort_col (str): column name to sort the documents in the ranking.
         ascending (bool): True if sorting by sort_col in ascending order, else in descending order.
     """
+    data['docs'] = data['docs'][data['docs'][sort_col] != ""]
+
     data['docs'] = data['docs'].groupby(query_col).apply(
         lambda x: x.sort_values(sort_col, ascending=ascending)).reset_index(drop=True)
+
     for query, group in data['docs'].groupby(query_col):
         doc_list = []
 
@@ -206,11 +226,11 @@ def add_data_to_db(data, fields, ranking_type, query_col, sort_col='score', asce
                             columns_fair = [col for col in data['docs'].columns if '_fair' in col]
                             values_fair = [row[col] for col in columns_fair]
                             add_fields_from_data(columns_fair, values_fair, pre_doc)
-                        else:
-                            columns = ["prediction"]
-                            max_ = max(group[data['docs'].columns[-1]]) + 1
-                            values = [max_ - row[data['docs'].columns[-1]]]
-                            add_fields_from_data(columns, values, pre_doc)
+                        # else:
+                        #     columns = ["prediction"]
+                        #     max_ = max(group[data['docs'].columns[-1]]) + 1
+                        #     values = [max_ - row[data['docs'].columns[-1]]]
+                        #     add_fields_from_data(columns, values, pre_doc)
                         doc_obj[ranking_type].append(pre_doc)
                         doc_obj.save()
 
@@ -268,6 +288,29 @@ def get_docs_df(ranking_type, data_config, features):
     df = pd.DataFrame(data_list)
     return df
 
+def add_data_to_db_from_ranking_file(data_name, data_test, fields, query_col):
+    data_docs = data_test['docs']
+    queries = data_docs[query_col].unique()
+    for query in queries:
+        path_ranking_files = os.path.join("./dataset", data_name, "data", query)
+        ranking_files = [file for file in os.listdir(path_ranking_files) if ".txt" in file]
+        for ranking_file in ranking_files:
+            path_ranking = os.path.join(path_ranking_files, ranking_file)
+            with open(path_ranking, "r") as f:
+                ranking_ids = list(map(int, f.readline().strip().split(',')))
+                for rank, ranking_id in enumerate(ranking_ids):
+                    # find row in data_test and add colum for ranking
+                    path_file = os.path.join(path_ranking_files, f"{ranking_id}.json")
+                    sort_col = ranking_file.strip(".txt")
+                    if sort_col not in data_docs.columns:
+                        data_docs[sort_col] = [""] * len(data_docs)
+                    with open(path_file, 'r') as f:
+                        data = json.load(f)
+                    data_docs.loc[data_docs["_name"] == data["_name"], sort_col] = rank + 1
+            data_test['docs'] = data_docs
+            add_data_to_db(data_test, fields=fields,
+                   query_col=query_col,
+                   sort_col=sort_col, ranking_type=sort_col)
 
 class Pipeline:
     """
@@ -441,6 +484,8 @@ class Pipeline:
                                    query_col=self.config['data_reader_class']['query'],
                                    sort_col=sort_column, ascending=ascending)
 
+
+
     def run(self):
         database.create_collections()
         data_train, data_test = self.read_data()
@@ -450,6 +495,8 @@ class Pipeline:
         fields = [f for f in list(self.config['data_reader_class'].values()) if
                   f != self.config['data_reader_class']['name']]
 
+        add_data_to_db_from_ranking_file(data_name=self.config['data_reader_class']['name'], data_test=data_test,
+                                         fields=fields, query_col=self.config['data_reader_class']['query'])
         add_data_to_db(data_test, fields=fields,
                        query_col=self.config['data_reader_class']['query'],
                        sort_col=self.config['data_reader_class']['score'], ranking_type='original')

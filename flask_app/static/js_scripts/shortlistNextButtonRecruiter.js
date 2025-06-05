@@ -92,7 +92,7 @@ function collectDataShortlist(selection_range) {
       else {
           // Redirect to the default link for other cases
           //window.location.href = "/start_ranking_recruiter/" + expId + "/index_ranking/" + nextTask +"/view";
-          window.location.href = "/form2/" + expId + "/" + nextTask + "/" + currentTask;
+          window.location.href = "/questionnaire/" + expId +  "/" + currentTask;
 
       }
       },
