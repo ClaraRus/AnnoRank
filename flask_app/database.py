@@ -70,7 +70,7 @@ class Task(DynamicDocument):
     meta = {
         'collection': 'tasks'
     }
-    _id = ObjectIdField()
+    #_id = ObjectIdField()
     data = StringField(default="")
     ranking_type = StringField(default="")
     setting = StringField(default="")

@@ -132,7 +132,8 @@
 		}
 	}
 	],
-	"factual_image": "images/tree.jpg",
+	"factual_image": "customer_service_representative/images/tree.jpg",
+	"factual_text": "There is a picture!",
 	"factuals": [
 		{
 		"education": "0",

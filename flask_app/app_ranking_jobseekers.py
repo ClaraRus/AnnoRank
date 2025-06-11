@@ -30,6 +30,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent / 'src'))
 
 import argparse
 import json
+import random
 
 import numpy as np
 import os
@@ -37,7 +38,7 @@ import logging
 import ast
 
 import database
-from flask import Flask, render_template, request, redirect, session, flash, make_response, jsonify, abort, send_from_directory
+from flask import Flask, render_template, request, redirect, session, flash, make_response, jsonify, abort, send_from_directory, url_for
 from flask_login import login_user, LoginManager, logout_user, current_user
 from mongoengine import *
 
@@ -70,6 +71,89 @@ def loader_user(_user_id):
 
 
 # login page
+# @app.route("/")
+# @app.route("/start_ranking_jobseeker/<int:experiment_id>", methods=['GET', 'POST'])
+# def start_ranking(experiment_id):
+#     """Renders the Log-in page for the Interaction Annotate UI.
+
+#     Args:
+#         experiment_id (int): The ID of the experiment.
+
+#     Returns:
+#         flask.Response or flask.render_template: The response object or the rendered template for the start ranking page.
+
+#     Notes:
+#         This function is responsible for handling the initial steps when a user logs in to the Interaction Annotate UI.
+#         If the user is authenticated, it sets the session variables and redirects to the next task URL.
+#         If the request method is POST, it records the user in the database and creates a new user if necessary.
+#         Finally, it renders the 'start_ranking.html' template.
+
+#     """
+
+#     session['exp_id'] = experiment_id
+
+#     if current_user.is_authenticated:
+#         session['user_id'] = current_user._user_id
+
+#         try:
+#             next_task = get_next_task(experiment_id).get_json()
+#         except:
+#             response = make_response(redirect("/404/Failed get next task!", code=200))
+#             response.headers['HX-Redirect'] = "/404/Failed get next task!"
+#             return response
+
+#         if next_task['next_task'] == 'form':
+#             url = '/form/'
+#         elif next_task['next_task'] == 'stop_experiment':
+#             url = '/stop_experiment/'
+#         else:
+#             url = str(experiment_id) + '/index_ranking/' + str(next_task['next_task']) + "/view"
+
+#         response = make_response(redirect(url, code=200))
+#         response.headers['HX-Redirect'] = url
+#         return response
+
+#     if request.method == 'POST':
+
+#         # record user in the db
+#         user_id = request.form['user_id']
+#         # create new user in the db
+#         new_user = database.User(_user_id=user_id)
+
+#         existing_document = database.User.objects(_user_id=new_user._user_id).first()
+#         if not existing_document:
+#             new_user.save()
+
+#         # create user session and redirect
+#         user = database.User.objects(_user_id=user_id).first()
+#         if user and user._user_id == user_id:
+
+#             login_user(current_user)
+#             session['user_id'] = user_id
+
+#             try:
+#                 next_task = get_next_task(experiment_id).get_json()
+#             except:
+#                 response = make_response(redirect("/404/Failed get next task!", code=200))
+#                 response.headers['HX-Redirect'] = "/404/Failed get next task!"
+#                 return response
+
+#             if next_task['next_task'] == 'form':
+#                 url = '/form/'
+#             elif next_task['next_task'] == 'stop_experiment':
+#                 url = '/stop_experiment/'
+#             else:
+#                 url = str(experiment_id) + '/index_ranking/' + str(next_task['next_task']) + "/view"
+
+#             response = make_response(redirect(url, code=200))
+#             response.headers['HX-Redirect'] = url
+#             return response
+#         else:
+#             flash('Invalid user_id', 'danger')
+
+#     return render_template('start_ranking_jobseekers.html')
+
+# login page
 @app.route("/")
 @app.route("/start_ranking_jobseeker/<int:experiment_id>", methods=['GET', 'POST'])
 def start_ranking(experiment_id):
@@ -88,28 +172,17 @@ def start_ranking(experiment_id):
         Finally, it renders the 'start_ranking.html' template.
 
     """
-
+    configs["ui_display_config"]["view_button"] = False
+    
     session['exp_id'] = experiment_id
 
     if current_user.is_authenticated:
         session['user_id'] = current_user._user_id
 
-        try:
-            next_task = get_next_task(experiment_id).get_json()
-        except:
-            response = make_response(redirect("/404/Failed get next task!", code=200))
-            response.headers['HX-Redirect'] = "/404/Failed get next task!"
-            return response
-
-        if next_task['next_task'] == 'form':
-            url = '/form/'
-        elif next_task['next_task'] == 'stop_experiment':
-            url = '/stop_experiment/'
-        else:
-            url = str(experiment_id) + '/index_ranking/' + str(next_task['next_task']) + "/view"
-
-        response = make_response(redirect(url, code=200))
-        response.headers['HX-Redirect'] = url
+        # Redirect to consent form instead
+        consent_url = url_for('consent_form', experiment_id=experiment_id)
+        response = make_response(redirect(consent_url, code=200))
+        response.headers['HX-Redirect'] = consent_url
         return response
 
     if request.method == 'POST':
@@ -130,28 +203,42 @@ def start_ranking(experiment_id):
             login_user(current_user)
             session['user_id'] = user_id
 
-            try:
-                next_task = get_next_task(experiment_id).get_json()
-            except:
-                response = make_response(redirect("/404/Failed get next task!", code=200))
-                response.headers['HX-Redirect'] = "/404/Failed get next task!"
-                return response
-
-            if next_task['next_task'] == 'form':
-                url = '/form/'
-            elif next_task['next_task'] == 'stop_experiment':
-                url = '/stop_experiment/'
-            else:
-                url = str(experiment_id) + '/index_ranking/' + str(next_task['next_task']) + "/view"
-
-            response = make_response(redirect(url, code=200))
-            response.headers['HX-Redirect'] = url
+            # Redirect to consent form instead
+            consent_url = url_for('consent_form', experiment_id=experiment_id)
+            response = make_response(redirect(consent_url, code=200))
+            response.headers['HX-Redirect'] = consent_url
             return response
+
         else:
             flash('Invalid user_id', 'danger')
 
     return render_template('start_ranking_jobseekers.html')
 
+@app.route("/consent/<int:experiment_id>", methods=['GET', 'POST'])
+def consent_form(experiment_id):
+    if request.method == 'POST':
+        # Redirect to instructions page, NOT directly to tasks
+        instructions_url = url_for('instructions', experiment_id=experiment_id)
+        return redirect(instructions_url)
+
+    return render_template('consent_form_template_recruiter.html', experiment_id=experiment_id)
+
+@app.route("/instructions/<int:experiment_id>", methods=['GET', 'POST'])
+def instructions(experiment_id):
+    if request.method == 'POST':
+        # After instructions are acknowledged, redirect to next task
+        # try:
+        next_task = get_next_task(experiment_id).get_json()['next_task']
+        # except:
+        #    response = make_response(redirect("/404/Failed get next task!", code=200))
+        #    response.headers['HX-Redirect'] = "/404/Failed get next task!"
+        #    return response
+
+        questionnaire_url = url_for('questionnaire', experiment_id=experiment_id, n_task=next_task)
+        return redirect(questionnaire_url)
+
+    task_description = get_task_description(None, experiment_id)
+    return render_template('task_description_shortlist_page_template_recruiter.html', experiment_id=experiment_id,  task_description=task_description)
 
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
@@ -166,6 +253,41 @@ def logout():
     response.headers['HX-Redirect'] = '/login'
     return response
 
+
+# @app.route('/api/<experiment_id>/get_next_task/', methods=['GET'])
+# def get_next_task(experiment_id):
+#     """Get the next task to be assessed by the annotator based on the experiment list.
+
+#     Args:
+#         experiment_id (str): The ID of the experiment.
+
+#     Returns:
+#         dict: A JSON response containing the next task to be assessed.
+#             The response has the following format:
+#             {
+#                 'next_task': str
+#             }
+#             If there are no more tasks to be assessed, the 'next_task' value will be 'form' or 'stop_experiment'.
+#     """
+
+#     experiment = database.Experiment.objects(_exp_id=str(experiment_id)).first()
+
+#     user = database.User.objects(_user_id=session['user_id']).first()
+
+#     experiment_tasks = list(range(0, len(experiment.tasks)))
+#     user_tasks_visited = [int(item.task) for item in user.tasks_visited]
+
+#     not_visited = [task for task in experiment_tasks if task not in user_tasks_visited]
+
+#     if len(not_visited) > 0:
+#         next_task = np.random.choice(not_visited)
+#     else:
+#         if configs["ui_display_config"]["exit_survey"] is not None:
+#             next_task = 'form'
+#         else:
+#             next_task = 'stop_experiment'
+
+#     return jsonify({'next_task': str(next_task)})
 
 @app.route('/api/<experiment_id>/get_next_task/', methods=['GET'])
 def get_next_task(experiment_id):
@@ -190,17 +312,107 @@ def get_next_task(experiment_id):
     experiment_tasks = list(range(0, len(experiment.tasks)))
     user_tasks_visited = [int(item.task) for item in user.tasks_visited]
 
-    not_visited = [task for task in experiment_tasks if task not in user_tasks_visited]
+    tasks_not_visited = [
+        idx for idx in experiment_tasks if idx not in user_tasks_visited
+    ]
 
-    if len(not_visited) > 0:
-        next_task = np.random.choice(not_visited)
+    if len(tasks_not_visited) > 0:
+        # Get all tasks not visited and their properties
+        tasks = [
+            database.Task.objects(id=experiment.tasks[idx]).first()
+            for idx in tasks_not_visited
+        ]
+
+        all_xai_experiments = database.Task.objects(show_xai__exists=True, show_xai='True')
+
+        all_not_xai_experiments = database.Task.objects(show_xai__exists=True, show_xai='False')
+
+        all_forms = database.Task.objects(
+            show_xai__exists=False,
+            ranking_type='form'
+        )
+        # query tasks not visited
+        query_tasks = [task for task in tasks if task.ranking_type != "form"]
+        not_visited_no_xai = [experiment.tasks.index(str(task.id)) for task in query_tasks if task.show_xai == 'False']
+
+        not_visited_xai = [experiment.tasks.index(str(task.id)) for task in query_tasks if task.show_xai == 'True']
+
+        form_pre_q_1 = [experiment.tasks.index(str(task.id)) for task in all_forms if task.query_title == "pre_task_1_questionnaire"][0]
+        if len(not_visited_no_xai) == len(all_not_xai_experiments) and len(not_visited_xai) == len(all_xai_experiments) and form_pre_q_1 not in user_tasks_visited:
+            task_form = [experiment.tasks.index(str(task.id)) for task in all_forms if task.query_title == "pre_task_1_questionnaire"][0]
+            return jsonify({'next_task': str(task_form)})
+
+        # If we still have show_xai=False tasks to do
+        if len(not_visited_no_xai) > 0:
+            next_task = np.random.choice(not_visited_no_xai)
+            return jsonify({'next_task': str(next_task)})
+
+        # Check if all show_xai=False tasks are completed
+        form_end_q_1 = [experiment.tasks.index(str(task.id)) for task in all_forms if task.query_title == "end_task_1_questionnaire"][0]
+        if len(not_visited_no_xai) == 0 and len(not_visited_xai) == len(all_xai_experiments) and form_end_q_1 not in user_tasks_visited:
+            task_form = [experiment.tasks.index(str(task.id)) for task in all_forms if task.query_title == "end_task_1_questionnaire"][0]
+            return jsonify({'next_task': str(task_form)})
+
+        form_pre_q_2 = [experiment.tasks.index(str(task.id)) for task in all_forms if task.query_title == "pre_task_2_questionnaire"][0]
+        if len(not_visited_no_xai) == 0 and len(not_visited_xai) == len(all_xai_experiments) and form_pre_q_2 not in user_tasks_visited:
+            task_form = [experiment.tasks.index(str(task.id)) for task in all_forms if task.query_title == "pre_task_2_questionnaire"][0]
+            return jsonify({'next_task': str(task_form)})
+
+        configs["ui_display_config"]["view_button"] = True
+        if len(not_visited_xai) > 0:
+            # TO DO: make the order the same as not XAI
+            next_task = np.random.choice(not_visited_xai)
+            return jsonify({'next_task': str(next_task)})
+
+        form_end_q_2 = [experiment.tasks.index(str(task.id)) for task in all_forms if task.query_title == "end_task_2_questionnaire"][0]
+        if len(not_visited_no_xai) == 0 and len(not_visited_xai) == 0 and form_end_q_2 not in user_tasks_visited:
+            pre_task_form = [experiment.tasks.index(str(task.id)) for task in all_forms if task.query_title == "end_task_2_questionnaire"][0]
+            return jsonify({'next_task': str(pre_task_form)})
     else:
+        # If we've completed everything
         if configs["ui_display_config"]["exit_survey"] is not None:
             next_task = 'form'
         else:
             next_task = 'stop_experiment'
 
-    return jsonify({'next_task': str(next_task)})
+        return jsonify({'next_task': str(next_task)})
+
+def get_task_description(task_obj, experiment_id):
+    experiment = database.Experiment.objects(_exp_id=str(experiment_id)).first()
+
+    user = database.User.objects(_user_id=session['user_id']).first()
+
+    experiment_tasks = list(range(0, len(experiment.tasks)))
+    user_tasks_visited = [int(item.task) for item in user.tasks_visited]
+
+    tasks_not_visited = [
+        idx for idx in experiment_tasks if idx not in user_tasks_visited
+    ]
+
+    # Get all tasks not visited and their properties
+    tasks = [
+        database.Task.objects(id=experiment.tasks[idx]).first()
+        for idx in tasks_not_visited
+    ]
+    # query tasks not visited
+    query_tasks = [task for task in tasks if task.ranking_type != "form"]
+    not_visited_no_xai = [experiment.tasks.index(str(task.id)) for task in query_tasks if task.show_xai == 'False']
+
+    if len(not_visited_no_xai) == 0:
+        base_description = configs["ui_display_config"]["task_description_2"]
+    else:
+        base_description = configs["ui_display_config"]["task_description_1"]
+
+    if task_obj is not None:
+        if task_obj.setting:
+            return (
+                    "Please pay attention to the extra information provided as it might differ between the tasks. "
+                    + base_description
+                    + " EXTRA INFORMATION TO CONSIDER: "
+                    + task_obj.setting
+            )
+
+    return base_description
 
 
 @app.route("/start_ranking_jobseeker/<experiment_id>/index_ranking/<n_task>/<doc_id>", methods=['GET', 'POST'])
@@ -218,18 +430,18 @@ def index_ranking(experiment_id, n_task, doc_id):
     Returns:
         str: The rendered HTML template for the index ranking page.
     """
-    try:
-        exp_obj = database.Experiment.objects(_exp_id=str(experiment_id)).first()
-        task_id = exp_obj.tasks[int(n_task)]
+    # try:
+    exp_obj = database.Experiment.objects(_exp_id=str(experiment_id)).first()
+    task_id = exp_obj.tasks[int(n_task)]
 
-        task_obj = database.Task.objects(_id=task_id).first()
-        data_obj = database.Data.objects(_id=task_obj.data).first()
-        query_obj = database.QueryRepr.objects(_id=data_obj.query).first()
-        logger.info(f"Task data: {task_obj.data}")
-    except:
-        response = make_response(redirect(f"/404/Experiment type is not for app_ranking!", code=200))
-        response.headers['HX-Redirect'] = f"/404/Experiment type is not for app_ranking!"
-        return response
+    task_obj = database.Task.objects(id=task_id).first()
+    data_obj = database.Data.objects(_id=task_obj.data).first()
+    query_obj = database.QueryRepr.objects(_id=data_obj.query).first()
+    logger.info(f"Task data: {task_obj.data}")
+    # except:
+    # response = make_response(redirect(f"/404/Experiment type is not for app_ranking!", code=200))
+    # response.headers['HX-Redirect'] = f"/404/Experiment type is not for app_ranking!"
+    # return response
 
     try:
         docs = [ranking for ranking in data_obj.rankings if ranking.ranking_type == task_obj.ranking_type][0].docs
@@ -237,21 +449,31 @@ def index_ranking(experiment_id, n_task, doc_id):
         response = make_response(redirect(f"/404/No document with the ranking type!", code=200))
         response.headers['HX-Redirect'] = f"/404/No document with the ranking type!"
         return response
-
+    ####################################Select One Candidate######################################
+    # random.seed(42) 
     docs_obj = [database.DocRepr.objects(_id=doc_id).first() for doc_id in docs]
+    doc_obj = [random.choice(docs_obj)] 
+    ##############################################################################################
+    
     doc_field_names_display = configs["ui_display_config"]["display_fields"]
+
+    # add display of score column
+    if task_obj.score_column not in doc_field_names_display:
+        doc_field_names_display[-1] = task_obj.score_column
 
     if configs["ui_display_config"]["view_button"]:
         doc_field_names_view = configs["ui_display_config"]["view_fields"]
     else:
         doc_field_names_view = []
 
-    if task_obj.setting:
-        task_description = "Please pay attention to the extra information provided as it might differ between the tasks. "
-        task_description = task_description + configs["ui_display_config"][
-            "task_description"] + " EXTRA INFORMATION TO CONSIDER: " + task_obj.setting
-    else:
-        task_description = configs["ui_display_config"]["task_description"]
+    # if task_obj.setting:
+    #     task_description = "Please pay attention to the extra information provided as it might differ between the tasks. "
+    #     task_description = task_description + configs["ui_display_config"][
+    #         "task_description"] + " EXTRA INFORMATION TO CONSIDER: " + task_obj.setting
+    # else:
+    #     task_description = configs["ui_display_config"]["task_description"]
+    
+    task_description = get_task_description(task_obj, experiment_id)
         
     query_title = query_obj.title
     query_text = query_obj.text
@@ -279,7 +501,7 @@ def index_ranking(experiment_id, n_task, doc_id):
     view_configs = configs["ui_display_config"]
     return render_template('index_ranking_template_jobseekers.html', doc_field_names=doc_field_names_display,
                            view_configs=view_configs, experiment_id=experiment_id, n_task=n_task,
-                           doc_data_objects=docs_obj, ranking_type=task_obj.ranking_type, query_title=query_title,
+                           doc_data_objects=doc_obj, ranking_type=task_obj.ranking_type, query_title=query_title,
                            query_text=query_text,
                            current_url=current_url, task_description=task_description, session_id=session['user_id'])
     
@@ -289,13 +511,14 @@ def f_explanation(experiment_id, n_task, doc_id):
    
     exp_obj = database.Experiment.objects(_exp_id=str(experiment_id)).first()
     task_id = exp_obj.tasks[int(n_task)]
-    task_obj = database.Task.objects(_id=task_id).first()
-    if task_obj.setting:
-        task_description = "Please pay attention to the extra information provided as it might differ between the tasks. "
-        task_description = task_description + configs["ui_display_config"][
-            "task_description"] + " EXTRA INFORMATION TO CONSIDER: " + task_obj.setting
-    else:
-        task_description = configs["ui_display_config"]["task_description"]
+    task_obj = database.Task.objects(id=task_id).first()
+    # if task_obj.setting:
+    #     task_description = "Please pay attention to the extra information provided as it might differ between the tasks. "
+    #     task_description = task_description + configs["ui_display_config"][
+    #         "task_description"] + " EXTRA INFORMATION TO CONSIDER: " + task_obj.setting
+    # else:
+    #     task_description = configs["ui_display_config"]["task_description"]
+    task_description = get_task_description(task_obj, experiment_id)
              
     factual_raw = getattr(doc_obj, "factuals", None)
     factual_list = []
@@ -326,9 +549,9 @@ def f_explanation(experiment_id, n_task, doc_id):
     doc_field_names_display = configs["ui_display_config"]["display_fields"]
     normalized_field_names = [name.replace('_display', '') for name in doc_field_names_display]
 
-    return render_template('doc_ranking_view_information_template_recruiter.html', doc_obj=doc_obj, experiment_id=experiment_id, n_task=n_task,
-                               field_names=field_names, doc_index=doc_id, task_description=task_description, all_columns=normalized_field_names)
+    return render_template('doc_ranking_view_information_template_recruiter.html', doc_obj=doc_obj, experiment_id=experiment_id, n_task=n_task, field_names=field_names, doc_index=doc_id, task_description=task_description, all_columns=normalized_field_names)
     
+   
 @app.route('/start_ranking_jobseeker/<experiment_id>/index_ranking/<n_task>/<doc_id>/f_explanation/plot', methods=['GET'])
 def get_doc_detail(experiment_id, n_task, doc_id):
     doc_obj = database.DocRepr.objects(_id=doc_id).first()
@@ -341,16 +564,30 @@ def get_doc_detail(experiment_id, n_task, doc_id):
         doc_obj=doc_obj,
         field_names=field_names)
     
-@app.route('/customer_service_images/<path:filename>')
-def customer_service_images(filename):
-    image_dir = os.path.abspath(
-        os.path.join(app.root_path, '..', 'dataset', 'cvs', 'data', 'customer_service_representative')
-    )
+# @app.route('/customer_service_images/<path:filename>')
+# def customer_service_images(filename):
+#     image_dir = os.path.abspath(
+#         os.path.join(app.root_path, '..', 'dataset', 'cvs', 'data', 'customer_service_representative')
+#     )
 
+#     # Optional: restrict file types
+#     if not filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
+#         abort(403)
+
+#     return send_from_directory(image_dir, filename)
+
+@app.route('/images/<path:filename>')
+def images(filename):
     # Optional: restrict file types
     if not filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
         abort(403)
 
+    data_name = configs["data_reader_class"]["name"]
+
+    image_dir = os.path.abspath(
+        os.path.join(app.root_path, '..', 'dataset', data_name, 'data')
+    )
+    
     return send_from_directory(image_dir, filename)
     
 @app.route('/start_ranking_jobseeker/<experiment_id>/index_ranking/<n_task>/<doc_id>/cf_explanation', methods=['GET'])
@@ -367,20 +604,20 @@ def cf_explanation(experiment_id, n_task, doc_id):
         
     exp_obj = database.Experiment.objects(_exp_id=str(experiment_id)).first()
     task_id = exp_obj.tasks[int(n_task)]
-    task_obj = database.Task.objects(_id=task_id).first()
-    if task_obj.setting:
-        task_description = "Please pay attention to the extra information provided as it might differ between the tasks. "
-        task_description = task_description + configs["ui_display_config"][
-            "task_description"] + " EXTRA INFORMATION TO CONSIDER: " + task_obj.setting
-    else:
-        task_description = configs["ui_display_config"]["task_description"]
+    task_obj = database.Task.objects(id=task_id).first()
+    # if task_obj.setting:
+    #     task_description = "Please pay attention to the extra information provided as it might differ between the tasks. "
+    #     task_description = task_description + configs["ui_display_config"][
+    #         "task_description"] + " EXTRA INFORMATION TO CONSIDER: " + task_obj.setting
+    # else:
+    #     task_description = configs["ui_display_config"]["task_description"]
+    task_description = get_task_description(task_obj, experiment_id)
         
     data_obj = database.Data.objects(_id=task_obj.data).first()
     query_obj = database.QueryRepr.objects(_id=data_obj.query).first()
     query_title = query_obj.title
 
-    return render_template('doc_ranking_view_information_template_jobseekers.html', doc_obj=doc_obj, experiment_id=experiment_id, n_task=n_task,
-                            field_names=doc_field_names_view, doc_index=doc_id, task_description=task_description, job_title=query_title)
+    return render_template('doc_ranking_view_information_template_jobseekers.html', doc_obj=doc_obj, experiment_id=experiment_id, n_task=n_task, field_names=doc_field_names_view, doc_index=doc_id, task_description=task_description, job_title=query_title)
     
 @app.route("/start_ranking_jobseeker/<experiment_id>/index_ranking/<n_task>/<doc_id>/cf_explanation/<cf_idx>", methods=['GET'])
 def cf_updated_data(experiment_id, n_task, doc_id, cf_idx):
@@ -447,6 +684,74 @@ def form_demographic_data():
     """
     return render_template('form_template.html', items=configs['ui_display_config']['exit_survey'])
 
+@app.route("/questionnaire/<int:experiment_id>/<n_task>", methods=['GET', 'POST'])
+# @login_required
+def questionnaire(experiment_id, n_task):
+    """
+    Renders the form template with questionnaire from the first_gen_quest task.
+
+    Returns:
+        The rendered template with the questionnaire from first_gen_quest task.
+    """
+    # user visited the questionnaire
+    user = database.User.objects(_user_id=session['user_id']).first()
+    if n_task not in [item.task for item in user.tasks_visited]:
+        task_visited = database.TaskVisited(task=str(n_task), exp=str(experiment_id))
+        user.tasks_visited.append(task_visited)
+        user.save()
+
+    response = get_next_task(experiment_id)
+    next_task_data = response.get_json()
+    next_task = next_task_data['next_task']
+
+    exp_obj = database.Experiment.objects(_exp_id=str(experiment_id)).first()
+
+    current_task_id = [task for task_idx, task in enumerate(exp_obj.tasks) if task_idx == int(n_task)][0]
+    current_task_obj = database.Task.objects(id=current_task_id).first()
+
+    question_list = current_task_obj.questionnaire  # Get questionnaire from the task
+
+    if next_task == 'form':
+        next_url = '/form/'
+    elif next_task == 'stop_experiment':
+        next_url = '/stop_experiment/'
+    else:
+        next_task_id = [task for task_idx, task in enumerate(exp_obj.tasks) if task_idx == int(next_task)][0]
+        next_task_obj = database.Task.objects(id=next_task_id).first()
+
+        if current_task_obj.query_title == "pre_task_2_questionnaire" or current_task_obj.query_title == "pre_task_1_questionnaire":
+            next_url = url_for('index_ranking', experiment_id=experiment_id, n_task=next_task, doc_id="view")
+        elif current_task_obj.query_title == "end_task_1_questionnaire":
+            next_url = url_for('instructions', experiment_id=experiment_id)
+        elif current_task_obj.query_title == "end_task_2_questionnaire":
+            next_url = url_for('form_demographic_data', experiment_id=experiment_id)
+        elif "questionnaire" in next_task_obj.query_title:
+            next_url = url_for('questionnaire', experiment_id=experiment_id, n_task=next_task)
+        else:
+            next_url = url_for('index_ranking', experiment_id=experiment_id, n_task=next_task, doc_id="view")
+
+    return render_template('form_template_recruiter.html', items=question_list, next_url=next_url, current_task=n_task)
+
+@app.route("/questionnaire_submit/<current_task>", methods=['GET', 'POST'])
+def form_submit1(current_task):
+    data = request.get_json()
+    form_results = data.get('form_results', {})
+
+    user = database.User.objects(_user_id=session['user_id']).first()
+
+    structured_entry = {
+        "task_number": current_task,
+        "form_results": form_results
+    }
+
+    # Ensure the list exists
+    if not hasattr(user, 'form_submissions') or user.form_submissions is None:
+        user.form_submissions = []
+
+    user.form_submissions.append(structured_entry)
+    user.save()
+
+    return "ok"
 
 @app.route("/form_submit/", methods=['GET', 'POST'])
 # @login_required

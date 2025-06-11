@@ -90,49 +90,50 @@ function collectDataShortlist(selection_range) {
         interactions[doc_id] = interactions_c
       }
 
-     if (selecteddocIds.length >= selection_range[0] && selecteddocIds.length <= selection_range[1]) {
+    //  if (selecteddocIds.length >= selection_range[0] && selecteddocIds.length <= selection_range[1]) {
 //       //Use jQuery AJAX to send data to the Flask app
 
       $.ajax({
-        type: "POST",
-        url: "/store_data_ranking",
-        contentType: "application/json;charset=UTF-8",
-        data: JSON.stringify({ selectedItems: selecteddocIds ,
-        viewCounts: docViews,
-        viewTimes: docTimes,
-        orderCheckBox: docCheckBox,
-        interactions: interactions,
-        queryId: queryId,
-        expId: expId,
-        nTask: currentTask
-        }),
-        success: function(response) {
-            console.log("Response from server:", response);
-            console.log("Next task:", nextTask);
+      type: "POST",
+      url: "/store_data_ranking",
+      contentType: "application/json;charset=UTF-8",
+      data: JSON.stringify({ selectedItems: selecteddocIds ,
+      viewCounts: docViews,
+      viewTimes: docTimes,
+      orderCheckBox: docCheckBox,
+      interactions: interactions,
+      queryId: queryId,
+      expId: expId,
+      nTask: currentTask
+      }),
+      success: function(response) {
 
-            // Get the current URL
-            if (nextTask == 'stop_experiment') {
-                window.location.href = "/stop_experiment";
-            } if (nextTask == 'form') {
-                window.location.href = "/form";
-            } else {
-                // Redirect to the default link for other cases
-                window.location.href = "/start_ranking_jobseeker/" + expId + "/index_ranking/" + nextTask +"/view";
-            }
-        },
-        error: function(error) {
-            console.log("Error:", error);
-        }
-          });
-      } else {
-        // Display a message to the user if less than three docs are selected
-        alert("Please select at least " +selection_range[0] + " docs.");
+      // Get the current URL
+      if (nextTask == 'stop_experiment') {
+          window.location.href = "/stop_experiment";
+      } //if (nextTask == 'form') {
+        //  window.location.href ="/form"
+        //  }
+      else {
+          // Redirect to the default link for other cases
+          //window.location.href = "/start_ranking_recruiter/" + expId + "/index_ranking/" + nextTask +"/view";
+          window.location.href = "/questionnaire/" + expId +  "/" + currentTask;
+
       }
-       })
-        .catch(error => console.error('Error:', error));
-        } catch (error) {
-        console.error('Error fetching next task:', error);
-        alert('Failed to fetch next task.');
-        // Optionally, update the UI to show an error message
+      },
+      error: function(error) {
+          console.log("Error:", error);
       }
+        });
+    // } else {
+    //   // Display a message to the user if less than three docs are selected
+    //   alert("Please select at least " +selection_range[0] + " docs.");
+    // }
+     })
+      .catch(error => console.error('Error:', error));
+      } catch (error) {
+      console.error('Error fetching next task:', error);
+      alert('Failed to fetch next task.');
+      // Optionally, update the UI to show an error message
     }
+  }

@@ -138,7 +138,8 @@
 		}
 	}
 	], 
-	"factual_image": "images/boom.png",
+	"factual_image": "customer_service_representative/images/boom.png",
+	"factual_text": "There is a picture!",
 	"factuals": [
 		{
 			"education": "123",

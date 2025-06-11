@@ -5,13 +5,151 @@
   "tasks": [
     {
       "query_title": "project_manager",
-      "ranking_type": "original"
+      "ranking_type": "rank1",
+      "show_xai": "False",
+      "score_column": "fitnessedu_protected",
+      "questionnaire": [
+      {
+        "question":"Was the ranking for Project Manager useful?",
+        "field": "choice",
+        "options": ["1", "2", "3", "4", "5"],
+        "mandatory": true
+      },
+      {
+        "question": "Feedback on the task:",
+        "options": "text",
+        "field": "feedback",
+        "mandatory": false
+      }]
     },
     {
       "query_title": "customer_service_representative",
-      "ranking_type": "original"
+      "ranking_type": "rank3",
+      "show_xai": "False",
+      "score_column": "fitnessedu_protected",
+      "questionnaire": [
+      {
+        "question":"Was the ranking for Customer Service Representative useful?",
+        "field": "choice",
+        "options": ["1", "2", "3", "4", "5"],
+        "mandatory": true
+      },
+      {
+        "question": "Feedback on the task:",
+        "options": "text",
+        "field": "feedback",
+        "mandatory": false
+      }]
+    },
+    {
+      "query_title": "project_manager",
+      "ranking_type": "rank2",
+      "show_xai": "True",
+      "score_column": "targetfitness_protected",
+      "questionnaire": [
+      {
+        "question":"Was the XAI for the candidates of the Project Manager role useful?:",
+        "field": "choice",
+        "options": ["1", "2", "3", "4", "5"],
+        "mandatory": true
+      },
+      {
+        "question": "Feedback on the task:",
+        "options": "text",
+        "field": "feedback",
+        "mandatory": false
+      }]
+    },
+    {
+      "query_title": "customer_service_representative",
+      "ranking_type": "rank4",
+      "show_xai": "True",
+      "score_column": "targetfitness_protected",
+      "questionnaire": [
+     {
+        "question":"Was the XAI for the candidates of the Customer Service Representative role useful?:",
+        "field": "choice",
+        "options": ["1", "2", "3", "4", "5"],
+        "mandatory": true
+      },
+      {
+        "question": "Feedback on the task:",
+        "options": "text",
+        "field": "feedback",
+        "mandatory": false
+      }]
+    },
+    {
+      "query_title": "pre_task_1_questionnaire",
+      "ranking_type": "form",
+      "questionnaire": [
+        {
+        "question": "What is your experience with AI systems for recruitment?",
+        "options": "text",
+        "field": "experience_AI",
+        "mandatory": false
+      },
+      {
+        "question":"What is your age?",
+        "field": "age",
+        "options": ["18-30", "30-50", "50+"],
+        "mandatory": true
+      },
+        {
+        "question":"What is your gender?",
+        "field": "gender",
+        "options": ["female", "male", "other"],
+        "mandatory": true
+      },
+      {
+        "question": "Feedback on the task:",
+        "options": "text",
+        "field": "feedback",
+        "mandatory": false
+      }]
+    },
+    {
+      "query_title": "pre_task_2_questionnaire",
+      "ranking_type": "form",
+      "questionnaire": [
+        {
+        "question": "What is your experience with XAI systems for recruitment?",
+        "options": "text",
+        "field": "experience_XAI",
+        "mandatory": false
+      },
+      {
+        "question": "Feedback on the task:",
+        "options": "text",
+        "field": "feedback",
+        "mandatory": false
+      }]
+    },
+    {
+      "query_title": "end_task_1_questionnaire",
+      "ranking_type": "form",
+      "questionnaire": [
+      {
+        "question": "Feedback on the task 1:",
+        "options": "text",
+        "field": "feedback",
+        "mandatory": false
+      }]
+    },
+
+    {
+      "query_title": "end_task_2_questionnaire",
+      "ranking_type": "form",
+      "questionnaire": [
+      {
+        "question": "Feedback on the task 2:",
+        "options": "text",
+        "field": "feedback",
+        "mandatory": false
+      }]
     }
   ]
+  
 
 
 }

@@ -1,46 +1,48 @@
 {% block body %}
 
-<div id="doc_obj">
-    <div id="expandable-row-{{doc_index}}">
-        <td colspan="5">
-            <div class="mt-4 p-4 bg-gray-100 border border-gray-300 text-sm text-black">
-                <p class="mb-2">
-                    Your application for the position of <strong>{{job_title.replace('_', ' ')}}</strong> was not selected for the interview. To be considered for the interview,...
-                </p>
-            </div>
-
-            <!-- Counterfactual Explanations -->
-            {% if doc_obj.counterfactuals %}
-                {% for cf in doc_obj.counterfactuals %}
+<div id="doc_obj" class="w-full max-w-none">
+    <div id="expandable-row-{{doc_index}}" class="w-full">
+        <div class="w-full p-4 border border-gray-200 rounded-lg shadow-md">
+            <p class="text-gray-600 leading-relaxed">
                     <div class="mt-4 p-4 bg-gray-100 border border-gray-300 text-sm text-black">
-                        <div class="flex justify-between items-center">    
-                            <p class="mb-2">
-                                <strong>Counterfactual {{ loop.index }}:</strong> {{ cf.text }}
-                            </p>
-                            <button
-                                class="view-button hover:text-blue-600"
-                                onclick="loadAndToggleVisibility(
-                                    'expandable-row-updated-{{ doc_obj._id }}-{{ loop.index }}', '{{ doc_obj._id }}', 
-                                    '/start_ranking_jobseeker/{{ experiment_id }}/index_ranking/{{ n_task }}/{{ doc_obj._id }}/cf_explanation/{{ loop.index }}', 
-                                    'updated'
-                                )"
-                            >
-                                More Details
-                            </button>
-                        </div>
+                        <p class="mb-2">
+                            Your application for the position of <strong>{{job_title.replace('_', ' ')}}</strong> was not selected for the interview. To be considered for the interview,...
+                        </p>
                     </div>
-                
-                    <div id="expandable-row-updated-{{ doc_obj._id }}-{{ loop.index }}" style="display: none;" class="mt-4">
-                        <!-- CF_explanation.html -->
-                    </div>
-                {% endfor %}
-            {% else %}
-                <div class="mt-4 p-4 bg-gray-100 border border-gray-300 text-sm text-black">
-                    <p>No counterfactual feedback available.</p>
-                </div>
-            {% endif %}
 
-        </td>
+                    <!-- Counterfactual Explanations -->
+                    {% if doc_obj.counterfactuals %}
+                        {% for cf in doc_obj.counterfactuals %}
+                            <div class="mt-4 p-4 bg-gray-100 border border-gray-300 text-sm text-black">
+                                <div class="flex justify-between items-center">    
+                                    <p class="mb-2">
+                                        <strong>Counterfactual {{ loop.index }}:</strong> {{ cf.text }}
+                                    </p>
+                                    <button
+                                        class="view-button hover:text-blue-600"
+                                        onclick="loadAndToggleVisibility(
+                                            'expandable-row-updated-{{ doc_obj._id }}-{{ loop.index }}', '{{ doc_obj._id }}', 
+                                            '/start_ranking_jobseeker/{{ experiment_id }}/index_ranking/{{ n_task }}/{{ doc_obj._id }}/cf_explanation/{{ loop.index }}', 
+                                            'updated'
+                                        )"
+                                    >
+                                        More Details
+                                    </button>
+                                </div>
+                            </div>
+                        
+                            <div id="expandable-row-updated-{{ doc_obj._id }}-{{ loop.index }}" style="display: none;" class="mt-4">
+                                <!-- CF_explanation.html -->
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="mt-4 p-4 bg-gray-100 border border-gray-300 text-sm text-black">
+                            <p>No counterfactual feedback available.</p>
+                        </div>
+                    {% endif %}
+
+            </p>
+        </div>
     </div> 
 </div> 
 

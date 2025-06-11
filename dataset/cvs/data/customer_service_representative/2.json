@@ -51,7 +51,8 @@
 		"Customer orientation"
 	], 
 	"counterfactuals": [{}], 
-	"factual_image": "images/animal.jpg",
+	"factual_image": "customer_service_representative/images/animal.jpg",
+	"factual_text": "There is a picture!",
 	"factuals": [
 		{
 		"education": "456",
