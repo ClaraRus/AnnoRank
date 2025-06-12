@@ -92,6 +92,7 @@ def start_ranking(experiment_id):
     """
 
     session['exp_id'] = experiment_id
+    configs["ui_display_config"]["view_button"] = False
 
     if current_user.is_authenticated:
         session['user_id'] = current_user._user_id
