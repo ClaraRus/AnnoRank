@@ -5,6 +5,7 @@
   "tasks": [
     {
       "query_title": "project_manager",
+      "cand_idx": "0",
       "ranking_type": "rank1",
       "show_xai": "False",
       "score_column": "fitnessedu_protected",
@@ -24,6 +25,7 @@
     },
     {
       "query_title": "customer_service_representative",
+      "cand_idx": "1",
       "ranking_type": "rank3",
       "show_xai": "False",
       "score_column": "fitnessedu_protected",
@@ -43,6 +45,7 @@
     },
     {
       "query_title": "project_manager",
+      "cand_idx": "1",
       "ranking_type": "rank2",
       "show_xai": "True",
       "score_column": "targetfitness_protected",
@@ -62,6 +65,7 @@
     },
     {
       "query_title": "customer_service_representative",
+      "cand_idx": "1",
       "ranking_type": "rank4",
       "show_xai": "True",
       "score_column": "targetfitness_protected",

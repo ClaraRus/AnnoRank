@@ -450,9 +450,8 @@ def index_ranking(experiment_id, n_task, doc_id):
         response.headers['HX-Redirect'] = f"/404/No document with the ranking type!"
         return response
     ####################################Select One Candidate######################################
-    # random.seed(42) 
     docs_obj = [database.DocRepr.objects(_id=doc_id).first() for doc_id in docs]
-    doc_obj = [random.choice(docs_obj)] 
+    doc_obj = [docs_obj[int(task_obj.cand_idx)]]
     ##############################################################################################
     
     doc_field_names_display = configs["ui_display_config"]["display_fields"]
