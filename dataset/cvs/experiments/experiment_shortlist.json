@@ -1,7 +1,6 @@
 {
   "exp_id": 1,
   "description": "test experiment",
-
   "tasks": [
     {
       "query_title": "project_manager",
@@ -9,18 +8,23 @@
       "show_xai": "False",
       "score_column": "fitnessedu_protected",
       "questionnaire": [
-      {
-        "question":"Was the ranking for Project Manager useful?",
-        "field": "choice",
-        "options": ["1", "2", "3", "4", "5"],
-        "mandatory": true
-      },
-      {
-        "question": "Feedback on the task:",
-        "options": "text",
-        "field": "feedback",
-        "mandatory": false
-      }]
+        {
+          "question": "Indicate the amount of mental effort that you spent on the practice task you have just finished.",
+          "field": "mental_effort_rating",
+          "options": [
+            "1: Very, very low mental effort",
+            "2: Very low",
+            "3: Low",
+            "4: Rather low",
+            "5: Neither low nor high",
+            "6: Rather high",
+            "7: High",
+            "8: Very high",
+            "9: Very, very high mental effort"
+          ],
+          "mandatory": true
+        }
+      ]
     },
     {
       "query_title": "customer_service_representative",
@@ -28,18 +32,23 @@
       "show_xai": "False",
       "score_column": "fitnessedu_protected",
       "questionnaire": [
-      {
-        "question":"Was the ranking for Customer Service Representative useful?",
-        "field": "choice",
-        "options": ["1", "2", "3", "4", "5"],
-        "mandatory": true
-      },
-      {
-        "question": "Feedback on the task:",
-        "options": "text",
-        "field": "feedback",
-        "mandatory": false
-      }]
+        {
+          "question": "Indicate the amount of mental effort that you spent on the practice task you have just finished.",
+          "field": "mental_effort_rating",
+          "options": [
+            "1: Very, very low mental effort",
+            "2: Very low",
+            "3: Low",
+            "4: Rather low",
+            "5: Neither low nor high",
+            "6: Rather high",
+            "7: High",
+            "8: Very high",
+            "9: Very, very high mental effort"
+          ],
+          "mandatory": true
+        }
+      ]
     },
     {
       "query_title": "project_manager",
@@ -47,18 +56,23 @@
       "show_xai": "True",
       "score_column": "targetfitness_protected",
       "questionnaire": [
-      {
-        "question":"Was the XAI for the candidates of the Project Manager role useful?:",
-        "field": "choice",
-        "options": ["1", "2", "3", "4", "5"],
-        "mandatory": true
-      },
-      {
-        "question": "Feedback on the task:",
-        "options": "text",
-        "field": "feedback",
-        "mandatory": false
-      }]
+        {
+          "question": "Indicate the amount of mental effort that you spent on the practice task you have just finished.",
+          "field": "mental_effort_rating",
+          "options": [
+            "1: Very, very low mental effort",
+            "2: Very low",
+            "3: Low",
+            "4: Rather low",
+            "5: Neither low nor high",
+            "6: Rather high",
+            "7: High",
+            "8: Very high",
+            "9: Very, very high mental effort"
+          ],
+          "mandatory": true
+        }
+      ]
     },
     {
       "query_title": "customer_service_representative",
@@ -66,90 +80,1031 @@
       "show_xai": "True",
       "score_column": "targetfitness_protected",
       "questionnaire": [
-     {
-        "question":"Was the XAI for the candidates of the Customer Service Representative role useful?:",
-        "field": "choice",
-        "options": ["1", "2", "3", "4", "5"],
-        "mandatory": true
-      },
-      {
-        "question": "Feedback on the task:",
-        "options": "text",
-        "field": "feedback",
-        "mandatory": false
-      }]
+        {
+          "question": "Indicate the amount of mental effort that you spent on the practice task you have just finished.",
+          "field": "mental_effort_rating",
+          "options": [
+            "1: Very, very low mental effort",
+            "2: Very low",
+            "3: Low",
+            "4: Rather low",
+            "5: Neither low nor high",
+            "6: Rather high",
+            "7: High",
+            "8: Very high",
+            "9: Very, very high mental effort"
+          ],
+          "mandatory": true
+        }
+      ]
     },
     {
       "query_title": "pre_task_1_questionnaire",
       "ranking_type": "form",
       "questionnaire": [
         {
-        "question": "What is your experience with AI systems for recruitment?",
-        "options": "text",
-        "field": "experience_AI",
-        "mandatory": false
-      },
-      {
-        "question":"What is your age?",
-        "field": "age",
-        "options": ["18-30", "30-50", "50+"],
-        "mandatory": true
-      },
+          "question": "What is your gender?",
+          "field": "gender",
+          "options": [
+            "Female",
+            "Male",
+            "Other",
+            "Prefer not to say"
+          ],
+          "mandatory": true
+        },
         {
-        "question":"What is your gender?",
-        "field": "gender",
-        "options": ["female", "male", "other"],
-        "mandatory": true
-      },
-      {
-        "question": "Feedback on the task:",
-        "options": "text",
-        "field": "feedback",
-        "mandatory": false
-      }]
+          "question": "What is your age range?",
+          "field": "age",
+          "options": [
+            "18-24",
+            "25-34",
+            "35-44",
+            "45-54",
+            "55-64",
+            "65+"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "What is your country of residence?",
+          "field": "country_residence",
+          "options": "text",
+          "mandatory": true
+        },
+        {
+          "question": "What is your professional field?",
+          "field": "professional_field",
+          "options": "text",
+          "mandatory": true
+        },
+        {
+          "question": "What is your highest level of education?",
+          "field": "education_level",
+          "options": [
+            "High School Diploma",
+            "Bachelor's Degree",
+            "Master's Degree",
+            "PhD",
+            "Other"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "Please describe your previous experiences with AI-based ranking systems for recruiters.",
+          "field": "experience_ai_ranking",
+          "options": "text",
+          "mandatory": false
+        },
+        {
+          "question": "Please describe your previous experiences with algorithmic explanations (XAI - Explainable AI).",
+          "field": "experience_xai",
+          "options": "text",
+          "mandatory": false
+        }
+      ]
     },
     {
       "query_title": "pre_task_2_questionnaire",
       "ranking_type": "form",
       "questionnaire": [
         {
-        "question": "What is your experience with XAI systems for recruitment?",
-        "options": "text",
-        "field": "experience_XAI",
-        "mandatory": false
-      },
-      {
-        "question": "Feedback on the task:",
-        "options": "text",
-        "field": "feedback",
-        "mandatory": false
-      }]
+          "question": "What is your gender?",
+          "field": "gender",
+          "options": [
+            "Female",
+            "Male",
+            "Other",
+            "Prefer not to say"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "What is your age range?",
+          "field": "age",
+          "options": [
+            "18-24",
+            "25-34",
+            "35-44",
+            "45-54",
+            "55-64",
+            "65+"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "What is your country of residence?",
+          "field": "country_residence",
+          "options": "text",
+          "mandatory": true
+        },
+        {
+          "question": "What is your professional field?",
+          "field": "professional_field",
+          "options": "text",
+          "mandatory": true
+        },
+        {
+          "question": "What is your highest level of education?",
+          "field": "education_level",
+          "options": [
+            "High School Diploma",
+            "Bachelor's Degree",
+            "Master's Degree",
+            "PhD",
+            "Other"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "Please describe your previous experiences with AI-based ranking systems for recruiters.",
+          "field": "experience_ai_ranking",
+          "options": "text",
+          "mandatory": false
+        },
+        {
+          "question": "Please describe your previous experiences with algorithmic explanations (XAI - Explainable AI).",
+          "field": "experience_xai",
+          "options": "text",
+          "mandatory": false
+        }
+      ]
     },
     {
       "query_title": "end_task_1_questionnaire",
       "ranking_type": "form",
       "questionnaire": [
-      {
-        "question": "Feedback on the task 1:",
-        "options": "text",
-        "field": "feedback",
-        "mandatory": false
-      }]
+        {
+          "question": "I would find the system useful in my job.",
+          "field": "utaut_useful",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "Using the system would enable me to accomplish tasks more quickly.",
+          "field": "utaut_quick",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "Using the system would increase my productivity.",
+          "field": "utaut_productivity",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "If I use the system, I would increase my chances of getting a raise.",
+          "field": "utaut_raise_chance",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "My interaction with the system is clear and understandable.",
+          "field": "utaut_interaction_clear",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "Interacting with the system does not require a lot of my mental effort.",
+          "field": "utaut_low_mental_effort",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I find the system to be easy to use.",
+          "field": "utaut_easy_to_use",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I find it easy to get the system to do what I want to do.",
+          "field": "utaut_easy_to_control",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "Using the system is a good idea.",
+          "field": "utaut_good_idea",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "The system would make work more interesting.",
+          "field": "utaut_interesting",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "Working with the system would be fun.",
+          "field": "utaut_fun",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I would like working with the system.",
+          "field": "utaut_like_working",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "People who influence my behavior would think that I should use the system.",
+          "field": "utaut_influence",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "People who are important to me would think that I should use the system.",
+          "field": "utaut_important_people",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "The senior management of this business would be helpful in the use of the system.",
+          "field": "utaut_management_support",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "In general, the organization would support the use of the system.",
+          "field": "utaut_org_support",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I have the resources necessary to use the system.",
+          "field": "utaut_resources",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I have the knowledge necessary to use the system.",
+          "field": "utaut_knowledge",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "The system is not compatible with other systems I use.",
+          "field": "utaut_compatibility",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "A specific person (or group) would be available for assistance with system difficulties.",
+          "field": "utaut_assistance_available",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "People who use this system would have more prestige than those who do not.",
+          "field": "utaut_prestige",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "People who use this system would have a high profile.",
+          "field": "utaut_high_profile",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "Having this system will be a status symbol.",
+          "field": "utaut_status_symbol",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "In my job, usage of the system would be important.",
+          "field": "utaut_job_importance",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "In my job, usage of the system would be relevant.",
+          "field": "utaut_job_relevance",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "The use of the system is pertinent to my various job-related tasks.",
+          "field": "utaut_job_pertinence",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "The quality of the output I get from the system is high.",
+          "field": "utaut_output_quality",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I have no problem with the quality of the system’s output.",
+          "field": "utaut_output_no_problem",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I rate the results from the system to be excellent.",
+          "field": "utaut_results_excellent",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I have no difficulty telling others about the results of using the system.",
+          "field": "utaut_demonstrability_tell_others",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I believe I could communicate to others the consequences of using the system.",
+          "field": "utaut_demonstrability_communicate",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "The results of using the system are apparent to me.",
+          "field": "utaut_demonstrability_apparent",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I would have difficulty explaining why using the system may or may not be beneficial.",
+          "field": "utaut_demonstrability_difficulty_explaining",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I intend to use the system if the system would be accessible to me.",
+          "field": "utaut_intention_intend",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I predict I would use the system if the system would be accessible to me.",
+          "field": "utaut_intention_predict",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I plan to use the system if the system would be accessible to me.",
+          "field": "utaut_intention_plan",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        }
+      ]
     },
-
     {
       "query_title": "end_task_2_questionnaire",
       "ranking_type": "form",
       "questionnaire": [
-      {
-        "question": "Feedback on the task 2:",
-        "options": "text",
-        "field": "feedback",
-        "mandatory": false
-      }]
+        {
+          "question": "I would find the system useful in my job.",
+          "field": "utaut_useful",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "Using the system would enable me to accomplish tasks more quickly.",
+          "field": "utaut_quick",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "Using the system would increase my productivity.",
+          "field": "utaut_productivity",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "If I use the system, I would increase my chances of getting a raise.",
+          "field": "utaut_raise_chance",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "My interaction with the system is clear and understandable.",
+          "field": "utaut_interaction_clear",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "Interacting with the system does not require a lot of my mental effort.",
+          "field": "utaut_low_mental_effort",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I find the system to be easy to use.",
+          "field": "utaut_easy_to_use",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I find it easy to get the system to do what I want to do.",
+          "field": "utaut_easy_to_control",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "Using the system is a good idea.",
+          "field": "utaut_good_idea",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "The system would make work more interesting.",
+          "field": "utaut_interesting",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "Working with the system would be fun.",
+          "field": "utaut_fun",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I would like working with the system.",
+          "field": "utaut_like_working",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "People who influence my behavior would think that I should use the system.",
+          "field": "utaut_influence",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "People who are important to me would think that I should use the system.",
+          "field": "utaut_important_people",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "The senior management of this business would be helpful in the use of the system.",
+          "field": "utaut_management_support",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "In general, the organization would support the use of the system.",
+          "field": "utaut_org_support",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I have the resources necessary to use the system.",
+          "field": "utaut_resources",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I have the knowledge necessary to use the system.",
+          "field": "utaut_knowledge",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "The system is not compatible with other systems I use.",
+          "field": "utaut_compatibility",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "A specific person (or group) would be available for assistance with system difficulties.",
+          "field": "utaut_assistance_available",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "People who use this system would have more prestige than those who do not.",
+          "field": "utaut_prestige",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "People who use this system would have a high profile.",
+          "field": "utaut_high_profile",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "Having this system will be a status symbol.",
+          "field": "utaut_status_symbol",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "In my job, usage of the system would be important.",
+          "field": "utaut_job_importance",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "In my job, usage of the system would be relevant.",
+          "field": "utaut_job_relevance",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "The use of the system is pertinent to my various job-related tasks.",
+          "field": "utaut_job_pertinence",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "The quality of the output I get from the system is high.",
+          "field": "utaut_output_quality",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I have no problem with the quality of the system’s output.",
+          "field": "utaut_output_no_problem",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I rate the results from the system to be excellent.",
+          "field": "utaut_results_excellent",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I have no difficulty telling others about the results of using the system.",
+          "field": "utaut_demonstrability_tell_others",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I believe I could communicate to others the consequences of using the system.",
+          "field": "utaut_demonstrability_communicate",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "The results of using the system are apparent to me.",
+          "field": "utaut_demonstrability_apparent",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I would have difficulty explaining why using the system may or may not be beneficial.",
+          "field": "utaut_demonstrability_difficulty_explaining",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I intend to use the system if the system would be accessible to me.",
+          "field": "utaut_intention_intend",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I predict I would use the system if the system would be accessible to me.",
+          "field": "utaut_intention_predict",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "I plan to use the system if the system would be accessible to me.",
+          "field": "utaut_intention_plan",
+          "options": [
+            "1: totally disagree",
+            "2: Disagree",
+            "3: Neither agree or disagree",
+            "4: Agree",
+            "5: Totally agree"
+          ],
+          "mandatory": true
+        }
+      ]
     }
   ]
-  
-
-
 }

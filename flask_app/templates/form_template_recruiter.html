@@ -55,7 +55,12 @@
                         </div>
                         <form id="userForm">
                             {% for item in items %}
-                            <label for="{{ item.field }}" class="text-gray-700">{{item.question}}</label>
+                            <label for="{{ item.field }}" class="text-gray-700">
+                            {{ item.question }}
+                            {% if item.mandatory %}
+                                <span class="text-red-500">*</span>
+                            {% endif %}
+                            </label>
 
                               {% if item.options == "text" %}
                             <!-- Render a free text input -->
