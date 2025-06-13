@@ -131,6 +131,8 @@ def query_to_text(query):
                 if values[key] != '':
                     query_text = query_text + clean_text(key, upper=True) + ': '
                     query_text = query_text + clean_text(values[key]) + '\n'
+                else:
+                    query_text = query_text + "not specified"
         else:
             values = query[col][0]
             for val in values:
