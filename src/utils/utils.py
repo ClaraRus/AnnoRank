@@ -48,7 +48,7 @@ def clean_text(text, upper=False):
     Returns:
         str: The cleaned text.
     """
-    text = re.sub(r'[^a-zA-Z0-9\n]', ' ', text)
+    text = re.sub(r'[^a-zA-Z0-9\n*!]', ' ', text)
     if upper:
         return text.title()
     else:

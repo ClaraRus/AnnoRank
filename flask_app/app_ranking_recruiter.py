@@ -97,10 +97,15 @@ def start_ranking(experiment_id):
     if current_user.is_authenticated:
         session['user_id'] = current_user._user_id
 
-        # Redirect to consent form instead
-        consent_url = url_for('consent_form', experiment_id=experiment_id)
-        response = make_response(redirect(consent_url, code=200))
-        response.headers['HX-Redirect'] = consent_url
+        if len(current_user.tasks_visited) == 0:
+            # Redirect to consent form instead
+            consent_url = url_for('consent_form', experiment_id=experiment_id)
+            response = make_response(redirect(consent_url, code=200))
+            response.headers['HX-Redirect'] = consent_url
+        else:
+            instructions_url = url_for('instructions', experiment_id=experiment_id)
+            response = make_response(redirect(instructions_url, code=200))
+            response.headers['HX-Redirect'] = instructions_url
         return response
 
     if request.method == 'POST':
@@ -121,10 +126,15 @@ def start_ranking(experiment_id):
             login_user(current_user)
             session['user_id'] = user_id
 
-            # Redirect to consent form instead
-            consent_url = url_for('consent_form', experiment_id=experiment_id)
-            response = make_response(redirect(consent_url, code=200))
-            response.headers['HX-Redirect'] = consent_url
+            if len(user.tasks_visited) == 0:
+                # Redirect to consent form instead
+                consent_url = url_for('consent_form', experiment_id=experiment_id)
+                response = make_response(redirect(consent_url, code=200))
+                response.headers['HX-Redirect'] = consent_url
+            else:
+                instructions_url = url_for('instructions', experiment_id=experiment_id)
+                response = make_response(redirect(instructions_url, code=200))
+                response.headers['HX-Redirect'] = instructions_url
             return response
 
         else:

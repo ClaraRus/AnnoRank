@@ -36,7 +36,8 @@ class DataReaderCvs(DataReader):
             with open(os.path.join(self.data_path, 'data', dir_name, 'description.json'), 'r') as json_file:
                 query = json.load(json_file)
             query = pd.json_normalize(query)
-            query['text'] = clean_text(dir_name, upper=True) + "\n" + query_to_text(query)
+
+            query['text'] = clean_text(f"!{dir_name}!", upper=True) + "\n" + query_to_text(query)
             query['title'] = dir_name
             dataframes_occupations.append(query)
 
@@ -123,13 +124,16 @@ def query_to_text(query):
         """
     query_text = ""
     for col in query.columns:
-        query_text = query_text + clean_text(col, upper=True) + "\n"
+        query_text = query_text + clean_text(f"*{col}*", upper=True) + "\n"
         if isinstance(query[col][0][0], dict):
             values = query[col][0][0]
-            for key in values.keys():
-                if values[key] != '':
-                    query_text = query_text + clean_text(key, upper=True) + ': '
-                    query_text = query_text + clean_text(values[key]) + '\n'
+            if len(values) == 0:
+                query_text = query_text + "Not specified\n"
+            else:
+                for key in values.keys():
+                    if values[key] != '':
+                        query_text = query_text + clean_text(key, upper=True) + ': '
+                        query_text = query_text + clean_text(values[key]) + '\n'
         else:
             values = query[col][0]
             for val in values:
@@ -139,40 +143,3 @@ def query_to_text(query):
     return query_text
 
 
-
-# import sys
-# from pathlib import Path
-# sys.path.append(str(Path(__file__).resolve().parent.parent / 'src'))
-
-# import argparse
-# import importlib
-# import database
-# import os
-# import pandas as pd
-# from mongoengine import *
-
-# from utils.utils import add_fields_from_data
-# from utils.constants import fairness_method_mapping
-# from utils.constants import ranker_mapping
-# from utils.utils import read_json
-
-# parser = argparse.ArgumentParser()
-# parser.add_argument('--config_path')
-# args = parser.parse_args()
-# config = read_json(args.config_path)
-# config = config
-# data_reader = getattr(
-#     importlib.import_module("data_readers.data_reader_" + config['data_reader_class']["name"]),
-#     "DataReader" + config['data_reader_class']["name"].title())(configs=config['data_reader_class'])
-
-# config['train_path'] = os.path.join(data_reader.output_file_path, 'train')
-# config['test_path'] = os.path.join(data_reader.output_file_path, 'test')
-
-# if os.path.exists(config['train_path']):
-#     data_train_docs, data_train_queries = data_reader.read('train')
-#     data_train = {
-#         "docs": data_train_docs,
-#         "query": data_train_queries
-#     }
-# else:
-#     data_train = None
