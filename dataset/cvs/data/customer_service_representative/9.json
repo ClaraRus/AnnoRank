@@ -51,5 +51,15 @@
 		"Banking sector",
 		"Deadline monitoring",
 		"Customer orientation"
+	],
+	"factual_image": "customer_service_representative/images/boom.png",
+	"factual_text": "There is a picture!",
+
+	"factuals": [
+		{
+		"education": "1",
+		"experience": "0.5",
+		"skills": "0.7"
+		}
 	]
 }

@@ -46,5 +46,15 @@
 		"Coaching",
 		"Performance monitoring",
 		"Analytics"
+	],
+	"factual_image": "project_manager/images/animal.jpg",
+	"factual_text": "There is an animal in the picture",
+
+	"factuals": [
+		{
+		"education": "0.5",
+		"experience": "0.2",
+		"skills": "0.8"
+		}
 	]
 }

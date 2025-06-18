@@ -70,7 +70,7 @@ class Task(DynamicDocument):
     meta = {
         'collection': 'tasks'
     }
-    #_id = ObjectIdField()
+    # _id = ObjectIdField()
     data = StringField(default="")
     ranking_type = StringField(default="")
     setting = StringField(default="")
@@ -115,11 +115,19 @@ class Interaction(EmbeddedDocument):
     view_n = StringField(default="0")  # Number of view interactions
     detail_n = StringField(default="0")  # Number of detail interactions
     cf_n = StringField(default="0")  # Number of counterfactual interactions
-    updated_n = StringField(default="")  # Number of updated interactions
+    updated_n = StringField(default="0")  # Number of updated interactions
     view_timestamps = ListField()  # When view interactions happened
     detail_timestamps = ListField()  # When detail interactions happened
     cf_timestamps = ListField()  # When counterfactual interactions happened
     updated_timestamps = ListField()  # When updated interactions happened
+    
+# class InteractionRecruiter(EmbeddedDocument):
+#     view_n = StringField(default="0")  # Number of view interactions
+#     detail_n = StringField(default="0")  # Number of detail interactions
+#     view_timestamps = ListField()  # When view interactions happened
+#     detail_timestamps = ListField()  # When detail interactions happened
+#     shortlisted = StringField(default="false")  # Whether it was shortlisted
+
 
 
 class InteractionCompare(EmbeddedDocument):
@@ -190,3 +198,4 @@ def create_collections():
         dummy_document = Experiment(_exp_id="dummy--")
         dummy_document.save()
         Experiment.objects().delete()
+

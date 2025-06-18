@@ -11,8 +11,10 @@
   "ui_display_config": {
      "highlight_match": true,
     "display_fields": ["name_display","education_display","experience_display","skills_display"],
-    "task_description_1": "PLACEHOLDER: Add task description without XAI",
-    "task_description_2": "PLACEHOLDER: Add task description with XAI",
+    "task_description_1_jobseeker": "PLACEHOLDER: Add task description without XAI",
+    "task_description_2_jobseeker": "PLACEHOLDER: Add task description with XAI",
+    "task_description_1_recruiter": "Select top 3 candidates given the occupational domain displayed below, considering that all candidates have worked or studied in similar domains.",
+    "task_description_2_recruiter": "View XAI for the candidates. Select top 3 candidates given the occupational domain displayed below, considering that all candidates have worked or studied in similar domains.",
 
     "exit_survey": [
       {
@@ -33,7 +35,7 @@
       "factual_fields": ["education","experience", "skills"],
 
       "shortlist_button": false,
-      "shortlist_select": [1,1]
+      "shortlist_select": [3,3]
   },
     "iaa": {
         "krippendorfs": true, 

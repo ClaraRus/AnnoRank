@@ -39,5 +39,15 @@
 		"Lean project management",
 		"Coaching",
 		"Statistics"
+	],
+	"factual_image": "project_manager/images/boom.png",
+	"factual_text": "There is a picture!",
+
+	"factuals": [
+		{
+		"education": "1",
+		"experience": "0.5",
+		"skills": "0.7"
+		}
 	]
 }

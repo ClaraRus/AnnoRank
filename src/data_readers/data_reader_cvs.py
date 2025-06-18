@@ -36,7 +36,6 @@ class DataReaderCvs(DataReader):
             with open(os.path.join(self.data_path, 'data', dir_name, 'description.json'), 'r') as json_file:
                 query = json.load(json_file)
             query = pd.json_normalize(query)
-            # query['text'] = clean_text(dir_name, upper=True) + "\n" + query_to_text(query)
             query['text'] = clean_text(f"!{dir_name}!", upper=True) + "\n" + query_to_text(query)
             query['title'] = dir_name
             dataframes_occupations.append(query)
@@ -113,7 +112,7 @@ def candidate_to_text(candidate):
                         text = text + clean_text(val) + ', '
                     text = text.strip(', ') + '\n'
                     candidate[col + "_display"] = text
-                    candidate[col + "_view"] = text # elyanne
+                    candidate[col + "_view"] = text #dit eraan toegevoegd
         else:
             if col == '_name':
                 candidate['name_display'] = candidate[col]
@@ -135,8 +134,7 @@ def query_to_text(query):
         """
     query_text = ""
     for col in query.columns:
-        # query_text = query_text + clean_text(col, upper=True) + "\n"
-        query_text = query_text + clean_text(f"{col}", upper=True) + "\n"
+        query_text = query_text + clean_text(f"*{col}*", upper=True) + "\n"
         if isinstance(query[col][0][0], dict):
             values = query[col][0][0]
             if len(values) == 0:
@@ -153,3 +151,5 @@ def query_to_text(query):
             query_text = query_text.strip(', ') + '\n'
         query_text = query_text + '\n'
     return query_text
+
+

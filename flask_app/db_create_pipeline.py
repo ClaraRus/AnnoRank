@@ -210,7 +210,6 @@ def add_data_to_db(data, fields, ranking_type, query_col, sort_col='score', asce
     data['docs'] = data['docs'].groupby(query_col).apply(
         lambda x: x.sort_values(sort_col, ascending=ascending)).reset_index(drop=True)
 
-
     for query, group in data['docs'].groupby(query_col):
         doc_list = []
 
@@ -256,7 +255,6 @@ def add_data_to_db(data, fields, ranking_type, query_col, sort_col='score', asce
 
 
 
-
 def get_docs_df(ranking_type, data_config, features):
     """Retrieve documents representation from the database and converts in dataframe.
     Args:
@@ -295,7 +293,6 @@ def get_docs_df(ranking_type, data_config, features):
     df = pd.DataFrame(data_list)
     return df
 
-
 def add_data_to_db_from_ranking_file(data_name, data_test, fields, query_col):
     data_docs = data_test['docs']
     queries = data_docs[query_col].unique()
@@ -319,6 +316,30 @@ def add_data_to_db_from_ranking_file(data_name, data_test, fields, query_col):
             add_data_to_db(data_test, fields=fields,
                    query_col=query_col,
                    sort_col=sort_col, ranking_type=sort_col)
+
+# def add_data_to_db_from_ranking_file(data_name, data_test, fields, query_col):
+#     data_docs = data_test['docs']
+#     queries = data_docs[query_col].unique()
+#     for query in queries:
+#         path_ranking_files = os.path.join("./dataset", data_name, "data", query)
+#         ranking_files = [file for file in os.listdir(path_ranking_files) if ".txt" in file]
+#         for ranking_file in ranking_files:
+#             path_ranking = os.path.join(path_ranking_files, ranking_file)
+#             with open(path_ranking, "r") as f:
+#                 ranking_ids = list(map(int, f.readline().strip().split(',')))
+#                 for rank, ranking_id in enumerate(ranking_ids):
+#                     # find row in data_test and add colum for ranking
+#                     path_file = os.path.join(path_ranking_files, f"{ranking_id}.json")
+#                     sort_col = ranking_file.strip(".txt")
+#                     if sort_col not in data_docs.columns:
+#                         data_docs[sort_col] = [""] * len(data_docs)
+#                     with open(path_file, 'r') as f:
+#                         data = json.load(f)
+#                     data_docs.loc[data_docs["_name"] == data["_name"], sort_col] = rank + 1
+#             data_test['docs'] = data_docs
+#             add_data_to_db(data_test, fields=fields,
+#                    query_col=query_col,
+#                    sort_col=sort_col, ranking_type=sort_col)
 
 class Pipeline:
     """
