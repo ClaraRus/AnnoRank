@@ -137,8 +137,12 @@ def start_ranking(experiment_id):
 def consent_form(experiment_id):
     if request.method == 'POST':
         # Redirect to instructions page, NOT directly to tasks
-        instructions_url = url_for('instructions', experiment_id=experiment_id)
-        return redirect(instructions_url)
+        # instructions_url = url_for('instructions', experiment_id=experiment_id)
+        # return redirect(instructions_url)
+        next_task = get_next_task(experiment_id).get_json()['next_task']
+        questionnaire_url = url_for('questionnaire', experiment_id=experiment_id, n_task=next_task)
+        return redirect(questionnaire_url)
+
 
     return render_template('consent_form_template_recruiter.html', experiment_id=experiment_id)
 
@@ -155,8 +159,9 @@ def instructions(experiment_id):
         #    response.headers['HX-Redirect'] = "/404/Failed get next task!"
         #    return response
 
-        questionnaire_url = url_for('questionnaire', experiment_id=experiment_id, n_task=next_task)
-        return redirect(questionnaire_url)
+        #questionnaire_url = url_for('questionnaire', experiment_id=experiment_id, n_task=next_task)
+        next_url = url_for('index_ranking', experiment_id=experiment_id, n_task=next_task, doc_id="view")
+        return redirect(next_url)
 
     task_description = get_task_description(None, experiment_id)
     return render_template('task_description_shortlist_page_template_recruiter.html', experiment_id=experiment_id,  task_description=task_description)
@@ -535,10 +540,14 @@ def questionnaire(experiment_id, n_task):
         next_task_id = [task for task_idx, task in enumerate(exp_obj.tasks) if task_idx == int(next_task)][0]
         next_task_obj = database.Task.objects(id=next_task_id).first()
 
-        if current_task_obj.query_title == "pre_task_2_questionnaire" or current_task_obj.query_title == "pre_task_1_questionnaire":
-            next_url = url_for('index_ranking', experiment_id=experiment_id, n_task=next_task, doc_id="view")
+        # if current_task_obj.query_title == "pre_task_2_questionnaire" or current_task_obj.query_title == "pre_task_1_questionnaire":
+        #     next_url = url_for('index_ranking', experiment_id=experiment_id, n_task=next_task, doc_id="view")
+        if current_task_obj.query_title == "pre_task_1_questionnaire" or current_task_obj.query_title == "pre_task_2_questionnaire":
+            next_url = url_for('instructions', experiment_id=experiment_id)    
         elif current_task_obj.query_title == "end_task_1_questionnaire":
-            next_url = url_for('instructions', experiment_id=experiment_id)
+            next_url = url_for('questionnaire', experiment_id=experiment_id, n_task=next_task)
+        # elif current_task_obj.query_title == "end_task_1_questionnaire":
+        #     next_url = url_for('instructions', experiment_id=experiment_id)
         elif current_task_obj.query_title == "end_task_2_questionnaire":
             next_url = url_for('form_demographic_data', experiment_id=experiment_id)
         elif "questionnaire" in next_task_obj.query_title:
