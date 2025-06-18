@@ -3208,3 +3208,7 @@
 2025-06-18 09:17:22.723 +0000 UTC,**2**,click,TD,,,http://localhost:5005/start_ranking_jobseeker/1/index_ranking/3/view,484,523,1280,639,
 2025-06-18 09:17:24.274 +0000 UTC,**2**,click,BUTTON,,,http://localhost:5005/start_ranking_jobseeker/1/index_ranking/3/view,1119,183,1280,639,
 2025-06-18 09:17:24.949 +0000 UTC,**2**,click,BUTTON,,,http://localhost:5005/start_ranking_jobseeker/1/index_ranking/3/view,1138,85,1280,639,
+2025-06-18 10:10:33.336 +0000 UTC,**1**,click,A,,,http://localhost:5005/start_ranking_jobseeker/1/index_ranking/1/view,1186,566,1280,639,
+2025-06-18 10:10:36.8 +0000 UTC,**1**,click,A,,,http://localhost:5005/start_ranking_jobseeker/1/index_ranking/0/view,1168,579,1280,639,
+2025-06-18 10:10:57.084 +0000 UTC,**1**,click,A,,,http://localhost:5005/start_ranking_jobseeker/1/index_ranking/2/view,1183,563,1280,639,
+2025-06-18 10:11:00.632 +0000 UTC,**1**,click,A,,,http://localhost:5005/start_ranking_jobseeker/1/index_ranking/3/view,1181,552,1280,639,
