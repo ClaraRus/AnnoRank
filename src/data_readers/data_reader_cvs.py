@@ -36,7 +36,8 @@ class DataReaderCvs(DataReader):
             with open(os.path.join(self.data_path, 'data', dir_name, 'description.json'), 'r') as json_file:
                 query = json.load(json_file)
             query = pd.json_normalize(query)
-            query['text'] = clean_text(dir_name, upper=True) + "\n" + query_to_text(query)
+            # query['text'] = clean_text(dir_name, upper=True) + "\n" + query_to_text(query)
+            query['text'] = clean_text(f"!{dir_name}!", upper=True) + "\n" + query_to_text(query)
             query['title'] = dir_name
             dataframes_occupations.append(query)
 
@@ -134,13 +135,17 @@ def query_to_text(query):
         """
     query_text = ""
     for col in query.columns:
-        query_text = query_text + clean_text(col, upper=True) + "\n"
+        # query_text = query_text + clean_text(col, upper=True) + "\n"
+        query_text = query_text + clean_text(f"{col}", upper=True) + "\n"
         if isinstance(query[col][0][0], dict):
             values = query[col][0][0]
-            for key in values.keys():
-                if values[key] != '':
-                    query_text = query_text + clean_text(key, upper=True) + ': '
-                    query_text = query_text + clean_text(values[key]) + '\n'
+            if len(values) == 0:
+                query_text = query_text + "Not specified\n"
+            else:
+                for key in values.keys():
+                    if values[key] != '':
+                        query_text = query_text + clean_text(key, upper=True) + ': '
+                        query_text = query_text + clean_text(values[key]) + '\n'
         else:
             values = query[col][0]
             for val in values:

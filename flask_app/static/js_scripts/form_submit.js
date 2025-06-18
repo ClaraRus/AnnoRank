@@ -34,7 +34,7 @@
       });
       } else {
         // Display a message to the user if less than three docs are selected
-        alert("Please select a value for both gender and nationality!");
+        alert("Please select a value for all mandatory fields!");
       }
 
 

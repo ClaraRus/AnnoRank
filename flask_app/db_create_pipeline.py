@@ -45,6 +45,11 @@ config = read_json(args.config_path)
 
 connect(config["data_reader_class"]["name"], host='mongo', port=27017)
 
+import logging
+
+logging.basicConfig(filename='../record.log', level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
 
 def add_fields_from_data(attr_names, values, object):
     """Add dynamic fields to an object from the database.
@@ -186,7 +191,7 @@ def add_query_docs_to_db(data, data_configs):
                 doc_obj.save()
 
 
-def add_data_to_db(data, fields, ranking_type, query_col, sort_col='score', ascending=False):
+def add_data_to_db(data, fields, ranking_type, query_col, sort_col='score', ascending=True):
     """Adding query-ranking pairs in the database (Data object).
         If pre-processing fairness methods are applied the changed data will be added in the database (DocRepr object).
 
@@ -204,6 +209,7 @@ def add_data_to_db(data, fields, ranking_type, query_col, sort_col='score', asce
 
     data['docs'] = data['docs'].groupby(query_col).apply(
         lambda x: x.sort_values(sort_col, ascending=ascending)).reset_index(drop=True)
+
 
     for query, group in data['docs'].groupby(query_col):
         doc_list = []
@@ -246,6 +252,7 @@ def add_data_to_db(data, fields, ranking_type, query_col, sort_col='score', asce
                 if ranking_obj.ranking_type not in saved_rankings:
                     data_obj.rankings.append(ranking_obj)
                     data_obj.save()
+
 
 
 

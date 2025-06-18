@@ -18,8 +18,15 @@
                                 {%endif%}
 
                                 {% if line != '' %}
-                                    <div class="text-gray-900">{{ line }}</div>
-                                {%endif%}
+                                    {% if line.startswith('!') %}
+                                        <h1 class="text-gray-900 font-bold text-lg">{{ line[1:-1] }}</h1>
+                                        <h4 class="text-gray-900 py-3">{{ '' }}</h4>
+                                    {% elif line.startswith('*') and line.endswith('*') %}
+                                        <div class="text-gray-900 font-bold">{{ line[1:-1] }}</div>
+                                    {% else %}
+                                        <div class="text-gray-900">{{ line }}</div>
+                                    {% endif %}
+                                {% endif %}
                             {% endif %}
                         {% endfor %}
                     </div>
