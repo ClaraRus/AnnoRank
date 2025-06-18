@@ -186,7 +186,7 @@ def add_query_docs_to_db(data, data_configs):
                 doc_obj.save()
 
 
-def add_data_to_db(data, fields, ranking_type, query_col, sort_col='score', ascending=False):
+def add_data_to_db(data, fields, ranking_type, query_col, sort_col='score', ascending=True):
     """Adding query-ranking pairs in the database (Data object).
         If pre-processing fairness methods are applied the changed data will be added in the database (DocRepr object).
 
