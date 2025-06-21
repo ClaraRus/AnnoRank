@@ -79,13 +79,13 @@ def stringify_field(value):
         if all(isinstance(item, dict) for item in value):
             items = []
             for d in value:
-                item_str = ", ".join(f"{k}: {v}\n" for k, v in d.items())
+                item_str = " ".join(f"{k}: {v}\n" for k, v in d.items())
                 items.append(item_str + "\n")
-            return f" " + " ".join(items) + "\n"
+            return " ".join(items) + "\n"
         else:
-            return f" " + ", ".join(str(v) for v in value) + "\n\n\n"
+            return  ", ".join(str(v) for v in value) + "\n\n\n"
     elif isinstance(value, dict):
-        return f"" + ", ".join(f"{k}: {v}\n" for k, v in value.items()) + "\n\n\n"
+        return " ".join(f"{k}: {v}\n" for k, v in value.items()) + "\n\n\n"
     else:
         return f" {value}\n\n\n"
 

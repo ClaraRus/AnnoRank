@@ -415,12 +415,15 @@ def index_ranking(experiment_id, n_task, doc_id):
     doc_obj = [docs_obj[int(task_obj.cand_idx)]]
     ##############################################################################################
 
-    doc_field_names_display = configs["ui_display_config"]["display_fields"]
+    doc_field_names_display = configs["ui_display_config"]["display_fields"][:]
 
     # add display of score column
     if 'score_column' in task_obj:
         if task_obj.score_column not in doc_field_names_display:
-            doc_field_names_display[-1] = task_obj.score_column
+            if len(doc_field_names_display) == configs["ui_display_config"]["display_fields"]:
+                doc_field_names_display.append(task_obj.score_column)
+            else:
+                doc_field_names_display[-1] = task_obj.score_column
 
     if configs["ui_display_config"]["view_button"]:
         doc_field_names_view = configs["ui_display_config"]["view_fields"]

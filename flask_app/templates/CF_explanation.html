@@ -17,14 +17,23 @@
                     <td class="p-2 border border-gray-300 align-top">
                         <p>
                             {% set value_str = value|string %}
-                            {% set parts = value_str.split('*') %}
-                            {% for part in parts %}
-                              {% if loop.index is even %}
-                                <span class="text-blue-600 font-semibold italic">{{ part.strip() }}</span>
-                              {% else %}
-                               {{ part.strip() }}
-                              {% endif %}
-                            {% endfor %}
+                        {% set paragraphs = value_str.split('\n') %}
+                        {% for paragraph in paragraphs %}
+                          {% if paragraph %}
+                            <p>
+                              {% set parts = paragraph.split('*') %}
+                              {% for part in parts %}
+                                {% if loop.index is even %}
+                                  <span class="text-blue-600 font-semibold italic">{{ part }}</span>
+                                {% else %}
+                                  {{ part }}
+                                {% endif %}
+                              {% endfor %}
+                            </p>
+                          {% else %}
+                            <p></p>
+                          {% endif %}
+                        {% endfor %}
                         </p>
 
                     </td>
