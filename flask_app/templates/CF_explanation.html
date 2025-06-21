@@ -12,96 +12,102 @@
         </thead>
         <tbody>
             <tr>
-                <!-- Education -->
-                <td class="p-2 border border-gray-300 align-top">
-                    {% set education = updated_data.get('education', []) %}
-                    {% if education %}
-                        <ul class="list-disc pl-5">
-                            {% for edu in education %}
-                                <li>
-                                    <strong>Degree:</strong>
-                                    {% if edu.degree.startswith('*') %}
-                                        <span class="text-blue-600 font-semibold">{{ edu.degree[2:-1] }}</span>
-                                    {% else %}
-                                        {{ edu.degree }}
-                                    {% endif %}
-                                    <br>
-                                    <strong>Institution:</strong>
-                                    {% if edu.institution.startswith('*') %}
-                                        <span class="text-blue-600 font-semibold">{{ edu.institution[2:-1] }}</span>
-                                    {% else %}
-                                        {{ edu.institution }}
-                                    {% endif %}
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        <p>No degrees listed.</p>
-                    {% endif %}
-                </td>
+<!--                &lt;!&ndash; Education &ndash;&gt;-->
+<!--                <td class="p-2 border border-gray-300 align-top">-->
+<!--                    {% set education = updated_data.get('education', []) %}-->
+<!--                    {% if education %}-->
+<!--                        <ul class="list-disc pl-5">-->
+<!--                            {% for edu in education %}-->
+<!--                                <li>-->
+<!--                                    <strong>Degree:</strong>-->
+<!--                                    {% if edu.degree.startswith('*') %}-->
+<!--                                        <span class="text-blue-600 font-semibold">{{ edu.degree[2:-1] }}</span>-->
+<!--                                    {% else %}-->
+<!--                                        {{ edu.degree }}-->
+<!--                                    {% endif %}-->
+<!--                                    <br>-->
+<!--                                    <strong>Institution:</strong>-->
+<!--                                    {% if edu.institution.startswith('*') %}-->
+<!--                                        <span class="text-blue-600 font-semibold">{{ edu.institution[2:-1] }}</span>-->
+<!--                                    {% else %}-->
+<!--                                        {{ edu.institution }}-->
+<!--                                    {% endif %}-->
+<!--                                </li>-->
+<!--                            {% endfor %}-->
+<!--                        </ul>-->
+<!--                    {% else %}-->
+<!--                        <p>No degrees listed.</p>-->
+<!--                    {% endif %}-->
+<!--                </td>-->
 
-                <!-- Experience -->
-                <td class="p-2 border border-gray-300 align-top">
-                    {% set experience = updated_data.get('experience', []) %}
-                    {% if experience %}
-                        <ul class="list-disc pl-5">
-                            {% for exp in experience %}
-                                <li>
-                                    <strong>Role:</strong>
-                                    {% if exp.role.startswith('*') %}
-                                        <span class="text-blue-600 font-semibold">{{ exp.role[2:-1] }}</span>
-                                    {% else %}
-                                        {{ exp.role }}
-                                    {% endif %}
-                                    <br>
-                                    <strong>Organization:</strong>
-                                    {% if exp.organization.startswith('*') %}
-                                        <span class="text-blue-600 font-semibold">{{ exp.organization[2:-1] }}</span>
-                                    {% else %}
-                                        {{ exp.organization }}
-                                    {% endif %}
-                                    <br>
-                                    <strong>Duration:</strong>
-                                    {% if exp.duration.startswith('*') %}
-                                        <span class="text-blue-600 font-semibold">{{ exp.duration[2:-1] }}</span>
-                                    {% else %}
-                                        {{ exp.duration }}
-                                    {% endif %}
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        <p>No experience listed.</p>
-                    {% endif %}
-                </td>
+<!--                &lt;!&ndash; Experience &ndash;&gt;-->
+<!--                <td class="p-2 border border-gray-300 align-top">-->
+<!--                    {% set experience = updated_data.get('experience', []) %}-->
+<!--                    {% if experience %}-->
+<!--                        <ul class="list-disc pl-5">-->
+<!--                            {% for exp in experience %}-->
+<!--                                <li>-->
+<!--                                    <strong>Role:</strong>-->
+<!--                                    {% if exp.role.startswith('*') %}-->
+<!--                                        <span class="text-blue-600 font-semibold">{{ exp.role[2:-1] }}</span>-->
+<!--                                    {% else %}-->
+<!--                                        {{ exp.role }}-->
+<!--                                    {% endif %}-->
+<!--                                    <br>-->
+<!--                                    <strong>Organization:</strong>-->
+<!--                                    {% if exp.organization.startswith('*') %}-->
+<!--                                        <span class="text-blue-600 font-semibold">{{ exp.organization[2:-1] }}</span>-->
+<!--                                    {% else %}-->
+<!--                                        {{ exp.organization }}-->
+<!--                                    {% endif %}-->
+<!--                                    <br>-->
+<!--                                    <strong>Duration:</strong>-->
+<!--                                    {% if exp.duration.startswith('*') %}-->
+<!--                                        <span class="text-blue-600 font-semibold">{{ exp.duration[2:-1] }}</span>-->
+<!--                                    {% else %}-->
+<!--                                        {{ exp.duration }}-->
+<!--                                    {% endif %}-->
+<!--                                </li>-->
+<!--                            {% endfor %}-->
+<!--                        </ul>-->
+<!--                    {% else %}-->
+<!--                        <p>No experience listed.</p>-->
+<!--                    {% endif %}-->
+<!--                </td>-->
 
-                <!-- Skills -->
-                <td class="p-2 border border-gray-300 align-top">
-                    {% set skills = updated_data.get('skills', []) %}
-                    {% if skills %}
-                        <ul class="list-disc pl-5">
-                            {% for skill in skills %}
-                                {% if skill.startswith('*') %}
-                                    <li class="text-blue-600 font-semibold">{{ skill[2:-1] }}</li>
-                                {% else %}
-                                    <li>{{ skill }}</li>
-                                {% endif %}
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        <p>No skills listed.</p>
-                    {% endif %}
-                </td>
+<!--                &lt;!&ndash; Skills &ndash;&gt;-->
+<!--                <td class="p-2 border border-gray-300 align-top">-->
+<!--                    {% set skills = updated_data.get('skills', []) %}-->
+<!--                    {% if skills %}-->
+<!--                        <ul class="list-disc pl-5">-->
+<!--                            {% for skill in skills %}-->
+<!--                                {% if skill.startswith('*') %}-->
+<!--                                    <li class="text-blue-600 font-semibold">{{ skill[2:-1] }}</li>-->
+<!--                                {% else %}-->
+<!--                                    <li>{{ skill }}</li>-->
+<!--                                {% endif %}-->
+<!--                            {% endfor %}-->
+<!--                        </ul>-->
+<!--                    {% else %}-->
+<!--                        <p>No skills listed.</p>-->
+<!--                    {% endif %}-->
+<!--                </td>-->
 
                 <!-- Other Dynamic Fields -->
-                {% for section, values in updated_data.items() if section not in ['education', 'experience', 'skills'] %}
+                {% for section, value in updated_data.items() %}
                     <td class="p-2 border border-gray-300 align-top">
-                        <p class="text-red-600 italic">
-                            Currently, there is no display logic defined. Please update CF_explanation.html to format this data.
+                        <p>
+                            {% set value_str = value|string %}
+                            {% set parts = value_str.split('*') %}
+                            {% for part in parts %}
+                              {% if loop.index is even %}
+                                <span class="text-blue-600 font-semibold italic">{{ part.strip() }}</span>
+                              {% else %}
+                               {{ part.strip() }}
+                              {% endif %}
+                            {% endfor %}
                         </p>
-                        <pre class="text-xs text-gray-700 bg-gray-100 p-2 border border-gray-200 rounded overflow-x-auto">
-                {{ values | tojson(indent=2) }}
-                        </pre>
+
                     </td>
                 {% endfor %}
             </tr>

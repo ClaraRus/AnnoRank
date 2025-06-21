@@ -464,9 +464,10 @@ def f_explanation(experiment_id, n_task, doc_id):
     doc_field_names_display = configs["ui_display_config"]["display_fields"]
     normalized_field_names = [name.replace('_display', '') for name in doc_field_names_display]
 
+
     return render_template('doc_ranking_view_information_template_recruiter.html', doc_obj=doc_obj,
                            field_names=field_names, doc_index=doc_id, task_description=task_description,
-                           all_columns=normalized_field_names, ranking_type=task_obj.ranking_type)
+                           all_columns=normalized_field_names, ranking_type=task_obj.ranking_type, shortlist_button=configs["ui_display_config"]["shortlist_button"])
 
 
 

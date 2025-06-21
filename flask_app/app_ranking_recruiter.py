@@ -432,9 +432,10 @@ def index_ranking(experiment_id, n_task, doc_id):
         doc_obj = docs_obj[int(doc_id) - 1]
 
         field_names, doc_obj = get_xai_data(doc_obj, task_obj.ranking_type, type="factual")
+
         return render_template('doc_ranking_view_information_template_recruiter.html', doc_obj=doc_obj,
                                field_names=field_names, doc_index=doc_id, task_description=task_description,
-                               all_columns=normalized_field_names, ranking_type=task_obj.ranking_type)
+                               all_columns=normalized_field_names, ranking_type=task_obj.ranking_type, shortlist_button = configs["ui_display_config"]["shortlist_button"])
 
     user = database.User.objects(_user_id=session['user_id']).first()
     if n_task not in [item.task for item in user.tasks_visited]:

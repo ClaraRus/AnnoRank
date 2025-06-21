@@ -27,7 +27,9 @@
                 </td>
             {% endfor %}
             <!-- <td></td> -->
-            <td class="align-top px-2 py-4 whitespace-normal border-b border-gray-200" style="padding: 10px; background-color: transparent;"></td>
+            {% if shortlist_button %}
+                <td class="align-top px-2 py-4 whitespace-normal border-b border-gray-200" style="padding: 10px; background-color: transparent;"></td>
+            {% endif %}
             <td class="text-center px-2 py-4 whitespace-normal border-b border-gray-200 text-sm  font-medium">
                 <button
                         class="view-button hover:text-blue-600"
