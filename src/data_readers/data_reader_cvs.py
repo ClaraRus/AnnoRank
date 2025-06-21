@@ -28,7 +28,7 @@ class DataReaderCvs(DataReader):
             data_test (pandas.DataFrame): A DataFrame containing the preprocessed candidate data for testing.
         """
         occupation_dirs = [dir_name for dir_name in os.listdir(os.path.join(self.data_path, 'data')) if
-                           dir_name != 'experiments' and dir_name != 'format_data' and dir_name != 'models']
+                           dir_name != 'experiments' and dir_name != 'format_data' and dir_name != 'models' and dir_name!='.DS_Store']
         dataframes_occupations = []
         dataframes_candidates = []
         for dir_name in occupation_dirs:
@@ -51,16 +51,7 @@ class DataReaderCvs(DataReader):
                 with open(file_path, 'r') as f:
                     candidate_data = json.load(f)
 
-                #######################################MANUAL FLATTENING#####################################
-                counterfactuals = candidate_data.get('counterfactuals', [])
-                if counterfactuals:
-                    candidate_data['cf'] = repr(counterfactuals)
-
-                    # Remove the orignal 'counterfactuals' key from candidate_data
-                    candidate_data.pop('counterfactuals', None)
-
-                ###################################END OF MANUAL FLATTENING###################################
-
+                candidate_data = xai_counterfactual_to_text(candidate_data)
                 candidate_data = pd.json_normalize(candidate_data)
                 candidate_data = candidate_to_text(candidate_data)
 
@@ -80,6 +71,41 @@ class DataReaderCvs(DataReader):
 
 
 # Helper functions for preprocessing the CVS dataset
+
+def stringify_field(value):
+    if value == []:
+        value = "-"
+    if isinstance(value, list):
+        if all(isinstance(item, dict) for item in value):
+            items = []
+            for d in value:
+                item_str = ", ".join(f"{k}: {v}\n" for k, v in d.items())
+                items.append(item_str + "\n")
+            return f" " + " ".join(items) + "\n"
+        else:
+            return f" " + ", ".join(str(v) for v in value) + "\n\n\n"
+    elif isinstance(value, dict):
+        return f"" + ", ".join(f"{k}: {v}\n" for k, v in value.items()) + "\n\n\n"
+    else:
+        return f" {value}\n\n\n"
+
+
+def xai_counterfactual_to_text(candidate):
+    if "counterfactual_xai" in candidate:
+        updated_cf = []
+
+        for cf in candidate["counterfactual_xai"]:
+            if "data" in cf:
+                original_data = cf["data"]
+                new_data = {}
+                for key, value in original_data.items():
+                    new_data[key] = stringify_field(value)
+                cf["data"] = new_data
+
+                updated_cf.append(cf)
+        if len(updated_cf) > 0:
+            candidate["counterfactual_xai"] = updated_cf
+    return candidate
 def candidate_to_text(candidate):
     """
     Converts a candidate object into a formatted text representation.
