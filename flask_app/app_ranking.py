@@ -52,11 +52,13 @@ app.config.from_object(Config)
 parser = argparse.ArgumentParser()
 parser.add_argument('--config_path')
 args = parser.parse_args()
-with open(args.config_path) as f:
-    configs = json.load(f)
 
-connect(configs["data_reader_class"]["name"], host='mongo', port=27017)
-# connect(configs["data_reader_class"], host='0.0.0.0', port=27017)
+if os.path.exists(args.config_path):
+    with open(args.config_path) as f:
+        configs = json.load(f)
+
+    connect(configs["data_reader_class"]["name"], host='mongo', port=27017)
+    # connect(configs["data_reader_class"], host='0.0.0.0', port=27017)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -381,5 +383,6 @@ def error_handling(error):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=False, host='0.0.0.0',
-            port=5000)  # with this we dont need to stop the running flask app, only need to refresh the page in the browser to load the new changes
+    if os.path.exists(args.config_path):
+        app.run(debug=True, use_reloader=False, host='0.0.0.0',
+                port=5000)  # with this we dont need to stop the running flask app, only need to refresh the page in the browser to load the new changes

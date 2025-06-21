@@ -92,8 +92,9 @@
                             {% set content =
                             '<div class="p-4 bg-white" id= "injected-container">
                                     Hello from {{ loop.index }}
-                            </div>' %}
-                            <div>{{ content }}</div>  {# this will escape it #}
+                            </div>'
+                            %}
+                            <div>{{ content | safe}}</div>  {# this will escape it #}
                         </td>
                     </tr>
 

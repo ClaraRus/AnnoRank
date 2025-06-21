@@ -152,7 +152,7 @@ def add_exp_to_db(data_exp):
                         task_obj = add_fields_from_data(list(task.keys()), list(task.values()), task_obj)
                         task_obj.ranking_type = task['ranking_type']
 
-                    task_obj.data = str(data_obj._id)
+                    task_obj.data = "form"
                     task_obj.save()
 
                     if not exp_obj or (
@@ -293,7 +293,7 @@ def get_docs_df(ranking_type, data_config, features):
     df = pd.DataFrame(data_list)
     return df
 
-def add_data_to_db_from_ranking_file(data_name, data_test, fields, query_col):
+def add_data_to_db_from_ranking_file(data_name, data_test, fields, query_col, doc_ID_col):
     data_docs = data_test['docs']
     queries = data_docs[query_col].unique()
     for query in queries:
@@ -311,35 +311,20 @@ def add_data_to_db_from_ranking_file(data_name, data_test, fields, query_col):
                         data_docs[sort_col] = [""] * len(data_docs)
                     with open(path_file, 'r') as f:
                         data = json.load(f)
-                    data_docs.loc[data_docs["_name"] == data["_name"], sort_col] = rank + 1
+                    if not doc_ID_col in data:
+                        column_docID = doc_ID_col.strip("_display")
+                    else:
+                        column_docID = doc_ID_col
+                    if not column_docID in data:
+                        column_docID = "_" + column_docID
+                    else:
+                        column_docID = doc_ID_col
+                    data_docs.loc[data_docs[column_docID] == data[column_docID], sort_col] = rank + 1
             data_test['docs'] = data_docs
             add_data_to_db(data_test, fields=fields,
                    query_col=query_col,
                    sort_col=sort_col, ranking_type=sort_col)
 
-# def add_data_to_db_from_ranking_file(data_name, data_test, fields, query_col):
-#     data_docs = data_test['docs']
-#     queries = data_docs[query_col].unique()
-#     for query in queries:
-#         path_ranking_files = os.path.join("./dataset", data_name, "data", query)
-#         ranking_files = [file for file in os.listdir(path_ranking_files) if ".txt" in file]
-#         for ranking_file in ranking_files:
-#             path_ranking = os.path.join(path_ranking_files, ranking_file)
-#             with open(path_ranking, "r") as f:
-#                 ranking_ids = list(map(int, f.readline().strip().split(',')))
-#                 for rank, ranking_id in enumerate(ranking_ids):
-#                     # find row in data_test and add colum for ranking
-#                     path_file = os.path.join(path_ranking_files, f"{ranking_id}.json")
-#                     sort_col = ranking_file.strip(".txt")
-#                     if sort_col not in data_docs.columns:
-#                         data_docs[sort_col] = [""] * len(data_docs)
-#                     with open(path_file, 'r') as f:
-#                         data = json.load(f)
-#                     data_docs.loc[data_docs["_name"] == data["_name"], sort_col] = rank + 1
-#             data_test['docs'] = data_docs
-#             add_data_to_db(data_test, fields=fields,
-#                    query_col=query_col,
-#                    sort_col=sort_col, ranking_type=sort_col)
 
 class Pipeline:
     """
@@ -525,7 +510,7 @@ class Pipeline:
                   f != self.config['data_reader_class']['name']]
 
         add_data_to_db_from_ranking_file(data_name=self.config['data_reader_class']['name'], data_test=data_test,
-                                         fields=fields, query_col=self.config['data_reader_class']['query'])
+                                         fields=fields, query_col=self.config['data_reader_class']['query'], doc_ID_col=self.config['data_reader_class']['docID'])
         add_data_to_db(data_test, fields=fields,
                        query_col=self.config['data_reader_class']['query'],
                        sort_col=self.config['data_reader_class']['score'], ranking_type='original')

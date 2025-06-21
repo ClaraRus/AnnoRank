@@ -31,16 +31,21 @@
             <td class="text-center px-2 py-4 whitespace-normal border-b border-gray-200 text-sm  font-medium">
                 <button
                         class="view-button hover:text-blue-600"
-                        onclick="loadAndToggleVisibility('expandable-row-detail-{{doc_obj._id}}', '{{doc_obj._id}}', '/get_doc_detail/{{doc_obj._id}}', 'detail')">
+                        onclick="loadAndToggleVisibility('expandable-row-detail-{{doc_obj._id}}', '{{doc_obj._id}}', '/get_doc_detail/{{doc_obj._id}}/{{ranking_type}}', 'detail')">
                         More Details
                     </button>
             </td>
             <!-- <td class="align-top px-2 py-4 whitespace-normal border-b border-gray-200" style="padding: 10px; background-color: transparent;"></td> -->
         </tr>
         <tr id="expandable-row-detail-{{doc_obj._id}}" style="display: none;" class="mt-4" docid="{{doc_obj._id}}">
-            <td colspan="6">
+            <td colspan="{{ all_columns|length + 2 }}">
                 <div id="{{doc_obj._id}}-detail">
-                    <div id="injected-container"></div>
+                    {% set content =
+                            '<div class="p-4 bg-white" id= "injected-container">
+                                    Hello from {{ loop.index }}
+                            </div>'
+                    %}
+                    <div>{{ content | safe}}</div>  {# this will escape it #}
                 </div>
             </td>
         </tr>

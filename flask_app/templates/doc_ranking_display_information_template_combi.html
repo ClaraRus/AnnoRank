@@ -97,21 +97,23 @@
                     </tr>
                     <tr id="expandable-row_f-{{loop.index | safe | escape }}" docid='{{data_obj["_id"] | safe | escape}}' name="doc_row"  style="display: none; overflow-y: hidden;">
                         <td colspan="{{ doc_field_names|length + (1 if view_configs.view_button else 0) + (1 if view_configs.shortlist_button else 0) }}">
-                            {% set content =
+                           {% set content =
                             '<div class="p-4 bg-white" id= "injected-container">
                                     Hello from {{ loop.index }}
-                            </div>' %}
-                            <div>{{ content }}</div>  {# this will escape it #}
+                            </div>'
+                            %}
+                            <div>{{ content | safe}}</div>  {# this will escape it #}
                         </td>
                     </tr>
 
                     <tr id="expandable-row_cf-{{loop.index|string}}" docid='{{data_obj["_id"]|string}}' name="doc_row" style="display: none; overflow-y: hidden;">
                         <td colspan="{{ doc_field_names|length + (1 if view_configs.view_button else 0) + (1 if view_configs.shortlist_button else 0) }}">
-                            {% set content =
+                           {% set content =
                             '<div class="p-4 bg-white" id= "injected-container">
                                     Hello from {{ loop.index }}
-                            </div>' %}
-                            <div>{{ content }}</div>  {# this will escape it #}
+                            </div>'
+                            %}
+                            <div>{{ content | safe}}</div>  {# this will escape it #}
                         </td>
                     </tr>
 

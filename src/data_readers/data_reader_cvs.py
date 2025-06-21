@@ -91,6 +91,8 @@ def candidate_to_text(candidate):
         str: The formatted text representation of the query.
     """
     for col in candidate.columns:
+        if col == "factual_xai" or col == "counterfactual_xai":
+            continue
         if isinstance(candidate[col][0], list):
             text = ""
             first = True
@@ -99,7 +101,7 @@ def candidate_to_text(candidate):
                     for item in candidate[col][0]:
                         for key in item.keys():
                             text = text + clean_text(key, upper=True) + ': '
-                            text = text + clean_text(item[key]) + '\n'
+                            text = text + clean_text(str(item[key])) + '\n'
                             if first:
                                 candidate[col + "_display"] = text
                                 first = False

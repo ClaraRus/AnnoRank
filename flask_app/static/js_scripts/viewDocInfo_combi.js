@@ -6,6 +6,7 @@ let currentOpenItem_view = null;
 
 function loadAndToggleVisibility(targetElementId, docId, htmlFile, type, close=true) {//the close boolean controls whether to close the previous open item of the same type
     const targetElement = document.getElementById(targetElementId);
+    console.log(targetElementId)
 
     const container = targetElement.querySelector("#injected-container");
 

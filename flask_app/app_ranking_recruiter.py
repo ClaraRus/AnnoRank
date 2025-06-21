@@ -35,7 +35,8 @@ import os
 import logging
 
 import database
-from flask import Flask, render_template, request, redirect, session, flash, make_response, jsonify, abort, send_from_directory, url_for
+from flask import Flask, render_template, request, redirect, session, flash, make_response, jsonify, abort, \
+    send_from_directory, url_for
 from flask_login import login_user, LoginManager, logout_user, current_user
 from mongoengine import *
 
@@ -44,7 +45,6 @@ from config import Config
 
 import ast
 import math
-
 
 logging.basicConfig(filename='../record.log', level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -56,11 +56,13 @@ app.config.from_object(Config)
 parser = argparse.ArgumentParser()
 parser.add_argument('--config_path')
 args = parser.parse_args()
-with open(args.config_path) as f:
-    configs = json.load(f)
 
-connect(configs["data_reader_class"]["name"], host='mongo', port=27017)
-# connect(configs["data_reader_class"], host='0.0.0.0', port=27017)
+if os.path.exists(args.config_path):
+    with open(args.config_path) as f:
+        configs = json.load(f)
+
+    connect(configs["data_reader_class"]["name"], host='mongo', port=27017)
+    # connect(configs["data_reader_class"], host='0.0.0.0', port=27017)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -143,6 +145,7 @@ def start_ranking(experiment_id):
 
     return render_template('start_ranking_recruiter.html')
 
+
 #added
 @app.route("/consent/<int:experiment_id>", methods=['GET', 'POST'])
 def consent_form(experiment_id):
@@ -151,7 +154,6 @@ def consent_form(experiment_id):
         next_task = get_next_task(experiment_id).get_json()['next_task']
         questionnaire_url = url_for('questionnaire', experiment_id=experiment_id, n_task=next_task)
         return redirect(questionnaire_url)
-
 
     return render_template('consent_form_template_recruiter.html', experiment_id=experiment_id)
 
@@ -173,7 +175,9 @@ def instructions(experiment_id):
         return redirect(next_url)
 
     task_description = get_task_description(None, experiment_id)
-    return render_template('task_description_shortlist_page_template_recruiter.html', experiment_id=experiment_id,  task_description=task_description)
+    return render_template('task_description_shortlist_page_template_recruiter.html', experiment_id=experiment_id,
+                           task_description=task_description)
+
 
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
@@ -206,7 +210,6 @@ def get_next_task(experiment_id):
     """
 
     experiment = database.Experiment.objects(_exp_id=str(experiment_id)).first()
-
     user = database.User.objects(_user_id=session['user_id']).first()
 
     experiment_tasks = list(range(0, len(experiment.tasks)))
@@ -224,13 +227,13 @@ def get_next_task(experiment_id):
         ]
 
         all_xai_experiments = database.Task.objects(
-        show_xai__exists=True,
-        show_xai='True'
+            show_xai__exists=True,
+            show_xai='True'
         )
 
         all_not_xai_experiments = database.Task.objects(
-        show_xai__exists=True,
-        show_xai='False'
+            show_xai__exists=True,
+            show_xai='False'
         )
 
         all_forms = database.Task.objects(
@@ -243,10 +246,13 @@ def get_next_task(experiment_id):
 
         not_visited_xai = [experiment.tasks.index(str(task.id)) for task in query_tasks if task.show_xai == 'True']
 
-        form_pre_q_1 = [experiment.tasks.index(str(task.id)) for task in all_forms if task.query_title == "pre_task_1_questionnaire"][0]
-        if len(not_visited_no_xai) == len(all_not_xai_experiments) and len(not_visited_xai) == len(all_xai_experiments) and form_pre_q_1 not in user_tasks_visited:
+        form_pre_q_1 = \
+        [experiment.tasks.index(str(task.id)) for task in all_forms if task.query_title == "pre_task_1_questionnaire"][
+            0]
+        if len(not_visited_no_xai) == len(all_not_xai_experiments) and len(not_visited_xai) == len(
+                all_xai_experiments) and form_pre_q_1 not in user_tasks_visited:
             task_form = [experiment.tasks.index(str(task.id)) for task in all_forms if
-                             task.query_title == "pre_task_1_questionnaire"][0]
+                         task.query_title == "pre_task_1_questionnaire"][0]
             return jsonify({'next_task': str(task_form)})
 
         # If we still have show_xai=False tasks to do
@@ -255,17 +261,23 @@ def get_next_task(experiment_id):
             return jsonify({'next_task': str(next_task)})
 
         # Check if all show_xai=False tasks are completed
-        form_end_q_1 = [experiment.tasks.index(str(task.id)) for task in all_forms if task.query_title == "end_task_1_questionnaire"][0]
-        if len(not_visited_no_xai) == 0 and len(not_visited_xai) == len(all_xai_experiments) and form_end_q_1 not in user_tasks_visited:
-            task_form = [experiment.tasks.index(str(task.id)) for task in all_forms if task.query_title == "end_task_1_questionnaire"][0]
-            return jsonify({'next_task': str(task_form)})
-
-        form_pre_q_2 = [experiment.tasks.index(str(task.id)) for task in all_forms if task.query_title == "pre_task_2_questionnaire"][0]
-        if len(not_visited_no_xai) == 0 and len(not_visited_xai) == len(all_xai_experiments) and form_pre_q_2 not in user_tasks_visited:
+        form_end_q_1 = \
+        [experiment.tasks.index(str(task.id)) for task in all_forms if task.query_title == "end_task_1_questionnaire"][
+            0]
+        if len(not_visited_no_xai) == 0 and len(not_visited_xai) == len(
+                all_xai_experiments) and form_end_q_1 not in user_tasks_visited:
             task_form = [experiment.tasks.index(str(task.id)) for task in all_forms if
-                             task.query_title == "pre_task_2_questionnaire"][0]
+                         task.query_title == "end_task_1_questionnaire"][0]
             return jsonify({'next_task': str(task_form)})
 
+        form_pre_q_2 = \
+        [experiment.tasks.index(str(task.id)) for task in all_forms if task.query_title == "pre_task_2_questionnaire"][
+            0]
+        if len(not_visited_no_xai) == 0 and len(not_visited_xai) == len(
+                all_xai_experiments) and form_pre_q_2 not in user_tasks_visited:
+            task_form = [experiment.tasks.index(str(task.id)) for task in all_forms if
+                         task.query_title == "pre_task_2_questionnaire"][0]
+            return jsonify({'next_task': str(task_form)})
 
         configs["ui_display_config"]["view_button"] = True
         if len(not_visited_xai) > 0:
@@ -273,9 +285,12 @@ def get_next_task(experiment_id):
             next_task = np.random.choice(not_visited_xai)
             return jsonify({'next_task': str(next_task)})
 
-        form_end_q_2 = [experiment.tasks.index(str(task.id)) for task in all_forms if task.query_title == "end_task_2_questionnaire"][0]
+        form_end_q_2 = \
+        [experiment.tasks.index(str(task.id)) for task in all_forms if task.query_title == "end_task_2_questionnaire"][
+            0]
         if len(not_visited_no_xai) == 0 and len(not_visited_xai) == 0 and form_end_q_2 not in user_tasks_visited:
-            pre_task_form = [experiment.tasks.index(str(task.id)) for task in all_forms if task.query_title == "end_task_2_questionnaire"][0]
+            pre_task_form = [experiment.tasks.index(str(task.id)) for task in all_forms if
+                             task.query_title == "end_task_2_questionnaire"][0]
             return jsonify({'next_task': str(pre_task_form)})
     else:
         # If we've completed everything
@@ -285,6 +300,7 @@ def get_next_task(experiment_id):
             next_task = 'stop_experiment'
 
         return jsonify({'next_task': str(next_task)})
+
 
 def get_task_description(task_obj, experiment_id):
     experiment = database.Experiment.objects(_exp_id=str(experiment_id)).first()
@@ -308,9 +324,9 @@ def get_task_description(task_obj, experiment_id):
     not_visited_no_xai = [experiment.tasks.index(str(task.id)) for task in query_tasks if task.show_xai == 'False']
 
     if len(not_visited_no_xai) == 0:
-        base_description = configs["ui_display_config"]["task_description_2_recruiter"]
+        base_description = configs["ui_display_config"]["task_description_2"]
     else:
-        base_description = configs["ui_display_config"]["task_description_1_recruiter"]
+        base_description = configs["ui_display_config"]["task_description_1"]
 
     if task_obj is not None:
         if task_obj.setting:
@@ -322,6 +338,42 @@ def get_task_description(task_obj, experiment_id):
             )
 
     return base_description
+
+
+def get_xai_data(doc_obj, ranking_type, type="factual"):
+    factual_raw = getattr(doc_obj, f'{type}_xai', None)
+    factual_list = []
+
+    if factual_raw is None or (isinstance(factual_raw, float) and math.isnan(factual_raw)):
+        pass  # Leave list empty
+    elif isinstance(factual_raw, str):
+        try:
+            factual_list = ast.literal_eval(factual_raw)
+        except Exception:
+            factual_list = []
+    elif isinstance(factual_raw, list):
+        factual_list = factual_raw
+
+    # get factuals corresponding to ranking type
+    factual_data = [factual for factual in factual_list if factual["ranking_type"] == ranking_type][0]
+
+    # Extract fields like education_factual, etc.
+    factual_fields = factual_data["data"].keys()
+    if factual_data:
+        for key in factual_fields:
+            value = factual_data["data"].get(key, '')
+            setattr(doc_obj, key + f"_{type}", value)
+    else:
+        for key in factual_data:
+            setattr(doc_obj, key + f"_{type}", '')
+
+    field_names = [f + f"_{type}" for f in factual_fields]
+
+    if type == "factual":
+        setattr(doc_obj, f"{type}_image", factual_data[f"{type}_image"])
+    setattr(doc_obj, f"{type}_text", factual_data[f"{type}_text"])
+
+    return field_names, doc_obj
 
 
 @app.route("/start_ranking_recruiter/<experiment_id>/index_ranking/<n_task>/<doc_id>", methods=['GET', 'POST'])
@@ -339,17 +391,17 @@ def index_ranking(experiment_id, n_task, doc_id):
     Returns:
         str: The rendered HTML template for the index ranking page.
     """
-    # try:
-    exp_obj = database.Experiment.objects(_exp_id=str(experiment_id)).first()
-    task_id = exp_obj.tasks[int(n_task)]
+    try:
+        exp_obj = database.Experiment.objects(_exp_id=str(experiment_id)).first()
+        task_id = exp_obj.tasks[int(n_task)]
 
-    task_obj = database.Task.objects(id=task_id).first()
-    data_obj = database.Data.objects(_id=task_obj.data).first()
-    query_obj = database.QueryRepr.objects(_id=data_obj.query).first()
-    #except:
-    #    response = make_response(redirect(f"/404/Experiment type is not for app_ranking!", code=200))
-    #    response.headers['HX-Redirect'] = f"/404/Experiment type is not for app_ranking!"
-    #    return response
+        task_obj = database.Task.objects(id=task_id).first()
+        data_obj = database.Data.objects(_id=task_obj.data).first()
+        query_obj = database.QueryRepr.objects(_id=data_obj.query).first()
+    except:
+        response = make_response(redirect(f"/404/Experiment type is not for app_ranking!", code=200))
+        response.headers['HX-Redirect'] = f"/404/Experiment type is not for app_ranking!"
+        return response
 
     try:
         docs = [ranking for ranking in data_obj.rankings if ranking.ranking_type == task_obj.ranking_type][0].docs
@@ -362,8 +414,9 @@ def index_ranking(experiment_id, n_task, doc_id):
     doc_field_names_display = configs["ui_display_config"]["display_fields"]
 
     # add display of score column
-    if task_obj.score_column not in doc_field_names_display:
-        doc_field_names_display[-1] = task_obj.score_column
+    if 'score_column' in task_obj:
+        if task_obj.score_column not in doc_field_names_display:
+            doc_field_names_display[-1] = task_obj.score_column
 
     if configs["ui_display_config"]["view_button"]:
         doc_field_names_view = configs["ui_display_config"]["view_fields"]
@@ -374,41 +427,14 @@ def index_ranking(experiment_id, n_task, doc_id):
 
     normalized_field_names = [name.replace('_display', '') for name in doc_field_names_display]
 
-
     # get factual data
-    factual_fields = configs["ui_display_config"]["factual_fields"]
-
     if doc_id != 'view':
         doc_obj = docs_obj[int(doc_id) - 1]
 
-        factual_raw = getattr(doc_obj, "factuals", None)
-        factual_list = []
-
-        if factual_raw is None or (isinstance(factual_raw, float) and math.isnan(factual_raw)):
-            pass  # Leave list empty
-        elif isinstance(factual_raw, str):
-            try:
-                factual_list = ast.literal_eval(factual_raw)
-            except Exception:
-                factual_list = []
-        elif isinstance(factual_raw, list):
-            factual_list = factual_raw
-
-        # Extract fields like education_factual, etc.
-        if factual_list:
-            flat_factuals = factual_list[0]
-            for key in factual_fields:
-                value = flat_factuals.get(key, '')
-                setattr(doc_obj, key + "_factual", value)
-        else:
-            for key in factual_fields:
-                setattr(doc_obj, key + "_factual", '')
-        
-        field_names = [f + "_factual" for f in factual_fields]
-
-
+        field_names, doc_obj = get_xai_data(doc_obj, task_obj.ranking_type, type="factual")
         return render_template('doc_ranking_view_information_template_recruiter.html', doc_obj=doc_obj,
-                               field_names=field_names, doc_index=doc_id, task_description=task_description, all_columns=normalized_field_names)
+                               field_names=field_names, doc_index=doc_id, task_description=task_description,
+                               all_columns=normalized_field_names, ranking_type=task_obj.ranking_type)
 
     user = database.User.objects(_user_id=session['user_id']).first()
     if n_task not in [item.task for item in user.tasks_visited]:
@@ -431,39 +457,37 @@ def index_ranking(experiment_id, n_task, doc_id):
                            query_text=query_text,
                            current_url=current_url, task_description=task_description, session_id=session['user_id'])
 
+
 #added
-@app.route('/get_doc_detail/<doc_id>', methods=['GET'])
-def get_doc_detail(doc_id):
+@app.route('/get_doc_detail/<doc_id>/<ranking_type>', methods=['GET'])
+def get_doc_detail(doc_id, ranking_type):
     doc_obj = database.DocRepr.objects(_id=doc_id).first()
     if not doc_obj:
         return "Document not found", 404
 
-    field_names = configs["ui_display_config"].get("detail_fields", [])
+    _, doc_obj = get_xai_data(doc_obj, ranking_type, type="factual")
+
     return render_template(
-        'doc_ranking_view_plot_and_discription_template_recruiter.html',
-        doc_obj=doc_obj,
-        field_names=field_names
+        'doc_ranking_view_plot_and_description_template_recruiter.html',
+        doc_obj=doc_obj
     )
+
 
 # added
 @app.route('/images/<path:filename>')
 def images(filename):
-    # Optional: restrict file types
-    if not filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
-        abort(403)
+    if filename is not None:
+        # Optional: restrict file types
+        if not filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
+            abort(403)
 
-    data_name = configs["data_reader_class"]["name"]
+        data_name = configs["data_reader_class"]["name"]
 
-    image_dir = os.path.abspath(
-        os.path.join(app.root_path, '..', 'dataset', data_name, 'data')
-    )
-
-
-
-    return send_from_directory(image_dir, filename)
-
-
-
+        image_dir = os.path.abspath(
+            os.path.join(app.root_path, '..', 'dataset', data_name, 'data')
+        )
+        return send_from_directory(image_dir, filename)
+    return "No filename!"
 
 
 @app.route('/store_data_ranking', methods=['POST'])
@@ -514,6 +538,7 @@ def form_demographic_data():
     """
     return render_template('form_template.html', items=configs['ui_display_config']['exit_survey'])
 
+
 @app.route("/questionnaire/<int:experiment_id>/<n_task>", methods=['GET', 'POST'])
 # @login_required
 def questionnaire(experiment_id, n_task):
@@ -550,7 +575,7 @@ def questionnaire(experiment_id, n_task):
         next_task_obj = database.Task.objects(id=next_task_id).first()
 
         if current_task_obj.query_title == "pre_task_1_questionnaire" or current_task_obj.query_title == "pre_task_2_questionnaire":
-            next_url = url_for('instructions', experiment_id=experiment_id)    
+            next_url = url_for('instructions', experiment_id=experiment_id)
         elif current_task_obj.query_title == "end_task_1_questionnaire":
             next_url = url_for('questionnaire', experiment_id=experiment_id, n_task=next_task)
         elif current_task_obj.query_title == "end_task_2_questionnaire":
@@ -561,6 +586,7 @@ def questionnaire(experiment_id, n_task):
             next_url = url_for('index_ranking', experiment_id=experiment_id, n_task=next_task, doc_id="view")
 
     return render_template('form_template_recruiter.html', items=question_list, next_url=next_url, current_task=n_task)
+
 
 @app.route("/questionnaire_submit/<current_task>", methods=['GET', 'POST'])
 def form_submit1(current_task):
@@ -643,5 +669,6 @@ def error_handling(error):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=False, host='0.0.0.0',
-            port=5004)  # with this we dont need to stop the running flask app, only need to refresh the page in the browser to load the new changes
+    if os.path.exists(args.config_path):
+        app.run(debug=True, use_reloader=False, host='0.0.0.0',
+                port=5004)  # with this we dont need to stop the running flask app, only need to refresh the page in the browser to load the new changes

@@ -1,4 +1,4 @@
-<tr id="expandable-row-detail-{{doc_index}}">
+<tr id="expandable-row-explainability-{{doc_index}}">
     <td colspan="6">
         <!-- <table>
             <tr>
@@ -12,6 +12,7 @@
             <!-- Text Block -->
             <div class="w-2/3 p-4 border border-gray-200 rounded-lg shadow-md">
                 <p class="text-gray-600 leading-relaxed">
+
                      {{ doc_obj.factual_text | default('No explanation available.', true) }}
                 </p>
             </div>
@@ -21,4 +22,3 @@
         </table> -->
     </td>
 </tr>
-

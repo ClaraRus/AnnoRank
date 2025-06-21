@@ -14,15 +14,15 @@
                     {% if doc_obj.counterfactuals %}
                         {% for cf in doc_obj.counterfactuals %}
                             <div class="mt-4 p-4 bg-gray-100 border border-gray-300 text-sm text-black">
-                                <div class="flex justify-between items-center">    
+                                <div class="flex justify-between items-center">
                                     <p class="mb-2">
-                                        <strong>Counterfactual {{ loop.index }}:</strong> {{ cf.text }}
+                                        <strong>Counterfactual {{ loop.index }}:</strong> {{ cf.counterfactual_text }}
                                     </p>
                                     <button
                                         class="view-button hover:text-blue-600"
                                         onclick="loadAndToggleVisibility(
-                                            'expandable-row-updated-{{ doc_obj._id }}-{{ loop.index }}', '{{ doc_obj._id }}', 
-                                            '/start_ranking_jobseeker/{{ experiment_id }}/index_ranking/{{ n_task }}/{{ doc_obj._id }}/cf_explanation/{{ loop.index }}', 
+                                            'expandable-row-updated-{{ doc_obj._id }}-{{ loop.index }}', '{{ doc_obj._id }}',
+                                            '/start_ranking_jobseeker/{{ experiment_id }}/index_ranking/{{ n_task }}/{{ doc_obj._id }}/cf_explanation/{{ loop.index }}',
                                             'updated'
                                         )"
                                     >
@@ -30,7 +30,7 @@
                                     </button>
                                 </div>
                             </div>
-                        
+
                             <div id="expandable-row-updated-{{ doc_obj._id }}-{{ loop.index }}" style="display: none;" class="mt-4">
                                 <!-- CF_explanation.html -->
                             </div>

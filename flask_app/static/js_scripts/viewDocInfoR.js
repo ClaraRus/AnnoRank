@@ -3,6 +3,7 @@ let currentOpenItem_detail = null;
 
 function loadAndToggleVisibility(targetElementId, docId, htmlFile, type) {
     const targetElement = document.getElementById(targetElementId);
+    console.log(targetElementId)
     const container = targetElement.querySelector("#injected-container");
 
     const isHidden = targetElement.style.display === 'none' || targetElement.style.display === '';
@@ -16,7 +17,7 @@ function loadAndToggleVisibility(targetElementId, docId, htmlFile, type) {
                 } else {
                     container.innerHTML = data;
                 }
-
+                console.log(data)
                 targetElement.style.display = 'table-row';
 
                 if (type === "view") {
