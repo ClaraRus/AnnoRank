@@ -152,6 +152,9 @@ def consent_form(experiment_id):
     if request.method == 'POST':
         #redirect to pre-task questionnaire
         next_task = get_next_task(experiment_id).get_json()['next_task']
+        user = database.User.objects(_user_id=session['user_id']).first()
+        user.debug = next_task
+        user.save()
         questionnaire_url = url_for('questionnaire', experiment_id=experiment_id, n_task=next_task)
         return redirect(questionnaire_url)
 
@@ -163,12 +166,12 @@ def consent_form(experiment_id):
 def instructions(experiment_id):
     if request.method == 'POST':
         # After instructions are acknowledged, redirect to next task
-        # try:
-        next_task = get_next_task(experiment_id).get_json()['next_task']
-        # except:
-        #    response = make_response(redirect("/404/Failed get next task!", code=200))
-        #    response.headers['HX-Redirect'] = "/404/Failed get next task!"
-        #    return response
+        try:
+            next_task = get_next_task(experiment_id).get_json()['next_task']
+        except:
+           response = make_response(redirect("/404/Failed get next task!", code=200))
+           response.headers['HX-Redirect'] = "/404/Failed get next task!"
+           return response
 
         #questionnaire_url = url_for('questionnaire', experiment_id=experiment_id, n_task=next_task)
         next_url = url_for('index_ranking', experiment_id=experiment_id, n_task=next_task, doc_id="view")
@@ -226,17 +229,26 @@ def get_next_task(experiment_id):
             for idx in tasks_not_visited
         ]
 
+        all_tasks = [
+            database.Task.objects(id=experiment.tasks[idx]).first()
+            for idx in experiment_tasks
+        ]
+        all_task_ids = [task.id for task in all_tasks if task is not None]
+
         all_xai_experiments = database.Task.objects(
+            id__in=all_task_ids,
             show_xai__exists=True,
             show_xai='True'
         )
 
         all_not_xai_experiments = database.Task.objects(
+            id__in=all_task_ids,
             show_xai__exists=True,
             show_xai='False'
         )
 
         all_forms = database.Task.objects(
+            id__in=all_task_ids,
             show_xai__exists=False,
             ranking_type='form'
         )
@@ -249,6 +261,7 @@ def get_next_task(experiment_id):
         form_pre_q_1 = \
         [experiment.tasks.index(str(task.id)) for task in all_forms if task.query_title == "pre_task_1_questionnaire"][
             0]
+
         if len(not_visited_no_xai) == len(all_not_xai_experiments) and len(not_visited_xai) == len(
                 all_xai_experiments) and form_pre_q_1 not in user_tasks_visited:
             task_form = [experiment.tasks.index(str(task.id)) for task in all_forms if
@@ -264,6 +277,8 @@ def get_next_task(experiment_id):
         form_end_q_1 = \
         [experiment.tasks.index(str(task.id)) for task in all_forms if task.query_title == "end_task_1_questionnaire"][
             0]
+
+
         if len(not_visited_no_xai) == 0 and len(not_visited_xai) == len(
                 all_xai_experiments) and form_end_q_1 not in user_tasks_visited:
             task_form = [experiment.tasks.index(str(task.id)) for task in all_forms if
