@@ -4,7 +4,7 @@ let currentOpenItems_updated = {}; //As there can exist multiple updated buttons
 let currentOpenItem_view = null;
 
 
-function loadAndToggleVisibility(targetElementId, docId, htmlFile, type, close=true) {//the close boolean controls whether to close the previous open item of the same type
+function loadAndToggleVisibility(targetElementId, docId, htmlFile, type, updatedId=null, close=true) {//the close boolean controls whether to close the previous open item of the same type
     const targetElement = document.getElementById(targetElementId);
     console.log(targetElementId)
 
@@ -83,7 +83,7 @@ function loadAndToggleVisibility(targetElementId, docId, htmlFile, type, close=t
                         delete currentOpenItems_updated[docId];
                     }
 
-                    viewDocCount(targetElementId, docId, "updated");
+                    viewDocCount(targetElementId, docId, "updated", updatedId);
                     viewDocTime(docId, "updated", "start");
 
                     currentOpenItems_updated[docId] = targetElement;

@@ -569,7 +569,7 @@ def store_data_ranking():
             view_n=str(info.get('view_n', 0)),
             detail_n=str(info.get('detail_n', 0)),
             cf_n=str(info.get('cf_n', 0)),
-            updated_n=str(info.get('updated_n', 0)),
+            updated_n=str(info.get('updated_n', {})),
             view_timestamps=info.get('view_timestamps', []),
             detail_timestamps=info.get('detail_timestamps', []),
             cf_timestamps=info.get('cf_timestamps', []),

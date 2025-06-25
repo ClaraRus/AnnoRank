@@ -23,7 +23,7 @@
                                         onclick="loadAndToggleVisibility(
                                             'expandable-row-updated-{{ doc_obj._id }}-{{ loop.index }}', '{{ doc_obj._id }}',
                                             '/start_ranking_jobseeker/{{ experiment_id }}/index_ranking/{{ n_task }}/{{ doc_obj._id }}/cf_explanation/{{ loop.index }}',
-                                            'updated'
+                                            'updated', 'CF-{{loop.index|string}}'
                                         )"
                                     >
                                         More Details

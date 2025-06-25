@@ -71,7 +71,7 @@ function collectDataShortlist(selection_range) {
         interactions_c['view_n'] = (docViews[doc_id] && docViews[doc_id].view) ? docViews[doc_id].view : 0;
         interactions_c['detail_n'] = (docViews[doc_id] && docViews[doc_id].detail) ? docViews[doc_id].detail : 0;
         interactions_c['cf_n'] = (docViews[doc_id] && docViews[doc_id].cf) ? docViews[doc_id].cf : 0;
-        interactions_c['updated_n'] = (docViews[doc_id] && docViews[doc_id].updated) ? docViews[doc_id].updated : 0;
+        interactions_c['updated_n'] = (docViews[doc_id] && docViews[doc_id].updated) ? docViews[doc_id].updated : {};
     
         // Timestamps
         interactions_c['view_timestamps'] = (docTimes[doc_id] && docTimes[doc_id].view) ? docTimes[doc_id].view : [];
