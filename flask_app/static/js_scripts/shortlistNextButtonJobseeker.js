@@ -15,21 +15,19 @@ function collectDataShortlist(selection_range) {
             }
           }
       }
+      // Factual button
       if (currentOpenItem_view !== null && currentOpenItem_view.style.display !== 'none') {
           currentOpenItem_view.style.display = 'none';
           viewDocTime(currentOpenItem_view.getAttribute('docid'), "view", "stop");
       }
       
+      // Counterfactual button
       if (currentOpenItem_cf !== null && currentOpenItem_cf.style.display !== 'none') {
           currentOpenItem_cf.style.display = 'none';
           viewDocTime(currentOpenItem_cf.getAttribute('docid'), "cf", "stop");
       }
 
-    //   if (currentOpenItem_updated !== null && currentOpenItem_updated.style.display !== 'none') {
-    //       currentOpenItem_updated.style.display = 'none';
-    //       viewDocTime(currentOpenItem_updated.getAttribute('docid'), "updated", "stop");
-    //   }
-
+      // Updated button for counterfactuals
       for (const docId in currentOpenItems_updated) {
         const element = currentOpenItems_updated[docId];
         if (element && element.style.display !== 'none') {
@@ -39,6 +37,7 @@ function collectDataShortlist(selection_range) {
       }
       currentOpenItems_updated = {};
       
+      // More details button for factuals
       if (currentOpenItem_detail !== null && currentOpenItem_detail.style.display !== 'none') {
           currentOpenItem_detail.style.display = 'none';
           viewDocTime(currentOpenItem_detail.getAttribute('docid'), "detail", "stop");
@@ -67,13 +66,13 @@ function collectDataShortlist(selection_range) {
         interactions_c['_doc_id'] = doc_id
 
 
-        // Button counts
+        // Initalization Button counts
         interactions_c['view_n'] = (docViews[doc_id] && docViews[doc_id].view) ? docViews[doc_id].view : 0;
         interactions_c['detail_n'] = (docViews[doc_id] && docViews[doc_id].detail) ? docViews[doc_id].detail : 0;
         interactions_c['cf_n'] = (docViews[doc_id] && docViews[doc_id].cf) ? docViews[doc_id].cf : 0;
         interactions_c['updated_n'] = (docViews[doc_id] && docViews[doc_id].updated) ? docViews[doc_id].updated : {};
     
-        // Timestamps
+        // Initalization Timestamps
         interactions_c['view_timestamps'] = (docTimes[doc_id] && docTimes[doc_id].view) ? docTimes[doc_id].view : [];
         interactions_c['detail_timestamps'] = (docTimes[doc_id] && docTimes[doc_id].detail) ? docTimes[doc_id].detail : [];
         interactions_c['cf_timestamps'] = (docTimes[doc_id] && docTimes[doc_id].cf) ? docTimes[doc_id].cf : [];
@@ -90,9 +89,7 @@ function collectDataShortlist(selection_range) {
         interactions[doc_id] = interactions_c
       }
 
-    //  if (selecteddocIds.length >= selection_range[0] && selecteddocIds.length <= selection_range[1]) {
-//       //Use jQuery AJAX to send data to the Flask app
-
+      //Use jQuery AJAX to send data to the Flask app
       $.ajax({
       type: "POST",
       url: "/store_data_ranking",
@@ -111,12 +108,9 @@ function collectDataShortlist(selection_range) {
       // Get the current URL
       if (nextTask == 'stop_experiment') {
           window.location.href = "/stop_experiment";
-      } //if (nextTask == 'form') {
-        //  window.location.href ="/form"
-        //  }
+      } 
       else {
           // Redirect to the default link for other cases
-          //window.location.href = "/start_ranking_recruiter/" + expId + "/index_ranking/" + nextTask +"/view";
           window.location.href = "/questionnaire/" + expId +  "/" + currentTask;
 
       }

@@ -120,13 +120,7 @@ class Interaction(EmbeddedDocument):
     detail_timestamps = ListField()  # When detail interactions happened
     cf_timestamps = ListField()  # When counterfactual interactions happened
     updated_timestamps = ListField()  # When updated interactions happened
-    
-# class InteractionRecruiter(EmbeddedDocument):
-#     view_n = StringField(default="0")  # Number of view interactions
-#     detail_n = StringField(default="0")  # Number of detail interactions
-#     view_timestamps = ListField()  # When view interactions happened
-#     detail_timestamps = ListField()  # When detail interactions happened
-#     shortlisted = StringField(default="false")  # Whether it was shortlisted
+
 
 
 
@@ -153,15 +147,19 @@ class TaskVisited(EmbeddedDocument):
 
 class User(DynamicDocument):
     meta = {
-        'collection': 'users'
+        'collection': 'users',
+        'indexes': [
+            {
+                'fields': ['_user_id', 'role'],
+                'unique': True  # enforce uniqueness per user_id + role
+            }
+        ]
     }
     _id = ObjectIdField()
     _user_id = StringField(required=True)
+    role = StringField(required=True, choices=['recruiter', 'jobseeker', 'default'], default='default')
     _attention_check = StringField(default="")
     tasks_visited = EmbeddedDocumentListField(TaskVisited)
-
-
-
 
 def create_collections():
     db = get_db()

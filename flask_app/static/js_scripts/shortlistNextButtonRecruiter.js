@@ -15,11 +15,12 @@ function collectDataShortlist(selection_range) {
           }
         }
     }
+    // Factual button
     if (currentOpenItem_view !== null && currentOpenItem_view.style.display !== 'none') {
         currentOpenItem_view.style.display = 'none';
         viewDocTime(currentOpenItem_view.getAttribute('docid'), "view", "stop");
     }
-    
+    // More details button for factuals
     if (currentOpenItem_detail !== null && currentOpenItem_detail.style.display !== 'none') {
         currentOpenItem_detail.style.display = 'none';
         viewDocTime(currentOpenItem_detail.getAttribute('docid'), "detail", "stop");
@@ -86,12 +87,9 @@ function collectDataShortlist(selection_range) {
       // Get the current URL
       if (nextTask == 'stop_experiment') {
           window.location.href = "/stop_experiment";
-      } //if (nextTask == 'form') {
-        //  window.location.href ="/form"
-        //  }
+      } 
       else {
           // Redirect to the default link for other cases
-          //window.location.href = "/start_ranking_recruiter/" + expId + "/index_ranking/" + nextTask +"/view";
           window.location.href = "/questionnaire/" + expId +  "/" + currentTask;
 
       }

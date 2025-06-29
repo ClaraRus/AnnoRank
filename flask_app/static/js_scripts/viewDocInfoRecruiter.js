@@ -1,43 +1,89 @@
 let currentOpenItem_view = null;
-let currentOpenItem_cf = null;
+let currentOpenItem_detail = null;
 
-function loadAndToggleVisibility(targetElementId, docId, htmlFile, type = "view") {
+function loadAndToggleVisibility(targetElementId, docId, htmlFile, type) {
     const targetElement = document.getElementById(targetElementId);
+    console.log(targetElementId)
+    const container = targetElement.querySelector("#injected-container");
 
-    if (targetElement.style.display === 'none' || targetElement.style.display === '') {
+    const isHidden = targetElement.style.display === 'none' || targetElement.style.display === '';
+
+    if (isHidden) { // Loading the HTML file, displaying the element, starting the view time and counting the clicks
         fetch(htmlFile)
             .then(response => response.text())
             .then(data => {
-                targetElement.innerHTML = data;
+                if (!container) {
+                    targetElement.innerHTML = data;
+                } else {
+                    container.innerHTML = data;
+                }
+                console.log(data)
                 targetElement.style.display = 'table-row';
 
+                // Factual button
                 if (type === "view") {
+                    // If another view is already open, close it
                     if (currentOpenItem_view && currentOpenItem_view !== targetElement) {
-                        currentOpenItem_view.style.display = 'none';
-                        viewDocTime(currentOpenItem_view.id, currentOpenItem_view.getAttribute('cid'));
-                    }
-                    currentOpenItem_view = targetElement;
-                    viewDocCount(targetElementId, docId);
-                    viewDocTime(targetElementId, docId);
+                        const prevDocId = currentOpenItem_view.getAttribute('docid');
+                        viewDocTime(prevDocId, "view", "stop");
 
-                } else if (type === "cf") {
-                    if (currentOpenItem_cf && currentOpenItem_cf !== targetElement) {
-                        currentOpenItem_cf.style.display = 'none';
+                        // Also stop any open detail row for that view
+                        const detailRowId = `expandable-row-detail-${prevDocId}`;
+                        const detailRow = document.getElementById(detailRowId);
+                        if (detailRow && detailRow.style.display !== 'none') {
+                            viewDocTime(prevDocId, "detail", "stop");
+                            detailRow.style.display = 'none';
+                            currentOpenItem_detail = null;
+                        }
+
+                        currentOpenItem_view.style.display = 'none';
+                        currentOpenItem_view = null;
                     }
-                    currentOpenItem_cf = targetElement;
+
+                    viewDocCount(targetElementId, docId, "view");
+                    viewDocTime(docId, "view", "start");
+                    currentOpenItem_view = targetElement;
+
+                } 
+                
+                // More details button for factuals
+                else if (type === "detail") {
+                    // If another detail is already open, close it
+                    if (currentOpenItem_detail && currentOpenItem_detail !== targetElement) {
+                        const prevDocId = currentOpenItem_detail.getAttribute('docid');
+                        viewDocTime(prevDocId, "detail", "stop");
+                        currentOpenItem_detail.style.display = 'none';
+                        currentOpenItem_detail = null;
+                    }
+
+                    viewDocCount(targetElementId, docId, "detail");
+                    viewDocTime(docId, "detail", "start");
+                    currentOpenItem_detail = targetElement;
                 }
             })
             .catch(error => console.error(error));
-    } else {
+    } else { // If the element is already displayed, hide it and stop the corresponding view time
+        // Hiding the element
         targetElement.style.display = 'none';
 
+        // Factual button
         if (type === "view") {
-            viewDocTime(targetElementId, docId);
+            viewDocTime(docId, "view", "stop");
+
+            // Also stop and hide detail if it's open
+            const detailRowId = `expandable-row-detail-${docId}`;
+            const detailRow = document.getElementById(detailRowId);
+            if (detailRow && detailRow.style.display !== 'none') {
+                viewDocTime(docId, "detail", "stop");
+                detailRow.style.display = 'none';
+                currentOpenItem_detail = null;
+            }
+
             currentOpenItem_view = null;
-        } else if (type === "cf") {
-            currentOpenItem_cf = null;
+
+        } else if (type === "detail") { // More details button for factuals
+            viewDocTime(docId, "detail", "stop");
+            currentOpenItem_detail = null;
         }
     }
 }
-
-

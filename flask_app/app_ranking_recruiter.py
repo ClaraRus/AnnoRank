@@ -77,7 +77,7 @@ def loader_user(_user_id):
 @app.route("/")
 @app.route("/start_ranking_recruiter/<int:experiment_id>", methods=['GET', 'POST'])
 def start_ranking(experiment_id):
-    """Renders the Log-in page for the Interaction Annotate UI.
+    """ Renders the Log-in page for the Interaction Annotate UI.
 
     Args:
         experiment_id (int): The ID of the experiment.
@@ -94,11 +94,14 @@ def start_ranking(experiment_id):
     """
 
     session['exp_id'] = experiment_id
+    role = 'recruiter'
+    
     configs["ui_display_config"]["view_button"] = False
     configs["ui_display_config"]["shortlist_button"] = True
 
     if current_user.is_authenticated:
         session['user_id'] = current_user._user_id
+        session['role'] = current_user.role
 
         if len(current_user.tasks_visited) == 0:
             # Redirect to consent form instead
@@ -116,18 +119,19 @@ def start_ranking(experiment_id):
         # record user in the db
         user_id = request.form['user_id']
         # create new user in the db
-        new_user = database.User(_user_id=user_id)
+        new_user = database.User(_user_id=user_id, role=role)
 
-        existing_document = database.User.objects(_user_id=new_user._user_id).first()
+        existing_document = database.User.objects(_user_id=new_user._user_id, role=role).first()
         if not existing_document:
             new_user.save()
 
         # create user session and redirect
-        user = database.User.objects(_user_id=user_id).first()
+        user = database.User.objects(_user_id=user_id, role=role).first()
         if user and user._user_id == user_id:
 
             login_user(current_user)
             session['user_id'] = user_id
+            session['role'] = role
 
             if len(user.tasks_visited) == 0:
                 # Redirect to consent form instead
@@ -146,24 +150,39 @@ def start_ranking(experiment_id):
     return render_template('start_ranking_recruiter.html')
 
 
-#added
+# ADDED
 @app.route("/consent/<int:experiment_id>", methods=['GET', 'POST'])
 def consent_form(experiment_id):
+    """ Renders the consent form for the Interaction Annotate UI.
+    
+    Args:
+        experiment_id (int): The ID of the experiment.
+        
+    Returns:
+        flask.Response or flask.render_template: The response object or the rendered template for the consent form page.
+    """
     if request.method == 'POST':
         #redirect to pre-task questionnaire
         next_task = get_next_task(experiment_id).get_json()['next_task']
-        user = database.User.objects(_user_id=session['user_id']).first()
+        user = database.User.objects(_user_id=session['user_id'], role=session['role']).first()
         user.debug = next_task
         user.save()
         questionnaire_url = url_for('questionnaire', experiment_id=experiment_id, n_task=next_task)
         return redirect(questionnaire_url)
 
-    return render_template('consent_form_template_recruiter.html', experiment_id=experiment_id)
+    return render_template('consent_form_template.html', experiment_id=experiment_id)
 
 
-#added
+# ADDED
 @app.route("/instructions/<int:experiment_id>", methods=['GET', 'POST'])
 def instructions(experiment_id):
+    """ Renders the instructions page for the Interaction Annotate UI.
+    Args:
+        experiment_id (int): The ID of the experiment.
+    
+    Returns:
+        flask.Response or flask.render_template: The response object or the rendered template for the instructions page.
+    """
     if request.method == 'POST':
         # After instructions are acknowledged, redirect to next task
         try:
@@ -173,7 +192,6 @@ def instructions(experiment_id):
            response.headers['HX-Redirect'] = "/404/Failed get next task!"
            return response
 
-        #questionnaire_url = url_for('questionnaire', experiment_id=experiment_id, n_task=next_task)
         next_url = url_for('index_ranking', experiment_id=experiment_id, n_task=next_task, doc_id="view")
         return redirect(next_url)
 
@@ -184,8 +202,7 @@ def instructions(experiment_id):
 
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
-    """
-    Logs out the user and redirects to the login page.
+    """ Logs out the user and redirects to the login page.
 
     Returns:
         A Flask response object with a redirect to the login page.
@@ -198,7 +215,7 @@ def logout():
 
 @app.route('/api/<experiment_id>/get_next_task/', methods=['GET'])
 def get_next_task(experiment_id):
-    """Get the next task to be assessed by the annotator based on the experiment list.
+    """ Get the next task to be assessed by the annotator based on the experiment list.
 
     Args:
         experiment_id (str): The ID of the experiment.
@@ -213,7 +230,7 @@ def get_next_task(experiment_id):
     """
 
     experiment = database.Experiment.objects(_exp_id=str(experiment_id)).first()
-    user = database.User.objects(_user_id=session['user_id']).first()
+    user = database.User.objects(_user_id=session['user_id'], role=session['role']).first()
 
     experiment_tasks = list(range(0, len(experiment.tasks)))
     user_tasks_visited = [int(item.task) for item in user.tasks_visited]
@@ -316,11 +333,20 @@ def get_next_task(experiment_id):
 
         return jsonify({'next_task': str(next_task)})
 
-
+# ADDED
 def get_task_description(task_obj, experiment_id):
+    """ Get the task description based on the task object and experiment ID.
+    
+    Args:
+        task_obj (database.Task): The task object containing task details.
+        experiment_id (int): The ID of the experiment.
+        
+    Returns:
+        str: The task description.
+    """
     experiment = database.Experiment.objects(_exp_id=str(experiment_id)).first()
 
-    user = database.User.objects(_user_id=session['user_id']).first()
+    user = database.User.objects(_user_id=session['user_id'], role=session['role']).first()
 
     experiment_tasks = list(range(0, len(experiment.tasks)))
     user_tasks_visited = [int(item.task) for item in user.tasks_visited]
@@ -354,8 +380,18 @@ def get_task_description(task_obj, experiment_id):
 
     return base_description
 
-
+# ADDED
 def get_xai_data(doc_obj, ranking_type, type="factual"):
+    """ Get the XAI data for a document object based on the ranking type and type of explanation.
+    
+    Args:
+        doc_obj (database.DocRepr): The document object containing the XAI data.
+        ranking_type (str): The type of ranking for which the XAI data is needed.
+        type (str): The type of explanation, either "factual" or "counterfactual". Defaults to "factual".
+        
+    Returns:
+        tuple: A tuple containing the field names and the updated document object.
+    """
     factual_raw = getattr(doc_obj, f'{type}_xai', None)
     factual_list = []
 
@@ -394,8 +430,7 @@ def get_xai_data(doc_obj, ranking_type, type="factual"):
 @app.route("/start_ranking_recruiter/<experiment_id>/index_ranking/<n_task>/<doc_id>", methods=['GET', 'POST'])
 # @login_required
 def index_ranking(experiment_id, n_task, doc_id):
-    """
-    Renders Interaction Annotate UI.
+    """ Renders Interaction Annotate UI.
 
     Args:
         experiment_id (str): The ID of the experiment.
@@ -455,7 +490,7 @@ def index_ranking(experiment_id, n_task, doc_id):
                                field_names=field_names, doc_index=doc_id, task_description=task_description,
                                all_columns=normalized_field_names, ranking_type=task_obj.ranking_type, shortlist_button = configs["ui_display_config"]["shortlist_button"])
 
-    user = database.User.objects(_user_id=session['user_id']).first()
+    user = database.User.objects(_user_id=session['user_id'], role=session['role']).first()
     if n_task not in [item.task for item in user.tasks_visited]:
         task_visited = database.TaskVisited(task=str(n_task), exp=str(experiment_id))
         user.tasks_visited.append(task_visited)
@@ -477,9 +512,18 @@ def index_ranking(experiment_id, n_task, doc_id):
                            current_url=current_url, task_description=task_description, session_id=session['user_id'])
 
 
-#added
+# ADDED
 @app.route('/get_doc_detail/<doc_id>/<ranking_type>', methods=['GET'])
 def get_doc_detail(doc_id, ranking_type):
+    """ Retrieves the details of a document based on its ID and ranking type.
+    
+    Args:
+        doc_id (str): The ID of the document.
+        ranking_type (str): The type of ranking for the document. 
+        
+    Returns:
+        flask.Response: The rendered template for the document ranking view plot and description.
+    """
     doc_obj = database.DocRepr.objects(_id=doc_id).first()
     if not doc_obj:
         return "Document not found", 404
@@ -487,14 +531,22 @@ def get_doc_detail(doc_id, ranking_type):
     _, doc_obj = get_xai_data(doc_obj, ranking_type, type="factual")
 
     return render_template(
-        'doc_ranking_view_plot_and_description_template_recruiter.html',
+        'doc_ranking_view_plot_and_description_template.html',
         doc_obj=doc_obj
     )
 
 
-# added
+# ADDED
 @app.route('/images/<path:filename>')
 def images(filename):
+    """ Returns images from the dataset directory.
+    
+    Args:
+        filename (str): The name of the image file.
+        
+    Returns:
+        flask.Response: The image file if it exists, otherwise a 403 error.
+    """
     if filename is not None:
         # Optional: restrict file types
         if not filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
@@ -534,7 +586,7 @@ def store_data_ranking():
         )
         all_interactions.append(interactions_document)
 
-    user = database.User.objects(_user_id=session['user_id']).first()
+    user = database.User.objects(_user_id=session['user_id'], role=session['role']).first()
     for index, item in enumerate(user.tasks_visited):
         if item.task == str(n_task):
             item.interactions = all_interactions
@@ -548,8 +600,7 @@ def store_data_ranking():
 @app.route("/form/", methods=['GET', 'POST'])
 # @login_required
 def form_demographic_data():
-    """
-    Renders the 'form_template.html' template
+    """ Renders the 'form_template.html' template
     with the items specified in the 'exit_survey' configuration.
 
     Returns:
@@ -561,14 +612,13 @@ def form_demographic_data():
 @app.route("/questionnaire/<int:experiment_id>/<n_task>", methods=['GET', 'POST'])
 # @login_required
 def questionnaire(experiment_id, n_task):
-    """
-    Renders the form template with questionnaire from the first_gen_quest task.
+    """ Renders the form template with questionnaire from the first_gen_quest task.
 
     Returns:
         The rendered template with the questionnaire from first_gen_quest task.
     """
     # user visited the questionnaire
-    user = database.User.objects(_user_id=session['user_id']).first()
+    user = database.User.objects(_user_id=session['user_id'], role=session['role']).first()
     if n_task not in [item.task for item in user.tasks_visited]:
         task_visited = database.TaskVisited(task=str(n_task), exp=str(experiment_id))
         user.tasks_visited.append(task_visited)
@@ -604,15 +654,23 @@ def questionnaire(experiment_id, n_task):
         else:
             next_url = url_for('index_ranking', experiment_id=experiment_id, n_task=next_task, doc_id="view")
 
-    return render_template('form_template_recruiter.html', items=question_list, next_url=next_url, current_task=n_task)
+    return render_template('form_template_combi.html', items=question_list, next_url=next_url, current_task=n_task)
 
-
+# ADDED
 @app.route("/questionnaire_submit/<current_task>", methods=['GET', 'POST'])
 def form_submit1(current_task):
+    """ Stores the data collected in the form to the MongoDB database.
+
+    Args:
+        current_task (str): The current task number.
+
+    Returns:
+        str: A string indicating the success of the operation.
+    """
     data = request.get_json()
     form_results = data.get('form_results', {})
 
-    user = database.User.objects(_user_id=session['user_id']).first()
+    user = database.User.objects(_user_id=session['user_id'], role=session['role']).first()
 
     structured_entry = {
         "task_number": current_task,
@@ -632,8 +690,7 @@ def form_submit1(current_task):
 @app.route("/form_submit/", methods=['GET', 'POST'])
 # @login_required
 def form_submit():
-    """
-    Stores the data collected in the form to the MongoDB database.
+    """ Stores the data collected in the form to the MongoDB database.
 
     Returns:
         str: A string indicating the success of the operation.
@@ -641,7 +698,7 @@ def form_submit():
     data = request.get_json()
     form_results = data.get('form_results', [])
 
-    user = database.User.objects(_user_id=session['user_id']).first()
+    user = database.User.objects(_user_id=session['user_id'], role=session['role']).first()
     add_fields_from_data(list(form_results.keys()), list(form_results.values()), user)
     user.save()
 
@@ -651,8 +708,7 @@ def form_submit():
 @app.route("/stop_experiment/", methods=['GET', 'POST'])
 # @login_required
 def stop_experiment():
-    """
-    Stops the experiment and performs a quality check on the annotator's responses.
+    """ Stops the experiment and performs a quality check on the annotator's responses.
 
     This function is called when the app reaches the last experiment task.
     It checks whether the annotator failed the attention check task.
@@ -662,7 +718,7 @@ def stop_experiment():
     """
 
     if "attention_check" in configs:
-        user = database.User.objects(_user_id=session['user_id']).first()
+        user = database.User.objects(_user_id=session['user_id'], role=session['role']).first()
         experiment = database.Experiment.objects(_exp_id=str(session['exp_id'])).first()
         task = database.Task.objects(query_title=configs["attention_check"]["task"]["query_title"],
                                      ranking_type=configs["attention_check"]["task"]["ranking_type"]).first()

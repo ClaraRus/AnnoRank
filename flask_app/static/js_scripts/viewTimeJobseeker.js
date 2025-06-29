@@ -2,7 +2,7 @@ var docTimes = {};  // Object to store timestamps for each doc
 
 function viewDocTime(docId, type = 'view', action = 'start') {
     if (!(docId in docTimes)) {
-        docTimes[docId] = { view: [], detail: [] }; // Initialize view count if not exists
+        docTimes[docId] = { view: [], detail: [], cf: [], updated: [] }; // Initialize view count if not exists
     }
 
     const timestamp = new Date().getTime();

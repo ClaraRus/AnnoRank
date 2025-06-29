@@ -1,12 +1,14 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script src="/static/js_scripts/limitSelectionCheckbox.js" defer></script>
-<script src="/static/js_scripts/viewDocInfo_jobseekers.js" defer></script>
-<script src="/static/js_scripts/shortlistNextButton.js" defer></script>
-<script src="/static/js_scripts/viewCounts.js" defer></script>
-<script src="/static/js_scripts/viewTime.js" defer></script>
+<script src="/static/js_scripts/viewDocInfoJobseeker.js" defer></script>
+<script src="/static/js_scripts/shortlistNextButtonJobseeker.js" defer></script>
+<script src="/static/js_scripts/viewCountsJobseeker.js" defer></script>
+<script src="/static/js_scripts/viewTimeJobseeker.js" defer></script>
 <script src="/static/js_scripts/orderCheckbox.js" defer></script>
 <script src="/static/js_scripts/highlightText.js" defer></script>
+
+
 
 <script>
     if ({{view_configs | tojson}}.highlight_match) {
@@ -19,7 +21,7 @@
 <div class="flex flex-col mt-8">
         <div class="-my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
             <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
-                <table id="data-body" class="min-w-full">
+                <table id="data-body" class="table-fixed w-full">
                     <thead>
                         <tr>
                             {% for field_name in doc_field_names %}
@@ -27,7 +29,7 @@
                             {% endfor %}
 
                             {% if view_configs.shortlist_button %}
-                                <th class="px-6 pyc-3 border-b border-gray-200 bg-gray-50"></th>
+                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
                             {% endif %}
 
                             {% if view_configs.view_button %}
@@ -74,9 +76,15 @@
                         {% endfor %}
 
                         {% if view_configs.view_button %}
-                        <td class="text-left py-4 whitespace-no-wrap  border-b border-gray-200 text-sm  font-medium">
-                            <button class="view-button hover:text-blue-600" onclick="loadAndToggleVisibility('expandable-row-{{loop.index|string}}', '{{loop.index}}','{{current_url + loop.index|string}}')">
-                                CF Explanation
+                        <td class="text-center py-4 whitespace-no-wrap  border-b border-gray-200 text-sm  font-medium">
+                            <button class="view-button hover:text-blue-600 mb-2" onclick="loadAndToggleVisibility('expandable-row_f-{{loop.index|string}}', '{{data_obj._id}}',
+                            '/start_ranking_jobseeker/{{experiment_id}}/index_ranking/{{n_task}}/{{data_obj._id}}/f_explanation', 'view')">
+                                Factual
+                            </button>
+
+                            <button class="view-button hover:text-blue-600" onclick="loadAndToggleVisibility('expandable-row_cf-{{loop.index|string}}', '{{data_obj._id}}',
+                            '/start_ranking_jobseeker/{{experiment_id}}/index_ranking/{{n_task}}/{{data_obj._id}}/cf_explanation', 'cf')">
+                                Counterfactual
                             </button>
                         </td>
                         {% endif %}
@@ -87,15 +95,28 @@
                         </td>
                         {% endif %}
                     </tr>
-                    <tr id="expandable-row-{{loop.index|string}}" docid='{{data_obj["_id"]|string}}' name="doc_row" style="display: none; overflow-y: hidden;">
-                        <td colspan="5">
-                            <table>
-                                <tr>
-                                    <td>Subtable Content</td>
-                                </tr>
-                            </table>
+                    <tr id="expandable-row_f-{{loop.index | safe | escape }}" docid='{{data_obj["_id"] | safe | escape}}' name="doc_row"  style="display: none; overflow-y: hidden;">
+                        <td colspan="{{ doc_field_names|length + (1 if view_configs.view_button else 0) + (1 if view_configs.shortlist_button else 0) }}">
+                           {% set content =
+                            '<div class="p-4 bg-white" id= "injected-container">
+                                    Hello from {{ loop.index }}
+                            </div>'
+                            %}
+                            <div>{{ content | safe}}</div>  {# this will escape it #}
                         </td>
                     </tr>
+
+                    <tr id="expandable-row_cf-{{loop.index|string}}" docid='{{data_obj["_id"]|string}}' name="doc_row" style="display: none; overflow-y: hidden;">
+                        <td colspan="{{ doc_field_names|length + (1 if view_configs.view_button else 0) + (1 if view_configs.shortlist_button else 0) }}">
+                           {% set content =
+                            '<div class="p-4 bg-white" id= "injected-container">
+                                    Hello from {{ loop.index }}
+                            </div>'
+                            %}
+                            <div>{{ content | safe}}</div>  {# this will escape it #}
+                        </td>
+                    </tr>
+
                     {% endfor %}
                     <tr>
                         {% for field_name in doc_field_names[:-1] %}
@@ -119,7 +140,5 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div>
 </div>
-
-
