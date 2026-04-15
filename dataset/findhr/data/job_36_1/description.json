@@ -1,0 +1,13 @@
+{
+    "id_j":  36,
+    "occupation_j":  "Numerical and material recording clerks",
+    "working_hours_j":  "Full time contract",
+    "driving_license_j":  0,
+    "min_edu_eqf_j":  "level 5 or less",
+    "min_years_exp_j":  "5 - 10 years",
+    "skills_req_j":  "frozenset({\u0027show empathy\u0027, \u0027cooperate with colleagues\u0027, \u0027operating systems\u0027})",
+    "lang_skills_j":  "frozenset({\u0027English\u0027})",
+    "permanent_j":  "Permanent",
+    "min_years_exp_int_j":  "[5, 10]"
+}
+

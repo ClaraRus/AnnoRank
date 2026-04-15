@@ -11,7 +11,6 @@ function nextButton(direction) {
 
 
      if (1) {
-//       //Use jQuery AJAX to send data to the Flask app
 
       $.ajax({
         type: "POST",
@@ -23,11 +22,9 @@ function nextButton(direction) {
         success: function(response) {
         console.log("Success:", response);
 
-        // Get the current URL
         if (nextTask == 'done') {
             window.location.href = "/stop_experiment";
         } else {
-            // Redirect to the default link for other cases
             window.location.href = "/start_compare/" + expId + "/index_compare/" + nextTask ;
         }
         },
@@ -36,7 +33,6 @@ function nextButton(direction) {
         }
           });
       } else {
-        // Display a message to the user if less than three docs are selected
         alert("Please select three docs.");
       }
        })
@@ -56,7 +52,6 @@ function nextButton(direction) {
 
       var checkbox_1 = document.getElementById('shortlist_1');
       var checkbox_2 = document.getElementById('shortlist_2');
-        console.log(checkbox_1)
 
       var selected_ranking = ""
 
@@ -75,7 +70,6 @@ function nextButton(direction) {
 
 
      if (selected_ranking !== "") {
-//       //Use jQuery AJAX to send data to the Flask app
 
       $.ajax({
         type: "POST",
@@ -96,7 +90,6 @@ function nextButton(direction) {
             window.location.href ="/form"
             }
         else {
-            // Redirect to the default link for other cases
             window.location.href = "/start_compare_annotate/" + expId + "/index_compare_annotate/" + nextTask ;
         }
         },
@@ -112,8 +105,10 @@ function nextButton(direction) {
       } catch (error) {
         console.error('Error fetching next task:', error);
         alert('Failed to fetch next task.');
-        // Optionally, update the UI to show an error message
+
       }
     }
+
+
 
 

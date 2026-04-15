@@ -1,0 +1,139 @@
+{
+    "Candidate ID":  452,
+    "Education EQF":  "level 6",
+    "Gender":  1,
+    "Full/Part-time (preferred)":  "Full time contract",
+    "Years of Experience":  30,
+    "Job and Language Skills":  [
+                                    "customer service",
+                                    "apply for government funding",
+                                    "management skills",
+                                    "computer programming",
+                                    "genetic engineering",
+                                    "seek innovation in current practices",
+                                    "show initiative",
+                                    "Spanish",
+                                    "English"
+                                ],
+    "Domain Knowledge":  "Sufficient",
+    "Permanent/Fixed-term (preferred)":  "Permanent",
+    "factual_xai":  [
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  0.443,
+                                         "Years of Experience":  -0.34,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  -0.33,
+                                         "Domain Knowledge":  -0.177,
+                                         "Permanent/Fixed-term (preferred)":  0.1,
+                                         "Gender":  0.0
+                                     },
+                            "factual_image":  "factual_exp_452_exp1.png",
+                            "factual_text":  "The characteristics Education EQF, Job and Language Skills significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Full/Part-time (preferred), Domain Knowledge significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Gender, Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank1"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  1.092,
+                                         "Years of Experience":  -0.17,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  -0.396,
+                                         "Domain Knowledge":  -0.177,
+                                         "Permanent/Fixed-term (preferred)":  0.09,
+                                         "Gender":  0.52
+                                     },
+                            "factual_image":  "factual_exp_452_exp2.png",
+                            "factual_text":  "The characteristics Education EQF, Gender, Job and Language Skills significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Full/Part-time (preferred), Domain Knowledge significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank2"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.007,
+                                         "Years of Experience":  -0.005,
+                                         "Education EQF":  0.001,
+                                         "Full/Part-time (preferred)":  -0.003,
+                                         "Domain Knowledge":  0.005,
+                                         "Permanent/Fixed-term (preferred)":  -0.001,
+                                         "Gender":  -0.008
+                                     },
+                            "factual_image":  "factual_exp_452_exp3.png",
+                            "factual_text":  "The characteristics Permanent/Fixed-term (preferred), Years of Experience, Domain Knowledge, Full/Part-time (preferred), Education EQF, Job and Language Skills, Gender do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank3"
+                        }
+                    ],
+    "counterfactual_xai":  [
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 6",
+                                                "Gender":  "Male",
+                                                "Full/Part-time (preferred)":  "Full time contract",
+                                                "Years of Experience":  30,
+                                                "Job and Language Skills":  [
+                                                                                "genetic engineering",
+                                                                                "customer service",
+                                                                                "computer programming",
+                                                                                "apply for government funding",
+                                                                                "management skills",
+                                                                                "seek innovation in current practices",
+                                                                                "show initiative",
+                                                                                "market research",
+                                                                                "Spanish",
+                                                                                "English"
+                                                                            ],
+                                                "Domain Knowledge":  "Sufficient",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027genetic engineering\u0027, \u0027customer service\u0027, \u0027computer programming\u0027, \u0027apply for government funding\u0027, \u0027management skills\u0027, \u0027seek innovation in current practices\u0027, \u0027show initiative\u0027, \u0027market research\u0027, \u0027Spanish\u0027, \u0027English\u0027]\n",
+                                   "ranking_type":  "rank1"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 6",
+                                                "Gender":  "Male",
+                                                "Full/Part-time (preferred)":  "Full time contract",
+                                                "Years of Experience":  30,
+                                                "Job and Language Skills":  [
+                                                                                "apply for government funding",
+                                                                                "show initiative",
+                                                                                "seek innovation in current practices",
+                                                                                "management skills",
+                                                                                "computer programming",
+                                                                                "customer service",
+                                                                                "genetic engineering",
+                                                                                "planning and organising",
+                                                                                "Spanish",
+                                                                                "English"
+                                                                            ],
+                                                "Domain Knowledge":  "Sufficient",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027apply for government funding\u0027, \u0027show initiative\u0027, \u0027seek innovation in current practices\u0027, \u0027management skills\u0027, \u0027computer programming\u0027, \u0027customer service\u0027, \u0027genetic engineering\u0027, \u0027planning and organising\u0027, \u0027Spanish\u0027, \u0027English\u0027]\n",
+                                   "ranking_type":  "rank2"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 6",
+                                                "Gender":  "Male",
+                                                "Full/Part-time (preferred)":  "Full time contract",
+                                                "Years of Experience":  30,
+                                                "Job and Language Skills":  [
+                                                                                "customer service",
+                                                                                "seek innovation in current practices",
+                                                                                "show initiative",
+                                                                                "management skills",
+                                                                                "apply for government funding",
+                                                                                "computer programming",
+                                                                                "genetic engineering",
+                                                                                "market research",
+                                                                                "Spanish",
+                                                                                "English"
+                                                                            ],
+                                                "Domain Knowledge":  "Sufficient",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027customer service\u0027, \u0027seek innovation in current practices\u0027, \u0027show initiative\u0027, \u0027management skills\u0027, \u0027apply for government funding\u0027, \u0027computer programming\u0027, \u0027genetic engineering\u0027, \u0027market research\u0027, \u0027Spanish\u0027, \u0027English\u0027]\n",
+                                   "ranking_type":  "rank3"
+                               }
+                           ]
+}
+

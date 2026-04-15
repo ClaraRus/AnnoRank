@@ -1,0 +1,78 @@
+<div class="w-full">
+    <div class="flex flex-col text-center w-full max-w-7xl mx-auto px-4 py-6">
+        <div class="mt-8 flex flex-wrap justify-center gap-6">
+            {% if show_xai == "text" or show_xai == True %}
+            <button
+                class="px-5 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
+                onclick="loadAndToggleVisibility(
+                    'expandable-row_text_xai_{{ doc_obj._id }}',
+                    '{{ doc_obj._id }}',
+                    '{{ url_for('text_explanation', experiment_id=experiment_id, n_task=n_task, doc_id=doc_obj._id) }}',
+                    'view_text'
+                )">
+                View Text XAI
+            </button>
+            {% endif %}
+
+            {% if show_xai == "image" or show_xai == True %}
+            <button
+                class="px-5 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
+                onclick="loadAndToggleVisibility(
+                    'expandable-row_image_xai_{{ doc_obj._id }}',
+                    '{{ doc_obj._id }}',
+                    '{{ url_for('image_explanation', experiment_id=experiment_id, n_task=n_task, doc_id=doc_obj._id) }}',
+                    'view_image'
+                )">
+                View Image XAI
+            </button>
+            {% endif %}
+
+            {% if show_xai == "image_text" or show_xai == True %}
+            <button
+                class="px-5 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
+                onclick="loadAndToggleVisibility(
+                    'expandable-row_image_text_xai_{{ doc_obj._id }}',
+                    '{{ doc_obj._id }}',
+                    '{{ url_for('image_text_explanation', experiment_id=experiment_id, n_task=n_task, doc_id=doc_obj._id) }}',
+                    'view_image_text'
+                )">
+                View Image & Text XAI
+            </button>
+            {% endif %}
+
+            {% if show_xai == "factual" or show_xai == True %}
+            <button
+                class="px-5 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
+                onclick="loadAndToggleVisibility(
+                    'expandable-row_f_{{ doc_obj._id }}',
+                    '{{ doc_obj._id }}',
+                    '{{ url_for('factual_explanation', experiment_id=experiment_id, n_task=n_task, doc_id=doc_obj._id) }}',
+                    'view_factual'
+                )">
+                View Factual XAI
+            </button>
+            {% endif %}
+
+            {% if show_xai == "counterfactual" or show_xai == True %}
+            <button
+                class="px-5 py-2 rounded bg-purple-600 text-white hover:bg-purple-700"
+                onclick="loadAndToggleVisibility(
+                    'expandable-row_cf_{{ doc_obj._id }}',
+                    '{{ doc_obj._id }}',
+                    '{{ url_for('counterfactual_explanation', experiment_id=experiment_id, n_task=n_task, doc_id=doc_obj._id) }}',
+                    'view_counterfactual'
+                )">
+                View Counterfactual XAI
+            </button>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <div id="expandable-row_f_{{ doc_obj._id }}" data-docid="{{ doc_obj._id }}" class="w-full"></div>
+    <div id="expandable-row_cf_{{ doc_obj._id }}" data-docid="{{ doc_obj._id }}" class="w-full"></div>
+    <div id="expandable-row_image_xai_{{ doc_obj._id }}" data-docid="{{ doc_obj._id }}" class="w-full"></div>
+    <div id="expandable-row_text_xai_{{ doc_obj._id }}" data-docid="{{ doc_obj._id }}" class="w-full"></div>
+    <div id="expandable-row_image_text_xai_{{ doc_obj._id }}" data-docid="{{ doc_obj._id }}" class="w-full"></div>
+
+</div>

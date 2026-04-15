@@ -10,17 +10,13 @@ function loadAndToggleVisibility(targetElementId,docId, htmlFile) {
         fetch(htmlFile)
             .then(response => response.text())
             .then(data => {
-                // TO DO: update the app_ranking to work under the same logic as the XAI UI
                 if (!container) {
-                    // for the app_ranking.py
                     targetElement.innerHTML = data;
                 }else{
-                    // for the exntensions with the XAI UI
                     container.innerHTML = data;
                 }
 
                 targetElement.style.display = 'table-row';
-                // targetElement.style.display = '';
                   if (currentOpenItem && currentOpenItem !== targetElement) {
                     currentOpenItem.style.display = 'none';
                     viewDocTime(currentOpenItem.id, currentOpenItem.getAttribute('cid'))
@@ -49,3 +45,4 @@ function loadAndToggleVisibility(targetElementId,docId, htmlFile) {
 
 
 }
+

@@ -1,0 +1,23 @@
+{% extends "_layout/master.html" %}
+
+{% block body %}
+<script src="https://unpkg.com/htmx.org@1.7.1/dist/htmx.js"></script>
+<script type="text/javascript" src="/static/js_scripts/bigbro.js"></script>
+<script type="text/javascript">
+    BigBro.init('**{{session_id}}**', location.host, ["click", "onload"]);
+</script>
+    {% if task_description != "" %}
+      <div class="w-full bg-white p-2 py-6 rounded-lg shadow">
+        {% include 'task_description_template.html' %}
+      </div>
+    {% endif %}
+<div class="w-full bg-white p-2 rounded-lg shadow mt-8">
+    {% include 'query_template.html' %}
+    </div>
+    <div class="p-2">
+    {% include 'doc_ranking_display_information_template_XAI.html' %}
+    </div>
+
+
+{% endblock %}
+

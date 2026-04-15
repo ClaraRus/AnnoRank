@@ -1,0 +1,135 @@
+{
+    "Candidate ID":  2343,
+    "Education EQF":  "level 6",
+    "Gender":  0,
+    "Full/Part-time (preferred)":  "Part time contract",
+    "Years of Experience":  21,
+    "Job and Language Skills":  [
+                                    "analyse the context of an organisation",
+                                    "conduct scholarly research",
+                                    "type at speed",
+                                    "adapt to change",
+                                    "solve problems",
+                                    "teamwork principles",
+                                    "merchandising techniques",
+                                    "English"
+                                ],
+    "Domain Knowledge":  "Sufficient",
+    "Permanent/Fixed-term (preferred)":  "Permanent",
+    "factual_xai":  [
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.557,
+                                         "Years of Experience":  -0.34,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  0.17,
+                                         "Domain Knowledge":  -0.177,
+                                         "Permanent/Fixed-term (preferred)":  0.1,
+                                         "Gender":  0.0
+                                     },
+                            "factual_image":  "factual_exp_2343_exp1.png",
+                            "factual_text":  "The characteristics Full/Part-time (preferred), Education EQF significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Domain Knowledge, Job and Language Skills significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Gender, Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank1"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.908,
+                                         "Years of Experience":  -0.17,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  0.204,
+                                         "Domain Knowledge":  -0.177,
+                                         "Permanent/Fixed-term (preferred)":  0.09,
+                                         "Gender":  -0.48
+                                     },
+                            "factual_image":  "factual_exp_2343_exp2.png",
+                            "factual_text":  "The characteristics Full/Part-time (preferred), Education EQF significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Gender, Domain Knowledge, Job and Language Skills significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank2"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  0.012,
+                                         "Years of Experience":  0.013,
+                                         "Education EQF":  0.01,
+                                         "Full/Part-time (preferred)":  0.009,
+                                         "Domain Knowledge":  0.01,
+                                         "Permanent/Fixed-term (preferred)":  0.001,
+                                         "Gender":  0.0
+                                     },
+                            "factual_image":  "factual_exp_2343_exp3.png",
+                            "factual_text":  "The characteristics Permanent/Fixed-term (preferred), Years of Experience, Domain Knowledge, Full/Part-time (preferred), Education EQF, Job and Language Skills, Gender do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank3"
+                        }
+                    ],
+    "counterfactual_xai":  [
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 6",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Part time contract",
+                                                "Years of Experience":  21,
+                                                "Job and Language Skills":  [
+                                                                                "analyse the context of an organisation",
+                                                                                "solve problems",
+                                                                                "adapt to change",
+                                                                                "conduct scholarly research",
+                                                                                "merchandising techniques",
+                                                                                "type at speed",
+                                                                                "teamwork principles",
+                                                                                "financial analysis",
+                                                                                "English"
+                                                                            ],
+                                                "Domain Knowledge":  "Sufficient",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027analyse the context of an organisation\u0027, \u0027solve problems\u0027, \u0027adapt to change\u0027, \u0027conduct scholarly research\u0027, \u0027merchandising techniques\u0027, \u0027type at speed\u0027, \u0027teamwork principles\u0027, \u0027financial analysis\u0027, \u0027English\u0027]\n",
+                                   "ranking_type":  "rank1"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 6",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Part time contract",
+                                                "Years of Experience":  21,
+                                                "Job and Language Skills":  [
+                                                                                "teamwork principles",
+                                                                                "analyse the context of an organisation",
+                                                                                "solve problems",
+                                                                                "merchandising techniques",
+                                                                                "type at speed",
+                                                                                "adapt to change",
+                                                                                "conduct scholarly research",
+                                                                                "adapt teaching to target group",
+                                                                                "English"
+                                                                            ],
+                                                "Domain Knowledge":  "Sufficient",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027teamwork principles\u0027, \u0027analyse the context of an organisation\u0027, \u0027solve problems\u0027, \u0027merchandising techniques\u0027, \u0027type at speed\u0027, \u0027adapt to change\u0027, \u0027conduct scholarly research\u0027, \u0027adapt teaching to target group\u0027, \u0027English\u0027]\n",
+                                   "ranking_type":  "rank2"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 6",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Part time contract",
+                                                "Years of Experience":  21,
+                                                "Job and Language Skills":  [
+                                                                                "merchandising techniques",
+                                                                                "analyse the context of an organisation",
+                                                                                "type at speed",
+                                                                                "conduct scholarly research",
+                                                                                "solve problems",
+                                                                                "adapt to change",
+                                                                                "teamwork principles",
+                                                                                "adapt teaching to target group",
+                                                                                "English"
+                                                                            ],
+                                                "Domain Knowledge":  "Sufficient",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027merchandising techniques\u0027, \u0027analyse the context of an organisation\u0027, \u0027type at speed\u0027, \u0027conduct scholarly research\u0027, \u0027solve problems\u0027, \u0027adapt to change\u0027, \u0027teamwork principles\u0027, \u0027adapt teaching to target group\u0027, \u0027English\u0027]\n",
+                                   "ranking_type":  "rank3"
+                               }
+                           ]
+}
+

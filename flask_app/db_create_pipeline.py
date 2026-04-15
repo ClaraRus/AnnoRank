@@ -85,88 +85,239 @@ def get_doc_object_in_db(attr_names, values, display_fields):
     return doc_obj
 
 
+# In file: flask_app/db_create_pipeline.py
+
 def add_exp_to_db(data_exp):
     """
-    Adding experiment to the database based on what is defined in the experiment files
-    Args:
-        data_exp (list): A list of dictionaries containing information about the experiments.
+    Adds experiment data to the database based on the provided experiment configurations.
+    Ensures that 'form' tasks (questionnaires) are uniquely identified per experiment.
 
+    Args:
+        data_exp (list): A list of dictionaries, where each dictionary contains
+                         information about an experiment, including its tasks.
     Returns:
         None
     """
 
     for exp_info in data_exp:
-        exp_obj = database.Experiment.objects(_exp_id=str(exp_info['exp_id'])).first()
+        exp_id_str = str(exp_info['exp_id']) # Get experiment ID as string for unique naming
 
-        tasks_obj = []
-        for task in exp_info['tasks']:
-            query_obj = database.QueryRepr.objects(title=task['query_title']).first()
-            if query_obj is not None:
+        # Try to find the experiment in the database
+        exp_obj = database.Experiment.objects(_exp_id=exp_id_str).first()
+
+        tasks_obj_ids_for_exp = [] # This list will hold the IDs of tasks in the correct order for this experiment
+
+        for task_data_from_json in exp_info["tasks"]:
+            current_task_obj = None
+            query_obj = database.QueryRepr.objects(title=task_data_from_json.get("query_title")).first()
+            data_obj = None
+            if query_obj:
                 data_obj = database.Data.objects(query=str(query_obj._id)).first()
-                if data_obj is not None:
-                    if 'show_xai' in task.keys():
-                        task_obj = database.Task.objects(data=str(data_obj._id), ranking_type=task['ranking_type'],
-                                                              show_xai=str(task['show_xai'])).first()
-                        if not task_obj:
-                            task_obj = database.Task()
-                            task_obj = add_fields_from_data(list(task.keys()), list(task.values()), task_obj)
-                            task_obj.ranking_type = task['ranking_type']
 
+            # --- 1️⃣ Handle FORM tasks first ---
+            if task_data_from_json.get("ranking_type") == "form":
+                original_query_title = task_data_from_json.get("query_title", "unknown_form_title")
+                unique_form_query_title = f"exp{exp_id_str}_{original_query_title}"
 
-                    elif 'index' in task.keys():
-                        task_obj = database.TaskScore.objects(data=str(data_obj._id), ranking_type=task['ranking_type'],
-                                                              index=str(task['index'])).first()
-                        if not task_obj:
-                            task_obj = database.TaskScore()
-                            task_obj = add_fields_from_data(list(task.keys()), list(task.values()), task_obj)
-                            task_obj.ranking_type = task['ranking_type']
-                    elif 'ranking_type' in task.keys():
-                        task_obj = database.Task.objects(data=str(data_obj._id),
-                                                         ranking_type=task['ranking_type']).first()
-                        if not task_obj:
-                            task_obj = database.Task()
-                            task_obj = add_fields_from_data(list(task.keys()), list(task.values()), task_obj)
-                            task_obj.ranking_type = task['ranking_type']
-                    elif 'ranking_type_2' in task.keys():
-                        task_obj = database.TaskCompare.objects(data=str(data_obj._id),
-                                                                ranking_type_1=task['ranking_type_1'],
-                                                                ranking_type_2=task['ranking_type_2']).first()
-                        if not task_obj:
-                            task_obj = database.TaskCompare()
-                            task_obj = add_fields_from_data(list(task.keys()), list(task.values()), task_obj)
-                            task_obj.ranking_type_1 = task['ranking_type_1']
-                            task_obj.ranking_type_2 = task['ranking_type_2']
+                filter_kwargs = {
+                    "query_title": unique_form_query_title,
+                    "ranking_type": "form",
+                    "questionnaire": task_data_from_json.get("questionnaire"),
+                    "show_xai": task_data_from_json.get("show_xai"),
+                }
+                if "cand_idx" in task_data_from_json:
+                    filter_kwargs["cand_idx"] = task_data_from_json["cand_idx"]
 
-                    task_obj.data = str(data_obj._id)
-                    task_obj.save()
+                current_task_obj = database.Task.objects(**filter_kwargs).first()
 
-                    if not exp_obj or (
-                            not str(task_obj.id) in exp_obj.tasks or not str(task_obj.id) in exp_obj.tasks):
-                        tasks_obj.append(str(task_obj.id))
+                if not current_task_obj:
+                    current_task_obj = database.Task()
+                    task_data_to_save = task_data_from_json.copy()
+                    task_data_to_save["query_title"] = unique_form_query_title
+                    current_task_obj = add_fields_from_data(
+                        list(task_data_to_save.keys()), list(task_data_to_save.values()), current_task_obj
+                    )
+                    current_task_obj.ranking_type = "form"
+                    current_task_obj.data = "form"  # or adjust type if data is a ReferenceField
+                    current_task_obj.save()
+                    logger.debug(
+                        f"CREATED Form Task: {unique_form_query_title} (Original: {original_query_title}) "
+                        f"for Exp {exp_id_str} with ID {current_task_obj.id}"
+                    )
+                else:
+                    task_data_to_save = task_data_from_json.copy()
+                    task_data_to_save["query_title"] = unique_form_query_title
+                    current_task_obj = add_fields_from_data(
+                        list(task_data_to_save.keys()), list(task_data_to_save.values()), current_task_obj
+                    )
+                    current_task_obj.ranking_type = "form"
+                    current_task_obj.data = "form"
+                    current_task_obj.save()
+                    logger.debug(
+                        f"FOUND/UPDATED Form Task: {unique_form_query_title} (Original: {original_query_title}) "
+                        f"for Exp {exp_id_str} with ID {current_task_obj.id}"
+                    )
+
+            # --- 2️⃣ Tasks that reference show_xai ---
+            elif "show_xai" in task_data_from_json:
+
+                filter_kwargs = {
+                    "data": str(data_obj._id) if data_obj else None,
+                    "ranking_type": task_data_from_json.get("ranking_type"),
+                    "questionnaire": task_data_from_json.get("questionnaire"),
+                    "show_xai": task_data_from_json.get("show_xai"),
+                }
+                if "cand_idx" in task_data_from_json:
+                    filter_kwargs["cand_idx"] = task_data_from_json["cand_idx"]
+
+                current_task_obj = database.Task.objects(**filter_kwargs).first()
+                if not current_task_obj:
+                    current_task_obj = database.Task()
+                    current_task_obj = add_fields_from_data(
+                        list(task_data_from_json.keys()), list(task_data_from_json.values()), current_task_obj
+                    )
+                    current_task_obj.ranking_type = task_data_from_json["ranking_type"]
+                    current_task_obj.data = str(data_obj._id) if data_obj else None
+                    current_task_obj.save()
+                    logger.debug(
+                        f"CREATED Task (show_xai): {task_data_from_json.get('query_title', 'N/A')} "
+                        f"for Exp {exp_id_str} with ID {current_task_obj.id}"
+                    )
+                else:
+                    current_task_obj = add_fields_from_data(
+                        list(task_data_from_json.keys()), list(task_data_from_json.values()), current_task_obj
+                    )
+                    current_task_obj.ranking_type = task_data_from_json["ranking_type"]
+                    current_task_obj.data = str(data_obj._id) if data_obj else None
+                    current_task_obj.save()
+                    logger.debug(
+                        f"FOUND/UPDATED Task (show_xai): {task_data_from_json.get('query_title', 'N/A')} "
+                        f"for Exp {exp_id_str} with ID {current_task_obj.id}"
+                    )
+
+            # --- 3️⃣ TaskScore branch (index) ---
+            elif "index" in task_data_from_json:
+                current_task_obj = database.TaskScore.objects(
+                    data=str(data_obj._id) if data_obj else None,
+                    ranking_type=task_data_from_json["ranking_type"],
+                    index=str(task_data_from_json["index"]),
+                ).first()
+                if not current_task_obj:
+                    current_task_obj = database.TaskScore()
+                    current_task_obj = add_fields_from_data(
+                        list(task_data_from_json.keys()), list(task_data_from_json.values()), current_task_obj
+                    )
+                    current_task_obj.ranking_type = task_data_from_json["ranking_type"]
+                    current_task_obj.data = str(data_obj._id) if data_obj else None
+                    current_task_obj.save()
+                    logger.debug(
+                        f"CREATED TaskScore: {task_data_from_json.get('query_title', 'N/A')} "
+                        f"for Exp {exp_id_str} with ID {current_task_obj.id}"
+                    )
+                else:
+                    current_task_obj = add_fields_from_data(
+                        list(task_data_from_json.keys()), list(task_data_from_json.values()), current_task_obj
+                    )
+                    current_task_obj.ranking_type = task_data_from_json["ranking_type"]
+                    current_task_obj.data = str(data_obj._id) if data_obj else None
+                    current_task_obj.save()
+                    logger.debug(
+                        f"FOUND/UPDATED TaskScore: {task_data_from_json.get('query_title', 'N/A')} "
+                        f"for Exp {exp_id_str} with ID {current_task_obj.id}"
+                    )
+
+            # --- 4️⃣ TaskCompare branch ---
+            elif "ranking_type_2" in task_data_from_json:
+                current_task_obj = database.TaskCompare.objects(
+                    data=str(data_obj._id) if data_obj else None,
+                    ranking_type_1=task_data_from_json["ranking_type_1"],
+                    ranking_type_2=task_data_from_json["ranking_type_2"],
+                ).first()
+                if not current_task_obj:
+                    current_task_obj = database.TaskCompare()
+                    current_task_obj = add_fields_from_data(
+                        list(task_data_from_json.keys()), list(task_data_from_json.values()), current_task_obj
+                    )
+                    current_task_obj.ranking_type_1 = task_data_from_json["ranking_type_1"]
+                    current_task_obj.ranking_type_2 = task_data_from_json["ranking_type_2"]
+                    current_task_obj.data = str(data_obj._id) if data_obj else None
+                    current_task_obj.save()
+                    logger.debug(
+                        f"CREATED TaskCompare: {task_data_from_json.get('query_title', 'N/A')} "
+                        f"for Exp {exp_id_str} with ID {current_task_obj.id}"
+                    )
+                else:
+                    current_task_obj = add_fields_from_data(
+                        list(task_data_from_json.keys()), list(task_data_from_json.values()), current_task_obj
+                    )
+                    current_task_obj.ranking_type_1 = task_data_from_json["ranking_type_1"]
+                    current_task_obj.ranking_type_2 = task_data_from_json["ranking_type_2"]
+                    current_task_obj.data = str(data_obj._id) if data_obj else None
+                    current_task_obj.save()
+                    logger.debug(
+                        f"FOUND/UPDATED TaskCompare: {task_data_from_json.get('query_title', 'N/A')} "
+                        f"for Exp {exp_id_str} with ID {current_task_obj.id}"
+                    )
+
+            # --- 5️⃣ Generic ranking tasks (fallback) ---
+            elif "ranking_type" in task_data_from_json:
+                current_task_obj = database.Task.objects(
+                    data=str(data_obj._id) if data_obj else None,
+                    ranking_type=task_data_from_json["ranking_type"],
+                ).first()
+                if not current_task_obj:
+                    current_task_obj = database.Task()
+                    current_task_obj = add_fields_from_data(
+                        list(task_data_from_json.keys()), list(task_data_from_json.values()), current_task_obj
+                    )
+                    current_task_obj.ranking_type = task_data_from_json["ranking_type"]
+                    current_task_obj.data = str(data_obj._id) if data_obj else None
+                    current_task_obj.save()
+                    logger.debug(
+                        f"CREATED Generic Ranking Task: {task_data_from_json.get('query_title', 'N/A')} "
+                        f"for Exp {exp_id_str} with ID {current_task_obj.id}"
+                    )
+                else:
+                    current_task_obj = add_fields_from_data(
+                        list(task_data_from_json.keys()), list(task_data_from_json.values()), current_task_obj
+                    )
+                    current_task_obj.ranking_type = task_data_from_json["ranking_type"]
+                    current_task_obj.data = str(data_obj._id) if data_obj else None
+                    current_task_obj.save()
+                    logger.debug(
+                        f"FOUND/UPDATED Generic Ranking Task: {task_data_from_json.get('query_title', 'N/A')} "
+                        f"for Exp {exp_id_str} with ID {current_task_obj.id}"
+                    )
+
+            # --- 6️⃣ Unexpected / fallback ---
             else:
-                if task['ranking_type'] == 'form':
-                    task_obj = database.Task.objects(query_title=task['query_title'],
-                                                     ranking_type=task['ranking_type']).first()
-                    if not task_obj:
-                        task_obj = database.Task()
-                        task_obj = add_fields_from_data(list(task.keys()), list(task.values()), task_obj)
-                        task_obj.ranking_type = task['ranking_type']
+                logger.warning(f"Task with unexpected structure: {task_data_from_json}")
+                continue
 
-                    task_obj.data = "form"
-                    task_obj.save()
+            # Append task id to experiment
+            if current_task_obj:
+                tasks_obj_ids_for_exp.append(str(current_task_obj.id))
+            else:
+                logger.error(f"Failed to process task: {task_data_from_json}")
 
-                    if not exp_obj or (
-                            not str(task_obj.id) in exp_obj.tasks or not str(task_obj.id) in exp_obj.tasks):
-                        tasks_obj.append(str(task_obj.id))
-        if exp_obj:
-            if len(tasks_obj) > 0:
-                exp_obj.tasks.extend(tasks_obj)
-        else:
-            if not exp_obj and tasks_obj is not None:
-                exp_obj = database.Experiment(_exp_id=str(exp_info['exp_id']), _description=exp_info['description'],
-                                              tasks=tasks_obj)
-        exp_obj.save()
-
+        # --- Final Experiment Save Logic ---
+        # After processing all tasks for the current experiment:
+        if exp_obj: # If the experiment already exists in the database
+            # Replace the entire tasks list with the newly collected and ordered IDs
+            exp_obj.tasks = tasks_obj_ids_for_exp
+            # AGGIUNGI O AGGIORNA ALTRI CAMPI DELL'ESPERIMENTO SE NECESSARIO QUI
+            exp_obj._description = exp_info.get('description', f"Experiment {exp_id_str}") # Aggiorna la descrizione anche per gli esperimenti esistenti
+            logger.info(f"Existing experiment {exp_id_str} updated with new task order.")
+        else: # If the experiment does not exist, create it
+            logger.info(f"Creating new experiment {exp_id_str} with defined tasks.")
+            exp_obj = database.Experiment(
+                _exp_id=exp_id_str,
+                # CORREZIONE: Cambia 'description' in '_description' per allinearlo al modello del database
+                _description=exp_info.get('description', f"Experiment {exp_id_str}"),
+                tasks=tasks_obj_ids_for_exp
+            )
+        exp_obj.save() # Save the updated or newly created Experiment object
+        logger.info(f"Experiment {exp_id_str} saved successfully with tasks: {exp_obj.tasks}")
 
 def add_query_docs_to_db(data, data_configs):
     """Adding query and documents to the database.
@@ -535,3 +686,5 @@ class Pipeline:
 
 pipeline = Pipeline(config)
 pipeline.run()
+
+

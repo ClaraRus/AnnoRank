@@ -1,15 +1,11 @@
 function collectDataShortlist(selection_range) {
-      // Get all checkboxes with the name "item"
       var checkboxes = document.getElementsByName("shortlist");
 
-      // Initialize an empty array to store selected items
       var selecteddocIds = [];
 
-      // Loop through each checkbox and check if it's checked
       if (checkboxes.length > 0){
           for (var i = 0; i < checkboxes.length; i++) {
             if (checkboxes[i].checked) {
-              // If checked, add the value to the array
               selecteddocIds.push(checkboxes[i].getAttribute('ID'));
 
             }
@@ -32,7 +28,6 @@ function collectDataShortlist(selection_range) {
       fetch('/api/'+expId+'/get_next_task/')
         .then(response => response.json())
         .then(data => {
-            // Handle the data in your JavaScript code
             const nextTask = data.next_task;
 
             const interactions = {};
@@ -48,7 +43,6 @@ function collectDataShortlist(selection_range) {
             interactions_c['n_views'] = 0;
         }
 
-        // Check if doc_id is in docTimes
         if (doc_id in docTimes) {
             interactions_c['timestamps'] = docTimes[doc_id];
         } else {
@@ -63,7 +57,6 @@ function collectDataShortlist(selection_range) {
       }
 
      if (selecteddocIds.length >= selection_range[0] && selecteddocIds.length <= selection_range[1]) {
-//       //Use jQuery AJAX to send data to the Flask app
 
       $.ajax({
         type: "POST",
@@ -87,7 +80,6 @@ function collectDataShortlist(selection_range) {
             window.location.href ="/form"
             }
         else {
-            // Redirect to the default link for other cases
             window.location.href = "/start_ranking/" + expId + "/index_ranking/" + nextTask +"/view";
         }
         },
@@ -96,7 +88,6 @@ function collectDataShortlist(selection_range) {
         }
           });
       } else {
-        // Display a message to the user if less than three docs are selected
         alert("Please select at least " +selection_range[0] + " docs.");
       }
        })
@@ -104,6 +95,5 @@ function collectDataShortlist(selection_range) {
         } catch (error) {
         console.error('Error fetching next task:', error);
         alert('Failed to fetch next task.');
-        // Optionally, update the UI to show an error message
       }
     }

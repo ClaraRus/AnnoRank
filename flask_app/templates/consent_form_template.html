@@ -2,7 +2,6 @@
 
 {% block body %}
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="/static/js_scripts/form_submit.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 
 <style> 
@@ -57,7 +56,7 @@
                                                 aria-expanded="false"
                                                 id="accordion-button">
                                           <span>
-                                            <h4 class="py-3 text-2xl font-semibold text-gray-700">Information Sheet</h4>
+                                            <h4 class="py-3 text-2xl font-semibold text-gray-700">Information Sheet (click here to see the full sheet)</h4>
                                           </span>
                                           <svg id="accordion-icon"
                                                class="w-3 h-3 transform transition-transform duration-300"
@@ -73,82 +72,32 @@
                                         </button>
                                         </h2>
                                         <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-heading-1">
-                                          <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900"> <!--or <div class="text-gray-500">-->
-                                            <!--<p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>-->
-                                            <p><b>Title of the research project:</b> Research on user interfaces for recruiting systems</p>
-                                            <p><b>Principal Investigator:</b> Dr. Carlos Castillo - carlos.castillo@upf.edu
-                                            Edifici Tànger UPF, C/Tànger, 122-140 08018 Barcelona (Spain)</p>
-                                            <p><b>Institution:</b> Universitat Pompeu Fabra</p>
-                                            <p><b>Funding agency:</b> EU Commission, under grant agreement 101070212</p>
+											<div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+												<p><strong>Information provided</strong></p>
+												<p>Dear Sir or Madam,</p><br>
+												<p>We wish to inform you that <strong>...</strong> </p>
+												<p>Therefore, we provide you with the following information:</p><br>
+												<p><strong>1. Example:</strong> ... </p>
 
-                                            <p class="py-3"><b>Objectives and duration of the project:</b>  This study is part of FINDHR, a 3-year research project funded by Horizon Europe. The study aims to understand how the outcomes of job applicants can be affected by ranking algorithms, user interfaces, and environmental factors (and their interactions). Results from the study will be used to generate a dataset of fabricated interactions of recruiters with a recruitment system (e.g., candidate bookmarking, shortlisting, profile visiting).</p>
-
-                                            <p><b>Methodology and participation:</b>A user study is proposed to collect interactions of recruiters with a recruitment system. Participants who will play the role of recruiters will be invited to short-list a group of candidates who applied for a position. In particular, given a fabricated open position (e.g., a software developer with experience programming in Python), the participant (recruiter) will be asked to use a recruitment system and go through the list of candidates who presumably applied for the position and shortlist a group of them. Before concluding, you will be asked to fill out an exit questionnaire containing optional questions such as your gender and ethnicity, as well as a free-text field for additional comments. A debriefing will be conducted by the end of the session to explain to participants details about the experimentation.</p>
-
-                                            <div class="py-3">
-                                                <p><b>Privacy:</b>The data you provide will be kept protected with passwords and encrypted in UPF servers for the duration of the FINDHR project and will be accessible only by a limited number of researchers who will sign a data privacy commitment form. We will keep the collected data for the duration of the project to fine-tune the methods used to generate the synthetic data and to finalize research publications presenting our findings. </p>
-                                            </div>
-
-                                            <p><b>Compensation:</b> For professional recruiters, there is no monetary compensation for participating. For crowdsourcing workers, the compensation is stated in the task description.</p>
-
-                                            <p class="py-3"><b>Risks and benefits:</b> We understand that the project has both benefits and risks for participants. The main risk is the leak of the participants’ gender and ethnicity. The main benefit, on the other hand, is the development of new methods for trustworthy automated hiring systems.</p>
-
-                                            <p><b>Voluntary nature of participation:</b> Your participation is voluntary, and you can withdraw from it at any time without justification. In this sense, you can exercise your right to delete your donated data by sending an email to the contact person.</p>
-
-                                            <div class="py-3">
-                                                <p><b>Contact information:</b>  If you have any questions about this study, contact researcher Jorge Saldivar (jorge.saldivar@upf.edu).</p>
-                                                <p>If you have doubts, complaints, or questions about this study or about your rights as a research participant, you may contact UPF’s Institutional Committee for the Ethical Review of Projects (CIREP) by phone (+34 93 542 21 86) or by email (secretaria.cirep@upf.edu). CIREP is not part of the research team and will treat any information you send confidentially. </p>
-                                            </div>
-
-                                            <p>In accordance with the General Data Protection Regulation (GDPR) 2016/679 (EU), we provide the following information:</p>
-                                            <p class="px-3"><b>Data controller:</b> Universitat Pompeu Fabra. Pl. de la Mercè, 10-12. 08002 Barcelona. Tel. +34 93 542 20 00. You can contact UPF’s Data Protection officer by sending an email to dpd@upf.edu.</p>
-                                            <p class="px-3"><b>Purposes of the processing:</b> Carrying out the above-mentioned research project. Personal data will be kept during the execution of the project for scientific validation. </p>
-                                            <p class="px-3"><b>Legal basis:</b> Data owner’s consent. You can withdraw your consent at any time following the procedure explained above.
-                                            <p class="px-3"><b>Recipients:</b> Your personal data will be processed by researchers at UPF and Max-Planck-Institut für Sicherheit und Privatsphäre (MPI-SP), which is a public research institution in the European Union and partner in the FINDHR project. More information at https://cordis.europa.eu/project/id/10107021. Collected data will not be publicly released and will be deleted at the end of the project. </p>
-                                            <p class="px-3"><b>Rights:</b> You can access your data; request their rectification, deletion, and in certain cases their portability; you may object to their processing and apply for their limitation by following the procedures described at www.upf.edu/web/proteccio-dades/drets. You can contact UPF’s Data Protection officer (dpd@upf.edu) for any queries or if you feel that your rights are not properly respected. Should you not be satisfied, you may file a complaint with the Catalan Data Protection Authority.</p>
-
-                                            <h4 class="text-2xl font-semibold text-gray-700 py-3">Informed Consent Form</h4>
-                                            <p><b>Title of the research project:</b>  Research on user interfaces for recruiting systems
-                                            </p>
-                                            <p><b>Principal investigator:</b> Dr. Carlos Castillo - carlos.castillo@upf.edu
-                                            Edificio Tànger UPF, C/Tànger, 122-140 08018 Barcelona (Spain)
-                                            </p>
-                                            <p><b>Institution:</b> Universitat Pompeu Fabra
-                                            </p>
-                                            </div>
-                                        </div>
+											</div>
+										</div>
                                     </div>
 
 
                                     <div class="flex flex-col m-5" name="consent-container">
+										<div class="flex flex-row m-5 gap-x-1">
+											<p>Download the information sheet: <a href="" target="_blank" class="text-blue-600 hover:underline">Click here</a></p>
+										</div>
+										<div class="flex flex-row m-5 gap-x-1">
+											<p>I declare</p>
+										</div>
+										<div class="flex flex-row m-5 gap-x-1">
+											<input type="checkbox" id="declare_read_info" name="declare_consent" class="flex-none m-1 w-5 h-5">
+											<label class="place-content-center align-middle">
+												that I have read the information provided.</label>
+										</div>
 
-                                        <div class="flex flex-row m-5 gap-x-1">
-                                                <input type="checkbox" id="checkbox3" name="example_checkbox" class="flex-none m-1 w-5 h-5"><label class="place-content-center align-middle">I HEREBY CONFIRM that:
-                                        <p>	- I have read the information sheet regarding the research project,
-                                        </p><p>	- I have been able to formulate questions on the project,
-                                        </p><p>	- I have received enough information on the project,
-                                        </p><p>	- I am older than 18 years old,
-                                        </p><p>	- I am a resident of one of the following countries: Austria, Belgium, Bulgaria, Croatia, Republic of Cyprus, Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Iceland, Ireland, Italy, Latvia, Liechtenstein, Lithuania, Luxembourg, Malta, Netherlands, Norway, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden, and Switzerland.
-                                        </label></div>
-
-                                        <div class="flex flex-row m-5 gap-x-1">
-                                                <input type="checkbox" id="checkbox1" name="example_checkbox" class="flex-none m-1 w-5 h-5"><label class="place-content-center align-middle">I UNDERSTAND that my participation is voluntary, that there will be a default option of “Prefer not to answer” in all personal questions, and that I can withdraw from or opt out of the study at any time without any need to justify my decision.</label>
-                                        </div>
-
-                                        <div class="flex flex-row m-5 gap-x-1">
-                                            <input type="checkbox" id="checkbox2" name="example_checkbox" class="flex-none m-1 w-5 h-5"><label class="place-content-center align-middle">I GIVE MY CONSENT to:
-                                            <p>- Participate in this study,</p>
-                                            <p>- Use the data that I provide for qualitative analysis by FINDHR researchers under an NDA agreement,</p>
-                                        </label>
-                                        </div>
-
-                                        <div class="flex flex-row m-5 gap-x-1">
-                                            <input type="checkbox" id="checkbox4" name="example_checkbox" class="flex-none m-1 w-5 h-5"><label class="place-content-center align-middle">I GIVE MY CONSENT to:
-                                            <p>- If I provide data about my ethnicity, use the data for qualitative analysis by FINDHR researchers under an NDA agreement.</p>
-                                        </label>
-                                        </div>
-
-                                    </div>
+									</div>
                 <!---  <div class="text-gray-500 py-3 ">In the job description below, the mandatory skills are displayed in bold. </div>
                                 </div> -->
 
@@ -184,25 +133,26 @@ function toggleAccordion() {
 
 <script>
 const link = window.location.href;
-const parts = link.split('/'); // Split the link by '/'
+const parts = link.split('/');
 const experimentId = parts[4];
-const checkboxes = document.getElementsByName('example_checkbox');
+
+const consentCheckboxes = document.querySelectorAll(
+    'input[type="checkbox"][name="declare_consent"], ' +
+    'input[type="checkbox"][name="final_consent"]'
+);
+
 const submitButton = document.getElementById('done_button');
-console.log(checkboxes)
-console.log(parts)
-checkboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', () => {
-        // Check if all checkboxes are checked
-        const allChecked = [...checkboxes].every(checkbox => checkbox.checked);
 
-        // Enable/disable the button accordingly
-        submitButton.disabled = !allChecked;
+function updateSubmitButtonState() {
+    const allConsentChecked = [...consentCheckboxes].every(checkbox => checkbox.checked);
+    submitButton.disabled = !allConsentChecked;
+    submitButton.style.backgroundColor = allConsentChecked ? 'green' : '#A9A9A9';
+}
 
-        // Change background color of the button
-        submitButton.style.backgroundColor = allChecked ? 'green' : '';
-        console.log(parts)
-
-     });
+consentCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', updateSubmitButtonState);
 });
+
+updateSubmitButtonState();
 </script>
 {% endblock %}

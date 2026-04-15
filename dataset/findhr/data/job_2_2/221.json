@@ -1,0 +1,119 @@
+{
+    "Candidate ID":  221,
+    "Education EQF":  "level 5 or less",
+    "Gender":  0,
+    "Full/Part-time (preferred)":  "Not specified",
+    "Years of Experience":  1,
+    "Job and Language Skills":  [
+                                    "customer service",
+                                    "follow up accounts receivables",
+                                    "French",
+                                    "German"
+                                ],
+    "Domain Knowledge":  "Medium",
+    "Permanent/Fixed-term (preferred)":  "Permanent",
+    "factual_xai":  [
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.557,
+                                         "Years of Experience":  -0.34,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  0.17,
+                                         "Domain Knowledge":  -0.01,
+                                         "Permanent/Fixed-term (preferred)":  0.1,
+                                         "Gender":  0.0
+                                     },
+                            "factual_image":  "factual_exp_221_exp1.png",
+                            "factual_text":  "The characteristics Full/Part-time (preferred), Education EQF significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Job and Language Skills significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Domain Knowledge, Gender, Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank1"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.908,
+                                         "Years of Experience":  -0.17,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  0.204,
+                                         "Domain Knowledge":  -0.01,
+                                         "Permanent/Fixed-term (preferred)":  0.09,
+                                         "Gender":  -0.48
+                                     },
+                            "factual_image":  "factual_exp_221_exp2.png",
+                            "factual_text":  "The characteristics Full/Part-time (preferred), Education EQF significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Gender, Job and Language Skills significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Domain Knowledge, Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank2"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.015,
+                                         "Years of Experience":  0.008,
+                                         "Education EQF":  0.001,
+                                         "Full/Part-time (preferred)":  0.009,
+                                         "Domain Knowledge":  0.006,
+                                         "Permanent/Fixed-term (preferred)":  -0.005,
+                                         "Gender":  -0.002
+                                     },
+                            "factual_image":  "factual_exp_221_exp3.png",
+                            "factual_text":  "The characteristics Permanent/Fixed-term (preferred), Years of Experience, Domain Knowledge, Full/Part-time (preferred), Education EQF, Job and Language Skills, Gender do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank3"
+                        }
+                    ],
+    "counterfactual_xai":  [
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Not specified",
+                                                "Years of Experience":  3,
+                                                "Job and Language Skills":  [
+                                                                                "customer service",
+                                                                                "follow up accounts receivables",
+                                                                                "planning and organising",
+                                                                                "French",
+                                                                                "German"
+                                                                            ],
+                                                "Domain Knowledge":  "Medium",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027customer service\u0027, \u0027follow up accounts receivables\u0027, \u0027planning and organising\u0027, \u0027French\u0027, \u0027German\u0027]\nYears of Experience: 3\n",
+                                   "ranking_type":  "rank1"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Not specified",
+                                                "Years of Experience":  3,
+                                                "Job and Language Skills":  [
+                                                                                "customer service",
+                                                                                "follow up accounts receivables",
+                                                                                "planning and organising",
+                                                                                "French",
+                                                                                "German"
+                                                                            ],
+                                                "Domain Knowledge":  "Medium",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027customer service\u0027, \u0027follow up accounts receivables\u0027, \u0027planning and organising\u0027, \u0027French\u0027, \u0027German\u0027]\nYears of Experience: 3\n",
+                                   "ranking_type":  "rank2"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Not specified",
+                                                "Years of Experience":  3,
+                                                "Job and Language Skills":  [
+                                                                                "customer service",
+                                                                                "follow up accounts receivables",
+                                                                                "planning and organising",
+                                                                                "French",
+                                                                                "German"
+                                                                            ],
+                                                "Domain Knowledge":  "Medium",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027customer service\u0027, \u0027follow up accounts receivables\u0027, \u0027planning and organising\u0027, \u0027French\u0027, \u0027German\u0027]\nYears of Experience: 3\n",
+                                   "ranking_type":  "rank3"
+                               }
+                           ]
+}
+

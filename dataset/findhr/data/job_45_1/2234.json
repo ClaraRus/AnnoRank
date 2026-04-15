@@ -1,0 +1,116 @@
+{
+    "Candidate ID":  2234,
+    "Education EQF":  "level 5 or less",
+    "Gender":  0,
+    "Full/Part-time (preferred)":  "Full time contract",
+    "Years of Experience":  4,
+    "Job and Language Skills":  [
+                                    "project management",
+                                    "foreclosure",
+                                    "English",
+                                    "German"
+                                ],
+    "Domain Knowledge":  "Excellent",
+    "Permanent/Fixed-term (preferred)":  "Permanent",
+    "factual_xai":  [
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.557,
+                                         "Years of Experience":  1.66,
+                                         "Education EQF":  -1.155,
+                                         "Full/Part-time (preferred)":  -0.33,
+                                         "Domain Knowledge":  0.157,
+                                         "Permanent/Fixed-term (preferred)":  0.1,
+                                         "Gender":  0.0
+                                     },
+                            "factual_image":  "factual_exp_2234_exp1.png",
+                            "factual_text":  "The characteristics Years of Experience, Domain Knowledge significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Education EQF, Full/Part-time (preferred), Job and Language Skills significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Gender, Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank1"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.908,
+                                         "Years of Experience":  0.83,
+                                         "Education EQF":  -1.155,
+                                         "Full/Part-time (preferred)":  -0.396,
+                                         "Domain Knowledge":  0.157,
+                                         "Permanent/Fixed-term (preferred)":  0.09,
+                                         "Gender":  -0.48
+                                     },
+                            "factual_image":  "factual_exp_2234_exp2.png",
+                            "factual_text":  "The characteristics Years of Experience, Domain Knowledge significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Education EQF, Full/Part-time (preferred), Gender, Job and Language Skills significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank2"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.024,
+                                         "Years of Experience":  -0.011,
+                                         "Education EQF":  0.003,
+                                         "Full/Part-time (preferred)":  -0.015,
+                                         "Domain Knowledge":  0.008,
+                                         "Permanent/Fixed-term (preferred)":  -0.005,
+                                         "Gender":  -0.006
+                                     },
+                            "factual_image":  "factual_exp_2234_exp3.png",
+                            "factual_text":  "The characteristics Permanent/Fixed-term (preferred), Years of Experience, Domain Knowledge, Full/Part-time (preferred), Education EQF, Job and Language Skills, Gender do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank3"
+                        }
+                    ],
+    "counterfactual_xai":  [
+                               {
+                                   "data":  {
+                                                "Education EQF":  6.0,
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Full time contract",
+                                                "Years of Experience":  4,
+                                                "Job and Language Skills":  [
+                                                                                "project management",
+                                                                                "foreclosure",
+                                                                                "English",
+                                                                                "German"
+                                                                            ],
+                                                "Domain Knowledge":  "Excellent",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nEducation EQF: 6.0\n",
+                                   "ranking_type":  "rank1"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  6.0,
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Full time contract",
+                                                "Years of Experience":  4,
+                                                "Job and Language Skills":  [
+                                                                                "project management",
+                                                                                "foreclosure",
+                                                                                "English",
+                                                                                "German"
+                                                                            ],
+                                                "Domain Knowledge":  "Excellent",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nEducation EQF: 6.0\n",
+                                   "ranking_type":  "rank2"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  6.0,
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Full time contract",
+                                                "Years of Experience":  4,
+                                                "Job and Language Skills":  [
+                                                                                "project management",
+                                                                                "foreclosure",
+                                                                                "English",
+                                                                                "German"
+                                                                            ],
+                                                "Domain Knowledge":  "Excellent",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nEducation EQF: 6.0\n",
+                                   "ranking_type":  "rank3"
+                               }
+                           ]
+}
+

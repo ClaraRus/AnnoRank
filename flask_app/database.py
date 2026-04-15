@@ -102,26 +102,32 @@ class Experiment(Document):
         'collection': 'experiments'
     }
     _id = ObjectIdField()
-    _exp_id = StringField(required=True)
+    _exp_id = StringField(required=True, db_field="_exp_id")
     _description = StringField(default="")
     tasks = ListField()
 
 
 class Interaction(EmbeddedDocument):
     doc_id = StringField(default="")
-    n_views = StringField(default="")
-    timestamps = ListField()
     shortlisted = StringField(default="")
-    view_n = StringField(default="0")  # Number of view interactions
-    detail_n = StringField(default="0")  # Number of detail interactions
-    cf_n = StringField(default="0")  # Number of counterfactual interactions 
-    updated_n = StringField(default="{}")  # Number of updated interactions    
-    view_timestamps = ListField()  # When view interactions happened
-    detail_timestamps = ListField()  # When detail interactions happened
-    cf_timestamps = ListField()  # When counterfactual interactions happened
-    updated_timestamps = ListField()  # When updated interactions happened
 
+    view = StringField(default="0")
+    timestamps = ListField()
 
+    view_factual = StringField(default="0")
+    view_factual_timestamps = ListField()
+
+    view_counterfactual = StringField(default="0")
+    view_counterfactual_timestamps = ListField()
+
+    view_image = StringField(default="0")
+    view_image_timestamps = ListField()
+
+    view_text = StringField(default="0")
+    view_text_timestamps = ListField()
+
+    view_image_text = StringField(default="0")
+    view_image_text_timestamps = ListField()
 
 
 class InteractionCompare(EmbeddedDocument):
@@ -143,23 +149,18 @@ class TaskVisited(EmbeddedDocument):
     interaction_score = EmbeddedDocumentField(InteractionScore, default=InteractionScore())
     interactions = EmbeddedDocumentListField(Interaction)
     order_checkbox = ListField()
-
+    form_submission = DictField()
 
 class User(DynamicDocument):
     meta = {
-        'collection': 'users',
-        'indexes': [
-            {
-                'fields': ['_user_id', 'role'],
-                'unique': True  # enforce uniqueness per user_id + role
-            }
-        ]
+        'collection': 'users'
     }
     _id = ObjectIdField()
     _user_id = StringField(required=True)
-    role = StringField(required=True, choices=['recruiter', 'jobseeker', 'default'], default='default')
     _attention_check = StringField(default="")
+    _reload_attention_check = StringField(default="")
     tasks_visited = EmbeddedDocumentListField(TaskVisited)
+    exit_form = DictField()
 
 def create_collections():
     db = get_db()
@@ -196,4 +197,6 @@ def create_collections():
         dummy_document = Experiment(_exp_id="dummy--")
         dummy_document.save()
         Experiment.objects().delete()
+
+
 

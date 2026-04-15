@@ -1,0 +1,127 @@
+{
+    "Candidate ID":  216,
+    "Education EQF":  "level 6",
+    "Gender":  0,
+    "Full/Part-time (preferred)":  "Part time contract",
+    "Years of Experience":  28,
+    "Job and Language Skills":  [
+                                    "data mining",
+                                    "artistic and creative writing",
+                                    "issue sales invoices",
+                                    "office software",
+                                    "web analytics",
+                                    "Japanese"
+                                ],
+    "Domain Knowledge":  "Excellent",
+    "Permanent/Fixed-term (preferred)":  "Permanent",
+    "factual_xai":  [
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.557,
+                                         "Years of Experience":  -0.34,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  0.17,
+                                         "Domain Knowledge":  0.157,
+                                         "Permanent/Fixed-term (preferred)":  0.1,
+                                         "Gender":  0.0
+                                     },
+                            "factual_image":  "factual_exp_216_exp1.png",
+                            "factual_text":  "The characteristics Domain Knowledge, Full/Part-time (preferred), Education EQF significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Job and Language Skills significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Gender, Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank1"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.908,
+                                         "Years of Experience":  -0.17,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  0.204,
+                                         "Domain Knowledge":  0.157,
+                                         "Permanent/Fixed-term (preferred)":  0.09,
+                                         "Gender":  -0.48
+                                     },
+                            "factual_image":  "factual_exp_216_exp2.png",
+                            "factual_text":  "The characteristics Domain Knowledge, Full/Part-time (preferred), Education EQF significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Gender, Job and Language Skills significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank2"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.005,
+                                         "Years of Experience":  0.009,
+                                         "Education EQF":  0.004,
+                                         "Full/Part-time (preferred)":  0.002,
+                                         "Domain Knowledge":  -0.001,
+                                         "Permanent/Fixed-term (preferred)":  0.004,
+                                         "Gender":  0.004
+                                     },
+                            "factual_image":  "factual_exp_216_exp3.png",
+                            "factual_text":  "The characteristics Permanent/Fixed-term (preferred), Years of Experience, Domain Knowledge, Full/Part-time (preferred), Education EQF, Job and Language Skills, Gender do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank3"
+                        }
+                    ],
+    "counterfactual_xai":  [
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 6",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Part time contract",
+                                                "Years of Experience":  5,
+                                                "Job and Language Skills":  [
+                                                                                "artistic and creative writing",
+                                                                                "issue sales invoices",
+                                                                                "data mining",
+                                                                                "web analytics",
+                                                                                "office software",
+                                                                                "market research",
+                                                                                "Japanese"
+                                                                            ],
+                                                "Domain Knowledge":  "Excellent",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027artistic and creative writing\u0027, \u0027issue sales invoices\u0027, \u0027data mining\u0027, \u0027web analytics\u0027, \u0027office software\u0027, \u0027market research\u0027, \u0027Japanese\u0027]\nYears of Experience: 5\n",
+                                   "ranking_type":  "rank1"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 6",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Part time contract",
+                                                "Years of Experience":  5,
+                                                "Job and Language Skills":  [
+                                                                                "data mining",
+                                                                                "issue sales invoices",
+                                                                                "office software",
+                                                                                "web analytics",
+                                                                                "artistic and creative writing",
+                                                                                "market research",
+                                                                                "Japanese"
+                                                                            ],
+                                                "Domain Knowledge":  "Excellent",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027data mining\u0027, \u0027issue sales invoices\u0027, \u0027office software\u0027, \u0027web analytics\u0027, \u0027artistic and creative writing\u0027, \u0027market research\u0027, \u0027Japanese\u0027]\nYears of Experience: 5\n",
+                                   "ranking_type":  "rank2"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 6",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Part time contract",
+                                                "Years of Experience":  5,
+                                                "Job and Language Skills":  [
+                                                                                "issue sales invoices",
+                                                                                "artistic and creative writing",
+                                                                                "web analytics",
+                                                                                "office software",
+                                                                                "data mining",
+                                                                                "market research",
+                                                                                "Japanese"
+                                                                            ],
+                                                "Domain Knowledge":  "Excellent",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027issue sales invoices\u0027, \u0027artistic and creative writing\u0027, \u0027web analytics\u0027, \u0027office software\u0027, \u0027data mining\u0027, \u0027market research\u0027, \u0027Japanese\u0027]\nYears of Experience: 5\n",
+                                   "ranking_type":  "rank3"
+                               }
+                           ]
+}
+
