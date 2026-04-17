@@ -1,0 +1,92 @@
+<div id="expandable-row-{{ doc_index }}" class="max-w-7xl mx-auto px-4 py-2">
+
+    <div class="w-full p-6 border border-gray-200 rounded-lg shadow bg-white">
+
+        <h2 class="text-gray-900 font-bold text-xl mb-4">Counterfactual XAI</h2>
+
+        {% if doc_obj.counterfactuals %}
+            <div class="mt-6 p-4 border border-blue-100 bg-blue-50 rounded-lg">
+                <p class="font-medium text-gray-800 mb-4">{{ doc_obj.counterfactuals.counterfactual_text }}</p>
+
+                <div class="w-full p-6 bg-white border border-gray-300 text-sm text-black rounded-lg shadow-md">
+                    <p class="mb-4">
+                        Updated data based on the suggested improvements:
+                    </p>
+                    <div class="space-y-6">
+
+                        {% for raw_field in field_names %}
+
+                            {% set section = raw_field.replace('_display', '') %}
+
+                            {% if section in doc_obj.counterfactuals.data %}
+
+                                {% set value = doc_obj.counterfactuals.data[section] %}
+
+                                {% if value is iterable and value is not string %}
+                                    {% set v = ", ".join(value) %}
+                                {% else %}
+                                    {% set v = value|string %}
+                                {% endif %}
+
+                                {% set items = [] %}
+                                {% for line in v.split('\n') %}
+                                    {% for piece in line.split(',') %}
+                                        {% set cleaned = piece.strip() %}
+                                        {% if cleaned %}
+                                            {% set _ = items.append(cleaned) %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+
+                                <div>
+                                    <h1 class="text-gray-900 font-bold">
+                                        {{ section.replace('_',' ')|upper }}
+                                    </h1>
+
+                                    {% if items|length > 1 %}
+                                        <ul class="list-disc ml-6 text-gray-900">
+                                            {% for item in items %}
+                                                <li>
+                                                    {% set parts = item.split('*') %}
+                                                    {% for part in parts %}
+                                                        {% if loop.index is even %}
+                                                            <span class="text-blue-600 font-semibold italic">{{ part }}</span>
+                                                        {% else %}
+                                                            {{ part }}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+
+                                    {% elif items|length == 1 %}
+                                        <div class="text-gray-900">
+                                            {% set parts = items[0].split('*') %}
+                                            {% for part in parts %}
+                                                {% if loop.index is even %}
+                                                    <span class="text-blue-600 font-semibold italic">{{ part }}</span>
+                                                {% else %}
+                                                    {{ part }}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+
+                                    {% else %}
+                                        <div class="text-gray-900"></div>
+                                    {% endif %}
+                                </div>
+
+                            {% endif %}
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="mt-4 p-4 bg-gray-100 border border-gray-300 text-sm text-black rounded">
+                No counterfactual feedback available.
+            </div>
+        {% endif %}
+
+    </div>
+</div>

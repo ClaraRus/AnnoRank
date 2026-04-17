@@ -1,0 +1,98 @@
+{% block body %}
+<table class="table-fixed w-full border-collapse" style="table-layout: fixed;">
+    <tbody>
+        <tr id="expandable-row-extrainfo-{{ doc_obj._id }}">
+            {% for field in all_columns %}
+                <td class="align-top px-2 py-4 whitespace-normal border-b border-gray-200">
+                    <div class="ml-4">
+                        {% set field_key = field ~ '_factual' %}
+                        {% if field_key in field_names %}
+                            {% for line in (doc_obj[field_key]|string).split('\n') %}
+                                {% if '<img' in line %}
+                                    <div class="text-gray-900 mb-2">
+                                    {{ line | safe }}
+                                    </div>
+                                {% elif line == '' %}
+                                    <div class="text-sm leading-5 text-gray-500 py-3">{{ line }}</div>
+                                {% else %}
+                                    <div class="text-sm leading-5 text-gray-500">{{ line }}</div>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            &mdash;
+                        {% endif %}
+                    </div>
+                </td>
+            {% endfor %}
+
+            <td class="align-top border-b border-gray-200"></td>
+
+            {% if shortlist_button %}
+                <td class="align-top border-b border-gray-200"></td>
+            {% endif %}
+        </tr>
+
+       {% if doc_obj.factual_image or doc_obj.factual_text %}
+        <tr id="expandable-row-detail-{{doc_obj._id}}" class="bg-gray-50" docid="{{doc_obj._id}}">
+            <td colspan="{{ all_columns|length + (1 if shortlist_button else 0) + 1 }}" class="p-4 border-b border-gray-300">
+                <div id="{{doc_obj._id}}-detail" class="w-full">
+                    <div class="w-full p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
+                        <h3 class="text-gray-900 font-bold text-lg mb-4">Detailed Explanation</h3>
+                        <div class="flex flex-col md:flex-row gap-4">
+
+                            {% if doc_obj.factual_image %}
+                            <div class="md:w-1/2 w-full border border-gray-200 rounded-lg shadow-sm overflow-hidden flex items-center justify-center p-2">
+                                <img src="{{ url_for('images', filename=doc_obj['factual_image']) }}"
+                                     alt="Explanation image"
+                                     class="w-full h-auto rounded-lg object-contain max-h-[400px]">
+                            </div>
+                            {% endif %}
+
+                            {% if doc_obj.factual_text %}
+                            <div class="{% if not doc_obj.factual_image %}w-full{% else %}md:w-1/2 w-full{% endif %} border border-gray-200 rounded-lg shadow-sm p-4 text-sm bg-white">
+                                <p class="text-gray-600 leading-relaxed whitespace-pre-line">
+                                    {{ doc_obj.factual_text }}
+                                </p>
+                            </div>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+<script>
+    (function() {
+        function syncTableWidths() {
+            var parentTable = document.getElementById('data-body');
+            var nestedRow = document.getElementById('expandable-row-extrainfo-{{ doc_obj._id }}');
+
+            if (parentTable && nestedRow) {
+                // Read widths from the actual data cells above it, not just the headers
+                var firstParentRowCells = parentTable.querySelector('tbody tr').querySelectorAll('td');
+                var nestedCells = nestedRow.querySelectorAll('td');
+
+                firstParentRowCells.forEach(function(parentCell, index) {
+                    if (nestedCells[index]) {
+                        var exactWidth = parentCell.getBoundingClientRect().width;
+                        nestedCells[index].style.width = exactWidth + 'px';
+                        nestedCells[index].style.minWidth = exactWidth + 'px';
+                        nestedCells[index].style.maxWidth = exactWidth + 'px';
+                        nestedCells[index].style.boxSizing = 'border-box';
+                    }
+                });
+            }
+        }
+
+        // Run immediately, and wait for any display:none transitions from the View Button to finish
+        syncTableWidths();
+        setTimeout(syncTableWidths, 50);
+        setTimeout(syncTableWidths, 200);
+        window.addEventListener('resize', syncTableWidths);
+    })();
+</script>
+{% endblock %}

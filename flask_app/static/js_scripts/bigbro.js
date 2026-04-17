@@ -19,9 +19,10 @@ let BigBro = {
 
     // init must be called with the user and the server, and optionally a list of
     // events to listen to globally.
-    init: function (user, server, events) {
+	init: function (user, server, events) {
         this.data.user = user;
-        this.data.server = server;
+        // La seguente riga è stata modificata per usare l'host della finestra
+        this.data.server = server || window.location.host; 
         this.data.events = events || this.data.events;
 
         let protocol = 'ws://';
@@ -147,3 +148,4 @@ let BigBro = {
         }
     }
 };
+

@@ -6,6 +6,15 @@ while getopts ":d:" opt; do
       echo "-d was triggered, Parameter: $OPTARG" >&2
       conda run -n tool_ui python ./flask_app/db_create_pipeline.py --config_path ./configs/$OPTARG\_tutorial/config_create_db_$OPTARG.json & \
       conda run -n tool_ui python ./flask_app/app_ranking.py --config_path ./configs/$OPTARG\_tutorial/config_shortlist_$OPTARG.json & \
+
+      conda run -n tool_ui python ./flask_app/app_ranking_XAI.py \
+        --config_path ./configs/$OPTARG\_tutorial/config_shortlist_$OPTARG\_XAI_candidate.json \
+        --port 5005 &
+
+      conda run -n tool_ui python ./flask_app/app_ranking_XAI.py \
+        --config_path ./configs/$OPTARG\_tutorial/config_shortlist_$OPTARG\_XAI_recruiter.json \
+        --port 5004 &
+
       conda run -n tool_ui python ./flask_app/app_ranking_compare.py --config_path ./configs/$OPTARG\_tutorial/config_compare_$OPTARG.json & \
       conda run -n tool_ui python ./flask_app/app_ranking_compare_annotate.py --config_path ./configs/$OPTARG\_tutorial/config_compare_annotate_$OPTARG.json & \
       conda run -n tool_ui python ./flask_app/app_annotate_document.py --config_path ./configs/$OPTARG\_tutorial/config_annotate_score_$OPTARG.json & \

@@ -3,13 +3,20 @@ let currentOpenItem = null;
 
 function loadAndToggleVisibility(targetElementId,docId, htmlFile) {
     const targetElement = document.getElementById(targetElementId);
+    const container = targetElement.querySelector("#injected-container");
+
+
     if (targetElement.style.display === 'none' || targetElement.style.display === '') {
         fetch(htmlFile)
             .then(response => response.text())
             .then(data => {
-                targetElement.innerHTML = data;
-                targetElement.style.display = 'table-row';
+                if (!container) {
+                    targetElement.innerHTML = data;
+                }else{
+                    container.innerHTML = data;
+                }
 
+                targetElement.style.display = 'table-row';
                   if (currentOpenItem && currentOpenItem !== targetElement) {
                     currentOpenItem.style.display = 'none';
                     viewDocTime(currentOpenItem.id, currentOpenItem.getAttribute('cid'))
@@ -38,3 +45,4 @@ function loadAndToggleVisibility(targetElementId,docId, htmlFile) {
 
 
 }
+

@@ -1,0 +1,121 @@
+{
+    "Candidate ID":  284,
+    "Education EQF":  "level 7",
+    "Gender":  0,
+    "Full/Part-time (preferred)":  "Full time contract",
+    "Years of Experience":  5,
+    "Job and Language Skills":  [
+                                    "advise policy makers in healthcare",
+                                    "management skills",
+                                    "develop revenue generation strategies",
+                                    "business ICT systems",
+                                    "Irish",
+                                    "English"
+                                ],
+    "Domain Knowledge":  "Excellent",
+    "Permanent/Fixed-term (preferred)":  "Permanent",
+    "factual_xai":  [
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  0.443,
+                                         "Years of Experience":  1.66,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  -0.33,
+                                         "Domain Knowledge":  0.157,
+                                         "Permanent/Fixed-term (preferred)":  0.1,
+                                         "Gender":  0.0
+                                     },
+                            "factual_image":  "factual_exp_284_exp1.png",
+                            "factual_text":  "The characteristics Years of Experience, Education EQF, Domain Knowledge, Job and Language Skills significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Full/Part-time (preferred) significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Gender, Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank1"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  1.092,
+                                         "Years of Experience":  0.83,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  -0.396,
+                                         "Domain Knowledge":  0.157,
+                                         "Permanent/Fixed-term (preferred)":  0.09,
+                                         "Gender":  -0.48
+                                     },
+                            "factual_image":  "factual_exp_284_exp2.png",
+                            "factual_text":  "The characteristics Years of Experience, Education EQF, Domain Knowledge, Job and Language Skills significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Gender, Full/Part-time (preferred) significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank2"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  0.023,
+                                         "Years of Experience":  0.007,
+                                         "Education EQF":  0.015,
+                                         "Full/Part-time (preferred)":  0.015,
+                                         "Domain Knowledge":  0.013,
+                                         "Permanent/Fixed-term (preferred)":  0.004,
+                                         "Gender":  0.005
+                                     },
+                            "factual_image":  "factual_exp_284_exp3.png",
+                            "factual_text":  "The characteristics Permanent/Fixed-term (preferred), Years of Experience, Domain Knowledge, Full/Part-time (preferred), Education EQF, Job and Language Skills, Gender do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank3"
+                        }
+                    ],
+    "counterfactual_xai":  [
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Not specified",
+                                                "Years of Experience":  9,
+                                                "Job and Language Skills":  [
+                                                                                "manage commercial risks",
+                                                                                "cost management",
+                                                                                "perform copywriting",
+                                                                                "planning and organising",
+                                                                                "English"
+                                                                            ],
+                                                "Domain Knowledge":  "Medium",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile does not require any changes to get shortlisted.",
+                                   "ranking_type":  "rank1"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Not specified",
+                                                "Years of Experience":  9,
+                                                "Job and Language Skills":  [
+                                                                                "manage commercial risks",
+                                                                                "cost management",
+                                                                                "perform copywriting",
+                                                                                "planning and organising",
+                                                                                "English"
+                                                                            ],
+                                                "Domain Knowledge":  "Medium",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile does not require any changes to get shortlisted.",
+                                   "ranking_type":  "rank2"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Not specified",
+                                                "Years of Experience":  9,
+                                                "Job and Language Skills":  [
+                                                                                "manage commercial risks",
+                                                                                "cost management",
+                                                                                "perform copywriting",
+                                                                                "planning and organising",
+                                                                                "English"
+                                                                            ],
+                                                "Domain Knowledge":  "Medium",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile does not require any changes to get shortlisted.",
+                                   "ranking_type":  "rank3"
+                               }
+                           ]
+}
+

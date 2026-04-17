@@ -1,0 +1,138 @@
+{
+    "Candidate ID":  1892,
+    "Education EQF":  "level 5 or less",
+    "Gender":  1,
+    "Full/Part-time (preferred)":  "Full time contract",
+    "Years of Experience":  2,
+    "Job and Language Skills":  [
+                                    "customer service",
+                                    "inspecting food safety and quality",
+                                    "conduct scholarly research",
+                                    "ethics of sharing work through social media",
+                                    "write specifications",
+                                    "cope with stress",
+                                    "Catalan",
+                                    "Spanish"
+                                ],
+    "Domain Knowledge":  "Sufficient",
+    "Permanent/Fixed-term (preferred)":  "Fixed-term",
+    "factual_xai":  [
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.557,
+                                         "Years of Experience":  -0.34,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  0.17,
+                                         "Domain Knowledge":  -0.177,
+                                         "Permanent/Fixed-term (preferred)":  0.1,
+                                         "Gender":  0.0
+                                     },
+                            "factual_image":  "factual_exp_1892_exp1.png",
+                            "factual_text":  "The characteristics Full/Part-time (preferred), Education EQF significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Domain Knowledge, Job and Language Skills significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Gender, Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank1"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.908,
+                                         "Years of Experience":  -0.17,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  0.204,
+                                         "Domain Knowledge":  -0.177,
+                                         "Permanent/Fixed-term (preferred)":  0.09,
+                                         "Gender":  0.52
+                                     },
+                            "factual_image":  "factual_exp_1892_exp2.png",
+                            "factual_text":  "The characteristics Gender, Full/Part-time (preferred), Education EQF significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Domain Knowledge, Job and Language Skills significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank2"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  0.02,
+                                         "Years of Experience":  0.012,
+                                         "Education EQF":  0.007,
+                                         "Full/Part-time (preferred)":  0.007,
+                                         "Domain Knowledge":  0.0,
+                                         "Permanent/Fixed-term (preferred)":  0.006,
+                                         "Gender":  0.0
+                                     },
+                            "factual_image":  "factual_exp_1892_exp3.png",
+                            "factual_text":  "The characteristics Permanent/Fixed-term (preferred), Years of Experience, Domain Knowledge, Full/Part-time (preferred), Education EQF, Job and Language Skills, Gender do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank3"
+                        }
+                    ],
+    "counterfactual_xai":  [
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Male",
+                                                "Full/Part-time (preferred)":  "Full time contract",
+                                                "Years of Experience":  2,
+                                                "Job and Language Skills":  [
+                                                                                "ethics of sharing work through social media",
+                                                                                "inspecting food safety and quality",
+                                                                                "customer service",
+                                                                                "cope with stress",
+                                                                                "conduct scholarly research",
+                                                                                "write specifications",
+                                                                                "operating systems",
+                                                                                "cooperate with colleagues",
+                                                                                "Catalan",
+                                                                                "Spanish"
+                                                                            ],
+                                                "Domain Knowledge":  "Sufficient",
+                                                "Permanent/Fixed-term (preferred)":  "Fixed-term"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027ethics of sharing work through social media\u0027, \u0027inspecting food safety and quality\u0027, \u0027customer service\u0027, \u0027cope with stress\u0027, \u0027conduct scholarly research\u0027, \u0027write specifications\u0027, \u0027operating systems\u0027, \u0027cooperate with colleagues\u0027, \u0027Catalan\u0027, \u0027Spanish\u0027]\n",
+                                   "ranking_type":  "rank1"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Male",
+                                                "Full/Part-time (preferred)":  "Full time contract",
+                                                "Years of Experience":  2,
+                                                "Job and Language Skills":  [
+                                                                                "inspecting food safety and quality",
+                                                                                "write specifications",
+                                                                                "ethics of sharing work through social media",
+                                                                                "customer service",
+                                                                                "cope with stress",
+                                                                                "conduct scholarly research",
+                                                                                "cooperate with colleagues",
+                                                                                "cooperate with colleagues",
+                                                                                "Catalan",
+                                                                                "Spanish"
+                                                                            ],
+                                                "Domain Knowledge":  "Sufficient",
+                                                "Permanent/Fixed-term (preferred)":  "Fixed-term"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027inspecting food safety and quality\u0027, \u0027write specifications\u0027, \u0027ethics of sharing work through social media\u0027, \u0027customer service\u0027, \u0027cope with stress\u0027, \u0027conduct scholarly research\u0027, \u0027cooperate with colleagues\u0027, \u0027cooperate with colleagues\u0027, \u0027Catalan\u0027, \u0027Spanish\u0027]\n",
+                                   "ranking_type":  "rank2"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Male",
+                                                "Full/Part-time (preferred)":  "Full time contract",
+                                                "Years of Experience":  2,
+                                                "Job and Language Skills":  [
+                                                                                "customer service",
+                                                                                "write specifications",
+                                                                                "inspecting food safety and quality",
+                                                                                "ethics of sharing work through social media",
+                                                                                "conduct scholarly research",
+                                                                                "cope with stress",
+                                                                                "operating systems",
+                                                                                "operating systems",
+                                                                                "Catalan",
+                                                                                "Spanish"
+                                                                            ],
+                                                "Domain Knowledge":  "Sufficient",
+                                                "Permanent/Fixed-term (preferred)":  "Fixed-term"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027customer service\u0027, \u0027write specifications\u0027, \u0027inspecting food safety and quality\u0027, \u0027ethics of sharing work through social media\u0027, \u0027conduct scholarly research\u0027, \u0027cope with stress\u0027, \u0027operating systems\u0027, \u0027operating systems\u0027, \u0027Catalan\u0027, \u0027Spanish\u0027]\n",
+                                   "ranking_type":  "rank3"
+                               }
+                           ]
+}
+

@@ -1,0 +1,132 @@
+{
+    "Candidate ID":  464,
+    "Education EQF":  "level 6",
+    "Gender":  0,
+    "Full/Part-time (preferred)":  "Not specified",
+    "Years of Experience":  6,
+    "Job and Language Skills":  [
+                                    "conduct scholarly research",
+                                    "project management",
+                                    "implement quality management systems",
+                                    "accounting",
+                                    "develop communications strategies",
+                                    "advise others",
+                                    "advising on products and services",
+                                    "English"
+                                ],
+    "Domain Knowledge":  "Excellent",
+    "Permanent/Fixed-term (preferred)":  "Fixed-term",
+    "factual_xai":  [
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  0.443,
+                                         "Years of Experience":  -0.34,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  0.17,
+                                         "Domain Knowledge":  0.157,
+                                         "Permanent/Fixed-term (preferred)":  0.1,
+                                         "Gender":  0.0
+                                     },
+                            "factual_image":  "factual_exp_464_exp1.png",
+                            "factual_text":  "The characteristics Domain Knowledge, Education EQF, Full/Part-time (preferred), Job and Language Skills significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Gender, Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank1"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  1.092,
+                                         "Years of Experience":  -0.17,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  0.204,
+                                         "Domain Knowledge":  0.157,
+                                         "Permanent/Fixed-term (preferred)":  0.09,
+                                         "Gender":  -0.48
+                                     },
+                            "factual_image":  "factual_exp_464_exp2.png",
+                            "factual_text":  "The characteristics Domain Knowledge, Education EQF, Full/Part-time (preferred), Job and Language Skills significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Gender significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank2"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  0.009,
+                                         "Years of Experience":  -0.005,
+                                         "Education EQF":  -0.003,
+                                         "Full/Part-time (preferred)":  0.004,
+                                         "Domain Knowledge":  0.002,
+                                         "Permanent/Fixed-term (preferred)":  0.008,
+                                         "Gender":  -0.007
+                                     },
+                            "factual_image":  "factual_exp_464_exp3.png",
+                            "factual_text":  "The characteristics Permanent/Fixed-term (preferred), Years of Experience, Domain Knowledge, Full/Part-time (preferred), Education EQF, Job and Language Skills, Gender do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank3"
+                        }
+                    ],
+    "counterfactual_xai":  [
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 6",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Not specified",
+                                                "Years of Experience":  5.0,
+                                                "Job and Language Skills":  [
+                                                                                "project management",
+                                                                                "accounting",
+                                                                                "advise others",
+                                                                                "advising on products and services",
+                                                                                "conduct scholarly research",
+                                                                                "develop communications strategies",
+                                                                                "implement quality management systems",
+                                                                                "English"
+                                                                            ],
+                                                "Domain Knowledge":  "Excellent",
+                                                "Permanent/Fixed-term (preferred)":  "Fixed-term"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nYears of Experience: 5.0\n",
+                                   "ranking_type":  "rank1"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 6",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Not specified",
+                                                "Years of Experience":  5.0,
+                                                "Job and Language Skills":  [
+                                                                                "project management",
+                                                                                "accounting",
+                                                                                "advise others",
+                                                                                "advising on products and services",
+                                                                                "conduct scholarly research",
+                                                                                "develop communications strategies",
+                                                                                "implement quality management systems",
+                                                                                "English"
+                                                                            ],
+                                                "Domain Knowledge":  "Excellent",
+                                                "Permanent/Fixed-term (preferred)":  "Fixed-term"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nYears of Experience: 5.0\n",
+                                   "ranking_type":  "rank2"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 6",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Not specified",
+                                                "Years of Experience":  5.0,
+                                                "Job and Language Skills":  [
+                                                                                "project management",
+                                                                                "accounting",
+                                                                                "advise others",
+                                                                                "advising on products and services",
+                                                                                "conduct scholarly research",
+                                                                                "develop communications strategies",
+                                                                                "implement quality management systems",
+                                                                                "English"
+                                                                            ],
+                                                "Domain Knowledge":  "Excellent",
+                                                "Permanent/Fixed-term (preferred)":  "Fixed-term"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nYears of Experience: 5.0\n",
+                                   "ranking_type":  "rank3"
+                               }
+                           ]
+}
+

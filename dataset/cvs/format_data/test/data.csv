@@ -1,0 +1,419 @@
+_name,_gender,_continent,_country,_unusual,_target_fitness,_fitness_edu,_fitness_exp,_fitness_ski,education,experience,skills,factual_xai,counterfactual_xai,name_display,gender_protected,continent_protected,country_protected,unusual_protected,targetfitness_protected,fitnessedu_protected,fitnessexp_protected,fitnessski_protected,education_display,education_view,experience_display,experience_view,skills_display,skills_view,query
+Manuel Ortega Corral,male,EU,spain,False,5,5.00,4.24,6.00,"[{'degree': ""Master's Degree"", 'major': 'Management engineering', 'institution': 'University of Valencia, Spain'}, {'degree': ""Bachelor's Degree"", 'major': 'Environmental engineering', 'institution': 'University of Valencia, Spain'}]","[{'role': 'Project manager', 'duration': '1.6 years', 'start_date': 'Jul 2022', 'end_date': 'Feb 2024', 'organization': 'Amazon Spain Services, Madrid, Spain'}]","['Health and safety regulation', 'ISO 9001', 'Leadership', 'Stakeholder management', 'Lean project management', 'MS Project', 'Agile project management', 'Coaching', 'Risk management', 'PRINCE2', 'Analytics', 'Incident investigation']","[{'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank1'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank2'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank3'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank4'}]",[],Manuel Ortega Corral,male,EU,spain,False,5,5.00,4.24,6.00,"Degree: Master s Degree
+","Degree: Master s Degree
+Major: Management engineering
+Institution: University of Valencia  Spain
+
+Degree: Bachelor s Degree
+Major: Environmental engineering
+Institution: University of Valencia  Spain
+","Role: Project manager
+","Role: Project manager
+Duration: 1 6 years
+Start Date: Jul 2022
+End Date: Feb 2024
+Organization: Amazon Spain Services  Madrid  Spain
+","Health and safety regulation, ISO 9001, Leadership, Stakeholder management, Lean project management, MS Project, Agile project management, Coaching, Risk management, PRINCE2, Analytics, Incident investigation
+","Health and safety regulation, ISO 9001, Leadership, Stakeholder management, Lean project management, MS Project, Agile project management, Coaching, Risk management, PRINCE2, Analytics, Incident investigation
+",project_manager
+Isabel Castro Barrera,female,EU,spain,False,4,5.00,4.12,3.00,"[{'degree': ""Master's Degree"", 'major': 'Management engineering', 'institution': 'Pompeu Fabra University, Barcelona, Spain'}, {'degree': ""Bachelor's Degree"", 'major': 'Environmental engineering', 'institution': 'Complutense University of Madrid, Spain'}]","[{'role': 'Project manager', 'duration': '1.4 years', 'start_date': 'Sep 2022', 'end_date': 'Feb 2024', 'organization': 'Equinix, Madird, Spain'}, {'role': 'Project manager', 'duration': '0.2 years', 'start_date': 'Jun 2022', 'end_date': 'Aug 2022', 'organization': 'BASF, Tarragona, Spain'}]","['MS Project', 'Risk management', 'Leadership', 'Agile project management', 'Health and safety regulation', 'Quality assurance', 'Decision logging']","[{'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank1'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank2'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank3'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank4'}]",[],Isabel Castro Barrera,female,EU,spain,False,4,5.00,4.12,3.00,"Degree: Master s Degree
+","Degree: Master s Degree
+Major: Management engineering
+Institution: Pompeu Fabra University  Barcelona  Spain
+
+Degree: Bachelor s Degree
+Major: Environmental engineering
+Institution: Complutense University of Madrid  Spain
+","Role: Project manager
+","Role: Project manager
+Duration: 1 4 years
+Start Date: Sep 2022
+End Date: Feb 2024
+Organization: Equinix  Madird  Spain
+
+Role: Project manager
+Duration: 0 2 years
+Start Date: Jun 2022
+End Date: Aug 2022
+Organization: BASF  Tarragona  Spain
+","MS Project, Risk management, Leadership, Agile project management, Health and safety regulation, Quality assurance, Decision logging
+","MS Project, Risk management, Leadership, Agile project management, Health and safety regulation, Quality assurance, Decision logging
+",project_manager
+Shazia Baig,female,NEU,pakistan,True,4.5,5.00,4.28,4.20,"[{'degree': ""Master's Degree"", 'major': 'Management engineering', 'institution': 'University Of Engineering & Technology, Pakistan'}, {'degree': ""Bachelor's Degree"", 'major': 'Transport engineering', 'institution': 'University Of Engineering & Technology, Pakistan'}]","[{'role': 'Development project manager', 'duration': '1.0 years', 'start_date': 'Feb 2023', 'end_date': 'Feb 2024', 'organization': 'Kozmek Engineering, Islamabad, Pakistan'}, {'role': 'Technical project manager', 'duration': '0.6 years', 'start_date': 'May 2022', 'end_date': 'Jan 2023', 'organization': 'Zameen Developments, Lahore, Pakistan'}]","['Health and safety regulation', 'PRINCE2', 'Risk management', 'ISO 9001', 'MS Project', 'Lean project management', 'Coaching', 'Performance monitoring', 'Analytics']","[{'data': {'education': 0.5, 'experience': 0.2, 'skills': 0.8}, 'factual_image': 'project_manager/images/animal.jpg', 'factual_text': 'There is an animal in the picture', 'ranking_type': 'rank1'}, {'data': {'education': 0.5, 'experience': 0.2, 'skills': 0.8}, 'factual_image': 'project_manager/images/animal.jpg', 'factual_text': 'There is an animal in the picture', 'ranking_type': 'rank2'}, {'data': {'education': 0.5, 'experience': 0.2, 'skills': 0.8}, 'factual_image': 'project_manager/images/animal.jpg', 'factual_text': 'There is an animal in the picture', 'ranking_type': 'rank3'}, {'data': {'education': 0.5, 'experience': 0.2, 'skills': 0.8}, 'factual_image': 'project_manager/images/animal.jpg', 'factual_text': 'There is an animal in the picture', 'ranking_type': 'rank4'}]",[],Shazia Baig,female,NEU,pakistan,True,4.5,5.00,4.28,4.20,"Degree: Master s Degree
+","Degree: Master s Degree
+Major: Management engineering
+Institution: University Of Engineering   Technology  Pakistan
+
+Degree: Bachelor s Degree
+Major: Transport engineering
+Institution: University Of Engineering   Technology  Pakistan
+","Role: Development project manager
+","Role: Development project manager
+Duration: 1 0 years
+Start Date: Feb 2023
+End Date: Feb 2024
+Organization: Kozmek Engineering  Islamabad  Pakistan
+
+Role: Technical project manager
+Duration: 0 6 years
+Start Date: May 2022
+End Date: Jan 2023
+Organization: Zameen Developments  Lahore  Pakistan
+","Health and safety regulation, PRINCE2, Risk management, ISO 9001, MS Project, Lean project management, Coaching, Performance monitoring, Analytics
+","Health and safety regulation, PRINCE2, Risk management, ISO 9001, MS Project, Lean project management, Coaching, Performance monitoring, Analytics
+",project_manager
+Ayesha Younus,female,NEU,pakistan,True,5,5.00,5.73,4.20,"[{'degree': ""Master's Degree"", 'major': 'Management engineering', 'institution': 'Ned University Of Engineering & Technology, Karachi, Pakistan'}, {'degree': ""Bachelor's Degree"", 'major': 'Hydraulic engineering', 'institution': 'Mehran University Of Engineering & Technology, Jamshoro, Pakistan'}]","[{'role': 'Engineering project manager', 'duration': '1.4 years', 'start_date': 'Sep 2022', 'end_date': 'Feb 2024', 'organization': 'AAA Facility Management, Karachi, Pakistan'}, {'role': 'Strategic project manager', 'duration': '1.3 years', 'start_date': 'May 2021', 'end_date': 'Aug 2022', 'organization': 'Water seal, Karachi, Pakistan'}]","['Coaching', 'ISO 9001', 'Leadership', 'PRINCE2', 'Risk management', 'Lean project management', 'Stakeholder management', 'Performance monitoring', 'MS Office', 'Incident investigation', 'Documentation']","[{'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/tree.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank1'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/tree.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank2'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/tree.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank3'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/tree.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank4'}]",[],Ayesha Younus,female,NEU,pakistan,True,5,5.00,5.73,4.20,"Degree: Master s Degree
+","Degree: Master s Degree
+Major: Management engineering
+Institution: Ned University Of Engineering   Technology  Karachi  Pakistan
+
+Degree: Bachelor s Degree
+Major: Hydraulic engineering
+Institution: Mehran University Of Engineering   Technology  Jamshoro  Pakistan
+","Role: Engineering project manager
+","Role: Engineering project manager
+Duration: 1 4 years
+Start Date: Sep 2022
+End Date: Feb 2024
+Organization: AAA Facility Management  Karachi  Pakistan
+
+Role: Strategic project manager
+Duration: 1 3 years
+Start Date: May 2021
+End Date: Aug 2022
+Organization: Water seal  Karachi  Pakistan
+","Coaching, ISO 9001, Leadership, PRINCE2, Risk management, Lean project management, Stakeholder management, Performance monitoring, MS Office, Incident investigation, Documentation
+","Coaching, ISO 9001, Leadership, PRINCE2, Risk management, Lean project management, Stakeholder management, Performance monitoring, MS Office, Incident investigation, Documentation
+",project_manager
+Carlos Gonzalez Gil,male,EU,spain,False,4,4.50,3.41,4.20,"[{'degree': ""Bachelor's Degree"", 'major': 'Civil engineering', 'institution': 'Autonomous University of Barcelona, Spain'}]","[{'role': 'Project manager', 'duration': '1.2 years', 'start_date': 'Dec 2022', 'end_date': 'Feb 2024', 'organization': 'Novo Real Estate Property Investment, Barcelona, Spain'}, {'role': 'Civil engineering drafter', 'duration': '0.7 years', 'start_date': 'Feb 2022', 'end_date': 'Oct 2022', 'organization': 'Photosol, Alicante, Spain'}]","['Agile project management', 'Coaching', 'Health and safety regulation', 'Risk management', 'ISO 9001', 'MS Project', 'Leadership', 'Earned Value management']","[{'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank1'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank2'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank3'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank4'}]",[],Carlos Gonzalez Gil,male,EU,spain,False,4,4.50,3.41,4.20,"Degree: Bachelor s Degree
+","Degree: Bachelor s Degree
+Major: Civil engineering
+Institution: Autonomous University of Barcelona  Spain
+","Role: Project manager
+","Role: Project manager
+Duration: 1 2 years
+Start Date: Dec 2022
+End Date: Feb 2024
+Organization: Novo Real Estate Property Investment  Barcelona  Spain
+
+Role: Civil engineering drafter
+Duration: 0 7 years
+Start Date: Feb 2022
+End Date: Oct 2022
+Organization: Photosol  Alicante  Spain
+","Agile project management, Coaching, Health and safety regulation, Risk management, ISO 9001, MS Project, Leadership, Earned Value management
+","Agile project management, Coaching, Health and safety regulation, Risk management, ISO 9001, MS Project, Leadership, Earned Value management
+",project_manager
+Cristina Fernandez Medina,female,EU,spain,False,5,4.50,4.91,5.40,"[{'degree': ""Bachelor's Degree"", 'major': 'Civil engineering', 'institution': 'University of the Basque Country, Bilbao, Spain'}]","[{'role': 'Project manager', 'duration': '1.7 years', 'start_date': 'Jun 2022', 'end_date': 'Feb 2024', 'organization': 'KLB Group, Zaragoza, Spain'}, {'role': 'Site and project manager', 'duration': '0.3 years', 'start_date': 'Feb 2022', 'end_date': 'May 2022', 'organization': 'Konforza, Zaragoza, Spain'}, {'role': 'Engineering site inspector', 'duration': '0.4 years', 'start_date': 'Aug 2021', 'end_date': 'Jan 2022', 'organization': 'Konforza, Zaragoza, Spain'}]","['Coaching', 'MS Project', 'Risk management', 'Leadership', 'Health and safety regulation', 'Agile project management', 'ISO 9001', 'PRINCE2', 'Lean project management', 'Online marketing', 'Statistics', 'Analytics']","[{'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank1'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank2'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank3'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank4'}]",[],Cristina Fernandez Medina,female,EU,spain,False,5,4.50,4.91,5.40,"Degree: Bachelor s Degree
+","Degree: Bachelor s Degree
+Major: Civil engineering
+Institution: University of the Basque Country  Bilbao  Spain
+","Role: Project manager
+","Role: Project manager
+Duration: 1 7 years
+Start Date: Jun 2022
+End Date: Feb 2024
+Organization: KLB Group  Zaragoza  Spain
+
+Role: Site and project manager
+Duration: 0 3 years
+Start Date: Feb 2022
+End Date: May 2022
+Organization: Konforza  Zaragoza  Spain
+
+Role: Engineering site inspector
+Duration: 0 4 years
+Start Date: Aug 2021
+End Date: Jan 2022
+Organization: Konforza  Zaragoza  Spain
+","Coaching, MS Project, Risk management, Leadership, Health and safety regulation, Agile project management, ISO 9001, PRINCE2, Lean project management, Online marketing, Statistics, Analytics
+","Coaching, MS Project, Risk management, Leadership, Health and safety regulation, Agile project management, ISO 9001, PRINCE2, Lean project management, Online marketing, Statistics, Analytics
+",project_manager
+Fatih Avci,male,NEU,turkey,True,5,5.00,4.80,5.40,"[{'degree': ""Master's Degree"", 'major': 'Management engineering', 'institution': 'Middle East Technical University, Ankara, Turkey'}, {'degree': ""Bachelor's Degree"", 'major': 'Transport engineering', 'institution': 'Koç University, Istnabul, Turkey'}]","[{'role': 'Engineering project manager', 'duration': '1.0 years', 'start_date': 'Feb 2023', 'end_date': 'Feb 2024', 'organization': 'Stantec, Istanbul, Turkey'}, {'role': 'Engineering project manager', 'duration': '0.9 years', 'start_date': 'Feb 2022', 'end_date': 'Jan 2023', 'organization': 'Medair, Gaziantep, Turkey'}]","['Health and safety regulation', 'Leadership', 'Lean project management', 'Agile project management', 'PRINCE2', 'ISO 9001', 'MS Project', 'Stakeholder management', 'Coaching', 'PESTEL', 'Incident investigation', 'Procurement']","[{'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank1'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank2'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank3'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank4'}]",[],Fatih Avci,male,NEU,turkey,True,5,5.00,4.80,5.40,"Degree: Master s Degree
+","Degree: Master s Degree
+Major: Management engineering
+Institution: Middle East Technical University  Ankara  Turkey
+
+Degree: Bachelor s Degree
+Major: Transport engineering
+Institution: Ko  University  Istnabul  Turkey
+","Role: Engineering project manager
+","Role: Engineering project manager
+Duration: 1 0 years
+Start Date: Feb 2023
+End Date: Feb 2024
+Organization: Stantec  Istanbul  Turkey
+
+Role: Engineering project manager
+Duration: 0 9 years
+Start Date: Feb 2022
+End Date: Jan 2023
+Organization: Medair  Gaziantep  Turkey
+","Health and safety regulation, Leadership, Lean project management, Agile project management, PRINCE2, ISO 9001, MS Project, Stakeholder management, Coaching, PESTEL, Incident investigation, Procurement
+","Health and safety regulation, Leadership, Lean project management, Agile project management, PRINCE2, ISO 9001, MS Project, Stakeholder management, Coaching, PESTEL, Incident investigation, Procurement
+",project_manager
+Aissatou Gaye,female,NEU,senegal,True,4.5,5.00,3.94,4.80,"[{'degree': ""Master's Degree"", 'major': 'Management engineering', 'institution': 'University Gaston Berger, St Louis, Senegal'}, {'degree': ""Bachelor's Degree"", 'major': 'Structural engineering', 'institution': 'University Gaston Berger, St Louis, Senegal'}]","[{'role': 'Development project manager', 'duration': '1.5 years', 'start_date': 'Aug 2022', 'end_date': 'Feb 2024', 'organization': 'Holland Construction Services, St Louis, Senegal'}]","['MS Project', 'Leadership', 'ISO 9001', 'PRINCE2', 'Agile project management', 'Risk management', 'Coaching', 'Stakeholder management', 'PESTEL']","[{'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank1'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank2'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank3'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank4'}]",[],Aissatou Gaye,female,NEU,senegal,True,4.5,5.00,3.94,4.80,"Degree: Master s Degree
+","Degree: Master s Degree
+Major: Management engineering
+Institution: University Gaston Berger  St Louis  Senegal
+
+Degree: Bachelor s Degree
+Major: Structural engineering
+Institution: University Gaston Berger  St Louis  Senegal
+","Role: Development project manager
+","Role: Development project manager
+Duration: 1 5 years
+Start Date: Aug 2022
+End Date: Feb 2024
+Organization: Holland Construction Services  St Louis  Senegal
+","MS Project, Leadership, ISO 9001, PRINCE2, Agile project management, Risk management, Coaching, Stakeholder management, PESTEL
+","MS Project, Leadership, ISO 9001, PRINCE2, Agile project management, Risk management, Coaching, Stakeholder management, PESTEL
+",project_manager
+Said Bouchama,male,NEU,algeria,False,4,4.50,3.49,4.20,"[{'degree': ""Bachelor's Degree"", 'major': 'Environmental engineering', 'institution': 'University of the Basque Country, Bilbao, Spain'}]","[{'role': 'Project manager', 'duration': '1.2 years', 'start_date': 'Nov 2022', 'end_date': 'Feb 2024', 'organization': 'Eni renewables, Madrid, Spain'}, {'role': 'Civil engineering technologist', 'duration': '0.7 years', 'start_date': 'Feb 2022', 'end_date': 'Oct 2022', 'organization': 'Eni renewables, Madrid, Spain'}]","['Risk management', 'Agile project management', 'Coaching', 'PRINCE2', 'Health and safety regulation', 'ISO 9001', 'Stakeholder management', 'Analytics']","[{'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank1'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank2'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank3'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank4'}]",[],Said Bouchama,male,NEU,algeria,False,4,4.50,3.49,4.20,"Degree: Bachelor s Degree
+","Degree: Bachelor s Degree
+Major: Environmental engineering
+Institution: University of the Basque Country  Bilbao  Spain
+","Role: Project manager
+","Role: Project manager
+Duration: 1 2 years
+Start Date: Nov 2022
+End Date: Feb 2024
+Organization: Eni renewables  Madrid  Spain
+
+Role: Civil engineering technologist
+Duration: 0 7 years
+Start Date: Feb 2022
+End Date: Oct 2022
+Organization: Eni renewables  Madrid  Spain
+","Risk management, Agile project management, Coaching, PRINCE2, Health and safety regulation, ISO 9001, Stakeholder management, Analytics
+","Risk management, Agile project management, Coaching, PRINCE2, Health and safety regulation, ISO 9001, Stakeholder management, Analytics
+",project_manager
+Malika Filali,female,NEU,morocco,False,4,4.50,3.96,3.60,"[{'degree': ""Bachelor's Degree"", 'major': 'Environmental engineering', 'institution': 'Rovira i Virgili University, Tarragona, Spain'}]","[{'role': 'Project manager', 'duration': '1.5 years', 'start_date': 'Aug 2022', 'end_date': 'Feb 2024', 'organization': 'Wood, Madrid, Spain'}, {'role': 'Civil engineering drafter', 'duration': '0.7 years', 'start_date': 'Sep 2021', 'end_date': 'Jun 2022', 'organization': 'Wood, Madrid, Spain'}]","['Health and safety regulation', 'Agile project management', 'MS Project', 'Stakeholder management', 'Lean project management', 'Coaching', 'Statistics']","[{'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank1'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank2'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank3'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'project_manager/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank4'}]",[],Malika Filali,female,NEU,morocco,False,4,4.50,3.96,3.60,"Degree: Bachelor s Degree
+","Degree: Bachelor s Degree
+Major: Environmental engineering
+Institution: Rovira i Virgili University  Tarragona  Spain
+","Role: Project manager
+","Role: Project manager
+Duration: 1 5 years
+Start Date: Aug 2022
+End Date: Feb 2024
+Organization: Wood  Madrid  Spain
+
+Role: Civil engineering drafter
+Duration: 0 7 years
+Start Date: Sep 2021
+End Date: Jun 2022
+Organization: Wood  Madrid  Spain
+","Health and safety regulation, Agile project management, MS Project, Stakeholder management, Lean project management, Coaching, Statistics
+","Health and safety regulation, Agile project management, MS Project, Stakeholder management, Lean project management, Coaching, Statistics
+",project_manager
+Moussa Diouf,male,NEU,senegal,True,5,5.01,5.63,4.00,"[{'degree': 'Diploma', 'institution': 'Pikine East High School'}]","[{'role': 'Customer support agent', 'duration': '1.2 years', 'start_date': 'Dec 2022', 'end_date': 'Feb 2024', 'organization': 'Air Senegal International, Dakar, Senegal'}, {'role': 'Customer service associate', 'duration': '1.2 years', 'start_date': 'Aug 2021', 'end_date': 'Nov 2022', 'organization': 'Ikatel, Dakar, Senegal'}]","['Telephone etiquette', 'CRM', 'Confident communication', 'Logging', 'Client support', 'Telecommunications sector']","[{'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank1'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank2'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank3'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank4'}]",[],Moussa Diouf,male,NEU,senegal,True,5,5.01,5.63,4.00,"Degree: Diploma
+","Degree: Diploma
+Institution: Pikine East High School
+","Role: Customer support agent
+","Role: Customer support agent
+Duration: 1 2 years
+Start Date: Dec 2022
+End Date: Feb 2024
+Organization: Air Senegal International  Dakar  Senegal
+
+Role: Customer service associate
+Duration: 1 2 years
+Start Date: Aug 2021
+End Date: Nov 2022
+Organization: Ikatel  Dakar  Senegal
+","Telephone etiquette, CRM, Confident communication, Logging, Client support, Telecommunications sector
+","Telephone etiquette, CRM, Confident communication, Logging, Client support, Telecommunications sector
+",customer_service_representative
+Astou Dione,female,NEU,senegal,False,5,5.01,5.76,4.00,"[{'degree': 'Diploma', 'institution': 'Escuela Superior de Hostelería Bilbao, Spain'}]","[{'role': 'Customer service representative', 'duration': '0.8 years', 'start_date': 'Apr 2023', 'end_date': 'Feb 2024', 'organization': 'Banco Bilbao Vizcaya Argentaria, Bilbao, Spain'}, {'role': 'Customer service representative', 'duration': '1.1 years', 'start_date': 'Feb 2022', 'end_date': 'Mar 2023', 'organization': 'Iberdrola, Bilbao, Spain'}, {'role': 'Customer service representative', 'duration': '0.8 years', 'start_date': 'Mar 2021', 'end_date': 'Jan 2022', 'organization': 'Banco de Santander, Santander, Spain'}]","['Confident communication', 'MS Office', 'Telephone etiquette', 'CRM', 'Multi-channel services', 'Deadline monitoring', 'Problem solver', 'Attention to detail']","[{'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank1'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank2'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank3'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank4'}]",[],Astou Dione,female,NEU,senegal,False,5,5.01,5.76,4.00,"Degree: Diploma
+","Degree: Diploma
+Institution: Escuela Superior de Hosteler a Bilbao  Spain
+","Role: Customer service representative
+","Role: Customer service representative
+Duration: 0 8 years
+Start Date: Apr 2023
+End Date: Feb 2024
+Organization: Banco Bilbao Vizcaya Argentaria  Bilbao  Spain
+
+Role: Customer service representative
+Duration: 1 1 years
+Start Date: Feb 2022
+End Date: Mar 2023
+Organization: Iberdrola  Bilbao  Spain
+
+Role: Customer service representative
+Duration: 0 8 years
+Start Date: Mar 2021
+End Date: Jan 2022
+Organization: Banco de Santander  Santander  Spain
+","Confident communication, MS Office, Telephone etiquette, CRM, Multi channel services, Deadline monitoring, Problem solver, Attention to detail
+","Confident communication, MS Office, Telephone etiquette, CRM, Multi channel services, Deadline monitoring, Problem solver, Attention to detail
+",customer_service_representative
+Manuel Montero Diaz,male,EU,spain,False,5,5.00,5.49,5.00,[],"[{'role': 'Customer service representative', 'duration': '1.2 years', 'start_date': 'Dec 2022', 'end_date': 'Feb 2024', 'organization': 'Cupra, Martorell, Spain'}, {'role': 'Customer support agent', 'duration': '0.9 years', 'start_date': 'Dec 2021', 'end_date': 'Nov 2022', 'organization': 'Grifols, Barcelona, Spain'}]","['CRM', 'Telephone etiquette', 'Logging', 'KPI management', 'MS Office', 'Multi-channel services', 'Customer orientation']","[{'data': {'education': 123.0, 'experience': 0.5, 'skills': 7.0}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank1'}, {'data': {'education': 123.0, 'experience': 0.5, 'skills': 7.0}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank2'}, {'data': {'education': 123.0, 'experience': 0.5, 'skills': 7.0}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank3'}, {'data': {'education': 123.0, 'experience': 0.5, 'skills': 7.0}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank4'}]","[{'data': {'education': ""degree: * Bachelor's degree *\n\n\n"", 'experience': 'role: Customer service representative\n\n\n', 'skills': 'CRM, Telephone etiquette, Logging, KPI management, MS Office, Multi-channel services, Customer orientation\n\n\n'}, 'counterfactual_text': ""You should have a Bachelor's degree"", 'ranking_type': 'rank1'}, {'data': {'education': ""degree: * Bachelor's degree *\n\n\n"", 'experience': 'role: Customer service representative\n\n\n', 'skills': 'CRM, Telephone etiquette, Logging, KPI management, MS Office, Multi-channel services, Customer orientation\n\n\n'}, 'counterfactual_text': ""You should have a Bachelor's degree"", 'ranking_type': 'rank2'}, {'data': {'education': ""degree: * Bachelor's degree *\n\n\n"", 'experience': 'role: Customer service representative\n\n\n', 'skills': 'CRM, Telephone etiquette, Logging, KPI management, MS Office, Multi-channel services, Customer orientation\n\n\n'}, 'counterfactual_text': ""You should have a Bachelor's degree"", 'ranking_type': 'rank3'}, {'data': {'education': ""degree: * Bachelor's degree *\n\n\n"", 'experience': 'role: Customer service representative\n\n\n', 'skills': 'CRM, Telephone etiquette, Logging, KPI management, MS Office, Multi-channel services, Customer orientation\n\n\n'}, 'counterfactual_text': ""You should have a Bachelor's degree"", 'ranking_type': 'rank4'}, {'data': {'education': ' -\n\n\n', 'experience': 'role: Customer service representative\n duration: * 3 years *\n\n\n', 'skills': 'CRM, Telephone etiquette, Logging, KPI management, MS Office, Multi-channel services, Customer orientation\n\n\n'}, 'counterfactual_text': 'Adding 3 years of experience would increase your chances', 'ranking_type': 'rank1'}, {'data': {'education': ' -\n\n\n', 'experience': 'role: Customer service representative\n duration: * 3 years *\n\n\n', 'skills': 'CRM, Telephone etiquette, Logging, KPI management, MS Office, Multi-channel services, Customer orientation\n\n\n'}, 'counterfactual_text': 'Adding 3 years of experience would increase your chances', 'ranking_type': 'rank2'}, {'data': {'education': ' -\n\n\n', 'experience': 'role: Customer service representative\n duration: * 3 *\n\n\n', 'skills': 'CRM, Telephone etiquette, Logging, KPI management, MS Office, Multi-channel services, Customer orientation\n\n\n'}, 'counterfactual_text': 'Adding 3 years of experience would increase your chances', 'ranking_type': 'rank3'}, {'data': {'education': ' -\n\n\n', 'experience': 'role: Customer service representative\n duration: * 3 years *\n\n\n', 'skills': 'CRM, Telephone etiquette, Logging, KPI management, MS Office, Multi-channel services, Customer orientation\n\n\n'}, 'counterfactual_text': 'Adding 3 years of experience would increase your chances', 'ranking_type': 'rank4'}, {'data': {'education': ' -\n\n\n', 'experience': 'role: Customer service representative\n\n\n', 'skills': 'CRM, Telephone etiquette, Logging, KPI management, MS Office, Multi-channel services, Customer orientation, * Skill A *\n\n\n'}, 'counterfactual_text': 'You should possess skill A', 'ranking_type': 'rank1'}, {'data': {'education': ' -\n\n\n', 'experience': 'role: Customer service representative\n\n\n', 'skills': 'CRM, Telephone etiquette, Logging, KPI management, MS Office, Multi-channel services, Customer orientation, * Skill A *\n\n\n'}, 'counterfactual_text': 'You should possess skill A', 'ranking_type': 'rank2'}, {'data': {'education': ' -\n\n\n', 'experience': 'role: Customer service representative\n\n\n', 'skills': 'CRM, Telephone etiquette, Logging, KPI management, MS Office, Multi-channel services, Customer orientation, * Skill A *\n\n\n'}, 'counterfactual_text': 'You should possess skill A', 'ranking_type': 'rank3'}, {'data': {'education': ' -\n\n\n', 'experience': 'role: Customer service representative\n\n\n', 'skills': 'CRM, Telephone etiquette, Logging, KPI management, MS Office, Multi-channel services, Customer orientation, * Skill A *\n\n\n'}, 'counterfactual_text': 'You should possess skill A', 'ranking_type': 'rank4'}]",Manuel Montero Diaz,male,EU,spain,False,5,5.00,5.49,5.00,,,"Role: Customer service representative
+","Role: Customer service representative
+Duration: 1 2 years
+Start Date: Dec 2022
+End Date: Feb 2024
+Organization: Cupra  Martorell  Spain
+
+Role: Customer support agent
+Duration: 0 9 years
+Start Date: Dec 2021
+End Date: Nov 2022
+Organization: Grifols  Barcelona  Spain
+","CRM, Telephone etiquette, Logging, KPI management, MS Office, Multi channel services, Customer orientation
+","CRM, Telephone etiquette, Logging, KPI management, MS Office, Multi channel services, Customer orientation
+",customer_service_representative
+Lucia Castro Barrera,female,EU,spain,False,5,5.00,5.99,4.00,[],"[{'role': 'Customer service representative', 'duration': '1.1 years', 'start_date': 'Jan 2023', 'end_date': 'Feb 2024', 'organization': 'Euskaltel, Derio, Spain'}, {'role': 'Customer service representative', 'duration': '1.0 years', 'start_date': 'Dec 2021', 'end_date': 'Dec 2022', 'organization': 'Iberdrola, Bilbao, Spain'}, {'role': 'Customer service representative', 'duration': '1.1 years', 'start_date': 'Oct 2020', 'end_date': 'Nov 2021', 'organization': 'Red Electrica de Espana, Alcobendas, Spain'}]","['MS Office', 'Telephone etiquette', 'Logging', 'KPI management', 'Deadline monitoring', 'Administration skills', 'Customer orientation', 'Conflict management']","[{'data': {'education': 0.0, 'experience': 0.5, 'skills': 0.0}, 'factual_image': 'customer_service_representative/images/tree.jpg', 'factual_text': 'There is a picture!', 'ranking_type': 'rank1'}, {'data': {'education': 0.0, 'experience': 0.5, 'skills': 0.0}, 'factual_image': 'customer_service_representative/images/tree.jpg', 'factual_text': 'There is a picture!', 'ranking_type': 'rank2'}, {'data': {'education': 0.0, 'experience': 0.5, 'skills': 0.0}, 'factual_image': 'customer_service_representative/images/tree.jpg', 'factual_text': 'There is a picture!', 'ranking_type': 'rank3'}, {'data': {'education': 0.0, 'experience': 0.5, 'skills': 0.0}, 'factual_image': 'customer_service_representative/images/tree.jpg', 'factual_text': 'There is a picture!', 'ranking_type': 'rank4'}]","[{'data': {'education': ""degree: * Master's degree *\n\n\n"", 'experience': 'role: Customer service representative\n\n\n', 'skills': 'MS Office, Telephone etiquette, Logging, KPI management, Deadline monitoring, Administration skills, Customer orientation, Conflict management\n\n\n'}, 'counterfactual_text': ""Adding a Master's degree would increase your chances"", 'ranking_type': 'rank1'}, {'data': {'education': ""degree: * Master's degree *\n\n\n"", 'experience': 'role: Customer service representative\n\n\n', 'skills': 'MS Office, Telephone etiquette, Logging, KPI management, Deadline monitoring, Administration skills, Customer orientation, Conflict management\n\n\n'}, 'counterfactual_text': ""Adding a Master's degree would increase your chances"", 'ranking_type': 'rank2'}, {'data': {'education': ""degree: * Master's degree *\n\n\n"", 'experience': 'role: Customer service representative\n\n\n', 'skills': 'MS Office, Telephone etiquette, Logging, KPI management, Deadline monitoring, Administration skills, Customer orientation, Conflict management\n\n\n'}, 'counterfactual_text': ""Adding a Master's degree would increase your chances"", 'ranking_type': 'rank3'}, {'data': {'education': ""degree: * Master's degree *\n\n\n"", 'experience': 'role: Customer service representative\n\n\n', 'skills': 'MS Office, Telephone etiquette, Logging, KPI management, Deadline monitoring, Administration skills, Customer orientation, Conflict management\n\n\n'}, 'counterfactual_text': ""Adding a Master's degree would increase your chances"", 'ranking_type': 'rank4'}, {'data': {'education': ' -\n\n\n', 'experience': 'role: Customer service representative\n\n\n', 'skills': 'MS Office, Telephone etiquette, Logging, KPI management, Deadline monitoring, Administration skills, Customer orientation, Conflict management, * Skill B *\n\n\n'}, 'counterfactual_text': 'You should possess skill B', 'ranking_type': 'rank1'}, {'data': {'education': ' -\n\n\n', 'experience': 'role: Customer service representative\n\n\n', 'skills': 'MS Office, Telephone etiquette, Logging, KPI management, Deadline monitoring, Administration skills, Customer orientation, Conflict management, * Skill B *\n\n\n'}, 'counterfactual_text': 'You should possess skill B', 'ranking_type': 'rank2'}, {'data': {'education': ' -\n\n\n', 'experience': 'role: Customer service representative\n\n\n', 'skills': 'MS Office, Telephone etiquette, Logging, KPI management, Deadline monitoring, Administration skills, Customer orientation, Conflict management, * Skill B *\n\n\n'}, 'counterfactual_text': 'You should possess skill B', 'ranking_type': 'rank3'}, {'data': {'education': ' -\n\n\n', 'experience': 'role: Customer service representative\n\n\n', 'skills': 'MS Office, Telephone etiquette, Logging, KPI management, Deadline monitoring, Administration skills, Customer orientation, Conflict management, * Skill B *\n\n\n'}, 'counterfactual_text': 'You should possess skill B', 'ranking_type': 'rank4'}]",Lucia Castro Barrera,female,EU,spain,False,5,5.00,5.99,4.00,,,"Role: Customer service representative
+","Role: Customer service representative
+Duration: 1 1 years
+Start Date: Jan 2023
+End Date: Feb 2024
+Organization: Euskaltel  Derio  Spain
+
+Role: Customer service representative
+Duration: 1 0 years
+Start Date: Dec 2021
+End Date: Dec 2022
+Organization: Iberdrola  Bilbao  Spain
+
+Role: Customer service representative
+Duration: 1 1 years
+Start Date: Oct 2020
+End Date: Nov 2021
+Organization: Red Electrica de Espana  Alcobendas  Spain
+","MS Office, Telephone etiquette, Logging, KPI management, Deadline monitoring, Administration skills, Customer orientation, Conflict management
+","MS Office, Telephone etiquette, Logging, KPI management, Deadline monitoring, Administration skills, Customer orientation, Conflict management
+",customer_service_representative
+Hicham Filali,male,NEU,morocco,False,5,5.01,5.81,4.00,"[{'degree': 'Diploma', 'institution': 'Academia Arganzuela, Madrid, Spain'}]","[{'role': 'Customer service representative', 'duration': '0.8 years', 'start_date': 'May 2023', 'end_date': 'Feb 2024', 'organization': 'ACS Group, Madrid, Spain'}, {'role': 'Customer service representative', 'duration': '1.1 years', 'start_date': 'Mar 2022', 'end_date': 'Apr 2023', 'organization': 'Telefonica, Madrid, Spain'}, {'role': 'Customer service associate', 'duration': '1.0 years', 'start_date': 'Feb 2021', 'end_date': 'Jan 2022', 'organization': 'Repsol, Madrid, Spain'}]","['CRM', 'Telephone etiquette', 'KPI management', 'Confident communication', 'Salesforce', 'Attention to detail', 'Time management', 'Publishing sector', 'Record keeping', 'Conflict management', 'Customer orientation']","[{'data': {'education': 456.0, 'experience': 3.0, 'skills': 404.0}, 'factual_image': 'customer_service_representative/images/animal.jpg', 'factual_text': 'There is a picture!', 'ranking_type': 'rank1'}, {'data': {'education': 456.0, 'experience': 3.0, 'skills': 404.0}, 'factual_image': 'customer_service_representative/images/animal.jpg', 'factual_text': 'There is a picture!', 'ranking_type': 'rank2'}, {'data': {'education': 456.0, 'experience': 3.0, 'skills': 404.0}, 'factual_image': 'customer_service_representative/images/animal.jpg', 'factual_text': 'There is a picture!', 'ranking_type': 'rank3'}, {'data': {'education': 456.0, 'experience': 3.0, 'skills': 404.0}, 'factual_image': 'customer_service_representative/images/animal.jpg', 'factual_text': 'There is a picture!', 'ranking_type': 'rank4'}]",[],Hicham Filali,male,NEU,morocco,False,5,5.01,5.81,4.00,"Degree: Diploma
+","Degree: Diploma
+Institution: Academia Arganzuela  Madrid  Spain
+","Role: Customer service representative
+","Role: Customer service representative
+Duration: 0 8 years
+Start Date: May 2023
+End Date: Feb 2024
+Organization: ACS Group  Madrid  Spain
+
+Role: Customer service representative
+Duration: 1 1 years
+Start Date: Mar 2022
+End Date: Apr 2023
+Organization: Telefonica  Madrid  Spain
+
+Role: Customer service associate
+Duration: 1 0 years
+Start Date: Feb 2021
+End Date: Jan 2022
+Organization: Repsol  Madrid  Spain
+","CRM, Telephone etiquette, KPI management, Confident communication, Salesforce, Attention to detail, Time management, Publishing sector, Record keeping, Conflict management, Customer orientation
+","CRM, Telephone etiquette, KPI management, Confident communication, Salesforce, Attention to detail, Time management, Publishing sector, Record keeping, Conflict management, Customer orientation
+",customer_service_representative
+Sevim Yavuz,female,NEU,turkey,False,5,5.00,5.61,4.00,[],"[{'role': 'Customer service representative', 'duration': '0.8 years', 'start_date': 'Apr 2023', 'end_date': 'Feb 2024', 'organization': 'Vueling, Barcelona, Spain'}, {'role': 'Customer service assistant', 'duration': '0.8 years', 'start_date': 'May 2022', 'end_date': 'Feb 2023', 'organization': 'CaixaBank, Valencia, Spain'}, {'role': 'Customer support agent', 'duration': '0.8 years', 'start_date': 'Jun 2021', 'end_date': 'Mar 2022', 'organization': 'Grifols, Barcelona, Spain'}]","['KPI management', 'MS Office', 'CRM', 'Telephone etiquette', 'Record keeping', 'Banking sector', 'Client support']","[{'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank1'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank2'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank3'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank4'}]",[],Sevim Yavuz,female,NEU,turkey,False,5,5.00,5.61,4.00,,,"Role: Customer service representative
+","Role: Customer service representative
+Duration: 0 8 years
+Start Date: Apr 2023
+End Date: Feb 2024
+Organization: Vueling  Barcelona  Spain
+
+Role: Customer service assistant
+Duration: 0 8 years
+Start Date: May 2022
+End Date: Feb 2023
+Organization: CaixaBank  Valencia  Spain
+
+Role: Customer support agent
+Duration: 0 8 years
+Start Date: Jun 2021
+End Date: Mar 2022
+Organization: Grifols  Barcelona  Spain
+","KPI management, MS Office, CRM, Telephone etiquette, Record keeping, Banking sector, Client support
+","KPI management, MS Office, CRM, Telephone etiquette, Record keeping, Banking sector, Client support
+",customer_service_representative
+Luis Sanchez Cuevas,male,EU,spain,False,5.0,5.00,5.98,4.00,[],"[{'role': 'Customer service representative', 'duration': '0.9 years', 'start_date': 'Apr 2023', 'end_date': 'Feb 2024', 'organization': 'Red Electrica de Espana, Alcobendas, Spain'}, {'role': 'Customer service representative', 'duration': '1.1 years', 'start_date': 'Feb 2022', 'end_date': 'Mar 2023', 'organization': 'Repsol, Madrid, Spain'}, {'role': 'Customer service representative', 'duration': '0.6 years', 'start_date': 'Jun 2021', 'end_date': 'Jan 2022', 'organization': 'Banco de Santander, Santander, Spain'}, {'role': 'Customer service assistant', 'duration': '0.7 years', 'start_date': 'Sep 2020', 'end_date': 'May 2021', 'organization': 'Balay, Zaragoza, Spain'}]","['MS Office', 'Confident communication', 'KPI management', 'Logging', 'Customer care', 'Multitasking', 'Client support', 'Customer orientation', 'Multi-channel services', 'SAP']","[{'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank1'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank2'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank3'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank4'}]",[],Luis Sanchez Cuevas,male,EU,spain,False,5.0,5.00,5.98,4.00,,,"Role: Customer service representative
+","Role: Customer service representative
+Duration: 0 9 years
+Start Date: Apr 2023
+End Date: Feb 2024
+Organization: Red Electrica de Espana  Alcobendas  Spain
+
+Role: Customer service representative
+Duration: 1 1 years
+Start Date: Feb 2022
+End Date: Mar 2023
+Organization: Repsol  Madrid  Spain
+
+Role: Customer service representative
+Duration: 0 6 years
+Start Date: Jun 2021
+End Date: Jan 2022
+Organization: Banco de Santander  Santander  Spain
+
+Role: Customer service assistant
+Duration: 0 7 years
+Start Date: Sep 2020
+End Date: May 2021
+Organization: Balay  Zaragoza  Spain
+","MS Office, Confident communication, KPI management, Logging, Customer care, Multitasking, Client support, Customer orientation, Multi channel services, SAP
+","MS Office, Confident communication, KPI management, Logging, Customer care, Multitasking, Client support, Customer orientation, Multi channel services, SAP
+",customer_service_representative
+Fernando Perez Bermejo,male,EU,spain,False,5,5.01,5.49,4.00,"[{'degree': 'Diploma', 'institution': 'Escuela Profesional Javeriana'}]","[{'role': 'Customer service representative', 'duration': '0.9 years', 'start_date': 'Mar 2023', 'end_date': 'Feb 2024', 'organization': 'Liberbank, Madrid, Spain'}, {'role': 'Customer support agent', 'duration': '1.2 years', 'start_date': 'Nov 2021', 'end_date': 'Feb 2023', 'organization': 'Iberia, Madrid, Spain'}]","['CRM', 'MS Office', 'Logging', 'KPI management', 'Deadline monitoring', 'Client support']","[{'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank1'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank2'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank3'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank4'}]",[],Fernando Perez Bermejo,male,EU,spain,False,5,5.01,5.49,4.00,"Degree: Diploma
+","Degree: Diploma
+Institution: Escuela Profesional Javeriana
+","Role: Customer service representative
+","Role: Customer service representative
+Duration: 0 9 years
+Start Date: Mar 2023
+End Date: Feb 2024
+Organization: Liberbank  Madrid  Spain
+
+Role: Customer support agent
+Duration: 1 2 years
+Start Date: Nov 2021
+End Date: Feb 2023
+Organization: Iberia  Madrid  Spain
+","CRM, MS Office, Logging, KPI management, Deadline monitoring, Client support
+","CRM, MS Office, Logging, KPI management, Deadline monitoring, Client support
+",customer_service_representative
+Cristina Leon Torres,female,EU,spain,False,5,5.00,5.94,4.00,[],"[{'role': 'Customer service representative', 'duration': '1.7 years', 'start_date': 'May 2022', 'end_date': 'Feb 2024', 'organization': 'Bankia, Valencia, Spain'}, {'role': 'Customer service representative', 'duration': '1.4 years', 'start_date': 'Oct 2020', 'end_date': 'Mar 2022', 'organization': 'Unicaja, Malaga, Spain'}]","['Telephone etiquette', 'Logging', 'KPI management', 'Confident communication', 'Banking sector', 'SAP', 'Salesforce', 'Customer orientation', 'Time management']","[{'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank1'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank2'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank3'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank4'}]",[],Cristina Leon Torres,female,EU,spain,False,5,5.00,5.94,4.00,,,"Role: Customer service representative
+","Role: Customer service representative
+Duration: 1 7 years
+Start Date: May 2022
+End Date: Feb 2024
+Organization: Bankia  Valencia  Spain
+
+Role: Customer service representative
+Duration: 1 4 years
+Start Date: Oct 2020
+End Date: Mar 2022
+Organization: Unicaja  Malaga  Spain
+","Telephone etiquette, Logging, KPI management, Confident communication, Banking sector, SAP, Salesforce, Customer orientation, Time management
+","Telephone etiquette, Logging, KPI management, Confident communication, Banking sector, SAP, Salesforce, Customer orientation, Time management
+",customer_service_representative
+Tahmina Saha,female,NEU,bangladesh,True,5.0,5.00,5.96,4.00,[],"[{'role': 'Customer service advisor', 'duration': '0.8 years', 'start_date': 'May 2023', 'end_date': 'Feb 2024', 'organization': 'GE Bangladesh, Dhaka, Bangladesh'}, {'role': 'Customer service assistant', 'duration': '0.7 years', 'start_date': 'Jul 2022', 'end_date': 'Apr 2023', 'organization': 'Agrani Bank, Dhaka, Bangladesh'}, {'role': 'Customer support advisor', 'duration': '0.9 years', 'start_date': 'Jun 2021', 'end_date': 'May 2022', 'organization': 'Airtel Bangladesh, Dhaka, Bangladesh'}, {'role': 'Customer support agent', 'duration': '0.8 years', 'start_date': 'Aug 2020', 'end_date': 'May 2021', 'organization': 'Robi Axiata ltd, Dhaka, Bangladesh'}]","['MS Office', 'Confident communication', 'Logging', 'CRM', 'Telecommunications sector', 'Multitasking', 'SAP', 'Banking sector', 'Deadline monitoring', 'Customer orientation']","[{'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank1'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank2'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank3'}, {'data': {'education': 1.0, 'experience': 0.5, 'skills': 0.7}, 'factual_image': 'customer_service_representative/images/boom.png', 'factual_text': 'There is a picture!', 'ranking_type': 'rank4'}]",[],Tahmina Saha,female,NEU,bangladesh,True,5.0,5.00,5.96,4.00,,,"Role: Customer service advisor
+","Role: Customer service advisor
+Duration: 0 8 years
+Start Date: May 2023
+End Date: Feb 2024
+Organization: GE Bangladesh  Dhaka  Bangladesh
+
+Role: Customer service assistant
+Duration: 0 7 years
+Start Date: Jul 2022
+End Date: Apr 2023
+Organization: Agrani Bank  Dhaka  Bangladesh
+
+Role: Customer support advisor
+Duration: 0 9 years
+Start Date: Jun 2021
+End Date: May 2022
+Organization: Airtel Bangladesh  Dhaka  Bangladesh
+
+Role: Customer support agent
+Duration: 0 8 years
+Start Date: Aug 2020
+End Date: May 2021
+Organization: Robi Axiata ltd  Dhaka  Bangladesh
+","MS Office, Confident communication, Logging, CRM, Telecommunications sector, Multitasking, SAP, Banking sector, Deadline monitoring, Customer orientation
+","MS Office, Confident communication, Logging, CRM, Telecommunications sector, Multitasking, SAP, Banking sector, Deadline monitoring, Customer orientation
+",customer_service_representative

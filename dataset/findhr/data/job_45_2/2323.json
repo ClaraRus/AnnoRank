@@ -1,0 +1,132 @@
+{
+    "Candidate ID":  2323,
+    "Education EQF":  "level 5 or less",
+    "Gender":  0,
+    "Full/Part-time (preferred)":  "Full time contract",
+    "Years of Experience":  24,
+    "Job and Language Skills":  [
+                                    "customer service",
+                                    "project management",
+                                    "analyse customer service surveys",
+                                    "accounting",
+                                    "write to a deadline",
+                                    "aluminium alloys",
+                                    "customer relationship management",
+                                    "Spanish"
+                                ],
+    "Domain Knowledge":  "Sufficient",
+    "Permanent/Fixed-term (preferred)":  "Permanent",
+    "factual_xai":  [
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  0.443,
+                                         "Years of Experience":  -0.34,
+                                         "Education EQF":  -1.155,
+                                         "Full/Part-time (preferred)":  -0.33,
+                                         "Domain Knowledge":  -0.177,
+                                         "Permanent/Fixed-term (preferred)":  0.1,
+                                         "Gender":  0.0
+                                     },
+                            "factual_image":  "factual_exp_2323_exp1.png",
+                            "factual_text":  "The characteristics Job and Language Skills significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Full/Part-time (preferred), Domain Knowledge, Education EQF significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Gender, Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank1"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  1.092,
+                                         "Years of Experience":  -0.17,
+                                         "Education EQF":  -1.155,
+                                         "Full/Part-time (preferred)":  -0.396,
+                                         "Domain Knowledge":  -0.177,
+                                         "Permanent/Fixed-term (preferred)":  0.09,
+                                         "Gender":  -0.48
+                                     },
+                            "factual_image":  "factual_exp_2323_exp2.png",
+                            "factual_text":  "The characteristics Job and Language Skills significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Domain Knowledge, Full/Part-time (preferred), Education EQF, Gender significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank2"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  0.012,
+                                         "Years of Experience":  0.007,
+                                         "Education EQF":  0.009,
+                                         "Full/Part-time (preferred)":  -0.002,
+                                         "Domain Knowledge":  -0.008,
+                                         "Permanent/Fixed-term (preferred)":  0.003,
+                                         "Gender":  -0.002
+                                     },
+                            "factual_image":  "factual_exp_2323_exp3.png",
+                            "factual_text":  "The characteristics Permanent/Fixed-term (preferred), Years of Experience, Domain Knowledge, Full/Part-time (preferred), Education EQF, Job and Language Skills, Gender do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank3"
+                        }
+                    ],
+    "counterfactual_xai":  [
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Full time contract",
+                                                "Years of Experience":  5.0,
+                                                "Job and Language Skills":  [
+                                                                                "project management",
+                                                                                "analyse customer service surveys",
+                                                                                "accounting",
+                                                                                "aluminium alloys",
+                                                                                "customer relationship management",
+                                                                                "customer service",
+                                                                                "write to a deadline",
+                                                                                "Spanish"
+                                                                            ],
+                                                "Domain Knowledge":  "Sufficient",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nYears of Experience: 5.0\n",
+                                   "ranking_type":  "rank1"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Full time contract",
+                                                "Years of Experience":  5.0,
+                                                "Job and Language Skills":  [
+                                                                                "project management",
+                                                                                "analyse customer service surveys",
+                                                                                "accounting",
+                                                                                "aluminium alloys",
+                                                                                "customer relationship management",
+                                                                                "customer service",
+                                                                                "write to a deadline",
+                                                                                "Spanish"
+                                                                            ],
+                                                "Domain Knowledge":  "Sufficient",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nYears of Experience: 5.0\n",
+                                   "ranking_type":  "rank2"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Full time contract",
+                                                "Years of Experience":  5.0,
+                                                "Job and Language Skills":  [
+                                                                                "project management",
+                                                                                "analyse customer service surveys",
+                                                                                "accounting",
+                                                                                "aluminium alloys",
+                                                                                "customer relationship management",
+                                                                                "customer service",
+                                                                                "write to a deadline",
+                                                                                "Spanish"
+                                                                            ],
+                                                "Domain Knowledge":  "Sufficient",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nYears of Experience: 5.0\n",
+                                   "ranking_type":  "rank3"
+                               }
+                           ]
+}
+

@@ -3,14 +3,16 @@
 {% block body %}
 <script type="text/javascript" src="/static/js_scripts/bigbro.js"></script>
 <script type="text/javascript">
-    BigBro.init('**{{session_id}}**', "localhost:1984", ["click", "onload"]);
+    BigBro.init('**{{session_id}}**', location.host, ["click", "onload"]);
 </script>
     {% if task_description != "" %}
         {% include 'task_description_template.html' %}
     {% endif %}
     {% include 'query_template.html' %}
 
-    {% include 'doc_annotate_profile_template.html' %}
+    {% include 'doc_annotate_profile_template_recruitment.html' %}
 
 {% endblock %}
+
+
 

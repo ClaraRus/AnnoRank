@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="flex items-center justify-between">
-                    <button id="start_button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">Start</button>
+                    <button id="start_button" name="start_button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">Start</button>
                 </div>
             </form>
         </div>
@@ -43,7 +43,7 @@ function getURL() {
     // Extract the experiment ID from the current URL using JavaScript
     var currentURL = window.location.href;
     var experimentId = currentURL.split('/').pop();  // Assumes the experiment ID is the last part of the URL
-    var URL = "/start_ranking/" + experimentId;
+    const URL = "{{ url_for('start_ranking', experiment_id=experiment_id) }}";
     return URL
 }
 
@@ -57,3 +57,4 @@ function getURL() {
       button.setAttribute('hx-post', URL);
     }
 </script>
+

@@ -50,11 +50,12 @@ app.config.from_object(Config)
 parser = argparse.ArgumentParser()
 parser.add_argument('--config_path')
 args = parser.parse_args()
-with open(args.config_path) as f:
-    configs = json.load(f)
+if os.path.exists(args.config_path):
+    with open(args.config_path) as f:
+        configs = json.load(f)
 
-connect(configs["data_reader_class"]["name"],
-        host=f'mongodb://{"mongo-container"}:{27017}/{configs["data_reader_class"]["name"]}', port=27017)
+    connect(configs["data_reader_class"]["name"],
+            host=f'mongodb://{"mongo-container"}:{27017}/{configs["data_reader_class"]["name"]}', port=27017)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -353,5 +354,8 @@ def stop_experiment():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=True, host='0.0.0.0',
-            port=5003)
+    if os.path.exists(args.config_path):
+        app.run(debug=True, use_reloader=True, host='0.0.0.0',
+                port=5003)
+
+

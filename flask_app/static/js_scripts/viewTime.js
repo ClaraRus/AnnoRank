@@ -4,17 +4,17 @@
     var docElement = document.getElementById(elementId);
 
       if (!(docId in docTimes)) {
-          docTimes[docId] = [];  // Initialize view count if not exists
+          docTimes[docId] = [];
      }
     if (docElement.style.display === 'table-row'){
         var timestamp = new Date().getTime();
-        // Store the timestamp in the docViews object
         docTimes[docId].push("start:" + timestamp);
     }
     else{
         var timestamp = new Date().getTime();
-        // Store the timestamp in the docViews object
         docTimes[docId].push("stop:" + timestamp);
     }
   }
+
+
 

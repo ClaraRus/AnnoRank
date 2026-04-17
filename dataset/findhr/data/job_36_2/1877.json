@@ -1,0 +1,127 @@
+{
+    "Candidate ID":  1877,
+    "Education EQF":  "level 7",
+    "Gender":  0,
+    "Full/Part-time (preferred)":  "Part time contract",
+    "Years of Experience":  26,
+    "Job and Language Skills":  [
+                                    "customer service",
+                                    "operating systems",
+                                    "office software",
+                                    "strategic planning",
+                                    "teamwork principles",
+                                    "electricity principles",
+                                    "manage standard enterprise resource planning system",
+                                    "Portuguese",
+                                    "English"
+                                ],
+    "Domain Knowledge":  "Sufficient",
+    "Permanent/Fixed-term (preferred)":  "Permanent",
+    "factual_xai":  [
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  1.11,
+                                         "Years of Experience":  -0.34,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  -0.33,
+                                         "Domain Knowledge":  -0.177,
+                                         "Permanent/Fixed-term (preferred)":  0.1,
+                                         "Gender":  0.0
+                                     },
+                            "factual_image":  "factual_exp_1877_exp1.png",
+                            "factual_text":  "The characteristics Education EQF, Job and Language Skills significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Full/Part-time (preferred), Domain Knowledge significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Gender, Permanent/Fixed-term (preferred) do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank1"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  1.425,
+                                         "Years of Experience":  -0.17,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  -0.396,
+                                         "Domain Knowledge":  -0.177,
+                                         "Permanent/Fixed-term (preferred)":  0.09,
+                                         "Gender":  -0.48
+                                     },
+                            "factual_image":  "factual_exp_1877_exp2.png",
+                            "factual_text":  "The characteristics Education EQF, Job and Language Skills significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Gender, Full/Part-time (preferred), Domain Knowledge significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Permanent/Fixed-term (preferred) do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank2"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.003,
+                                         "Years of Experience":  -0.024,
+                                         "Education EQF":  0.004,
+                                         "Full/Part-time (preferred)":  -0.013,
+                                         "Domain Knowledge":  -0.002,
+                                         "Permanent/Fixed-term (preferred)":  0.0,
+                                         "Gender":  -0.009
+                                     },
+                            "factual_image":  "factual_exp_1877_exp3.png",
+                            "factual_text":  "The characteristics Permanent/Fixed-term (preferred), Years of Experience, Domain Knowledge, Full/Part-time (preferred), Education EQF, Job and Language Skills, Gender do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank3"
+                        }
+                    ],
+    "counterfactual_xai":  [
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Not specified",
+                                                "Years of Experience":  2,
+                                                "Job and Language Skills":  [
+                                                                                "sales argumentation",
+                                                                                "teach teaching principles",
+                                                                                "customer service",
+                                                                                "show empathy",
+                                                                                "English",
+                                                                                "Italian"
+                                                                            ],
+                                                "Domain Knowledge":  "Sufficient",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile does not require any changes to get shortlisted.",
+                                   "ranking_type":  "rank1"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Not specified",
+                                                "Years of Experience":  2,
+                                                "Job and Language Skills":  [
+                                                                                "sales argumentation",
+                                                                                "teach teaching principles",
+                                                                                "customer service",
+                                                                                "show empathy",
+                                                                                "English",
+                                                                                "Italian"
+                                                                            ],
+                                                "Domain Knowledge":  "Sufficient",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile does not require any changes to get shortlisted.",
+                                   "ranking_type":  "rank2"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Not specified",
+                                                "Years of Experience":  2,
+                                                "Job and Language Skills":  [
+                                                                                "sales argumentation",
+                                                                                "teach teaching principles",
+                                                                                "customer service",
+                                                                                "show empathy",
+                                                                                "English",
+                                                                                "Italian"
+                                                                            ],
+                                                "Domain Knowledge":  "Sufficient",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile does not require any changes to get shortlisted.",
+                                   "ranking_type":  "rank3"
+                               }
+                           ]
+}
+

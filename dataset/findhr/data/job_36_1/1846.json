@@ -1,0 +1,131 @@
+{
+    "Candidate ID":  1846,
+    "Education EQF":  "level 6",
+    "Gender":  0,
+    "Full/Part-time (preferred)":  "Part time contract",
+    "Years of Experience":  16,
+    "Job and Language Skills":  [
+                                    "customer service",
+                                    "tools for ICT test automation",
+                                    "manage storage operations",
+                                    "sales strategies",
+                                    "business management principles",
+                                    "communication",
+                                    "English"
+                                ],
+    "Domain Knowledge":  "Sufficient",
+    "Permanent/Fixed-term (preferred)":  "Permanent",
+    "factual_xai":  [
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  0.443,
+                                         "Years of Experience":  -0.34,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  -0.33,
+                                         "Domain Knowledge":  -0.177,
+                                         "Permanent/Fixed-term (preferred)":  0.1,
+                                         "Gender":  0.0
+                                     },
+                            "factual_image":  "factual_exp_1846_exp1.png",
+                            "factual_text":  "The characteristics Education EQF, Job and Language Skills significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Full/Part-time (preferred), Domain Knowledge significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Gender, Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank1"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  1.092,
+                                         "Years of Experience":  -0.17,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  -0.396,
+                                         "Domain Knowledge":  -0.177,
+                                         "Permanent/Fixed-term (preferred)":  0.09,
+                                         "Gender":  -0.48
+                                     },
+                            "factual_image":  "factual_exp_1846_exp2.png",
+                            "factual_text":  "The characteristics Education EQF, Job and Language Skills significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Gender, Full/Part-time (preferred), Domain Knowledge significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank2"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  0.011,
+                                         "Years of Experience":  0.004,
+                                         "Education EQF":  0.004,
+                                         "Full/Part-time (preferred)":  -0.002,
+                                         "Domain Knowledge":  0.012,
+                                         "Permanent/Fixed-term (preferred)":  -0.002,
+                                         "Gender":  -0.006
+                                     },
+                            "factual_image":  "factual_exp_1846_exp3.png",
+                            "factual_text":  "The characteristics Permanent/Fixed-term (preferred), Years of Experience, Domain Knowledge, Full/Part-time (preferred), Education EQF, Job and Language Skills, Gender do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank3"
+                        }
+                    ],
+    "counterfactual_xai":  [
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 6",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Part time contract",
+                                                "Years of Experience":  16,
+                                                "Job and Language Skills":  [
+                                                                                "tools for ICT test automation",
+                                                                                "communication",
+                                                                                "customer service",
+                                                                                "manage storage operations",
+                                                                                "business management principles",
+                                                                                "sales strategies",
+                                                                                "show empathy",
+                                                                                "English"
+                                                                            ],
+                                                "Domain Knowledge":  "Sufficient",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027tools for ICT test automation\u0027, \u0027communication\u0027, \u0027customer service\u0027, \u0027manage storage operations\u0027, \u0027business management principles\u0027, \u0027sales strategies\u0027, \u0027show empathy\u0027, \u0027English\u0027]\n",
+                                   "ranking_type":  "rank1"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 6",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Part time contract",
+                                                "Years of Experience":  16,
+                                                "Job and Language Skills":  [
+                                                                                "tools for ICT test automation",
+                                                                                "sales strategies",
+                                                                                "business management principles",
+                                                                                "customer service",
+                                                                                "manage storage operations",
+                                                                                "communication",
+                                                                                "show empathy",
+                                                                                "English"
+                                                                            ],
+                                                "Domain Knowledge":  "Sufficient",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027tools for ICT test automation\u0027, \u0027sales strategies\u0027, \u0027business management principles\u0027, \u0027customer service\u0027, \u0027manage storage operations\u0027, \u0027communication\u0027, \u0027show empathy\u0027, \u0027English\u0027]\n",
+                                   "ranking_type":  "rank2"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 6",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Part time contract",
+                                                "Years of Experience":  16,
+                                                "Job and Language Skills":  [
+                                                                                "customer service",
+                                                                                "sales strategies",
+                                                                                "communication",
+                                                                                "manage storage operations",
+                                                                                "tools for ICT test automation",
+                                                                                "business management principles",
+                                                                                "operating systems",
+                                                                                "English"
+                                                                            ],
+                                                "Domain Knowledge":  "Sufficient",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027customer service\u0027, \u0027sales strategies\u0027, \u0027communication\u0027, \u0027manage storage operations\u0027, \u0027tools for ICT test automation\u0027, \u0027business management principles\u0027, \u0027operating systems\u0027, \u0027English\u0027]\n",
+                                   "ranking_type":  "rank3"
+                               }
+                           ]
+}
+

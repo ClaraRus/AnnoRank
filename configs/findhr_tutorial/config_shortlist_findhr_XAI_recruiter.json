@@ -1,0 +1,68 @@
+{
+  "data_reader_class": {
+    "name": "findhr",
+    "score": "Candidate ID",
+    "group": "Gender",
+    "query": "query",
+    "docID": "Candidate ID"
+  },
+  "ui_display_config": {
+    "highlight_match": false,
+    "instructions_timer": 5,
+    "display_fields": ["Candidate ID", "Education EQF", "Gender_display", "Full/Part-time (preferred)", "Years of Experience", "Job and Language Skills_display", "Domain Knowledge", "Permanent/Fixed-term (preferred)"],
+    "task_description": "<b>Take your time to carefully read the following instructions. You won’t be able to proceed until you have read them for at least a number of seconds.</b><br><br>Your objective is to <b>impersonate a job seeker</b> who has applied for a job offer. After reviewing the job offer and the candidate's profile, you will find out the result of your application: <b>NOT SELECTED</b>. This decision was made by an automated <b>Artificial Intelligence (AI)</b> system.<br><br>The purpose of this task is to carefully analyze all the information provided—the job offer details and your candidate profile—and reflect on the outcome of the application. Form your own opinion about whether the result is fair and logical based on the information.<br><br><strong style='font-size: 1.1em;'>IMPORTANT:</strong> AI systems are not always perfect. The result you see might be accurate and fair, but it could also be flawed, contain biases (e.g., unfairly favoring a specific gender or education level), or even be completely random. You must use your own judgment to critically evaluate the decision based on your profile and the job requirements. <b>Do not blindly accept the AI's decision.</b><br><br>",
+	"task_description_xai": "<b>Take your time to carefully read the following instructions. You won’t be able to proceed until you have read them for at least a number of seconds.</b><br><br>Your objective is to <b>impersonate a job seeker</b> who has applied for a job offer. You will see the job description, the required qualifications, and the profile information of the candidate you are impersonating. Following this, you will find out the result of your application: <b>NOT SELECTED</b>. This decision was made by an automated <b>Artificial Intelligence (AI)</b> system.<br><br>The AI system has provided an explanation for its decision, which details the reasons <i>why</i> the AI reached its conclusion.  Critically evaluate the explanations provided, considering if they are logical and helpful. Remember, just as the AI's decision can be flawed, its explanations might also be imperfect, misleading, or incomplete. <b>Your own judgment remains the most important factor.</b><br><br>",
+    "exit_survey":{
+      "title": "Exit Survey",
+      "description": "",
+      "questions":[
+        {
+            "question": "Have you experienced any difficulties while using the system? If so, please briefly describe them.",
+            "field": "difficulty_description",
+            "options": "text-multiline",
+            "mandatory": false
+        },
+        {
+            "question": "In your own words, what features, or candidate data do you believe the ranking system uses to generate its results?",
+            "field": "ranking_features_description",
+            "options": "text-multiline",
+            "mandatory": false
+        },
+        {
+            "question": "Based on your understanding, what features, or candidate data do you think the explanation is based on?",
+            "field": "explanation_features_description",
+            "options": "text-multiline",
+            "mandatory": false
+        },
+        {
+            "question": "Do you have any suggestions for improving the explanation provided by the system? You may want to comment on aspects such as clarity, level of detail, relevance, or how the information is presented.",
+            "field": "explanation_suggestions",
+            "options": "text-multiline",
+            "mandatory": false
+        },
+        {
+            "question": "In your opinion, what would an ideal explanation from a Candidate Ranking System look like? Think about what kind of information it should include, how it should be structured, and how it could help support your decision-making.",
+            "field": "ideal_explanation_description",
+            "options": "text-multiline",
+            "mandatory": false
+        }
+    ]},
+    "view_button": true,
+    "view_fields": [],
+    "shortlist_button": true,
+    "shortlist_select": [3,3]
+  },
+
+  "attention_check": {
+    "limit": 2,
+    "reload_tasks": ["1"]
+    },
+
+
+  "iaa": {
+    "krippendorfs": true,
+    "cohens": true,
+    "weighted_cohens": true,
+    "filter_per_task": true
+  }
+}

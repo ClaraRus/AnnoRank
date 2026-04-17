@@ -1,0 +1,38 @@
+<div class="max-w-7xl mx-auto px-4 mt-8">
+    <div class="w-full p-6 border border-gray-200 rounded-lg shadow-md bg-white">
+
+        <h2 class="text-gray-900 font-bold text-xl mb-4">XAI</h2>
+
+        <div class="flex flex-col md:flex-row gap-4">
+            {% if type == "image" %}
+                <div class="md:w-1/2 w-full border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                    <img src="{{ url_for('images', filename=doc_obj['image_xai']['image']) }}"
+                         alt="No image"
+                         class="w-full h-auto rounded-lg object-contain">
+                </div>
+            
+            {% elif type == "image_text" %}
+                <div class="md:w-1/2 w-full border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                    <img src="{{ url_for('images', filename=doc_obj['image_xai']['image']) }}"
+                         alt="No image"
+                         class="w-full h-auto rounded-lg object-contain">
+                </div>
+                <div class="md:w-1/2 w-full border border-gray-200 rounded-lg shadow-sm p-4 text-sm">
+                    <p class="text-gray-600 leading-relaxed whitespace-pre-line">
+                        {{ doc_obj.image_xai.text | default('No explanation available.', true) }}
+                    </p>
+                </div>
+
+            {% else %}
+
+                <div class="w-full border border-gray-200 rounded-lg shadow-sm p-4 text-sm">
+                    <p class="text-gray-600 leading-relaxed whitespace-pre-line">
+                        {{ doc_obj.text_xai.text | default('No explanation available.', true) }}
+                    </p>
+                </div>
+
+            {% endif %}
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,133 @@
+id_j,Occupation_description_j,Full/Part-time_j,driving_license_j,education_eqf_level_required_j,minimum_years_of_experience_required_j,skills_required_j,language_skills_required_j,Permanent/Fixed-term_j,min_years_exp_int_j,title,text
+36,Numerical and material recording clerks,Full time contract,0,level 5 or less,5 - 10 years,"frozenset({'show empathy', 'cooperate with colleagues', 'operating systems'})",frozenset({'English'}),Permanent,"[5, 10]",job_36_1,"*OCCUPATION DESCRIPTION*
+Numerical and material recording clerks
+
+*FULL/PART-TIME*
+Full time contract
+
+*EDUCATION EQF LEVEL REQUIRED*
+level 5 or less
+
+*MINIMUM YEARS OF EXPERIENCE REQUIRED*
+5 - 10 years
+
+*SKILLS REQUIRED*
+cooperate with colleagues, operating systems, show empathy
+
+*LANGUAGE SKILLS REQUIRED*
+English
+
+*PERMANENT/FIXED-TERM*
+Permanent
+
+"
+2,Business and administration professionals,Part time contract,0,level 5 or less,3 - 5 years,"frozenset({'planning and organising', 'market research'})",frozenset({'English'}),Permanent,"[3, 5]",job_2_1,"*OCCUPATION DESCRIPTION*
+Business and administration professionals
+
+*FULL/PART-TIME*
+Part time contract
+
+*EDUCATION EQF LEVEL REQUIRED*
+level 5 or less
+
+*MINIMUM YEARS OF EXPERIENCE REQUIRED*
+3 - 5 years
+
+*SKILLS REQUIRED*
+market research, planning and organising
+
+*LANGUAGE SKILLS REQUIRED*
+English
+
+*PERMANENT/FIXED-TERM*
+Permanent
+
+"
+45,Numerical and material recording clerks,Part time contract,1,level 6,3 - 5 years,"frozenset({'adapt teaching to target group', 'financial analysis'})",frozenset({'Spanish'}),Permanent,"[3, 5]",job_45_2,"*OCCUPATION DESCRIPTION*
+Numerical and material recording clerks
+
+*FULL/PART-TIME*
+Part time contract
+
+*EDUCATION EQF LEVEL REQUIRED*
+level 6
+
+*MINIMUM YEARS OF EXPERIENCE REQUIRED*
+3 - 5 years
+
+*SKILLS REQUIRED*
+adapt teaching to target group, financial analysis
+
+*LANGUAGE SKILLS REQUIRED*
+Spanish
+
+*PERMANENT/FIXED-TERM*
+Permanent
+
+"
+2,Business and administration professionals,Part time contract,0,level 5 or less,3 - 5 years,"frozenset({'planning and organising', 'market research'})",frozenset({'English'}),Permanent,"[3, 5]",job_2_2,"*OCCUPATION DESCRIPTION*
+Business and administration professionals
+
+*FULL/PART-TIME*
+Part time contract
+
+*EDUCATION EQF LEVEL REQUIRED*
+level 5 or less
+
+*MINIMUM YEARS OF EXPERIENCE REQUIRED*
+3 - 5 years
+
+*SKILLS REQUIRED*
+market research, planning and organising
+
+*LANGUAGE SKILLS REQUIRED*
+English
+
+*PERMANENT/FIXED-TERM*
+Permanent
+
+"
+36,Numerical and material recording clerks,Full time contract,0,level 5 or less,5 - 10 years,"frozenset({'show empathy', 'cooperate with colleagues', 'operating systems'})",frozenset({'English'}),Permanent,"[5, 10]",job_36_2,"*OCCUPATION DESCRIPTION*
+Numerical and material recording clerks
+
+*FULL/PART-TIME*
+Full time contract
+
+*EDUCATION EQF LEVEL REQUIRED*
+level 5 or less
+
+*MINIMUM YEARS OF EXPERIENCE REQUIRED*
+5 - 10 years
+
+*SKILLS REQUIRED*
+cooperate with colleagues, operating systems, show empathy
+
+*LANGUAGE SKILLS REQUIRED*
+English
+
+*PERMANENT/FIXED-TERM*
+Permanent
+
+"
+45,Numerical and material recording clerks,Part time contract,1,level 6,3 - 5 years,"frozenset({'adapt teaching to target group', 'financial analysis'})",frozenset({'Spanish'}),Permanent,"[3, 5]",job_45_1,"*OCCUPATION DESCRIPTION*
+Numerical and material recording clerks
+
+*FULL/PART-TIME*
+Part time contract
+
+*EDUCATION EQF LEVEL REQUIRED*
+level 6
+
+*MINIMUM YEARS OF EXPERIENCE REQUIRED*
+3 - 5 years
+
+*SKILLS REQUIRED*
+adapt teaching to target group, financial analysis
+
+*LANGUAGE SKILLS REQUIRED*
+Spanish
+
+*PERMANENT/FIXED-TERM*
+Permanent
+
+"
