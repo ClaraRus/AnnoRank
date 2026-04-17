@@ -1,0 +1,108 @@
+name: Deploy docs
+on:
+  repository_dispatch:
+    types: [trigger-mkdocs]
+
+  push:
+    branches:
+      - mkdocs # Also trigger on push to 'mkdocs' branch
+  pull_request:
+    branches:
+      - main # Trigger on pull request targeting 'main' branch
+
+jobs:
+  # -----------------------------------------------------------------------
+  # Deploy v0 docs (AnnoRank — main branch source code)
+  # -----------------------------------------------------------------------
+  deploy-v0:
+    name: Deploy v0 docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout mkdocs branch
+        uses: actions/checkout@v3
+        with:
+          ref: mkdocs
+          fetch-depth: 0 # required by mike to read/write gh-pages history
+
+      - name: Fetch main branch source code
+        run: |
+          git fetch origin main
+          # Overlay main branch source files (flask_app, src) without
+          # switching branches, so docs/ and mkdocs.yml stay from mkdocs branch.
+          git checkout origin/main -- flask_app src
+
+      - name: Install Crystal
+        uses: oprypin/install-crystal@v1
+
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Python libs
+        run: pip install --no-deps -r docs/requirements.txt
+
+      - name: Install Crystal libs
+        run: |
+          shards init
+          shards install
+
+      - name: Configure git for mike
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Deploy v0 to gh-pages
+        if: github.event_name == 'push' && github.ref == 'refs/heads/mkdocs'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: mike deploy --push v0
+
+  # -----------------------------------------------------------------------
+  # Deploy v1 docs (XAnnoRank — XAnnoRank branch source code)
+  # -----------------------------------------------------------------------
+  deploy-v1:
+    name: Deploy v1 docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout mkdocs branch
+        uses: actions/checkout@v3
+        with:
+          ref: mkdocs
+          fetch-depth: 0 # required by mike to read/write gh-pages history
+
+      - name: Fetch XAnnoRank branch source code
+        run: |
+          git fetch origin XAnnoRank
+          # Overlay XAnnoRank source files without switching branches.
+          git checkout origin/XAnnoRank -- flask_app src
+
+      - name: Install Crystal
+        uses: oprypin/install-crystal@v1
+
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Python libs
+        run: pip install --no-deps -r docs/requirements.txt
+
+      - name: Install Crystal libs
+        run: |
+          shards init
+          shards install
+
+      - name: Configure git for mike
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Deploy v1 to gh-pages and set as default
+        if: github.event_name == 'push' && github.ref == 'refs/heads/mkdocs'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mike deploy --push --update-aliases v1 latest
+          mike set-default --push latest
+

@@ -1,0 +1,34 @@
+site_name: AnnoRank
+site_url: https://clararus.github.io/AnnoRank/
+repo_url: https://github.com/ClaraRus/AnnoRank
+edit_uri: blob/master/docs/
+
+theme:
+  name: material
+
+extra:
+  version:
+    provider: mike
+
+markdown_extensions:
+  - pymdownx.highlight
+  - deduplicate-toc
+
+plugins:
+- mike:
+    alias_type: symlink
+    canonical_version: latest
+- mkdocstrings:
+    enabled: true
+    default_handler: python
+    watch: [flask_app, src]
+    handlers:
+      python:
+        setup_commands:
+            - import sys
+            - sys.path.append("src")
+            - sys.path.append("flask_app")
+        rendering:
+          show_source: true
+        options:
+          show_source: false
