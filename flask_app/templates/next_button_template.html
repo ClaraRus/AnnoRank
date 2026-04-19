@@ -1,0 +1,55 @@
+<script>
+    window.FLASK_URLS = {
+        form_submit: "{{ url_for('form_submit') }}",
+        stop_experiment: "{{ url_for('stop_experiment') }}",
+        get_next_task: "{{ url_for('get_next_task', experiment_id=experiment_id) }}",
+        store_data_ranking: "{{ url_for('store_data_ranking') }}",
+        questionnaire: "{{ url_for('questionnaire', experiment_id=experiment_id, n_task=n_task) }}"
+    };
+</script>
+
+<script>
+const observer = new MutationObserver(() => {
+    const elems = document.querySelectorAll('.cf-expandable:not([data-initialized])');
+    elems.forEach(el => {
+        console.log("DYNAMIC FOUND ELEMENT:", el);
+        el.dataset.initialized = "true";
+
+        loadAndToggleVisibility(
+            el.id,
+            el.dataset.docid,
+            el.dataset.url,
+            el.dataset.mode,
+            false
+        );
+    });
+});
+observer.observe(document.body, { childList: true, subtree: true });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script src="/static/js_scripts/limitSelectionCheckbox.js" defer></script>
+<script src="/static/js_scripts/viewDocInfoJobseeker.js" defer></script>
+<script src="/static/js_scripts/shortlistNextButtonJobseekers.js" defer></script>
+<script src="/static/js_scripts/viewCountsJobseekers.js" defer></script>
+<script src="/static/js_scripts/viewTimeJobseekers.js" defer></script>
+<script src="/static/js_scripts/orderCheckbox.js" defer></script>
+<script src="/static/js_scripts/highlightText.js" defer></script>
+
+<script>
+if ({{view_configs | tojson}}.highlight_match) {
+    window.onload = function() { highlightText(); };
+}
+</script>
+
+
+<div class="flex sticky-top items-center px-5 py-6  rounded-md bg-white">
+            <div class="w-full text-center">
+                <a onclick="collectDataShortlist({{ view_configs.shortlist_select }}, {{ experiment_id }}, {{ n_task }})"
+                   class="next-button px-6 py-2 bg-gray-200 rounded hover:bg-gray-300 inline-block">
+                    Next
+                </a>
+            </div>
+</div>
+

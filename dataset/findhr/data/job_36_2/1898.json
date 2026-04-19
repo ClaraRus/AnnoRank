@@ -1,0 +1,134 @@
+{
+    "Candidate ID":  1898,
+    "Education EQF":  "level 5 or less",
+    "Gender":  0,
+    "Full/Part-time (preferred)":  "Full time contract",
+    "Years of Experience":  12,
+    "Job and Language Skills":  [
+                                    "think proactively",
+                                    "accounting",
+                                    "sales argumentation",
+                                    "computer graphics",
+                                    "solving problems",
+                                    "determine charges for customer services",
+                                    "Spanish"
+                                ],
+    "Domain Knowledge":  "Excellent",
+    "Permanent/Fixed-term (preferred)":  "Permanent",
+    "factual_xai":  [
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.557,
+                                         "Years of Experience":  -0.34,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  0.17,
+                                         "Domain Knowledge":  0.157,
+                                         "Permanent/Fixed-term (preferred)":  0.1,
+                                         "Gender":  0.0
+                                     },
+                            "factual_image":  "factual_exp_1898_exp1.png",
+                            "factual_text":  "The characteristics Domain Knowledge, Full/Part-time (preferred), Education EQF significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Job and Language Skills significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Gender, Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank1"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.908,
+                                         "Years of Experience":  -0.17,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  0.204,
+                                         "Domain Knowledge":  0.157,
+                                         "Permanent/Fixed-term (preferred)":  0.09,
+                                         "Gender":  -0.48
+                                     },
+                            "factual_image":  "factual_exp_1898_exp2.png",
+                            "factual_text":  "The characteristics Domain Knowledge, Full/Part-time (preferred), Education EQF significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Gender, Job and Language Skills significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank2"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.034,
+                                         "Years of Experience":  -0.005,
+                                         "Education EQF":  -0.011,
+                                         "Full/Part-time (preferred)":  -0.012,
+                                         "Domain Knowledge":  -0.006,
+                                         "Permanent/Fixed-term (preferred)":  0.0,
+                                         "Gender":  -0.014
+                                     },
+                            "factual_image":  "factual_exp_1898_exp3.png",
+                            "factual_text":  "The characteristics Permanent/Fixed-term (preferred), Years of Experience, Domain Knowledge, Full/Part-time (preferred), Education EQF, Job and Language Skills, Gender do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank3"
+                        }
+                    ],
+    "counterfactual_xai":  [
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Full time contract",
+                                                "Years of Experience":  12,
+                                                "Job and Language Skills":  [
+                                                                                "computer graphics",
+                                                                                "think proactively",
+                                                                                "sales argumentation",
+                                                                                "determine charges for customer services",
+                                                                                "solving problems",
+                                                                                "accounting",
+                                                                                "cooperate with colleagues",
+                                                                                "operating systems",
+                                                                                "Spanish"
+                                                                            ],
+                                                "Domain Knowledge":  "Excellent",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027computer graphics\u0027, \u0027think proactively\u0027, \u0027sales argumentation\u0027, \u0027determine charges for customer services\u0027, \u0027solving problems\u0027, \u0027accounting\u0027, \u0027cooperate with colleagues\u0027, \u0027operating systems\u0027, \u0027Spanish\u0027]\n",
+                                   "ranking_type":  "rank1"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Full time contract",
+                                                "Years of Experience":  12,
+                                                "Job and Language Skills":  [
+                                                                                "solving problems",
+                                                                                "sales argumentation",
+                                                                                "determine charges for customer services",
+                                                                                "accounting",
+                                                                                "think proactively",
+                                                                                "computer graphics",
+                                                                                "show empathy",
+                                                                                "show empathy",
+                                                                                "Spanish"
+                                                                            ],
+                                                "Domain Knowledge":  "Excellent",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027solving problems\u0027, \u0027sales argumentation\u0027, \u0027determine charges for customer services\u0027, \u0027accounting\u0027, \u0027think proactively\u0027, \u0027computer graphics\u0027, \u0027show empathy\u0027, \u0027show empathy\u0027, \u0027Spanish\u0027]\n",
+                                   "ranking_type":  "rank2"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Full time contract",
+                                                "Years of Experience":  12,
+                                                "Job and Language Skills":  [
+                                                                                "think proactively",
+                                                                                "determine charges for customer services",
+                                                                                "computer graphics",
+                                                                                "sales argumentation",
+                                                                                "solving problems",
+                                                                                "accounting",
+                                                                                "cooperate with colleagues",
+                                                                                "show empathy",
+                                                                                "Spanish"
+                                                                            ],
+                                                "Domain Knowledge":  "Excellent",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027think proactively\u0027, \u0027determine charges for customer services\u0027, \u0027computer graphics\u0027, \u0027sales argumentation\u0027, \u0027solving problems\u0027, \u0027accounting\u0027, \u0027cooperate with colleagues\u0027, \u0027show empathy\u0027, \u0027Spanish\u0027]\n",
+                                   "ranking_type":  "rank3"
+                               }
+                           ]
+}
+

@@ -9,27 +9,10 @@ project_dir = Path.cwd()
 
 class DataReader():
     """
-    DataReader class for reading pre-determined dataset and data transformation for the UI. 
+    DataReader class for reading pre-determined dataset and data transformation for the UI.
     """
-    
+
     def __init__(self, configs):
-        """
-        Data reader init class.
-        Attributes
-        ----------
-        configs : dict
-            configuration dict of the dataset
-        name : str
-            name of the dataset set in run_apps args
-        query_col : str
-            name of the query column
-        sensitive_col : str
-            name of the sensitive column (e.g. gender) used for applying fairness interventions (optional)
-        data_path : str
-            path to the dataset file
-        output_file_path : str
-            path to the output file where the transformed dataset will be saved
-        """
         self.name = configs["name"]
         self.query_col = configs["query"]
         self.score_col = configs["score"]
@@ -37,7 +20,7 @@ class DataReader():
         if 'group' in configs:
             self.sensitive_col = configs["group"]
         else:
-            self.sensitive_col =  None
+            self.sensitive_col = None
 
         self.data_path = os.path.join(
             project_dir, 'dataset/' + self.name)
@@ -66,13 +49,17 @@ class DataReader():
         dataframe_query = pd.read_csv(os.path.join(self.output_file_path, 'query.csv'))
 
         if split == 'test':
-            experiments_files = [file for file in os.listdir(os.path.join(self.data_path, 'experiments')) if
-                                    file.endswith('.json')]
+            experiments_dir_path = Path(self.data_path) / 'experiments'
+            experiments_files = [file for file in experiments_dir_path.iterdir() if
+                                 file.is_file() and file.name.endswith('.json')]
+
             experiments_info = []
-            for exp_file in experiments_files:
-                with open(os.path.join(self.data_path, 'experiments', exp_file)) as f:
+            for exp_file_path in experiments_files:
+                with open(exp_file_path, 'r') as f:
                     exp_info = json.load(f)
                     experiments_info.append(exp_info)
+
+            experiments_info.sort(key=lambda x: x.get('exp_id', 0))
 
             return dataframe_data, dataframe_query, experiments_info
         else:
@@ -86,9 +73,9 @@ class DataReader():
         - The main output directory is created at `self.output_file_path`.
         - Inside the main output directory, two subdirectories are created: 'test' and 'train'.
         - The transformed test data is saved as 'data.csv' inside the 'test' subdirectory.
-            This will be displayed in the UI.
+          This will be displayed in the UI.
         - If there is transformed train data available, it is saved as 'data.csv' inside the 'train' subdirectory.
-            This will be used for training the ranker or fairness intervention.
+          This will be used for training the ranker or fairness intervention.
         - The dataset queries are saved as 'query.csv' inside the main output directory.
 
         Note: The method assumes that the necessary data has already been transformed and is available.

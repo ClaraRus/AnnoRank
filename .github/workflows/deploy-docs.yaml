@@ -1,0 +1,17 @@
+# .github/workflows/trigger-mkdocs.yml
+name: Trigger MkDocs Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger MkDocs Workflow
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          repository: ClaraRus/AnnoRank
+          event-type: trigger-mkdocs

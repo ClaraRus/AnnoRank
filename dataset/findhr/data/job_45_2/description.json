@@ -1,0 +1,13 @@
+{
+    "id_j":  45,
+    "occupation_j":  "Numerical and material recording clerks",
+    "working_hours_j":  "Part time contract",
+    "driving_license_j":  1,
+    "min_edu_eqf_j":  "level 6",
+    "min_years_exp_j":  "3 - 5 years",
+    "skills_req_j":  "frozenset({\u0027adapt teaching to target group\u0027, \u0027financial analysis\u0027})",
+    "lang_skills_j":  "frozenset({\u0027Spanish\u0027})",
+    "permanent_j":  "Permanent",
+    "min_years_exp_int_j":  "[3, 5]"
+}
+

@@ -4,10 +4,13 @@
     var docElement = document.getElementById(elementId);
 
      if (!(docId in docViews)) {
-          docViews[docId] = 0;  // Initialize view count if not exists
+          docViews[docId] = 0;
      }
 
     if (docElement.style.display === 'table-row'){
         docViews[docId]++;
     }
   }
+
+  
+

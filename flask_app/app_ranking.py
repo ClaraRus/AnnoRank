@@ -52,11 +52,13 @@ app.config.from_object(Config)
 parser = argparse.ArgumentParser()
 parser.add_argument('--config_path')
 args = parser.parse_args()
-with open(args.config_path) as f:
-    configs = json.load(f)
 
-connect(configs["data_reader_class"]["name"], host='mongo', port=27017)
-# connect(configs["data_reader_class"], host='0.0.0.0', port=27017)
+if os.path.exists(args.config_path):
+    with open(args.config_path) as f:
+        configs = json.load(f)
+
+    connect(configs["data_reader_class"]["name"], host='mongo', port=27017)
+    # connect(configs["data_reader_class"], host='0.0.0.0', port=27017)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -253,7 +255,7 @@ def index_ranking(experiment_id, n_task, doc_id):
     if doc_id != 'view':
         doc_obj = docs_obj[int(doc_id) - 1]
 
-        return render_template('doc_ranking_view_information_template.html', doc_obj=doc_obj,
+        return render_template('doc_ranking_view_information_template_jobseekers.html', doc_obj=doc_obj,
                                field_names=doc_field_names_view, doc_index=doc_id, task_description=task_description)
 
     user = database.User.objects(_user_id=session['user_id']).first()
@@ -381,5 +383,8 @@ def error_handling(error):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=False, host='0.0.0.0',
-            port=5000)  # with this we dont need to stop the running flask app, only need to refresh the page in the browser to load the new changes
+    if os.path.exists(args.config_path):
+        app.run(debug=True, use_reloader=False, host='0.0.0.0',
+                port=5000)  # with this we dont need to stop the running flask app, only need to refresh the page in the browser to load the new changes
+
+

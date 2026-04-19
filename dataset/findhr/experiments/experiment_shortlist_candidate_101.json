@@ -1,0 +1,121 @@
+{
+  "exp_id": 101,
+  "description": "Experiment with only questionnaires",
+  "tasks": [
+    {
+      "query_title": "questionnaire_1",
+      "ranking_type": "form",
+      "description": "You're about to start the experiment, but first, this part is dedicated to collect your demographic data in order to cluster the responses of each participant in the research. <br><br>Demographics will be important for the following survey. Please indicate as honestly as you can your data in the questions included below.  Please be aware that to prevent random responses we use attention checks. <br><br>Thank you for your participation. <br><br>",
+      "show_xai": true,
+      "questionnaire": [
+        {
+          "question": "1) What is your gender?",
+          "field": "gender",
+          "options": [
+            "Female",
+            "Male",
+            "Non-binary",
+            "Prefer not to say"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "2) What is your age range?",
+          "field": "age",
+          "options": [
+            "18-24",
+            "25-34",
+            "35-44",
+            "45-54",
+            "55-64",
+            "65+"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "3) What is your country of residence?",
+          "field": "country_residence",
+          "options": "text",
+          "mandatory": true
+        },
+        {
+          "question": "4) Please describe your previous experiences with AI-based hiring systems.",
+          "field": "experience_ai_ranking",
+          "options": "text",
+          "mandatory": false
+        },
+        {
+          "question": "5) How familiar are you with artificial intelligence (AI) technologies?",
+          "field": "familiarity_ai",
+          "options": "likert-7",
+          "mandatory": true
+        }
+      ]
+    },
+    {
+      "query_title": "comprehension_task",
+      "ranking_type": "form",
+      "show_xai": true,
+      "description": "Answer the following questions to check the comprehension of the task description.",
+      "questionnaire": [
+        {
+          "question": "1) Is the decision made by an AI?",
+          "field": "attention_AI",
+          "options": [
+            "No",
+            "Yes"
+          ],
+          "mandatory": true,
+          "correct_answer": "Yes"
+        }
+      ]
+    },
+
+    {
+      "query_title": "questionnaire_2",
+      "ranking_type": "form",
+      "show_xai": true,
+      "description": "Imagine you applied to a job offer and you were not selected for an interview. Indicate how useful is each explanation.",
+
+      "questionnaire": [
+        {
+          "question": "The characteristics Domain Knowledge, Education EQF, Full/Part-time (preferred), Job and Language Skills significantly improve the match between this candidate and the job offer.",
+          "field": "question_1_a",
+          "options": "likert-5",
+          "mandatory": true
+        },
+        {
+          "question": "The characteristics Years of Experience significantly weaken the match between this candidate and the displayed job offer.",
+          "field": "question_1_b",
+          "options": "likert-5",
+          "mandatory": true
+        },
+        {
+          "question": "The characteristics Gender, Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the job offer.",
+          "field": "question_1_c",
+          "options": "likert-5",
+          "mandatory": true
+        },
+        {
+          "question": "The candidate's profile should be improved to get shortlisted by changing the following characteristics: seek innovation in current practices, add communication skills, improve mergers and acquisitions experience, learn French and English",
+          "field": "question_2",
+          "options": "likert-5",
+          "mandatory": true
+        },
+        {
+          "question": "job_2_1/images/factual_exp_227_exp1.png",
+          "field": "question_3",
+          "options": "likert-5",
+          "mandatory": true
+        },
+        {
+          "question": "Is the sky blue?",
+          "field": "attention_blue_sky",
+          "options":["yes", "no"],
+          "mandatory": true,
+          "correct_answer": "yes"
+        }
+      ]
+    }
+  ]
+}

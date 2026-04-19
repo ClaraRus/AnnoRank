@@ -10,10 +10,20 @@ AnnoRank offers support for applying fairness interventions in the pipeline of a
 In addition, the tool is integrated with the Ranklib library, offering a vast range of ranking models that can be applied to the data and displayed in the UI. 
 AnnoRank is designed to be flexible, configurable, and easy to deploy to meet diverse requirements and a larger audience. 
 
+# Documentation Versioning
+The AnnoRank documentation is versioned using [mike](https://github.com/jimporter/mike) on top of MkDocs and deployed to GitHub Pages. Each release is published under a version alias (e.g. `v0`, `v1`) with `latest` always pointing to the most recent stable version. The versioned deployment is handled by `.github/workflows/deploy-docs.yml`, while `.github/workflows/deploy-docs.yaml` triggers that deployment when `main` changes.
+
+To browse a specific version of the documentation, append the version alias to the base URL, for example:
+- `https://clararus.github.io/AnnoRank/v1/` — current release
+- `https://clararus.github.io/AnnoRank/latest/` — always the most recent release
+
 # External Resource
 In the folder external resources the following can be found:
-- Usability_Study_Anno_Rank.pdf - the usability study conducted for Anno Rank
-- Anno_Rank_Documentation.pdf - the documentation provided for Anno Rank
+- The code to run AnnoRank can be found [here](https://github.com/ClaraRus/AnnoRank/tree/main). 
+- More information about configuring AnnoRank to your own dataset and needs can be found [here](https://github.com/ClaraRus/AnnoRank/blob/main/external-resources/Anno_Rank_Documentation.pdf).
+- Code documentation can be found [here](https://clararus.github.io/AnnoRank/).
+- The usability study conducted with AnnoRank can be found [here](https://github.com/ClaraRus/AnnoRank/blob/main/external-resources/Usability_Study_Anno_Rank.pdf).
+
   
 # Requirements 
 Depending on your development system, instructions on how to install the Docker and MongoDB can be found here:
@@ -148,4 +158,3 @@ All content represents the opinion of the authors, which is not necessarily shar
 [7] Joseph Fleiss, Jacob Cohen. 1973. The equivalence of weighted kappa and the intraclass correlation coefficient as measures of reliability. Educational and psychological measurement, 33.3: 613-619.
 
 [8] Harrisen Scells, Jimmy, & Guido Zuccon. 2021. Big Brother: A Drop-In Website Interaction Logging Service. Proceedings of the 44th International ACM SIGIR Conference on Research and Development in Information Retrieval.
-

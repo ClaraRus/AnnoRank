@@ -1,0 +1,116 @@
+{
+    "Candidate ID":  1878,
+    "Education EQF":  "level 5 or less",
+    "Gender":  1,
+    "Full/Part-time (preferred)":  "Part time contract",
+    "Years of Experience":  0,
+    "Job and Language Skills":  [
+                                    "cope with challenging demands",
+                                    "write to a deadline",
+                                    "negotiate compromises",
+                                    "Spanish"
+                                ],
+    "Domain Knowledge":  "Medium",
+    "Permanent/Fixed-term (preferred)":  "Permanent",
+    "factual_xai":  [
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.557,
+                                         "Years of Experience":  -0.34,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  -0.33,
+                                         "Domain Knowledge":  -0.01,
+                                         "Permanent/Fixed-term (preferred)":  0.1,
+                                         "Gender":  0.0
+                                     },
+                            "factual_image":  "factual_exp_1878_exp1.png",
+                            "factual_text":  "The characteristics Education EQF significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Full/Part-time (preferred), Job and Language Skills significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Domain Knowledge, Gender, Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank1"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.908,
+                                         "Years of Experience":  -0.17,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  -0.396,
+                                         "Domain Knowledge":  -0.01,
+                                         "Permanent/Fixed-term (preferred)":  0.09,
+                                         "Gender":  0.52
+                                     },
+                            "factual_image":  "factual_exp_1878_exp2.png",
+                            "factual_text":  "The characteristics Gender, Education EQF significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Full/Part-time (preferred), Job and Language Skills significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Domain Knowledge, Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank2"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.02,
+                                         "Years of Experience":  -0.007,
+                                         "Education EQF":  -0.002,
+                                         "Full/Part-time (preferred)":  -0.007,
+                                         "Domain Knowledge":  -0.007,
+                                         "Permanent/Fixed-term (preferred)":  -0.002,
+                                         "Gender":  -0.001
+                                     },
+                            "factual_image":  "factual_exp_1878_exp3.png",
+                            "factual_text":  "The characteristics Permanent/Fixed-term (preferred), Years of Experience, Domain Knowledge, Full/Part-time (preferred), Education EQF, Job and Language Skills, Gender do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank3"
+                        }
+                    ],
+    "counterfactual_xai":  [
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Male",
+                                                "Full/Part-time (preferred)":  "Part time contract",
+                                                "Years of Experience":  5.0,
+                                                "Job and Language Skills":  [
+                                                                                "cope with challenging demands",
+                                                                                "write to a deadline",
+                                                                                "negotiate compromises",
+                                                                                "Spanish"
+                                                                            ],
+                                                "Domain Knowledge":  "Medium",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nYears of Experience: 5.0\n",
+                                   "ranking_type":  "rank1"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Male",
+                                                "Full/Part-time (preferred)":  "Part time contract",
+                                                "Years of Experience":  5.0,
+                                                "Job and Language Skills":  [
+                                                                                "cope with challenging demands",
+                                                                                "write to a deadline",
+                                                                                "negotiate compromises",
+                                                                                "Spanish"
+                                                                            ],
+                                                "Domain Knowledge":  "Medium",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nYears of Experience: 5.0\n",
+                                   "ranking_type":  "rank2"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Male",
+                                                "Full/Part-time (preferred)":  "Part time contract",
+                                                "Years of Experience":  5.0,
+                                                "Job and Language Skills":  [
+                                                                                "cope with challenging demands",
+                                                                                "write to a deadline",
+                                                                                "negotiate compromises",
+                                                                                "Spanish"
+                                                                            ],
+                                                "Domain Knowledge":  "Medium",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nYears of Experience: 5.0\n",
+                                   "ranking_type":  "rank3"
+                               }
+                           ]
+}
+

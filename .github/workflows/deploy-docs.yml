@@ -1,75 +1,38 @@
-
-
-# name: Deploy docs
-# on:
-#   push:
-#     branches:
-#       - main # Trigger only on push to 'main' branch
-#       - mkdocs
-#   pull_request:
-#     branches:
-#       - main # Trigger on pull request targeting 'main' branch
-# jobs:
-#   build:
-#     name: Deploy docs
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Download source
-#         uses: actions/checkout@v3
-#       - name: Install Crystal
-#         uses: oprypin/install-crystal@v1
-#       - name: Install Python lib
-#         uses: actions/setup-python@v4
-#         with:
-#           python-version: '3.10'
-#       - name: Install Python libs
-#         run: pip install --no-deps -r docs/requirements.txt
-#       - name: Install Crystal libs
-#         run: |
-#           shards init - name: Build site
-#           shards install
-#       - name: Check current directory
-#         run: pwd
-#       - name: Build site
-#         run: mkdocs build
-#       - name: Deploy to gh-pages
-#         if: github.event_name == 'push' && github.ref == 'refs/heads/mkdocs'
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-#         run: mkdocs gh-deploy --force --verbose
-
-
 name: Deploy docs
+
 on:
   repository_dispatch:
     types: [trigger-mkdocs]
 
   push:
     branches:
-      - mkdocs # Also trigger on push to 'mkdocs' branch
+      - mkdocs
+
   pull_request:
     branches:
-      - main # Trigger on pull request targeting 'main' branch
+      - main
+      - mkdocs
 
 jobs:
-  build:
-    name: Deploy docs
+  deploy-v0:
+    name: Build and deploy v0 docs
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main branch
+      - name: Checkout mkdocs branch
         uses: actions/checkout@v3
         with:
-          ref: main # Checkout the 'main' branch to get the source code
+          ref: mkdocs
+          fetch-depth: 0
 
-      - name: Checkout mkdocs branch
+      - name: Fetch main branch source code
         run: |
-          git fetch origin mkdocs # Fetch the mkdocs branch
-          git checkout mkdocs # Switch to the mkdocs branch
+          git fetch origin main
+          git checkout origin/main -- flask_app src
 
       - name: Install Crystal
         uses: oprypin/install-crystal@v1
 
-      - name: Install Python lib
+      - name: Install Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
@@ -82,15 +45,65 @@ jobs:
           shards init
           shards install
 
-      - name: Check current directory
-        run: pwd
+      - name: Build site
+        run: mkdocs build
+
+      - name: Configure git for mike
+        if: github.event_name != 'pull_request'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Deploy v0 to gh-pages
+        if: github.event_name == 'repository_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/mkdocs')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: mike deploy --push v0
+
+  deploy-v1:
+    name: Build and deploy v1 docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout mkdocs branch
+        uses: actions/checkout@v3
+        with:
+          ref: mkdocs
+          fetch-depth: 0
+
+      - name: Fetch XAnnoRank branch source code
+        run: |
+          git fetch origin XAnnoRank
+          git checkout origin/XAnnoRank -- flask_app src
+
+      - name: Install Crystal
+        uses: oprypin/install-crystal@v1
+
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Python libs
+        run: pip install --no-deps -r docs/requirements.txt
+
+      - name: Install Crystal libs
+        run: |
+          shards init
+          shards install
 
       - name: Build site
         run: mkdocs build
 
-      - name: Deploy to gh-pages
+      - name: Configure git for mike
+        if: github.event_name == 'push' && github.ref == 'refs/heads/mkdocs'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Deploy v1 to gh-pages and set as default
         if: github.event_name == 'push' && github.ref == 'refs/heads/mkdocs'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-        run: mkdocs gh-deploy --force --verbose
-
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mike deploy --push --update-aliases v1 latest
+          mike set-default --push latest

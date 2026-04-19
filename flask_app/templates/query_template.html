@@ -1,29 +1,63 @@
-<div class="sticky-placeholder"></div>
-<div class="mt-4 ">
-        <div class="-mx-1">
-                <div class="flex sticky-top items-center px-5 py-6 shadow-sm rounded-md bg-white">
-                    <div class="mt-2 px-6">
+<div class="px-4 pt-6 pb-4 sticky top-0 bg-white rounded-md">
 
-                    </div>
-                    <div id="query_info" qid="{{query_title}}" class="mt-2">
-                        {% for line in query_text.split('\n') %}
-                            {% if '<img' in line %}
-                                <div class="text-gray-900" style="margin-bottom: 10px;">
-                                    {{ line | safe }}
-                                </div>
-                            {% else %}
-                                
-                                {% if line == '' %}
-                                    <h4 class="text-gray-900 py-3">{{ line }}</h4>
-                                {%endif%}
+    <div id="query_info" qid="{{query_title}}">
+        <h2 class="text-gray-900 font-bold text-xl mb-4">
+            Job Offer {{ task_index }} Description and Requirements
+        </h2>
 
-                                {% if line != '' %}
-                                    <div class="text-gray-900">{{ line }}</div>
-                                {%endif%}
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-            </div>
+        {% for line in query_text.split('\n') %}
+            {% if '<img' in line %}
+                <div class="text-gray-900 mb-3">
+                    {{ line | safe }}
+                </div>
+            {% else %}
+                 {% set items = [] %}
+                 {% for piece in line.split(',') %}
+                        {% set cleaned = piece.strip() %}
+                        {% if cleaned %}
+                            {% set _ = items.append(cleaned) %}
+                        {% endif %}
+                {% endfor %}
+                {% if items|length > 1 %}
+                <ul class="list-disc ml-6 text-gray-900">
+                    {% for item in items %}
+                        {% if item.startswith('!') %}
+                            <li class="text-gray-900 font-bold text-lg">{{ item[1:-1] }}</li>
+                        {% elif item.startswith('*') and item.endswith('*') %}
+                            <li class="text-gray-900 font-bold">{{ item[1:-1] }}</li>
+                        {% else %}
+                            <li class="text-gray-900">{{ item }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                {% elif items|length < 1 %}
+                    <div class="py-3"></div>
+                {% else %}
+                    {% if items[0] == '' %}
+                        <div class="py-3"></div>
+                    {% elif items[0].startswith('!') %}
+                        <h1 class="text-gray-900 font-bold text-lg">{{ items[0][1:-1] }}</h1>
+                        <div class="py-3"></div>
+                    {% elif items[0].startswith('*') and line.endswith('*') %}
+                        <div class="text-gray-900 font-bold">{{ items[0][1:-1] }}</div>
+                    {% else %}
+                        <div class="text-gray-900">{{ items[0] }}</div>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+
+        <div class="mt-4 text-gray-700 text-sm">
+            <p>
+                For more information on EQF levels:
+                <a class="text-blue-600 hover:underline"
+                   href="https://en.wikipedia.org/wiki/European_Qualifications_Framework"
+                   target="_blank">
+                   https://en.wikipedia.org/wiki/European_Qualifications_Framework
+                </a>
+            </p>
         </div>
+
     </div>
 
+</div>

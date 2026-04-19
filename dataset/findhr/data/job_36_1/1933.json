@@ -1,0 +1,126 @@
+{
+    "Candidate ID":  1933,
+    "Education EQF":  "level 6",
+    "Gender":  0,
+    "Full/Part-time (preferred)":  "Full time contract",
+    "Years of Experience":  25,
+    "Job and Language Skills":  [
+                                    "consult technical resources",
+                                    "sales strategies",
+                                    "think creatively",
+                                    "business and administration",
+                                    "Spanish"
+                                ],
+    "Domain Knowledge":  "Excellent",
+    "Permanent/Fixed-term (preferred)":  "Permanent",
+    "factual_xai":  [
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.557,
+                                         "Years of Experience":  -0.34,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  0.17,
+                                         "Domain Knowledge":  0.157,
+                                         "Permanent/Fixed-term (preferred)":  0.1,
+                                         "Gender":  0.0
+                                     },
+                            "factual_image":  "factual_exp_1933_exp1.png",
+                            "factual_text":  "The characteristics Domain Knowledge, Full/Part-time (preferred), Education EQF significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Job and Language Skills significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Gender, Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank1"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.908,
+                                         "Years of Experience":  -0.17,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  0.204,
+                                         "Domain Knowledge":  0.157,
+                                         "Permanent/Fixed-term (preferred)":  0.09,
+                                         "Gender":  -0.48
+                                     },
+                            "factual_image":  "factual_exp_1933_exp2.png",
+                            "factual_text":  "The characteristics Domain Knowledge, Full/Part-time (preferred), Education EQF significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Gender, Job and Language Skills significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank2"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.031,
+                                         "Years of Experience":  0.006,
+                                         "Education EQF":  -0.03,
+                                         "Full/Part-time (preferred)":  -0.003,
+                                         "Domain Knowledge":  -0.003,
+                                         "Permanent/Fixed-term (preferred)":  0.001,
+                                         "Gender":  -0.001
+                                     },
+                            "factual_image":  "factual_exp_1933_exp3.png",
+                            "factual_text":  "The characteristics Permanent/Fixed-term (preferred), Years of Experience, Domain Knowledge, Full/Part-time (preferred), Education EQF, Job and Language Skills, Gender do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank3"
+                        }
+                    ],
+    "counterfactual_xai":  [
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 6",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Full time contract",
+                                                "Years of Experience":  25,
+                                                "Job and Language Skills":  [
+                                                                                "think creatively",
+                                                                                "consult technical resources",
+                                                                                "sales strategies",
+                                                                                "business and administration",
+                                                                                "operating systems",
+                                                                                "operating systems",
+                                                                                "Spanish"
+                                                                            ],
+                                                "Domain Knowledge":  "Excellent",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027think creatively\u0027, \u0027consult technical resources\u0027, \u0027sales strategies\u0027, \u0027business and administration\u0027, \u0027operating systems\u0027, \u0027operating systems\u0027, \u0027Spanish\u0027]\n",
+                                   "ranking_type":  "rank1"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 6",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Full time contract",
+                                                "Years of Experience":  25,
+                                                "Job and Language Skills":  [
+                                                                                "business and administration",
+                                                                                "think creatively",
+                                                                                "consult technical resources",
+                                                                                "sales strategies",
+                                                                                "show empathy",
+                                                                                "operating systems",
+                                                                                "Spanish"
+                                                                            ],
+                                                "Domain Knowledge":  "Excellent",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027business and administration\u0027, \u0027think creatively\u0027, \u0027consult technical resources\u0027, \u0027sales strategies\u0027, \u0027show empathy\u0027, \u0027operating systems\u0027, \u0027Spanish\u0027]\n",
+                                   "ranking_type":  "rank2"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 6",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Full time contract",
+                                                "Years of Experience":  25,
+                                                "Job and Language Skills":  [
+                                                                                "consult technical resources",
+                                                                                "sales strategies",
+                                                                                "business and administration",
+                                                                                "think creatively",
+                                                                                "cooperate with colleagues",
+                                                                                "operating systems",
+                                                                                "Spanish"
+                                                                            ],
+                                                "Domain Knowledge":  "Excellent",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027consult technical resources\u0027, \u0027sales strategies\u0027, \u0027business and administration\u0027, \u0027think creatively\u0027, \u0027cooperate with colleagues\u0027, \u0027operating systems\u0027, \u0027Spanish\u0027]\n",
+                                   "ranking_type":  "rank3"
+                               }
+                           ]
+}
+

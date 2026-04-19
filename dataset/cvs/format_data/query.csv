@@ -1,0 +1,32 @@
+education_background,professional_experience,skills.hard,skills.soft,text,title
+"[{'degree': 'bachelors degree', 'major': 'civil engineering or environmental engineering or management engineering'}]","[{'role': 'project manager', 'duration': '2 years'}]","['Agile project management', 'Lean project management', 'PRINCE2', 'MS Project', 'Health and safety regulation', 'ISO 9001']","['Leadership', 'Risk management', 'Coaching', 'Stakeholder management']","!Project Manager!
+*Education Background*
+Degree: bachelors degree
+Major: civil engineering or environmental engineering or management engineering
+
+*Professional Experience*
+Role: project manager
+Duration: 2 years
+
+*Skills Hard*
+Agile project management, Lean project management, PRINCE2, MS Project, Health and safety regulation, ISO 9001
+
+*Skills Soft*
+Leadership, Risk management, Coaching, Stakeholder management
+
+",project_manager
+"[{}]","[{""role"": ""customer service representative"", ""duration"": ""1 year""}]","[""CRM"", ""KPI management"", ""Logging"", ""Telephone etiquette"", ""MS Office""]","[""Confident communication""]","!Customer Service Representative!
+*Education Background*
+Not specified
+
+*Professional Experience*
+Role: customer service representative
+Duration: 1 year
+
+*Skills Hard*
+CRM, KPI management, Logging, Telephone etiquette, MS Office
+
+*Skills Soft*
+Confident communication
+
+",customer_service_representative

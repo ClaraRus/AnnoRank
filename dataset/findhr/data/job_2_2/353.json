@@ -1,0 +1,131 @@
+{
+    "Candidate ID":  353,
+    "Education EQF":  "level 7",
+    "Gender":  0,
+    "Full/Part-time (preferred)":  "Not specified",
+    "Years of Experience":  5,
+    "Job and Language Skills":  [
+                                    "depreciation",
+                                    "develop communications strategies",
+                                    "construction industry",
+                                    "office software",
+                                    "determine charges for customer services",
+                                    "French",
+                                    "German"
+                                ],
+    "Domain Knowledge":  "Medium",
+    "Permanent/Fixed-term (preferred)":  "Permanent",
+    "factual_xai":  [
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.557,
+                                         "Years of Experience":  1.66,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  0.17,
+                                         "Domain Knowledge":  -0.01,
+                                         "Permanent/Fixed-term (preferred)":  0.1,
+                                         "Gender":  0.0
+                                     },
+                            "factual_image":  "factual_exp_353_exp1.png",
+                            "factual_text":  "The characteristics Years of Experience, Full/Part-time (preferred), Education EQF significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Job and Language Skills significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Domain Knowledge, Gender, Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank1"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.908,
+                                         "Years of Experience":  0.83,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  0.204,
+                                         "Domain Knowledge":  -0.01,
+                                         "Permanent/Fixed-term (preferred)":  0.09,
+                                         "Gender":  -0.48
+                                     },
+                            "factual_image":  "factual_exp_353_exp2.png",
+                            "factual_text":  "The characteristics Years of Experience, Full/Part-time (preferred), Education EQF significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Gender, Job and Language Skills significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Domain Knowledge, Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank2"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.011,
+                                         "Years of Experience":  0.002,
+                                         "Education EQF":  0.023,
+                                         "Full/Part-time (preferred)":  0.013,
+                                         "Domain Knowledge":  -0.006,
+                                         "Permanent/Fixed-term (preferred)":  0.004,
+                                         "Gender":  0.01
+                                     },
+                            "factual_image":  "factual_exp_353_exp3.png",
+                            "factual_text":  "The characteristics Permanent/Fixed-term (preferred), Years of Experience, Domain Knowledge, Full/Part-time (preferred), Education EQF, Job and Language Skills, Gender do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank3"
+                        }
+                    ],
+    "counterfactual_xai":  [
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 6",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Not specified",
+                                                "Years of Experience":  5.0,
+                                                "Job and Language Skills":  [
+                                                                                "project management",
+                                                                                "accounting",
+                                                                                "advise others",
+                                                                                "advising on products and services",
+                                                                                "conduct scholarly research",
+                                                                                "develop communications strategies",
+                                                                                "implement quality management systems",
+                                                                                "English"
+                                                                            ],
+                                                "Domain Knowledge":  "Excellent",
+                                                "Permanent/Fixed-term (preferred)":  "Fixed-term"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile does not require any changes to get shortlisted.",
+                                   "ranking_type":  "rank1"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 6",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Not specified",
+                                                "Years of Experience":  5.0,
+                                                "Job and Language Skills":  [
+                                                                                "project management",
+                                                                                "accounting",
+                                                                                "advise others",
+                                                                                "advising on products and services",
+                                                                                "conduct scholarly research",
+                                                                                "develop communications strategies",
+                                                                                "implement quality management systems",
+                                                                                "English"
+                                                                            ],
+                                                "Domain Knowledge":  "Excellent",
+                                                "Permanent/Fixed-term (preferred)":  "Fixed-term"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile does not require any changes to get shortlisted.",
+                                   "ranking_type":  "rank2"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 6",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Not specified",
+                                                "Years of Experience":  5.0,
+                                                "Job and Language Skills":  [
+                                                                                "project management",
+                                                                                "accounting",
+                                                                                "advise others",
+                                                                                "advising on products and services",
+                                                                                "conduct scholarly research",
+                                                                                "develop communications strategies",
+                                                                                "implement quality management systems",
+                                                                                "English"
+                                                                            ],
+                                                "Domain Knowledge":  "Excellent",
+                                                "Permanent/Fixed-term (preferred)":  "Fixed-term"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile does not require any changes to get shortlisted.",
+                                   "ranking_type":  "rank3"
+                               }
+                           ]
+}
+

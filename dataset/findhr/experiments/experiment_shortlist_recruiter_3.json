@@ -1,0 +1,159 @@
+{
+  "exp_id": 3,
+  "description": "Experiments without XAI",
+  "tasks": [
+    {
+      "query_title": "questionnaire_1",
+      "ranking_type": "form",
+      "description": "You're about to start the experiment, but first, this part is dedicated to collect your demographic data in order to cluster the responses of each participant in the research. <br><br>Demographics will be important for the following survey. Please indicate as honestly as you can your data in the questions included below.  Please be aware that to prevent random responses we use attention checks. <br><br>Thank you for your participation. <br><br>",
+      "show_xai": false,
+      "questionnaire": [
+        {
+          "question": "1) What is your gender?",
+          "field": "gender",
+          "options": [
+            "Female",
+            "Male",
+            "Non-binary",
+            "Prefer not to say"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "2) What is your age range?",
+          "field": "age",
+          "options": [
+            "18-24",
+            "25-34",
+            "35-44",
+            "45-54",
+            "55-64",
+            "65+"
+          ],
+          "mandatory": true
+        },
+        {
+          "question": "3) What is your country of residence?",
+          "field": "country_residence",
+          "options": "text",
+          "mandatory": true
+        },
+        {
+          "question": "4) Please describe your previous experiences with AI-based hiring systems.",
+          "field": "experience_ai_ranking",
+          "options": "text",
+          "mandatory": false
+        },
+        {
+          "question": "5) How familiar are you with artificial intelligence (AI) technologies?",
+          "field": "familiarity_ai",
+          "options": "likert-7",
+          "mandatory": true
+        },
+        {
+          "question": "6) Is the sky blue?",
+          "field": "attention_blue_sky",
+          "options":["yes", "no"],
+          "mandatory": true,
+          "correct_answer": "yes"
+        }
+      ]
+    },
+    {
+      "query_title": "attention_task",
+      "show_xai": false,
+      "ranking_type": "form",
+      "description": "Answer the following questions to check the comprehension of the task description.",
+      "questionnaire": [
+        {
+          "question": "1) Is the decision made by an AI?",
+          "field": "attention_AI",
+          "options": [
+            "No",
+            "Yes"
+          ],
+          "mandatory": true,
+           "correct_answer": "Yes"
+        }
+      ]
+    },
+    {
+      "query_title": "job_2_1",
+      "ranking_type": "rank3",
+      "show_xai": false,
+       "questionnaire": [
+	    {
+          "question": "1) Indicate the amount of mental effort that you spent on the practice task you have just finished.",
+          "field": "mental_effort_rating_1",
+          "options": ["1: Very, very low mental effort", "2: Very low", "3: Low", "4: Rather low", "5: Neither low nor high", "6: Rather high", "7: High", "8: Very high", "9: Very, very high mental effort"],
+          "mandatory": true
+        },
+		{
+          "question": "2) Did you notice if candidates were ranked in one of the following ways?",
+          "field": "ranking_perception_1",
+          "options": ["fairly", "unfairly", "randomly", "I don't know"],
+          "mandatory": true
+        },
+
+        {
+          "question": "3) In your own words, describe how you think the AI made this decision for the task you have just completed.",
+          "field": "ranking_comment",
+          "options": "text-multiline",
+          "mandatory": true
+        }
+      ]
+    },
+    {
+      "query_title": "job_36_1",
+      "ranking_type": "rank1",
+      "show_xai": false,
+       "questionnaire": [
+	    {
+          "question": "1) Indicate the amount of mental effort that you spent on the practice task you have just finished.",
+          "field": "mental_effort_rating_1",
+          "options": ["1: Very, very low mental effort", "2: Very low", "3: Low", "4: Rather low", "5: Neither low nor high", "6: Rather high", "7: High", "8: Very high", "9: Very, very high mental effort"],
+          "mandatory": true
+        },
+		{
+          "question": "2) Did you notice if candidates were ranked in one of the following ways?",
+          "field": "ranking_perception_1",
+          "options": ["fairly", "unfairly", "randomly", "I don't know"],
+          "mandatory": true
+        },
+
+        {
+          "question": "3) In your own words, describe how you think the AI made this decision for the task you have just completed.",
+          "field": "ranking_comment",
+          "options": "text-multiline",
+          "mandatory": true
+        }
+      ]
+    },
+    {
+      "query_title": "job_45_1",
+      "ranking_type": "rank2",
+      "show_xai": false,
+       "questionnaire": [
+	    {
+          "question": "1) Indicate the amount of mental effort that you spent on the practice task you have just finished.",
+          "field": "mental_effort_rating_1",
+          "options": ["1: Very, very low mental effort", "2: Very low", "3: Low", "4: Rather low", "5: Neither low nor high", "6: Rather high", "7: High", "8: Very high", "9: Very, very high mental effort"],
+          "mandatory": true
+        },
+		{
+          "question": "2) Did you notice if candidates were ranked in one of the following ways?",
+          "field": "ranking_perception_1",
+          "options": ["fairly", "unfairly", "randomly", "I don't know"],
+          "mandatory": true
+        },
+
+        {
+          "question": "3) In your own words, describe how you think the AI made this decision for the task you have just completed.",
+          "field": "ranking_comment",
+          "options": "text-multiline",
+          "mandatory": true
+        }
+      ]
+    }
+  ]
+}

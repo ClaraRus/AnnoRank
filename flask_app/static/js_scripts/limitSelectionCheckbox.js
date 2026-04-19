@@ -12,12 +12,12 @@
         var checkbox_1 = document.getElementById(id_1);
         var checkbox_2 = document.getElementById(id_2);
 
-        // Toggle the checked state of the clicked checkbox
         if (checkbox_2.checked){
         checkbox_2.checked = false;
         }
 
 
-        // Uncheck the other checkbox
         checkbox_1.checked = true;
 }
+
+

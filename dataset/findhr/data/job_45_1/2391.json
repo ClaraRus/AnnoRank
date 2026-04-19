@@ -1,0 +1,154 @@
+{
+    "Candidate ID":  2391,
+    "Education EQF":  "level 5 or less",
+    "Gender":  0,
+    "Full/Part-time (preferred)":  "Part time contract",
+    "Years of Experience":  7,
+    "Job and Language Skills":  [
+                                    "project management",
+                                    "seek innovation in current practices",
+                                    "adapt to change",
+                                    "Spanish",
+                                    "English"
+                                ],
+    "Domain Knowledge":  "Sufficient",
+    "Permanent/Fixed-term (preferred)":  "Permanent",
+    "text_xai": [
+      {
+        "text": "The characteristics Full/Part-time (preferred), Job and Language Skills significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Domain Knowledge, Education EQF significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Gender, Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+        "ranking_type":  "rank1"
+      },
+      {
+        "text": "The characteristics Full/Part-time (preferred), Job and Language Skills significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Gender, Domain Knowledge, Education EQF significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+        "ranking_type":  "rank2"
+      },
+      {
+        "text": "The characteristics Permanent/Fixed-term (preferred), Years of Experience, Domain Knowledge, Full/Part-time (preferred), Education EQF, Job and Language Skills, Gender do not appear to influence the match between this candidate and the displayed job offer.",
+        "ranking_type":  "rank3"
+      }
+    ],
+    "image_xai": [
+      {
+        "image": "factual_exp_2391_exp1.png",
+        "text": "The characteristics Full/Part-time (preferred), Job and Language Skills significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Domain Knowledge, Education EQF significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Gender, Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+        "ranking_type":  "rank1"
+      },
+      {
+        "image": "factual_exp_2391_exp2.png",
+        "text": "",
+        "ranking_type":  "rank2"
+      },
+      {
+        "image": "factual_exp_2391_exp3.png",
+        "text": "",
+        "ranking_type":  "rank3"
+      }
+    ],
+    "factual_xai":  [
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  0.443,
+                                         "Years of Experience":  -0.34,
+                                         "Education EQF":  -1.155,
+                                         "Full/Part-time (preferred)":  0.17,
+                                         "Domain Knowledge":  -0.177,
+                                         "Permanent/Fixed-term (preferred)":  0.1,
+                                         "Gender":  0.0
+                                     },
+                            "factual_image":  "factual_exp_2391_exp1.png",
+                            "factual_text":  "The characteristics Full/Part-time (preferred), Job and Language Skills significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Domain Knowledge, Education EQF significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Gender, Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank1"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  1.092,
+                                         "Years of Experience":  -0.17,
+                                         "Education EQF":  -1.155,
+                                         "Full/Part-time (preferred)":  0.204,
+                                         "Domain Knowledge":  -0.177,
+                                         "Permanent/Fixed-term (preferred)":  0.09,
+                                         "Gender":  -0.48
+                                     },
+                            "factual_image":  "factual_exp_2391_exp2.png",
+                            "factual_text":  "The characteristics Full/Part-time (preferred), Job and Language Skills significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Gender, Domain Knowledge, Education EQF significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank2"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  0.0,
+                                         "Years of Experience":  0.002,
+                                         "Education EQF":  0.011,
+                                         "Full/Part-time (preferred)":  0.012,
+                                         "Domain Knowledge":  0.0,
+                                         "Permanent/Fixed-term (preferred)":  -0.002,
+                                         "Gender":  -0.003
+                                     },
+                            "factual_image":  "factual_exp_2391_exp3.png",
+                            "factual_text":  "The characteristics Permanent/Fixed-term (preferred), Years of Experience, Domain Knowledge, Full/Part-time (preferred), Education EQF, Job and Language Skills, Gender do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank3"
+                        }
+                    ],
+    "counterfactual_xai":  [
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Part time contract",
+                                                "Years of Experience":  5,
+                                                "Job and Language Skills":  [
+                                                                                "seek innovation in current practices",
+                                                                                "adapt to change",
+                                                                                "project management",
+                                                                                "financial analysis",
+                                                                                "Spanish",
+                                                                                "English"
+                                                                            ],
+                                                "Domain Knowledge":  "Sufficient",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027seek innovation in current practices\u0027, \u0027adapt to change\u0027, \u0027project management\u0027, \u0027financial analysis\u0027, \u0027Spanish\u0027, \u0027English\u0027]\nYears of Experience: 5\n",
+                                   "ranking_type":  "rank1"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Part time contract",
+                                                "Years of Experience":  5,
+                                                "Job and Language Skills":  [
+                                                                                "adapt to change",
+                                                                                "seek innovation in current practices",
+                                                                                "project management",
+                                                                                "financial analysis",
+                                                                                "Spanish",
+                                                                                "English"
+                                                                            ],
+                                                "Domain Knowledge":  "Sufficient",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027adapt to change\u0027, \u0027seek innovation in current practices\u0027, \u0027project management\u0027, \u0027financial analysis\u0027, \u0027Spanish\u0027, \u0027English\u0027]\nYears of Experience: 5\n",
+                                   "ranking_type":  "rank2"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Female",
+                                                "Full/Part-time (preferred)":  "Part time contract",
+                                                "Years of Experience":  5,
+                                                "Job and Language Skills":  [
+                                                                                "seek innovation in current practices",
+                                                                                "adapt to change",
+                                                                                "project management",
+                                                                                "adapt teaching to target group",
+                                                                                "Spanish",
+                                                                                "English"
+                                                                            ],
+                                                "Domain Knowledge":  "Sufficient",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile should be improved to get shortlisted by changing the following characteristics: \nJob and Language Skills: [\u0027seek innovation in current practices\u0027, \u0027adapt to change\u0027, \u0027project management\u0027, \u0027adapt teaching to target group\u0027, \u0027Spanish\u0027, \u0027English\u0027]\nYears of Experience: 5\n",
+                                   "ranking_type":  "rank3"
+                               }
+                           ]
+}
+

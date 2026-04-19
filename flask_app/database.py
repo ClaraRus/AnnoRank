@@ -29,6 +29,7 @@ from mongoengine import *
 """
 Definition of the MongoDB data structure. 
 """
+
 class DocRepr(DynamicDocument):
     meta = {
         'collection': 'documents'
@@ -69,7 +70,7 @@ class Task(DynamicDocument):
     meta = {
         'collection': 'tasks'
     }
-    _id = ObjectIdField()
+    # _id = ObjectIdField()
     data = StringField(default="")
     ranking_type = StringField(default="")
     setting = StringField(default="")
@@ -101,16 +102,32 @@ class Experiment(Document):
         'collection': 'experiments'
     }
     _id = ObjectIdField()
-    _exp_id = StringField(required=True)
+    _exp_id = StringField(required=True, db_field="_exp_id")
     _description = StringField(default="")
     tasks = ListField()
 
 
 class Interaction(EmbeddedDocument):
     doc_id = StringField(default="")
-    n_views = StringField(default="")
-    timestamps = ListField()
     shortlisted = StringField(default="")
+
+    view = StringField(default="0")
+    timestamps = ListField()
+
+    view_factual = StringField(default="0")
+    view_factual_timestamps = ListField()
+
+    view_counterfactual = StringField(default="0")
+    view_counterfactual_timestamps = ListField()
+
+    view_image = StringField(default="0")
+    view_image_timestamps = ListField()
+
+    view_text = StringField(default="0")
+    view_text_timestamps = ListField()
+
+    view_image_text = StringField(default="0")
+    view_image_text_timestamps = ListField()
 
 
 class InteractionCompare(EmbeddedDocument):
@@ -132,7 +149,7 @@ class TaskVisited(EmbeddedDocument):
     interaction_score = EmbeddedDocumentField(InteractionScore, default=InteractionScore())
     interactions = EmbeddedDocumentListField(Interaction)
     order_checkbox = ListField()
-
+    form_submission = DictField()
 
 class User(DynamicDocument):
     meta = {
@@ -141,10 +158,9 @@ class User(DynamicDocument):
     _id = ObjectIdField()
     _user_id = StringField(required=True)
     _attention_check = StringField(default="")
+    _reload_attention_check = StringField(default="")
     tasks_visited = EmbeddedDocumentListField(TaskVisited)
-
-
-
+    exit_form = DictField()
 
 def create_collections():
     db = get_db()
@@ -181,3 +197,6 @@ def create_collections():
         dummy_document = Experiment(_exp_id="dummy--")
         dummy_document.save()
         Experiment.objects().delete()
+
+
+

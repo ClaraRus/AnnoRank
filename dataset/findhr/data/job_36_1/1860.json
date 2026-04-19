@@ -1,0 +1,113 @@
+{
+    "Candidate ID":  1860,
+    "Education EQF":  "level 5 or less",
+    "Gender":  0,
+    "Full/Part-time (preferred)":  "Full time contract",
+    "Years of Experience":  12,
+    "Job and Language Skills":  [
+                                    "show professional responsibility",
+                                    "exercise patience",
+                                    "environment",
+                                    "English"
+                                ],
+    "Domain Knowledge":  "Medium",
+    "Permanent/Fixed-term (preferred)":  "Fixed-term",
+    "factual_xai":  [
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  0.443,
+                                         "Years of Experience":  -0.34,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  0.17,
+                                         "Domain Knowledge":  -0.01,
+                                         "Permanent/Fixed-term (preferred)":  0.1,
+                                         "Gender":  0.0
+                                     },
+                            "factual_image":  "factual_exp_1860_exp1.png",
+                            "factual_text":  "The characteristics Education EQF, Full/Part-time (preferred), Job and Language Skills significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Domain Knowledge, Gender, Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank1"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  1.092,
+                                         "Years of Experience":  -0.17,
+                                         "Education EQF":  0.345,
+                                         "Full/Part-time (preferred)":  0.204,
+                                         "Domain Knowledge":  -0.01,
+                                         "Permanent/Fixed-term (preferred)":  0.09,
+                                         "Gender":  -0.48
+                                     },
+                            "factual_image":  "factual_exp_1860_exp2.png",
+                            "factual_text":  "The characteristics Education EQF, Full/Part-time (preferred), Job and Language Skills significantly improve the match between this candidate and the displayed job offer. \nThe characteristics Years of Experience, Gender significantly weaken the match between this candidate and the displayed job offer. \nThe characteristics Domain Knowledge, Permanent/Fixed-term (preferred), Job and Language Skills do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank2"
+                        },
+                        {
+                            "data":  {
+                                         "Job and Language Skills":  -0.007,
+                                         "Years of Experience":  0.016,
+                                         "Education EQF":  0.001,
+                                         "Full/Part-time (preferred)":  -0.005,
+                                         "Domain Knowledge":  0.002,
+                                         "Permanent/Fixed-term (preferred)":  -0.006,
+                                         "Gender":  0.003
+                                     },
+                            "factual_image":  "factual_exp_1860_exp3.png",
+                            "factual_text":  "The characteristics Permanent/Fixed-term (preferred), Years of Experience, Domain Knowledge, Full/Part-time (preferred), Education EQF, Job and Language Skills, Gender do not appear to influence the match between this candidate and the displayed job offer.",
+                            "ranking_type":  "rank3"
+                        }
+                    ],
+    "counterfactual_xai":  [
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Male",
+                                                "Full/Part-time (preferred)":  "Not specified",
+                                                "Years of Experience":  5.0,
+                                                "Job and Language Skills":  [
+                                                                                "sustainable development goals",
+                                                                                "photography",
+                                                                                "French"
+                                                                            ],
+                                                "Domain Knowledge":  "Excellent",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile does not require any changes to get shortlisted.",
+                                   "ranking_type":  "rank1"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Male",
+                                                "Full/Part-time (preferred)":  "Not specified",
+                                                "Years of Experience":  5.0,
+                                                "Job and Language Skills":  [
+                                                                                "sustainable development goals",
+                                                                                "photography",
+                                                                                "French"
+                                                                            ],
+                                                "Domain Knowledge":  "Excellent",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile does not require any changes to get shortlisted.",
+                                   "ranking_type":  "rank2"
+                               },
+                               {
+                                   "data":  {
+                                                "Education EQF":  "level 5 or less",
+                                                "Gender":  "Male",
+                                                "Full/Part-time (preferred)":  "Not specified",
+                                                "Years of Experience":  5.0,
+                                                "Job and Language Skills":  [
+                                                                                "sustainable development goals",
+                                                                                "photography",
+                                                                                "French"
+                                                                            ],
+                                                "Domain Knowledge":  "Excellent",
+                                                "Permanent/Fixed-term (preferred)":  "Permanent"
+                                            },
+                                   "counterfactual_text":  "The candidate\u0027s profile does not require any changes to get shortlisted.",
+                                   "ranking_type":  "rank3"
+                               }
+                           ]
+}
+

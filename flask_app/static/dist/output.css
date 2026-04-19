@@ -126709,12 +126709,16 @@ video {
             padding: 10px 20px;
         }
 
-  .view-button {
-            background-color: blue; /* Green color */
-            color: #fff; /* Text color */
-            border-radius: 10px; /* Rounded edges */
-            cursor: pointer;
-            padding: 10px 20px;}
+.view-button {
+    display: flex;                 /* make it a flex container */
+    align-items: center;           /* vertical centering */
+    justify-content: center;       /* horizontal centering */
+    background-color: blue;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 10px 20px;
+}
 
 
   .xl\:mr-3 {
@@ -182540,4 +182544,6 @@ video {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
+
+
 

@@ -28,3 +28,9 @@ More information about the software usage, UI and database configurations, and o
 [Database](Database.md)
 [Additional Support](Additional_Support.md)
 
+## v1 — XAnnoRank (Explainable AI support)
+
+XAnnoRank extends AnnoRank with an Explainable AI (XAI) annotation layer that presents AI-generated explanations alongside ranked candidates. <br>
+[XAI UI Functionalities](XAI_UI_Functionalities.md)<br>
+[XAI Configuration](XAI_Configuration.md)<br>
+[XAI Ranking App](XAI_Ranking_App.md)
