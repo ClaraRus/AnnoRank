@@ -1,0 +1,149 @@
+name: Deploy docs
+permissions:
+  contents: write
+
+on:
+  repository_dispatch:
+    types: [trigger-mkdocs]
+
+  push:
+    branches:
+      - mkdocs
+
+  pull_request:
+    branches:
+      - main
+      - mkdocs
+
+jobs:
+  deploy-v0:
+    name: Build and deploy v0 docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout mkdocs branch
+        uses: actions/checkout@v3
+        with:
+          ref: mkdocs
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Fetch main branch source code
+        run: |
+          git fetch origin main
+          git checkout origin/main -- flask_app src
+
+      - name: Install Crystal
+        uses: oprypin/install-crystal@v1
+
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Python libs
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          pip install -r docs/requirements.txt
+
+      - name: Install Crystal libs
+        run: |
+          shards init
+          shards install
+
+      - name: Build site
+        run: mkdocs build
+
+      - name: Configure git for mike
+        if: github.event_name != 'pull_request'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Ensure remote gh-pages is available and up-to-date
+        if: github.event_name == 'repository_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/mkdocs')
+        run: |
+          # fetch remote gh-pages (ignore failure if it doesn't exist)
+          git fetch origin gh-pages || true
+
+          # If remote gh-pages exists, create/update a local gh-pages branch to match it,
+          # then rebase local state so pushes will be fast-forward.
+          if git ls-remote --exit-code --heads origin gh-pages >/dev/null 2>&1; then
+            # create or force-update a local gh-pages branch to match origin/gh-pages
+            git branch --force gh-pages origin/gh-pages
+            # switch to it and pull --rebase to ensure it's up-to-date
+            git checkout gh-pages
+            git pull --rebase origin gh-pages || true
+            # return to previous branch
+            git checkout - >/dev/null 2>&1 || true
+            # delete the temp local branch so mike can operate normally
+            git branch -D gh-pages || true
+          fi
+
+      - name: Deploy v0 to gh-pages
+        if: github.event_name == 'repository_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/mkdocs')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: mike deploy --push v0
+
+  deploy-v1:
+    name: Build and deploy v1 docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout mkdocs branch
+        uses: actions/checkout@v3
+        with:
+          ref: mkdocs
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Fetch XAnnoRank branch source code
+        run: |
+          git fetch origin XAnnoRank
+          git checkout origin/XAnnoRank -- flask_app src
+
+      - name: Install Crystal
+        uses: oprypin/install-crystal@v1
+
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Python libs
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          pip install -r docs/requirements.txt
+
+      - name: Install Crystal libs
+        run: |
+          shards init
+          shards install
+
+      - name: Build site
+        run: mkdocs build
+
+      - name: Configure git for mike
+        if: github.event_name == 'push' && github.ref == 'refs/heads/mkdocs'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Ensure remote gh-pages is available and up-to-date
+        if: github.event_name == 'push' && github.ref == 'refs/heads/mkdocs'
+        run: |
+          git fetch origin gh-pages || true
+          if git ls-remote --exit-code --heads origin gh-pages >/dev/null 2>&1; then
+            git branch --force gh-pages origin/gh-pages
+            git checkout gh-pages
+            git pull --rebase origin gh-pages || true
+            git checkout - >/dev/null 2>&1 || true
+            git branch -D gh-pages || true
+          fi
+
+      - name: Deploy v1 to gh-pages and set as default
+        if: github.event_name == 'push' && github.ref == 'refs/heads/mkdocs'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mike deploy --push --update-aliases v1 latest
+          mike set-default --push latest
