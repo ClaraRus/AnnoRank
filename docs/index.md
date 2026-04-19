@@ -34,4 +34,3 @@ XAnnoRank extends AnnoRank with an Explainable AI (XAI) annotation layer that pr
 [XAI UI Functionalities](XAI_UI_Functionalities.md)<br>
 [XAI Configuration](XAI_Configuration.md)<br>
 [XAI Ranking App](XAI_Ranking_App.md)
-
