@@ -10,6 +10,13 @@ AnnoRank offers support for applying fairness interventions in the pipeline of a
 In addition, the tool is integrated with the Ranklib library, offering a vast range of ranking models that can be applied to the data and displayed in the UI. 
 AnnoRank is designed to be flexible, configurable, and easy to deploy to meet diverse requirements and a larger audience. 
 
+# Documentation Versioning
+The AnnoRank documentation is versioned using [mike](https://github.com/jimporter/mike) on top of MkDocs and deployed to GitHub Pages. Each release is published under a version alias (e.g. `v0`, `v1`) with `latest` always pointing to the most recent stable version. The versioning workflow is defined in `.github/workflows/deploy-docs.yaml` and triggers automatically on pushes to the `mkdocs` branch.
+
+To browse a specific version of the documentation, append the version alias to the base URL, for example:
+- `https://clararus.github.io/AnnoRank/v1/` — current release
+- `https://clararus.github.io/AnnoRank/latest/` — always the most recent release
+
 # External Resource
 In the folder external resources the following can be found:
 - The code to run AnnoRank can be found [here](https://github.com/ClaraRus/AnnoRank/tree/main). 
