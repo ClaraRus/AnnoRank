@@ -1,0 +1,52 @@
+site_name: AnnoRank
+site_url: https://clararus.github.io/AnnoRank/
+repo_url: https://github.com/ClaraRus/AnnoRank
+edit_uri: blob/master/docs/
+
+theme:
+  name: material
+
+extra:
+  version:
+    provider: mike
+
+nav:
+  - Home: index.md
+  - UI Functionalities: UI_Functionalities.md
+  - Configuration File: Configuration_File.md
+  - Experiment File: Experiment_File.md
+  - Displaying Dataset: Displaying_Dataset.md
+  - Database: Database.md
+  - Database Pipeline: Database_Pipeline.md
+  - Database Structure: Database_structure.md
+  - Data Readers: Data_Readers.md
+  - Apps:
+      - Annotate Document App: Annotate_Document_App.md
+      - Ranking App: Ranking_App.md
+      - Ranking Compare App: Ranking_Compare_App.md
+      - Ranking Compare Annotate App: Ranking_Compare_Annotate_App.md
+  - Annotations Quality: Annotations_Quality.md
+  - Additional Support: Additional_Support.md
+
+markdown_extensions:
+  - pymdownx.highlight
+  - deduplicate-toc
+
+plugins:
+- mike:
+    alias_type: symlink
+    canonical_version: latest
+- mkdocstrings:
+    enabled: true
+    default_handler: python
+    watch: [flask_app, src]
+    handlers:
+      python:
+        setup_commands:
+            - import sys
+            - sys.path.append("src")
+            - sys.path.append("flask_app")
+        rendering:
+          show_source: true
+        options:
+          show_source: false
