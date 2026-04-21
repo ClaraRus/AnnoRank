@@ -1,6 +1,4 @@
 name: Deploy docs
-permissions:
-  contents: write
 
 on:
   repository_dispatch:
@@ -25,7 +23,6 @@ jobs:
         with:
           ref: mkdocs
           fetch-depth: 0
-          persist-credentials: true
 
       - name: Fetch main branch source code
         run: |
@@ -51,7 +48,7 @@ jobs:
           shards install
 
       - name: Build site
-        run: mkdocs build
+        run: mkdocs build --config-file mkdocs-v0.yml
 
       - name: Configure git for mike
         if: github.event_name != 'pull_request'
@@ -59,34 +56,15 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Ensure remote gh-pages is available and up-to-date
-        if: github.event_name == 'repository_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/mkdocs')
-        run: |
-          # fetch remote gh-pages (ignore failure if it doesn't exist)
-          git fetch origin gh-pages || true
-
-          # If remote gh-pages exists, create/update a local gh-pages branch to match it,
-          # then rebase local state so pushes will be fast-forward.
-          if git ls-remote --exit-code --heads origin gh-pages >/dev/null 2>&1; then
-            # create or force-update a local gh-pages branch to match origin/gh-pages
-            git branch --force gh-pages origin/gh-pages
-            # switch to it and pull --rebase to ensure it's up-to-date
-            git checkout gh-pages
-            git pull --rebase origin gh-pages || true
-            # return to previous branch
-            git checkout - >/dev/null 2>&1 || true
-            # delete the temp local branch so mike can operate normally
-            git branch -D gh-pages || true
-          fi
-
       - name: Deploy v0 to gh-pages
         if: github.event_name == 'repository_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/mkdocs')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: mike deploy --push v0
+        run: mike deploy --push --config-file mkdocs-v0.yml v0
 
   deploy-v1:
     name: Build and deploy v1 docs
+    needs: [deploy-v0]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout mkdocs branch
@@ -94,7 +72,6 @@ jobs:
         with:
           ref: mkdocs
           fetch-depth: 0
-          persist-credentials: true
 
       - name: Fetch XAnnoRank branch source code
         run: |
@@ -127,18 +104,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Ensure remote gh-pages is available and up-to-date
-        if: github.event_name == 'push' && github.ref == 'refs/heads/mkdocs'
-        run: |
-          git fetch origin gh-pages || true
-          if git ls-remote --exit-code --heads origin gh-pages >/dev/null 2>&1; then
-            git branch --force gh-pages origin/gh-pages
-            git checkout gh-pages
-            git pull --rebase origin gh-pages || true
-            git checkout - >/dev/null 2>&1 || true
-            git branch -D gh-pages || true
-          fi
 
       - name: Deploy v1 to gh-pages and set as default
         if: github.event_name == 'push' && github.ref == 'refs/heads/mkdocs'
