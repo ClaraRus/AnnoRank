@@ -64,6 +64,7 @@ jobs:
 
   deploy-v1:
     name: Build and deploy v1 docs
+    needs: [deploy-v0]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout mkdocs branch
