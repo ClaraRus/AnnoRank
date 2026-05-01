@@ -298,9 +298,6 @@ def get_xai_data(doc_obj, ranking_type, type="factual"):
         xai_list = xai_raw
 
     xai_data_list = [xai for xai in xai_list if xai.get("ranking_type") == ranking_type]
-    user = database.User.objects(_user_id=session['user_id']).first()
-    user["debug"].extend(xai_data_list)
-    user.save()
 
     if not xai_data_list:
         if type == "counterfactual":
