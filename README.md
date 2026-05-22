@@ -3,12 +3,12 @@
 We present AnnoRank, a web-based user interface (UI) framework designed to facilitate the collection of both explicit and implicit annotations in the context of information retrieval (IR). 
 The tool has three primary functionalities.
 First, the tool collects explicit and implicit annotations given a query and a ranked list of items. 
-Second, it facilitates explicit annotation of items based on relevance labels in response to a given query. 
-Third, the functionality in AnnoRank for comparing rankings serves the purpose of visualizing and assessing a ranked list produced by various fairness interventions or ranking models alongside utility and fairness metrics. 
-Given the extensive use of ranking systems, the application supports the presentation of text and images. 
-AnnoRank offers support for applying fairness interventions in the pipeline of a ranking system to avoid the propagation of bias in a ranking being returned. 
-In addition, the tool is integrated with the Ranklib library, offering a vast range of ranking models that can be applied to the data and displayed in the UI. 
-AnnoRank is designed to be flexible, configurable, and easy to deploy to meet diverse requirements and a larger audience. 
+Second, it facilitates explicit annotation of items based on relevance labels in response to a given query.
+Third, the functionality in AnnoRank for comparing rankings serves the purpose of visualizing and assessing a ranked list produced by various fairness interventions or ranking models alongside utility and fairness metrics.
+Given the extensive use of ranking systems, the application supports the presentation of text and images.
+AnnoRank offers support for applying fairness interventions in the pipeline of a ranking system to avoid the propagation of bias in a ranking being returned.
+In addition, the tool is integrated with the Ranklib library, offering a vast range of ranking models that can be applied to the data and displayed in the UI.
+AnnoRank is designed to be flexible, configurable, and easy to deploy to meet diverse requirements and a larger audience.
 
 # External Resource
 In the folder external resources the following can be found:
