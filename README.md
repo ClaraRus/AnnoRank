@@ -1,23 +1,23 @@
 # XAnnoRank
 **XAnnorank** is an extension of **AnnoRank** that supports explainability studies in rankings via user-centered evaluation. XAnnorank provides an easily adaptable user interface (UI) that enables systematic assessment of explainability methods by presenting ranked lists with and without explanations, while collecting both implicit and explicit user feedback. Its flexibility facilitates diverse user design, including different explanation types, datasets, ranking models, and researcher-defined configurations. This updated version supports as well the previous functionalities of AnnoRank: collect interactions between the user and the ranked list of items, collect graded relevance for an item given the displayed query, and compare two rankings and assess which ranking is more suitable given the query and the assessment's requirements. Moreover, AnnoRank offers the researcher the possibility to view the annotations collected and compare two rankings as well as viewing the corresponding evaluation metrics.
   
-# Requirements 
+## Requirements 
 Depending on your development system, instructions on how to install the Docker and MongoDB can be found here.
 
-## Docker
+### Docker
 Install Docker Engine by following the steps presented here: 
 - https://docs.docker.com/engine/install/
 
 Alternatively, install Docker Desktop:
 - https://www.docker.com/products/docker-desktop/
 
-## MongoDB
+### MongoDB
 Install MongoDB Compass to view the dataset created and its collections: 
 - https://www.mongodb.com/products/tools/compass
 
 The following connection string should be used `mongodb://<IP>:27017`.`<IP>` should be replaced by the IP address for of the machine running the docker containers.
   
-# Important Installation Remarks
+### Important Installation Remarks
 - Ensure that the `.env` file is present in your cloned repository.
 - Windows users must have **WSL2** and enabled for usage in docker settings.
 - If the script cannot be executed, this may be caused by Windows line endings. This issue can be resolved by converting the files to Unix format using:
@@ -27,12 +27,12 @@ dos2unix apps_docker.sh
 ```
 - Whenever a dataset is modified, the `format_data` folder within the dataset directory should be removed before rerunning the script. 
 
-# Export Data
+## Export Data
 ```bash
 docker exec -it $(docker ps -q | sed -n '1p') bash -c 'mongoexport --host="localhost:27017" --collection=<collection_name> --db=<db_name> --out=./app/database.json' && docker cp "$(docker ps -q | head -n 1)":./app/database.json <local_path_to_save>
 ```
 
-# Demo: Recruitment Use Case
+## Demo: Recruitment Use Case
 This demo supports two user perspectives in a recruitment setting:
 1. That of a **candidate**, where the user impersonates a job seeker who was not selected by the AI system and is asked to critically evaluate the AI's decision based on their profile and the job requirements. 
 2. That of a **recruiter**, where the user acts as a recruiter reviewing the AI-ranked candidate list and must shortlist a defined number of candidates. 
@@ -43,7 +43,7 @@ cd Annorank
 ./run_apps.sh
 ```
 
-## Candidate Side
+### Candidate Side
 Access: `http://localhost:5005/start_ranking_XAI/<exp_id>`
 - `Exp_id`:
   - **101**: This experiment is composed only of questionnaires. In our recruitment demonstration we show to a candidate various explanations and ask the candidate to evaluate their usefulness. XAnnoRank supports both the display of text and images in the questionnaires.
@@ -51,7 +51,7 @@ Access: `http://localhost:5005/start_ranking_XAI/<exp_id>`
   - **103**: In this experiment we ask the user to impersonate a job seeker. The user is then presented with the various job descriptions and their profile. The user is asked to interact with the UI which this time does not show any explanation. In the follow-up questionnaire the user is asked to evaluate whether the reason for rejection is clear. With such a set-up XAnnoRank can be used to conduct A-B test experiments, where one pool of users is presented with the explanations, and the other without explanations. 
   - **104**: In this experiment the user is first presented with the job description and their profile without explanations, in the second part of the study they are presented with the explanation. Each task is followed by a questionnaire evaluating the previously seen explanations and interaction with the UI. In this way one can evaluate the impact of various explanation methods on the user's perception and behaviour. 
 
-## Recruiter Side[^recruiter]:
+### Recruiter Side[^recruiter]:
 Access: `http://localhost:5004/start_ranking_XAI/<exp_id>`
 - `Exp_id`:
   - **1**: This experiment is composed only of questionnaires. The recruiter is presented with various explanations and asked to evaluate them.
