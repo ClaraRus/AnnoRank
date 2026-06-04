@@ -1,14 +1,16 @@
-
 # XAnnoRank
 **XAnnorank** is an extension of **AnnoRank** that supports explainability studies in rankings via user-centered evaluation. XAnnorank provides an easily adaptable user interface (UI) that enables systematic assessment of explainability methods by presenting ranked lists with and without explanations, while collecting both implicit and explicit user feedback. Its flexibility facilitates diverse user design, including different explanation types, datasets, ranking models, and researcher-defined configurations. This updated version supports as well the previous functionalities of AnnoRank: collect interactions between the user and the ranked list of items, collect graded relevance for an item given the displayed query, and compare two rankings and assess which ranking is more suitable given the query and the assessment's requirements. Moreover, AnnoRank offers the researcher the possibility to view the annotations collected and compare two rankings as well as viewing the corresponding evaluation metrics.
   
 # Requirements 
 Depending on your development system, instructions on how to install the Docker and MongoDB can be found here.
+
 ## Docker
 Install Docker Engine by following the steps presented here: 
 - https://docs.docker.com/engine/install/
+
 Alternatively, install Docker Desktop:
 - https://www.docker.com/products/docker-desktop/
+
 ## MongoDB
 Install MongoDB Compass to view the dataset created and its collections: 
 - https://www.mongodb.com/products/tools/compass
@@ -39,6 +41,7 @@ Run the following script and type *"findhr"*:
 cd Annorank
 ./run_apps.sh
 ```
+
 To access the tool for the Demo:
 - **Candidate** side: `http://localhost:5005/start_ranking_XAI/<exp_id>`
   - `Exp_id`:
