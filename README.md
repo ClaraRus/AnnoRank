@@ -12,7 +12,7 @@ Alternatively, install Docker Desktop:
 ## MongoDB
 Install MongoDB Compass to view the dataset created and its collections: 
 - https://www.mongodb.com/products/tools/compass
-The following connection string should be used *mongodb://<IP>:27017*.`<IP>` should be replaced by the IP address for of the machine running the docker containers.
+The following connection string should be used ```mongodb://<IP>:27017```.`<IP>` should be replaced by the IP address for of the machine running the docker containers.
   
 # Important Installation Remarks
 - Ensure that the `.env` file is present in your cloned repository.
