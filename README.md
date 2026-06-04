@@ -34,7 +34,7 @@ This demo supports two user perspectives in a recruitment setting:
 1. That of a <u>candidate</u>, where the user impersonates a job seeker who was not selected by the AI system and is asked to critically evaluate the AI's decision based on their profile and the job requirements. 
 2. That of a <u>recruiter</u>, where the user acts as a recruiter reviewing the AI-ranked candidate list and must shortlist a defined number of candidates. 
 
-Run the following script and type "findhr":
+Run the following script and type *"findhr"*:
 ```bash
 cd Annorank
 ./run_apps.sh
@@ -46,8 +46,8 @@ To access the tool for the Demo:
     - **102**: In this experiment we ask the user to impersonate a job seeker. The user is then presented with the various job descriptions and their profile. The user is asked to interact with the UI presenting in each task a different type of explanation. In the follow-up questionnaire the user is asked to evaluate the previously seen explanation type. In this way XAnnoRank can be used to compare various types of explanation methods.
     - **103**: In this experiment we ask the user to impersonate a job seeker. The user is then presented with the various job descriptions and their profile. The user is asked to interact with the UI which this time does not show any explanation. In the follow-up questionnaire the user is asked to evaluate whether the reason for rejection is clear. With such a set-up XAnnoRank can be used to conduct A-B test experiments, where one pool of users is presented with the explanations, and the other without explanations. 
     - **104**: In this experiment the user is first presented with the job description and their profile without explanations, in the second part of the study they are presented with the explanation. Each task is followed by a questionnaire evaluating the previously seen explanations and interaction with the UI. In this way one can evaluate the impact of various explanation methods on the user's perception and behaviour. 
-- <u>Recruiter</u> side[^recruiter]: http://localhost:5004/start_ranking_XAI/<exp_id>
-  - Exp_id:
+- <u>Recruiter</u> side[^recruiter] : http://localhost:5004/start_ranking_XAI/<exp_id>
+  - `Exp_id`:
     - **1**: This experiment is composed only of questionnaires. The recruiter is presented with various explanations and asked to evaluate them.
     - **2**: This experiment shows various types of explanations followed by a questionnaire. The recruiter is asked to choose the best candidates to be shortlisted.
     - **3**: The recruiter is asked to choose the best candidate/s, but without the extra information provided by the explanations. This gives the opportunity to run an A-B test study by showing to a pool of candidates the task without XAI, and to another pool the task with XAI. This is useful in understanding how explanations impact the recruitment process and the recruiter’s behaviour.
@@ -56,5 +56,5 @@ To access the tool for the Demo:
 # External Resource
 In the folder `external resources`, additional [documentation of XAnnorank](https://github.com/ClaraRus/AnnoRank/blob/XAnnoRank/external-resources/XAnno_Rank_Documentation.pdf) is available to configure to custom datasets.
 
-[^recruiter] Recruiter-side experiments are similar to the candidate side, with the difference that they should be shown to a recruiter, and the recruiter is presented with the job description together with the list of candidates who applied to that particular job offer.
+[^recruiter]: Recruiter-side experiments are similar to the candidate side, with the difference that they should be shown to a recruiter, and the recruiter is presented with the job description together with the list of candidates who applied to that particular job offer.
 
