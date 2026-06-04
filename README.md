@@ -34,7 +34,11 @@ This demo supports two user perspectives in a recruitment setting:
 1. That of a <u>candidate</u>, where the user impersonates a job seeker who was not selected by the AI system and is asked to critically evaluate the AI's decision based on their profile and the job requirements. 
 2. That of a <u>recruiter</u>, where the user acts as a recruiter reviewing the AI-ranked candidate list and must shortlist a defined number of candidates. 
 
-Run the following script and type *"findhr"*:
+Run the following script and type 
+```text
+findhr
+```
+:
 ```bash
 cd Annorank
 ./run_apps.sh
