@@ -23,7 +23,8 @@ Depending on your development system, instructions on how to install the Docker 
 - Install Docker by following the steps presented here: https://docs.docker.com/engine/install/
 - Install Docker Desktop: https://www.docker.com/products/docker-desktop/ 
 - Install MongoDB Compass: https://www.mongodb.com/products/tools/compass to view the dataset created and its collections. The connection should be set as mongodb://<IP>:27017. <IP> should be set to IP address for of the machine where the docker 
-
+- Make sure to have the .env file in your cloned repo
+  
 ### Windows:
 If you are using Windows make sure you have WSL2. Allow WSL2 usage in docker settings.
 
