@@ -53,7 +53,7 @@
       ]
     },
     {
-      "query_title": "attention_task",
+      "query_title": "comprehension_task",
       "ranking_type": "form",
       "show_xai": true,
       "description": "Answer the following questions to check the comprehension of the task description.",
