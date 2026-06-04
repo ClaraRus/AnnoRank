@@ -10,6 +10,8 @@ AnnoRank offers support for applying fairness interventions in the pipeline of a
 In addition, the tool is integrated with the Ranklib library, offering a vast range of ranking models that can be applied to the data and displayed in the UI.
 AnnoRank is designed to be flexible, configurable, and easy to deploy to meet diverse requirements and a larger audience.
 
+# Extensions
+1. **XAnnorank**: provides an easily adaptable user interface (UI) that supports explainability studies in rankings via user-centered evaluation. The implementation is available on the `XAnnorank` branch with a corresponding [README](https://github.com/ClaraRus/AnnoRank/blob/XAnnoRank/README.md) and [documentation](https://github.com/ClaraRus/AnnoRank/blob/XAnnoRank/external-resources/XAnno_Rank_Documentation.pdf).
 
 # External Resource
 In the folder external resources the following can be found:
