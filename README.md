@@ -23,6 +23,7 @@ The following connection string should be used `mongodb://<IP>:27017`.`<IP>` sho
 - If the script cannot be executed, this may be caused by Windows line endings. This issue can be resolved by converting the files to Unix format using:
 ```bash
 dos2unix run_apps.sh
+
 dos2unix apps_docker.sh
 ```
 - Whenever a dataset is modified, the `format_data` folder within the dataset directory should be removed before rerunning the script. 
@@ -40,6 +41,7 @@ This demo supports two user perspectives in a recruitment setting:
 Run the following script and type *"findhr"*:
 ```bash
 cd Annorank
+
 ./run_apps.sh
 ```
 
