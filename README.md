@@ -58,7 +58,7 @@ Access: `http://localhost:5004/start_ranking_XAI/<exp_id>`
 - `Exp_id`:
   - **1**: This experiment is composed only of questionnaires. The recruiter is presented with various explanations and asked to evaluate them.
   - **2**: This experiment shows various types of explanations followed by a questionnaire. The recruiter is asked to choose the best candidates to be shortlisted.
-  - **3**: The recruiter is asked to choose the best candidate/s, but without the extra information provided by the explanations. This gives the opportunity to run an A-B test study by showing to a pool of candidates the task without XAI, and to another pool the task with XAI. This is useful in understanding how explanations impact the recruitment process and the recruiter’s behaviour.
+  - **3**: The recruiter is asked to choose the best candidates, but without the extra information provided by the explanations. This gives the opportunity to run an A-B test study by showing to a pool of candidates the task without XAI, and to another pool the task with XAI. This is useful in understanding how explanations impact the recruitment process and the recruiter’s behaviour.
   - **4**: In this experiment the recruiter is first presented with the recruitment task without the XAI, and in the second part with the XAI.
 
 # External Resource
