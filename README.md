@@ -25,7 +25,7 @@ The following connection string should be used `mongodb://<IP>:27017`.`<IP>` sho
 dos2unix run_apps.sh
 dos2unix apps_docker.sh
 ```
-- Whenever a dataset is modified, the `format_data` folder within the dataset directory and existing docker containers should be removed before rerunning the script. 
+- Whenever a dataset is modified, the `format_data` folder within the dataset directory and existing Docker containers should be removed before rerunning the script. 
 
 ## Export Data
 ```bash
