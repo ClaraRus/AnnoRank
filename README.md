@@ -1,148 +1,53 @@
 
-# AnnoRank
-We present AnnoRank, a web-based user interface (UI) framework designed to facilitate the collection of both explicit and implicit annotations in the context of information retrieval (IR). 
-The tool has three primary functionalities.
-First, the tool collects explicit and implicit annotations given a query and a ranked list of items. 
-Second, it facilitates explicit annotation of items based on relevance labels in response to a given query. 
-Third, the functionality in AnnoRank for comparing rankings serves the purpose of visualizing and assessing a ranked list produced by various fairness interventions or ranking models alongside utility and fairness metrics. 
-Given the extensive use of ranking systems, the application supports the presentation of text and images. 
-AnnoRank offers support for applying fairness interventions in the pipeline of a ranking system to avoid the propagation of bias in a ranking being returned. 
-In addition, the tool is integrated with the Ranklib library, offering a vast range of ranking models that can be applied to the data and displayed in the UI. 
-AnnoRank is designed to be flexible, configurable, and easy to deploy to meet diverse requirements and a larger audience. 
-
-# External Resource
-In the folder external resources the following can be found:
-- The code to run AnnoRank can be found [here](https://github.com/ClaraRus/AnnoRank/tree/main). 
-- More information about configuring AnnoRank to your own dataset and needs can be found [here](https://github.com/ClaraRus/AnnoRank/blob/main/external-resources/Anno_Rank_Documentation.pdf).
-- Code documentation can be found [here](https://clararus.github.io/AnnoRank/).
-- The usability study conducted with AnnoRank can be found [here](https://github.com/ClaraRus/AnnoRank/blob/main/external-resources/Usability_Study_Anno_Rank.pdf).
-
+# XAnnoRank
+We present XAnnorank, an extension of AnnoRank that supports explainability studies in rankings via user-centered evaluation. XAnnorank provides an easily adaptable user interface (UI) that enables systematic assessment of explainability methods by presenting ranked lists with and without explanations, while collecting both implicit and explicit user feedback. Its flexibility facilitates diverse user design, including different explanation types, datasets, ranking models, and researcher-defined configurations. This updated version supports as well the previous functionalities of AnnoRank: collect interactions between the user and the ranked list of items, collect graded relevance for an item given the displayed query, and compare two rankings and assess which ranking is more suitable given the query and the assessment's requirements. Moreover, AnnoRank offers the researcher the possibility to view the annotations collected and compare two rankings as well as viewing the corresponding evaluation metrics.
   
 # Requirements 
 Depending on your development system, instructions on how to install the Docker and MongoDB can be found here:
 - Install Docker by following the steps presented here: https://docs.docker.com/engine/install/
 - Install Docker Desktop: https://www.docker.com/products/docker-desktop/ 
 - Install MongoDB Compass: https://www.mongodb.com/products/tools/compass to view the dataset created and its collections. The connection should be set as mongodb://<IP>:27017. <IP> should be set to IP address for of the machine where the docker 
-- Make sure to have the .env file in your cloned repo
   
-### Windows:
-If you are using Windows make sure you have WSL2. Allow WSL2 usage in docker settings.
+## Important remarks:
+- Make sure to have the .env file in your cloned repo.
+- If you are using Windows make sure you have WSL2. Allow WSL2 usage in docker settings.
+-  If the script cannot be executed, this may be caused by Windows line endings. This issue can be resolved by converting the files to Unix format using:
+> dos2unix run_apps.sh 
+> 
+> dos2unix apps_docker.sh
+- Please note that whenever the dataset is modified, the `format_data` folder within the dataset directory should be removed before rerunning the script. 
 
 # Export Data
 ```bash
 docker exec -it $(docker ps -q | sed -n '1p') bash -c 'mongoexport --host="localhost:27017" --collection=<collection_name> --db=<db_name> --out=./app/database.json' && docker cp "$(docker ps -q | head -n 1)":./app/database.json <local_path_to_save>
 ```
 
-# Example: Amazon dataset
+# Demo: Recruitment Use Case
+This demo supports two user perspectives in a recruitment setting:
+1. That of a candidate, where the user impersonates a job seeker who was not selected by the AI system and is asked to critically evaluate the AI's decision based on their profile and the job requirements. 
+2. That of a recruiter, where the user acts as a recruiter reviewing the AI-ranked candidate list and must shortlist a defined number of candidates. 
 
-Run the following script and type "amazon":
-> cd AnnoRank
-> 
-> ./run_apps.sh 
-
-Before accessing the links you need to wait for the app to finish the install and start. 
-
-To access the Interaction Annotation UI go to the following link: http://localhost:5000/start_ranking/3
-
-To access the Ranking Comparison Visualise UI go to the following link: http://localhost:5001/start_compare/2
-
-To access the Ranking Comparison Annotate UI go to the following link: http://localhost:5002/start_compare_annotate/2
-
-To access the Score Annotate UI go to the following link: http://localhost:5003/start_annotate/1
-
-# Example: Flickr dataset
-
-Run the following script and type "flickr":
-> cd AnnoRank
-> 
-> ./run_apps.sh 
-
-Before accessing the links you need to wait for the app to finish the install and start. 
-
-To access the Interaction Annotation UI go to the following link: http://localhost:5000/start_ranking/2
-
-To access the Ranking Comparison Visualise UI go to the following link: http://localhost:5001/start_compare/3
-
-To access the Ranking Comparison Annotate UI go to the following link: http://localhost:5002/start_compare_annotate/3
-
-To access the Score Annotate UI go to the following link: http://localhost:5003/start_annotate/1 
-
-# Example: Recruitment use-case
-
-Run the following script and type "cvs":
-> cd AnnoRank
+Run the following script and type "findhr":
+> cd Annorank
 > 
 > ./run_apps.sh
 
-Before accessing the links you need to wait for the app to finish the install and start. 
+To access the tool for the Demo:
+- Candidate side: http://localhost:5005/start_ranking_XAI/<exp_id>
+  - Exp_id:
+    - 101: This experiment is composed only of questionnaires. In our recruitment demonstration we show to a candidate various explanations and ask the candidate to evaluate their usefulness. XAnnoRank supports both the display of text and images in the questionnaires.
+    - 102: In this experiment we ask the user to impersonate a job seeker. The user is then presented with the various job descriptions and their profile. The user is asked to interact with the UI presenting in each task a different type of explanation. In the follow-up questionnaire the user is asked to evaluate the previously seen explanation type. In this way XAnnoRank can be used to compare various types of explanation methods.
+    - 103: In this experiment we ask the user to impersonate a job seeker. The user is then presented with the various job descriptions and their profile. The user is asked to interact with the UI which this time does not show any explanation. In the follow-up questionnaire the user is asked to evaluate whether the reason for rejection is clear. With such a set-up XAnnoRank can be used to conduct A-B test experiments, where one pool of users is presented with the explanations, and the other without explanations. 
+    - 104: In this experiment the user is first presented with the job description and their profile without explanations, in the second part of the study they are presented with the explanation. Each task is followed by a questionnaire evaluating the previously seen explanations and interaction with the UI. In this way one can evaluate the impact of various explanation methods on the user's perception and behaviour. 
+- Recruiter side[^1]: http://localhost:5004/start_ranking_XAI/<exp_id>
+  - Exp_id:
+    - 1: This experiment is composed only of questionnaires. The recruiter is presented with various explanations and asked to evaluate them.
+    - 2: This experiment shows various types of explanations followed by a questionnaire. The recruiter is asked to choose the best candidates to be shortlisted.
+    - 3: The recruiter is asked to choose the best candidate/s, but without the extra information provided by the explanations. This gives the opportunity to run an A-B test study by showing to a pool of candidates the task without XAI, and to another pool the task with XAI. This is useful in understanding how explanations impact the recruitment process and the recruiter’s behaviour.
+    - 4: In this experiment the recruiter is first presented with the recruitment task without the XAI, and in the second part with the XAI.
 
-To access the Interaction Annotation UI go to the following link: http://localhost:5000/start_ranking/1
+# External Resource
+In the folder external resources, a detailed documentation of XAnnorank can be found [here](https://github.com/ClaraRus/AnnoRank/blob/XAnnoRank/external-resources/XAnno_Rank_Documentation.pdf) to configure it to your own dataset.
 
-To access the Ranking Comparison Visualise UI go to the following link: http://localhost:5001/start_compare/3
-
-To access the Ranking Comparison Annotate UI go to the following link: http://localhost:5002/start_compare_annotate/3 
-
-To access the Score Annotate UI go to the following link: http://localhost:5003/start_annotate/2
-In order to use the Score Annotate UI with multi dimension annotation adapted for the recruitment use-case, change in "/templates/index_annotate_documents" the line "{% include 'doc_annotate_profile_template.html' %}" with the following: {% include 'doc_annotate_profile_template_recruitment.html' %}
-
-
-# Tutorial: Example on the XING dataset
-1. Download the XING dataset from: https://github.com/MilkaLichtblau/xing_dataset
-2. Create the following folder ./datasets/xing/data and save the dataset there
-3. The data reader implemented for this dataset can be found in the following python file ./src/data_readers/data_reader_xing.py.
-
-4. The experiment files can be found at the following locations:
- +  ./datasets/xing/experiments/experiment_shortlist.json → to run the Interaction Annotation UI 
- +  ./datasets/xing/experiments/experiment_compare.json → to run the Ranking Comparison UI
- +  ./datasets/xing/experiments/experiment_annotate_score.json → to run the Score Annotate UI
-
-
-5. The config files can be found under ./configs/xing_tutorial/ 
-+ config_create_db_xing.json → configuration used to add data in the database the data
-+ config_shortlist_xing.json → to run the Interaction Annotate UI
-+ config_compare_xing.json → to run the Ranking Compare Visualise UI
-+ config_compare_annotate_xing.json → to run the Ranking Compare Annotate UI
-+ config_annotate_score_xing.json → to run the Annotate Score UI
-
-
-6. Requirements:
-
-Depending on your development system, instructions on how to install the Docker and MongoDB can be found here:
-- Install Docker by following the steps presented here: https://docs.docker.com/engine/install/
-- Install Docker Desktop: https://www.docker.com/products/docker-desktop/ 
-- Install MongoDB Compass: https://www.mongodb.com/products/tools/compass to view the dataset created and its collections. The connection should be set as mongodb://<IP>:27017. <IP> should be set to IP address for of the machine where the docker 
-
-
-7. Run the following script and type xing. 
-> cd UI-Tool-main
-> 
-> ./run_apps.sh
-
-Before accessing the links you need to wait for the app to finish the install and start. This tutorial makes use of the ready to use fairness interventions and Ranklib, meaning that the installation time is higher as it needs to install extra packages for the fairness interventions and for the Ranklib library.
-
-To access the Interaction Annotation UI go to the following link: http://localhost:5000/start_ranking/4
-
-To access the Ranking Comparison Visualise UI go to the following link: http://localhost:5001/start_compare/3
-
-To access the Ranking Comparison Annotate UI go to the following link: http://localhost:5002/start_compare_annotate/3
-
-To access the Score Annotate UI go to the following link: http://localhost:5003/start_annotate/5 
-
-
-### References
-[1] Ke Yang, Joshua R. Loftus, and Julia Stoyanovich. 2021. Causal intersectionality and fair ranking. In Symposium on Foundations of Responsible Computing (FORC).
-
-[2] Meike Zehlike, Francesco Bonchi, Carlos Castillo, Sara Hajian, Mohamed Megahed, and Ricardo Baeza-Yates. 2017. Fa* ir: A fair top-k ranking algorithm. In Proceedings of the 2017 ACM on Conference on Information and Knowledge Management. ACM, 1569–1578.
-
-[3] Dang, V. "The Lemur Project-Wiki-RankLib." Lemur Project,[Online]. Available: http://sourceforge. net/p/lemur/wiki/RankLib.
-
-[4] Van Gysel, Christophe, and Maarten de Rijke. 2018. Pytrec_eval: An extremely fast python interface to trec_eval. The 41st International ACM SIGIR Conference on Research & Development in Information Retrieval, 873-876.
-
-[5] Jacob Cohen. 1960.  A coefficient of agreement for nominal scales. Educational and psychological measurement 20.1, 37-46.
-
-[6]  Klaus Krippendorff. 2004. Reliability in content analysis: Some common misconceptions and recommendations. Human communication research 30, 3 (2004), 411–433.
-
-[7] Joseph Fleiss, Jacob Cohen. 1973. The equivalence of weighted kappa and the intraclass correlation coefficient as measures of reliability. Educational and psychological measurement, 33.3: 613-619.
-
-[8] Harrisen Scells, Jimmy, & Guido Zuccon. 2021. Big Brother: A Drop-In Website Interaction Logging Service. Proceedings of the 44th International ACM SIGIR Conference on Research and Development in Information Retrieval.
+[^1] Recruiter Side - experiments are similar to the candidate side, with the difference that they should be shown to a recruiter, and the recruiter is presented with the job description together with the list of candidates who applied to that particular job offer.
 
