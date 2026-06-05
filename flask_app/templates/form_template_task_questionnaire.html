@@ -124,6 +124,9 @@ button {
                         {% set is_image_question = item.question.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp')) or item.question.startswith('http') %}
 
                         {% if is_image_question %}
+                            {% if item.label %}
+                                <p class="text-gray-700 font-medium mb-2">{{ item.label | safe }}</p>
+                            {% endif %}
                             <div class="mb-2">
                                 <img src="{{ url_for('images', filename=item.question) }}"
                                      alt="Question Visual"

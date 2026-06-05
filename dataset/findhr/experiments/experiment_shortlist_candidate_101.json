@@ -104,6 +104,7 @@
         },
         {
           "question": "job_2_1/images/factual_exp_227_exp1.png",
+          "label": "Please rate how useful the following explanation is:",
           "field": "question_3",
           "options": "likert-5",
           "mandatory": true
