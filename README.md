@@ -17,15 +17,9 @@ Install MongoDB Compass to view the dataset created and its collections:
 
 The following connection string should be used `mongodb://<IP>:27017`.`<IP>` should be replaced by the IP address for of the machine running the docker containers.
   
-### Important Installation Remarks
+### Installation Remarks
 - Ensure that the `.env` file is present in your cloned repository.
-- Windows users must have **WSL2** and enabled for usage in docker settings.
-- If the script cannot be executed, this may be caused by Windows line endings. This issue can be resolved by converting the files to Unix format using:
-```bash
-dos2unix run_apps.sh
-dos2unix apps_docker.sh
-```
-- Whenever a dataset is modified, the `format_data` folder within the dataset directory and existing Docker containers should be removed before rerunning the script. 
+- Windows users must have **WSL2** and enabled for usage in docker settings. 
 
 ## Export Data
 ```bash
@@ -37,11 +31,17 @@ This demo supports two user perspectives in a recruitment setting:
 1. That of a **candidate**, where the user impersonates a job seeker who was not selected by the AI system and is asked to critically evaluate the AI's decision based on their profile and the job requirements. 
 2. That of a **recruiter**, where the user acts as a recruiter reviewing the AI-ranked candidate list and must shortlist a defined number of candidates. 
 
-Run the following script and type *"findhr"*:
+Clone the repository, switch to the XAnnoRank branch, run the following script and type *"findhr"*:
 ```bash
 cd Annorank
 ./run_apps.sh
 ```
+If the script cannot be executed, this may be caused by Windows line endings. This issue can be resolved by converting the files to Unix format using:
+```bash
+dos2unix run_apps.sh
+dos2unix apps_docker.sh
+```
+*Note*: Whenever a dataset is modified, the `format_data` folder within the dataset directory and existing Docker containers should be removed before rerunning the script.
 
 Before accessing the links you need to wait for the app to finish the install and start.
 
