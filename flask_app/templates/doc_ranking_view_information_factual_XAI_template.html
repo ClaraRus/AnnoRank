@@ -72,7 +72,6 @@
             var nestedRow = document.getElementById('expandable-row-extrainfo-{{ doc_obj._id }}');
 
             if (parentTable && nestedRow) {
-                // Read widths from the actual data cells above it, not just the headers
                 var firstParentRowCells = parentTable.querySelector('tbody tr').querySelectorAll('td');
                 var nestedCells = nestedRow.querySelectorAll('td');
 
@@ -88,7 +87,6 @@
             }
         }
 
-        // Run immediately, and wait for any display:none transitions from the View Button to finish
         syncTableWidths();
         setTimeout(syncTableWidths, 50);
         setTimeout(syncTableWidths, 200);

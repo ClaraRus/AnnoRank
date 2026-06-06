@@ -30,9 +30,6 @@ sys.path.append(str(Path(__file__).resolve().parent.parent / 'src'))
 
 import argparse
 import json
-import random
-
-import numpy as np
 import os
 import logging
 import ast
@@ -152,9 +149,12 @@ def consent_form(experiment_id):
     return render_template('consent_form_template.html', session_id=session['user_id'], experiment_id=experiment_id)
 
 
-#added
 @app.route("/instructions/<int:experiment_id>", methods=['GET', 'POST'])
 def instructions(experiment_id):
+    """
+        Returns:
+            A Flask response object with a redirect to the instruction page.
+    """
     next_task = get_next_task(experiment_id).get_json()['next_task']
 
     exp_obj = database.Experiment.objects(_exp_id=str(experiment_id)).first()
@@ -190,7 +190,6 @@ def logout():
     return response
 
 
-# Updated get_next_task function
 @app.route('/api/<experiment_id>/get_next_task/', methods=['GET'])
 def get_next_task(experiment_id):
     """Get the next task to be assessed by the annotator based on the experiment list defined in the JSON.
@@ -220,17 +219,14 @@ def get_next_task(experiment_id):
                 next_task = 'stop_experiment'
                 return jsonify({'next_task': str(next_task)})
 
-    # Convert visited tasks to a set for more efficient lookups
     user_tasks_visited_ids = {item.task for item in user.tasks_visited}
 
-    # Iterate through tasks in the order defined in the experiment's 'tasks' JSON array
     for idx, task_obj_id in enumerate(experiment.tasks):
-        # Check if the task index (idx) has not been visited by the user yet
         if str(idx) not in user_tasks_visited_ids:
-            # We found the next unvisited task in the JSON order
+            # Found the next unvisited task
             return jsonify({'next_task': str(idx)})
 
-    # If all tasks defined in the 'tasks' array of the JSON have been visited
+    # If all tasks defined have been visited redirect to exit the experiment
     if configs["ui_display_config"]["exit_survey"] is not None:
         next_task = 'form'
     else:
@@ -248,7 +244,6 @@ def get_task_description(task_obj):
     else:
         base_description = ""
 
-    # Add extra information specific to the task, if available
     if task_obj is not None and task_obj.setting:
         return (
                 "Please pay attention to the extra information provided as it might differ between the tasks. "
@@ -346,7 +341,6 @@ def get_xai_data(doc_obj, ranking_type, type="factual"):
 
 @app.route("/start_ranking_XAI/<experiment_id>/index_ranking/<n_task>/<doc_id>",
            methods=['GET', 'POST'])
-#@login_required
 def index_ranking(experiment_id, n_task, doc_id):
     """
     Renders Interaction Annotate UI.
@@ -449,7 +443,6 @@ def index_ranking(experiment_id, n_task, doc_id):
 @app.route('/images/<path:filename>')
 def images(filename):
     if filename is not None:
-        # Optional: restrict file types
         if not filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
             abort(403)
 
@@ -598,36 +591,32 @@ def questionnaire(experiment_id, n_task):
     if n_task not in [item.task for item in user.tasks_visited]:
         task_visited = database.TaskVisited(task=str(n_task), exp=str(experiment_id))
         user.tasks_visited.append(
-            task_visited)  # This uses read-modify-write, consider atomic update for high concurrency on same user.
+            task_visited)
         user.save()
 
-    # Get the next task index using the updated get_next_task logic
+    # Get the next task
     response = get_next_task(experiment_id)
     next_task_data = response.get_json()
-    next_task_idx = next_task_data['next_task']  # This is the index of the next task in the JSON array
+    next_task_idx = next_task_data['next_task']
 
     exp_obj = database.Experiment.objects(_exp_id=str(experiment_id)).first()
 
     # Get the current task object to retrieve its questionnaire questions
     current_task_id = exp_obj.tasks[int(n_task)]
     current_task_obj = database.Task.objects(id=current_task_id).first()
+    question_list = current_task_obj.questionnaire
 
-    question_list = current_task_obj.questionnaire  # Retrieve questions from the current task object
-
-    # Determine the next URL based on the next_task_idx provided by get_next_task
-    if next_task_idx == 'form':  # If next_task_idx signals a general final form (from config)
+    if next_task_idx == 'form':
         next_url = url_for('exit_form')
-    elif next_task_idx == 'stop_experiment':  # If next_task_idx signals experiment completion
+    elif next_task_idx == 'stop_experiment':
         next_url = url_for('stop_experiment')
     else:
-        # We have a valid task index, retrieve the next task object from the database
         next_task_id = exp_obj.tasks[int(next_task_idx)]
         next_task_obj = database.Task.objects(id=next_task_id).first()
 
-        # Decide redirection based on the TYPE of the NEXT task
-        if next_task_obj.ranking_type == "form":  # If the NEXT task is another questionnaire
+        if next_task_obj.ranking_type == "form":
             next_url = url_for('questionnaire', experiment_id=experiment_id, n_task=next_task_idx)
-        else:  # Otherwise, the NEXT task is a ranking task
+        else:
             next_url = url_for('index_ranking', experiment_id=experiment_id, n_task=next_task_idx, doc_id="view")
 
     original_title = current_task_obj.query_title.lower()
@@ -803,7 +792,6 @@ def stop_experiment():
         try:
             user = database.User.objects(_user_id=session['user_id']).first()
 
-            # Ensure the field exists and is numeric
             attention_value = int(user._attention_check or 0)
 
             if attention_value >= configs["attention_check"]["limit"]:
@@ -812,9 +800,7 @@ def stop_experiment():
                 prolific_code = "PASS"
             return render_template('stop_experiment_template.html', prolific_code=prolific_code)
         except Exception as e:
-            # Log the error for debugging (optional)
             print(f"Redirect failed or user missing field: {e}")
-            # Fallback render
             return render_template('stop_experiment_template.html', prolific_code="")
     else:
         return render_template('stop_experiment_template.html', prolific_code="")
@@ -830,5 +816,4 @@ def error_handling(error):
 if __name__ == "__main__":
         if os.path.exists(args.config_path):
             app.run(debug=True, use_reloader=False, host='0.0.0.0',
-                    port=args.port)  # with this we dont need to stop the running flask app, only need to refresh the page in the browser to load the new changes
-
+                    port=args.port)  
