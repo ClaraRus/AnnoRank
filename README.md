@@ -62,7 +62,7 @@ Access: `http://localhost:5004/start_ranking_XAI/<exp_id>`
   - **4**: In this experiment the recruiter is first presented with the recruitment task without the XAI, and in the second part with the XAI.
 
 # External Resource
-In the folder `external resources`, additional [documentation of XAnnorank](https://github.com/ClaraRus/AnnoRank/blob/XAnnoRank/external-resources/XAnno_Rank_Documentation.pdf) is available to configure to custom datasets.
+In the folder `external resources`, additional [documentation of XAnnorank](https://github.com/ClaraRus/AnnoRank/blob/XAnnoRank/external-resources/XAnno_Rank_Documentation.pdf) is available to configure to custom datasets. Also, a demonstration video is accessible via: https://www.youtube.com/watch?v=6Hm6iIaURWI.
 
 [^recruiter]: Recruiter-side experiments are similar to the candidate side, with the difference that they should be shown to a recruiter, and the recruiter is presented with the job description together with the list of candidates who applied to that particular job offer.
 
