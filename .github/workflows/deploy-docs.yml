@@ -48,7 +48,7 @@ jobs:
           shards install
 
       - name: Build site
-        run: mkdocs build
+        run: mkdocs build --config-file mkdocs-v0.yml
 
       - name: Configure git for mike
         if: github.event_name != 'pull_request'
@@ -60,7 +60,7 @@ jobs:
         if: github.event_name == 'repository_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/mkdocs')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: mike deploy --push v0
+        run: mike deploy --push --config-file mkdocs-v0.yml v0
 
   deploy-v1:
     name: Build and deploy v1 docs
