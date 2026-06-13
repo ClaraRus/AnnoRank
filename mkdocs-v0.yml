@@ -13,9 +13,7 @@ extra:
 nav:
   - Home: index.md
   - UI Functionalities: UI_Functionalities.md
-  - XAI UI Functionalities: XAI_UI_Functionalities.md
   - Configuration File: Configuration_File.md
-  - XAI Configuration: XAI_Configuration.md
   - Experiment File: Experiment_File.md
   - Displaying Dataset: Displaying_Dataset.md
   - Database: Database.md
@@ -25,7 +23,6 @@ nav:
   - Apps:
       - Annotate Document App: Annotate_Document_App.md
       - Ranking App: Ranking_App.md
-      - XAI Ranking App: XAI_Ranking_App.md
       - Ranking Compare App: Ranking_Compare_App.md
       - Ranking Compare Annotate App: Ranking_Compare_Annotate_App.md
   - Annotations Quality: Annotations_Quality.md
