@@ -1,5 +1,10 @@
 # XAnnoRank
 **XAnnorank** is an extension of **AnnoRank** that supports explainability studies in rankings via user-centered evaluation. XAnnorank provides an easily adaptable user interface (UI) that enables systematic assessment of explainability methods by presenting ranked lists with and without explanations, while collecting both implicit and explicit user feedback. Its flexibility facilitates diverse user design, including different explanation types, datasets, ranking models, and researcher-defined configurations. This updated version supports as well the previous functionalities of AnnoRank: collect interactions between the user and the ranked list of items, collect graded relevance for an item given the displayed query, and compare two rankings and assess which ranking is more suitable given the query and the assessment's requirements. Moreover, AnnoRank offers the researcher the possibility to view the annotations collected and compare two rankings as well as viewing the corresponding evaluation metrics.
+
+## External Resource
+In the folder `external resources`, additional [documentation of XAnnorank](https://github.com/ClaraRus/AnnoRank/blob/XAnnoRank/external-resources/XAnno_Rank_Documentation.pdf) is available to configure to custom datasets. Also, a demonstration video is accessible via: https://www.youtube.com/watch?v=6Hm6iIaURWI.
+
+[^recruiter]: Recruiter-side experiments are similar to the candidate side, with the difference that they should be shown to a recruiter, and the recruiter is presented with the job description together with the list of candidates who applied to that particular job offer.
   
 ## Requirements 
 Depending on your development system, instructions on how to install the Docker and MongoDB can be found here.
@@ -60,9 +65,4 @@ Access: `http://localhost:5004/start_ranking_XAI/<exp_id>`
   - **2**: This experiment shows various types of explanations followed by a questionnaire. The recruiter is asked to choose the best candidates to be shortlisted.
   - **3**: The recruiter is asked to choose the best candidates, but without the extra information provided by the explanations. This gives the opportunity to run an A-B test study by showing to a pool of candidates the task without XAI, and to another pool the task with XAI. This is useful in understanding how explanations impact the recruitment process and the recruiter’s behaviour.
   - **4**: In this experiment the recruiter is first presented with the recruitment task without the XAI, and in the second part with the XAI.
-
-# External Resource
-In the folder `external resources`, additional [documentation of XAnnorank](https://github.com/ClaraRus/AnnoRank/blob/XAnnoRank/external-resources/XAnno_Rank_Documentation.pdf) is available to configure to custom datasets. Also, a demonstration video is accessible via: https://www.youtube.com/watch?v=6Hm6iIaURWI.
-
-[^recruiter]: Recruiter-side experiments are similar to the candidate side, with the difference that they should be shown to a recruiter, and the recruiter is presented with the job description together with the list of candidates who applied to that particular job offer.
 
